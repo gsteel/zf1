@@ -21,12 +21,6 @@
 
 
 /**
- * @see Zend_Acl_Exception
- */
-require_once 'Zend/Acl/Exception.php';
-
-
-/**
  * @category   Zend
  * @package    Zend_Acl
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)

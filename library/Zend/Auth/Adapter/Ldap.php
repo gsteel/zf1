@@ -1,37 +1,4 @@
 <?php
-/**
- * Zend Framework
- *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Auth
- * @subpackage Zend_Auth_Adapter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
- */
-
-/**
- * @see Zend_Auth_Adapter_Interface
- */
-require_once 'Zend/Auth/Adapter/Interface.php';
-
-/**
- * @category   Zend
- * @package    Zend_Auth
- * @subpackage Zend_Auth_Adapter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- */
 class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
 {
 
@@ -195,10 +162,6 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
     public function getLdap()
     {
         if ($this->_ldap === null) {
-            /**
-             * @see Zend_Ldap
-             */
-            require_once 'Zend/Ldap.php';
             $this->_ldap = new Zend_Ldap();
         }
 
@@ -243,11 +206,6 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
      */
     public function authenticate()
     {
-        /**
-         * @see Zend_Ldap_Exception
-         */
-        require_once 'Zend/Ldap/Exception.php';
-
         $messages = array();
         $messages[0] = ''; // reserved
         $messages[1] = ''; // reserved
@@ -281,10 +239,6 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
         foreach ($this->_options as $name => $options) {
 
             if (!is_array($options)) {
-                /**
-                 * @see Zend_Auth_Adapter_Exception
-                 */
-                require_once 'Zend/Auth/Adapter/Exception.php';
                 throw new Zend_Auth_Adapter_Exception('Adapter options array not an array');
             }
             $adapterOptions = $this->_prepareOptions($ldap, $options);
@@ -451,11 +405,6 @@ class Zend_Auth_Adapter_Ldap implements Zend_Auth_Adapter_Interface
         } else {
             $user = $dn;
         }
-
-        /**
-         * @see Zend_Ldap_Filter
-         */
-        require_once 'Zend/Ldap/Filter.php';
         $groupName = Zend_Ldap_Filter::equals($adapterOptions['groupAttr'], $adapterOptions['group']);
         $membership = Zend_Ldap_Filter::equals($adapterOptions['memberAttr'], $user);
         $group = Zend_Ldap_Filter::andFilter($groupName, $membership);

@@ -1,48 +1,4 @@
 <?php
-/**
- * Zend Framework
- *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Auth
- * @subpackage Zend_Auth_Adapter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
- */
-
-
-/**
- * @see Zend_Auth_Adapter_Interface
- */
-require_once 'Zend/Auth/Adapter/Interface.php';
-
-
-/**
- * @see Zend_OpenId_Consumer
- */
-require_once 'Zend/OpenId/Consumer.php';
-
-
-/**
- * A Zend_Auth Authentication Adapter allowing the use of OpenID protocol as an
- * authentication mechanism
- *
- * @category   Zend
- * @package    Zend_Auth
- * @subpackage Zend_Auth_Adapter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- */
 class Zend_Auth_Adapter_OpenId implements Zend_Auth_Adapter_Interface
 {
     /**

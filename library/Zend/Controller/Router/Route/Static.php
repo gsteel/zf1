@@ -1,38 +1,4 @@
 <?php
-/**
- * Zend Framework
- *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- */
-
-/** Zend_Controller_Router_Route_Abstract */
-require_once 'Zend/Controller/Router/Route/Abstract.php';
-
-/**
- * StaticRoute is used for managing static URIs.
- *
- * It's a lot faster compared to the standard Route implementation.
- *
- * @package    Zend_Controller
- * @subpackage Router
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- */
 class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_Abstract
 {
 

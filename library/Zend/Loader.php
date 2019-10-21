@@ -56,7 +56,6 @@ class Zend_Loader
         }
 
         if ((null !== $dirs) && !is_string($dirs) && !is_array($dirs)) {
-            require_once 'Zend/Exception.php';
             throw new Zend_Exception('Directory argument must be a string or an array');
         }
 

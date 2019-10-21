@@ -1,41 +1,4 @@
 <?php
-/**
- * Zend Framework
- *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
- */
-
-/**
- * @see Zend_Application_Resource_ResourceAbstract
- */
-require_once 'Zend/Application/Resource/ResourceAbstract.php';
-
-
-/**
- * Resource for setting translation options
- *
- * @uses       Zend_Application_Resource_ResourceAbstract
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- */
 class Zend_Application_Resource_Translate extends Zend_Application_Resource_ResourceAbstract
 {
     const DEFAULT_REGISTRY_KEY = 'Zend_Translate';
@@ -68,10 +31,8 @@ class Zend_Application_Resource_Translate extends Zend_Application_Resource_Reso
             $options = $this->getOptions();
 
             if (!isset($options['content']) && !isset($options['data'])) {
-                require_once 'Zend/Application/Resource/Exception.php';
                 throw new Zend_Application_Resource_Exception('No translation source data provided.');
             } else if (array_key_exists('content', $options) && array_key_exists('data', $options)) {
-                require_once 'Zend/Application/Resource/Exception.php';
                 throw new Zend_Application_Resource_Exception(
                     'Conflict on translation source data: choose only one key between content and data.'
                 );
@@ -121,7 +82,6 @@ class Zend_Application_Resource_Translate extends Zend_Application_Resource_Reso
             if (Zend_Registry::isRegistered($key)) {
                 $translate = Zend_Registry::get($key);
                 if (!$translate instanceof Zend_Translate) {
-                    require_once 'Zend/Application/Resource/Exception.php';
                     throw new Zend_Application_Resource_Exception(
                         $key
                         . ' already registered in registry but is '

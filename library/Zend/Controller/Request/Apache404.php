@@ -1,45 +1,4 @@
 <?php
-/**
- * Zend Framework
- *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Controller
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
- */
-
-/** Zend_Controller_Request_Http */
-require_once 'Zend/Controller/Request/Http.php';
-
-/** Zend_Uri */
-require_once 'Zend/Uri.php';
-
-/**
- * Zend_Controller_Request_Apache404
- *
- * HTTP request object for use with Zend_Controller family. Extends basic HTTP
- * request object to allow for two edge cases when using Apache:
- * - Using Apache's 404 handler instead of mod_rewrite to direct requests
- * - Using the PT flag in rewrite rules
- *
- * In each case, the URL to check against is found in REDIRECT_URL, not
- * REQUEST_URI.
- *
- * @uses       Zend_Controller_Request_Http
- * @package    Zend_Controller
- * @subpackage Request
- */
 class Zend_Controller_Request_Apache404 extends Zend_Controller_Request_Http
 {
     public function setRequestUri($requestUri = null)

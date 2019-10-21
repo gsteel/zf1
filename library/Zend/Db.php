@@ -1,34 +1,4 @@
 <?php
-
-/**
- * Zend Framework
- *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend_Db
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
- */
-
-
-/**
- * Class for connecting to SQL databases and performing common operations.
- *
- * @category   Zend
- * @package    Zend_Db
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- */
 class Zend_Db
 {
 
@@ -221,10 +191,6 @@ class Zend_Db
          * Verify that adapter parameters are in an array.
          */
         if (!is_array($config)) {
-            /**
-             * @see Zend_Db_Exception
-             */
-            require_once 'Zend/Db/Exception.php';
             throw new Zend_Db_Exception('Adapter parameters must be in an array or a Zend_Config object');
         }
 
@@ -232,10 +198,6 @@ class Zend_Db
          * Verify that an adapter name has been specified.
          */
         if (!is_string($adapter) || empty($adapter)) {
-            /**
-             * @see Zend_Db_Exception
-             */
-            require_once 'Zend/Db/Exception.php';
             throw new Zend_Db_Exception('Adapter name must be specified in a string');
         }
 
@@ -259,7 +221,6 @@ class Zend_Db
          * if the specified class cannot be loaded.
          */
         if (!class_exists($adapterName)) {
-            require_once 'Zend/Loader.php';
             Zend_Loader::loadClass($adapterName);
         }
 
@@ -273,10 +234,6 @@ class Zend_Db
          * Verify that the object created is a descendent of the abstract adapter type.
          */
         if (! $dbAdapter instanceof Zend_Db_Adapter_Abstract) {
-            /**
-             * @see Zend_Db_Exception
-             */
-            require_once 'Zend/Db/Exception.php';
             throw new Zend_Db_Exception("Adapter class '$adapterName' does not extend Zend_Db_Adapter_Abstract");
         }
 

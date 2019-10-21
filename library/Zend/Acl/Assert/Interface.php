@@ -19,25 +19,6 @@
  * @version    $Id$
  */
 
-
-/**
- * @see Zend_Acl
- */
-require_once 'Zend/Acl.php';
-
-
-/**
- * @see Zend_Acl_Role_Interface
- */
-require_once 'Zend/Acl/Role/Interface.php';
-
-
-/**
- * @see Zend_Acl_Resource_Interface
- */
-require_once 'Zend/Acl/Resource/Interface.php';
-
-
 /**
  * @category   Zend
  * @package    Zend_Acl
