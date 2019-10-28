@@ -46,7 +46,6 @@ class Zend_Db_Profiler_AllTests
     {
         $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Db_Profiler');
 
-        $suite->addTestSuite('Zend_Db_Profiler_FirebugTest');
 
         return $suite;
     }

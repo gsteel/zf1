@@ -58,9 +58,6 @@ class Zend_Log_Writer_AllTests
 
         $suite->addTestSuite('Zend_Log_Writer_AbstractTest');
         $suite->addTestSuite('Zend_Log_Writer_DbTest');
-        if (PHP_OS != 'AIX') {
-            $suite->addTestSuite('Zend_Log_Writer_FirebugTest');
-        }
         $suite->addTestSuite('Zend_Log_Writer_MailTest');
         $suite->addTestSuite('Zend_Log_Writer_MockTest');
         $suite->addTestSuite('Zend_Log_Writer_NullTest');
