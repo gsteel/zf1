@@ -374,6 +374,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
         $media                 = 'screen';
         $conditionalStylesheet = false;
         $href                  = array_shift($args);
+        $extras = [];
 
         if ($this->_isDuplicateStylesheet($href)) {
             return false;
@@ -381,7 +382,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
 
         if (0 < count($args)) {
             $media = array_shift($args);
-            if(is_array($media)) {
+            if (is_array($media)) {
                 $media = implode(',', $media);
             } else {
                 $media = (string) $media;
@@ -389,14 +390,14 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
         }
         if (0 < count($args)) {
             $conditionalStylesheet = array_shift($args);
-            if(!empty($conditionalStylesheet) && is_string($conditionalStylesheet)) {
+            if (! empty($conditionalStylesheet) && is_string($conditionalStylesheet)) {
                 $conditionalStylesheet = (string) $conditionalStylesheet;
             } else {
                 $conditionalStylesheet = null;
             }
         }
 
-        if(0 < count($args) && is_array($args[0])) {
+        if (0 < count($args) && is_array($args[0])) {
             $extras = array_shift($args);
             $extras = (array) $extras;
         }
