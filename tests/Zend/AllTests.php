@@ -215,7 +215,6 @@ class Zend_AllTests
         $suite->addTest(Zend_Reflection_AllTests::suite());
         $suite->addTest(Zend_Serializer_AllTests::suite());
         $suite->addTest(Zend_Server_AllTests::suite());
-        $suite->addTest(Zend_Service_AllTests::suite());
         $suite->addTest(Zend_Tag_AllTests::suite());
         $suite->addTest(Zend_Test_AllTests::suite());
         $suite->addTest(Zend_Text_AllTests::suite());
