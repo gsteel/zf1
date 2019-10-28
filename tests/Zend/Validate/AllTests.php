@@ -24,36 +24,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'Zend_Validate_AllTests::main');
 }
 
-require_once 'Zend/Validate/AbstractTest.php';
-require_once 'Zend/Validate/AlnumTest.php';
-require_once 'Zend/Validate/AlphaTest.php';
-require_once 'Zend/Validate/BarcodeTest.php';
-require_once 'Zend/Validate/BetweenTest.php';
-require_once 'Zend/Validate/CallbackTest.php';
-require_once 'Zend/Validate/CcnumTest.php';
-require_once 'Zend/Validate/CreditCardTest.php';
-require_once 'Zend/Validate/DateTest.php';
-require_once 'Zend/Validate/Db/AllTests.php';
-require_once 'Zend/Validate/DigitsTest.php';
-require_once 'Zend/Validate/EmailAddressTest.php';
-require_once 'Zend/Validate/File/AllTests.php';
-require_once 'Zend/Validate/FloatTest.php';
-require_once 'Zend/Validate/GreaterThanTest.php';
-require_once 'Zend/Validate/HexTest.php';
-require_once 'Zend/Validate/HostnameTest.php';
-require_once 'Zend/Validate/IbanTest.php';
-require_once 'Zend/Validate/IdenticalTest.php';
-require_once 'Zend/Validate/InArrayTest.php';
-require_once 'Zend/Validate/IntTest.php';
-require_once 'Zend/Validate/IpTest.php';
-require_once 'Zend/Validate/IsbnTest.php';
-require_once 'Zend/Validate/LessThanTest.php';
-require_once 'Zend/Validate/MessageTest.php';
-require_once 'Zend/Validate/NotEmptyTest.php';
-require_once 'Zend/Validate/PostCodeTest.php';
-require_once 'Zend/Validate/RegexTest.php';
-require_once 'Zend/Validate/Sitemap/AllTests.php';
-require_once 'Zend/Validate/StringLengthTest.php';
 
 /**
  * @category   Zend
@@ -87,7 +57,6 @@ class Zend_Validate_AllTests
         $suite->addTestSuite('Zend_Validate_AbstractTest');
         $suite->addTestSuite('Zend_Validate_AlnumTest');
         $suite->addTestSuite('Zend_Validate_AlphaTest');
-        $suite->addTestSuite('Zend_Validate_BarcodeTest');
         $suite->addTestSuite('Zend_Validate_BetweenTest');
         $suite->addTestSuite('Zend_Validate_CallbackTest');
         $suite->addTestSuite('Zend_Validate_CcnumTest');
