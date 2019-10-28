@@ -169,7 +169,6 @@ class Zend_AllTests
         $suite->addTest(Zend_Application_AllTests::suite());
         $suite->addTestSuite('Zend_AuthTest');
         $suite->addTest(Zend_Auth_AllTests::suite());
-        $suite->addTest(Zend_Barcode_AllTests::suite());
         $suite->addTest(Zend_Cache_AllTests::suite());
         $suite->addTest(Zend_Captcha_AllTests::suite());
         $suite->addTest(Zend_CodeGenerator_Php_AllTests::suite());
