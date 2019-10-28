@@ -218,7 +218,6 @@ class Zend_AllTests
         $suite->addTestSuite('Zend_RegistryTest');
         $suite->addTest(Zend_Rest_AllTests::suite());
         $suite->addTest(Zend_Reflection_AllTests::suite());
-        $suite->addTest(Zend_Queue_AllTests::suite());
         $suite->addTest(Zend_Search_Lucene_AllTests::suite());
         $suite->addTest(Zend_Serializer_AllTests::suite());
         $suite->addTest(Zend_Server_AllTests::suite());
