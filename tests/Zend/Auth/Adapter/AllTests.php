@@ -27,7 +27,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 require_once 'Zend/Auth/Adapter/DbTable/AllTests.php';
 require_once 'Zend/Auth/Adapter/DigestTest.php';
 require_once 'Zend/Auth/Adapter/Http/AllTests.php';
-require_once 'Zend/Auth/Adapter/Ldap/AllTests.php';
 require_once 'Zend/Auth/Adapter/OpenId/AllTests.php';
 
 /**
@@ -62,7 +61,6 @@ class Zend_Auth_Adapter_AllTests
         $suite->addTest(Zend_Auth_Adapter_DbTable_AllTests::suite());
         $suite->addTestSuite('Zend_Auth_Adapter_DigestTest');
         $suite->addTest(Zend_Auth_Adapter_Http_AllTests::suite());
-        $suite->addTest(Zend_Auth_Adapter_Ldap_AllTests::suite());
         $suite->addTest(Zend_Auth_Adapter_OpenId_AllTests::suite());
 
         return $suite;

@@ -47,11 +47,6 @@ defined('TESTS_ZEND_OB_ENABLED') || define('TESTS_ZEND_OB_ENABLED', false);
 defined('TESTS_ZEND_AUTH_ADAPTER_DBTABLE_PDO_SQLITE_ENABLED') || define('TESTS_ZEND_AUTH_ADAPTER_DBTABLE_PDO_SQLITE_ENABLED', false);
 defined('TESTS_ZEND_AUTH_ADAPTER_DBTABLE_PDO_SQLITE_DATABASE') || define('TESTS_ZEND_AUTH_ADAPTER_DBTABLE_PDO_SQLITE_DATABASE', ':memory:');
 
-/**
- * Zend_Auth_Adapter_Ldap online tests
- * (See also TESTS_ZEND_LDAP_* configuration constants below)
- */
-defined('TESTS_ZEND_AUTH_ADAPTER_LDAP_ONLINE_ENABLED') || define('TESTS_ZEND_AUTH_ADAPTER_LDAP_ONLINE_ENABLED', false);
 
 /**
  * Zend_Cache
@@ -365,56 +360,6 @@ defined('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MAJOR') || define('TES
 defined('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MINOR') || define('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MINOR', false);
 defined('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC') || define('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC', false);
 
-/**
- * Zend_Ldap online tests
- */
-defined('TESTS_ZEND_LDAP_ONLINE_ENABLED') || define('TESTS_ZEND_LDAP_ONLINE_ENABLED', false);
-
-/* These largely map to the options described in the Zend_Ldap and
- * Zend_Auth_Adapter_Ldap documentation.
- *
- * Example Configuration for Active Directory:
- *                      HOST: dc1.w.net
- *             USE_START_TLS: true
- *                   USE_SSL: false
- *                  USERNAME: CN=User 1,CN=Users,DC=w,DC=net
- *            PRINCIPAL_NAME: user1@w.net
- *             LDAP_PASSWORD: pass1
- *                   BASE_DN: CN=Users,DC=w,DC=net
- *               DOMAIN_NAME: w.net
- * ACCOUNT_DOMAIN_NAME_SHORT: W
- *              ALT_USERNAME: user2
- *                    ALT_DN: CN=User 2,CN=Users,DC=w,DC=net
- *              ALT_PASSWORD: pass2
- *
- * Example Configuration for OpenLDAP
- *                      HOST: s0.foo.net
- *                  USERNAME: CN=user1,DC=foo,DC=net
- *            PRINCIPAL_NAME: user1@foo.net
- *             LDAP_PASSWORD: pass1
- *          BIND_REQUIRES_DN: true
- *                   BASE_DN: OU=Sales,DC=w,DC=net
- *               DOMAIN_NAME: foo.net
- * ACCOUNT_DOMAIN_NAME_SHORT: FOO
- *              ALT_USERNAME: abaker
- *                    ALT_DN: CN=Alice Baker,OU=Sales,DC=foo,DC=net
- *              ALT_PASSWORD: apass
- */
-defined('TESTS_ZEND_LDAP_HOST') || define('TESTS_ZEND_LDAP_HOST', 'localhost');
-//defined('TESTS_ZEND_LDAP_PORT') || define('TESTS_ZEND_LDAP_PORT', 389);
-defined('TESTS_ZEND_LDAP_USE_START_TLS') || define('TESTS_ZEND_LDAP_USE_START_TLS', true);
-//defined('TESTS_ZEND_LDAP_USE_SSL') || define('TESTS_ZEND_LDAP_USE_SSL', false);
-defined('TESTS_ZEND_LDAP_USERNAME') || define('TESTS_ZEND_LDAP_USERNAME', 'CN=someUser,DC=example,DC=com');
-defined('TESTS_ZEND_LDAP_PRINCIPAL_NAME') || define('TESTS_ZEND_LDAP_PRINCIPAL_NAME', 'someUser@example.com');
-defined('TESTS_ZEND_LDAP_PASSWORD') || define('TESTS_ZEND_LDAP_PASSWORD', null);
-defined('TESTS_ZEND_LDAP_BIND_REQUIRES_DN') || define('TESTS_ZEND_LDAP_BIND_REQUIRES_DN', true);
-defined('TESTS_ZEND_LDAP_BASE_DN') || define('TESTS_ZEND_LDAP_BASE_DN', 'OU=Sales,DC=example,DC=com');
-//defined('TESTS_ZEND_LDAP_ACCOUNT_FILTER_FORMAT') || define('TESTS_ZEND_LDAP_ACCOUNT_FILTER_FORMAT', '(&(objectClass=posixAccount)(uid=%s))');
-defined('TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME') || define('TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME', 'example.com');
-defined('TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME_SHORT') || define('TESTS_ZEND_LDAP_ACCOUNT_DOMAIN_NAME_SHORT', 'EXAMPLE');
-defined('TESTS_ZEND_LDAP_ALT_USERNAME') || define('TESTS_ZEND_LDAP_ALT_USERNAME', 'anotherUser');
-defined('TESTS_ZEND_LDAP_ALT_DN') || define('TESTS_ZEND_LDAP_ALT_DN', 'CN=Another User,OU=Sales,DC=example,DC=com');
-defined('TESTS_ZEND_LDAP_ALT_PASSWORD') || define('TESTS_ZEND_LDAP_ALT_PASSWORD', null);
 
 /**
  * Zend_Locale tests
@@ -523,48 +468,6 @@ defined('TESTS_ZEND_MAIL_SMTP_USER') || define('TESTS_ZEND_MAIL_SMTP_USER', 'tes
 defined('TESTS_ZEND_MAIL_SMTP_PASSWORD') || define('TESTS_ZEND_MAIL_SMTP_PASSWORD', 'testpassword');
 defined('TESTS_ZEND_MAIL_SMTP_AUTH') || define('TESTS_ZEND_MAIL_SMTP_AUTH', false);
 // AUTH can be set to false or a string of AUTH method (e.g. LOGIN, PLAIN, CRAMMD5 or DIGESTMD5)
-
-/**
- * Zend_Queue Test Configuration constants
- *
- * The Zend_Queue_Adapter_Db constant should be a JSON-encoded string
- * representing a configuration object for Zend_Db::factory(). For example:
- * {
- *     type: "pdo_mysql",
- *     host: "127.0.0.1",
- *     port: 3306,
- *     username: "queue",
- *     password: "queue",
- *     dbname: "queue"
- * }
- *
- * The PlatformJobQueue adapter expects two parameters, the host and password.
- * The HOST string should include both the host and port (typically 10003):
- *     127.0.0.1:10003
- * When running tests against PlatformJobQueue, it's best to do so where
- * Platform is installed on localhost and has maximum workers set to 20
- * (default is 5); do so with this zend.ini setting:
- *     zend_jq.max_num_of_request_workers=20
- *
- * Selectively define the below in order to run tests for them.
- */
-defined('TESTS_ZEND_QUEUE_ACTIVEMQ_ENABLED') || define('TESTS_ZEND_QUEUE_ACTIVEMQ_ENABLED', false);
-defined('TESTS_ZEND_QUEUE_ACTIVEMQ_SCHEME') || define('TESTS_ZEND_QUEUE_ACTIVEMQ_SCHEME', false);
-defined('TESTS_ZEND_QUEUE_ACTIVEMQ_HOST') || define('TESTS_ZEND_QUEUE_ACTIVEMQ_HOST', false);
-defined('TESTS_ZEND_QUEUE_ACTIVEMQ_PORT') || define('TESTS_ZEND_QUEUE_ACTIVEMQ_PORT', false);
-defined('TESTS_ZEND_QUEUE_DB') || define('TESTS_ZEND_QUEUE_DB', false);
-defined('TESTS_ZEND_QUEUE_MEMCACHEQ_ENABLED') || define('TESTS_ZEND_QUEUE_MEMCACHEQ_ENABLED', false);
-defined('TESTS_ZEND_QUEUE_MEMCACHEQ_HOST') || define('TESTS_ZEND_QUEUE_MEMCACHEQ_HOST', false);
-defined('TESTS_ZEND_QUEUE_MEMCACHEQ_PORT') || define('TESTS_ZEND_QUEUE_MEMCACHEQ_PORT', false);
-defined('TESTS_ZEND_QUEUE_PLATFORMJQ_ENABLED') || define('TESTS_ZEND_QUEUE_PLATFORMJQ_ENABLED', false);
-defined('TESTS_ZEND_QUEUE_PLATFORMJQ_HOST') || define('TESTS_ZEND_QUEUE_PLATFORMJQ_HOST', false);
-defined('TESTS_ZEND_QUEUE_PLATFORMJQ_PASS') || define('TESTS_ZEND_QUEUE_PLATFORMJQ_PASS', false);
-
-/**
- * Zend_Rest tests
- */
-defined('TESTS_ZEND_REST_ONLINE_ENABLED') || define('TESTS_ZEND_REST_ONLINE_ENABLED', false);
-
 
 /**
  * Zend_Serializer adapter tests
