@@ -166,7 +166,6 @@ class Zend_AllTests
 
         // Start remaining tests...
         $suite->addTestSuite('Zend_Acl_AclTest');
-        $suite->addTest(Zend_Amf_AllTests::suite());
         $suite->addTest(Zend_Application_AllTests::suite());
         $suite->addTestSuite('Zend_AuthTest');
         $suite->addTest(Zend_Auth_AllTests::suite());
