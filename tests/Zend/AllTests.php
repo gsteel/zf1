@@ -209,8 +209,6 @@ class Zend_AllTests
         $suite->addTest(Zend_Navigation_AllTests::suite());
         $suite->addTest(Zend_Oauth_AllTests::suite());
         $suite->addTest(Zend_Paginator_AllTests::suite());
-        $suite->addTestSuite('Zend_PdfTest');
-        $suite->addTest(Zend_Pdf_AllTests::suite());
         $suite->addTest(Zend_ProgressBar_AllTests::suite());
         $suite->addTestSuite('Zend_RegistryTest');
         $suite->addTest(Zend_Rest_AllTests::suite());
