@@ -144,7 +144,6 @@ class Zend_AllTests
         $suite->addTestSuite('Zend_OpenIdTest');
         $suite->addTest(Zend_OpenId_AllTests::suite());
         $suite->addTest(Zend_Session_AllTests::suite());
-        $suite->addTest(Zend_Soap_AllTests::suite());
 
         return $suite;
     }
