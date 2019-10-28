@@ -682,7 +682,7 @@ class Zend_Controller_Request_HttpTest extends PHPUnit_Framework_TestCase
             // Suppressing warning
             $header = @$this->_request->getHeader();
             $this->fail('getHeader() should fail with no arguments)');
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             // success
         }
     }
