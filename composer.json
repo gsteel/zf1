@@ -16,6 +16,14 @@
             "Zend_": "library/"
         }
     },
+    "autoload-dev": {
+        "psr-0": {
+            "Zend_": [
+                "library/",
+                "tests/"
+            ]
+        }
+    },
     "include-path": [
         "library/"
     ],
