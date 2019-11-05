@@ -947,7 +947,7 @@ class Zend_Locale_Data
 
         if (isset(self::$_cache)) {
             if (self::$_cacheTags) {
-                self::$_cache->save( serialize($temp), $id, array('Zend_Locale'));
+                self::$_cache->save( serialize($temp), $id, array(\Zend_Locale::class));
             } else {
                 self::$_cache->save( serialize($temp), $id);
             }
@@ -1500,7 +1500,7 @@ class Zend_Locale_Data
         }
         if (isset(self::$_cache)) {
             if (self::$_cacheTags) {
-                self::$_cache->save( serialize($temp), $id, array('Zend_Locale'));
+                self::$_cache->save( serialize($temp), $id, array(\Zend_Locale::class));
             } else {
                 self::$_cache->save( serialize($temp), $id);
             }
@@ -1562,7 +1562,7 @@ class Zend_Locale_Data
     public static function clearCache()
     {
         if (self::$_cacheTags) {
-            self::$_cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array('Zend_Locale'));
+            self::$_cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array(\Zend_Locale::class));
         } else {
             self::$_cache->clean(Zend_Cache::CLEANING_MODE_ALL);
         }

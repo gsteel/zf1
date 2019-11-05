@@ -51,7 +51,7 @@ class Zend_Db_Adapter_Pdo_Oci extends Zend_Db_Adapter_Pdo_Abstract
      *
      * @var string
      */
-    protected $_defaultStmtClass = 'Zend_Db_Statement_Pdo_Oci';
+    protected $_defaultStmtClass = \Zend_Db_Statement_Pdo_Oci::class;
 
     /**
      * Keys are UPPERCASE SQL datatypes or the constants

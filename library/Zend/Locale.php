@@ -1741,8 +1741,8 @@ class Zend_Locale
     {
         if ($locale === null) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Locale')) {
-                $locale = Zend_Registry::get('Zend_Locale');
+            if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
+                $locale = Zend_Registry::get(\Zend_Locale::class);
             }
         }
 

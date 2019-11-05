@@ -86,7 +86,7 @@ class Zend_Db_Adapter_Db2 extends Zend_Db_Adapter_Abstract
      *
      * @var string
      */
-    protected $_defaultStmtClass = 'Zend_Db_Statement_Db2';
+    protected $_defaultStmtClass = \Zend_Db_Statement_Db2::class;
     protected $_isI5 = false;
 
     /**

@@ -40,7 +40,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      * Default display group class
      * @var string
      */
-    protected $_defaultDisplayGroupClass = 'Zend_Form_DisplayGroup';
+    protected $_defaultDisplayGroupClass = \Zend_Form_DisplayGroup::class;
 
     /**
      * Form description
@@ -3070,8 +3070,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     {
         if (null === self::$_translatorDefault) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Translate')) {
-                $translator = Zend_Registry::get('Zend_Translate');
+            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
+                $translator = Zend_Registry::get(\Zend_Translate::class);
                 if ($translator instanceof Zend_Translate_Adapter) {
                     return $translator;
                 } elseif ($translator instanceof Zend_Translate) {

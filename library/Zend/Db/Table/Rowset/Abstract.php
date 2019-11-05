@@ -64,7 +64,7 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
      *
      * @var string
      */
-    protected $_rowClass = 'Zend_Db_Table_Row';
+    protected $_rowClass = \Zend_Db_Table_Row::class;
 
     /**
      * Iterator pointer.

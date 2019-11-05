@@ -50,7 +50,7 @@ abstract class Zend_Db_Adapter_Pdo_Abstract extends Zend_Db_Adapter_Abstract
      *
      * @var string
      */
-    protected $_defaultStmtClass = 'Zend_Db_Statement_Pdo';
+    protected $_defaultStmtClass = \Zend_Db_Statement_Pdo::class;
 
     /**
      * Creates a PDO DSN for the adapter from $this->_config settings.

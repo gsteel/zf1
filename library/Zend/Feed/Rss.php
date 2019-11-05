@@ -53,7 +53,7 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
      *
      * @var string
      */
-    protected $_entryClassName = 'Zend_Feed_Entry_Rss';
+    protected $_entryClassName = \Zend_Feed_Entry_Rss::class;
 
     /**
      * The element name for individual channel elements (RSS <item>s).
@@ -193,7 +193,7 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
             $channel->appendChild($image);
         }
 
-        $generator = !empty($array->generator) ? $array->generator : 'Zend_Feed';
+        $generator = !empty($array->generator) ? $array->generator : \Zend_Feed::class;
         $generator = $this->_element->createElement('generator', $generator);
         $channel->appendChild($generator);
 

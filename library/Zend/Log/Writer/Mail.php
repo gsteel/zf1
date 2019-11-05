@@ -189,7 +189,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      */
     protected static function _constructMailFromConfig(array $config)
     {
-        $mailClass = 'Zend_Mail';
+        $mailClass = \Zend_Mail::class;
         if (isset($config['mail'])) {
             $mailClass = $config['mail'];
         }
@@ -239,7 +239,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
     protected function _constructLayoutFromConfig(array $config)
     {
         $config = array_merge(array(
-            'layout' => 'Zend_Layout',
+            'layout' => \Zend_Layout::class,
             'layoutOptions' => null
         ), $config);
 

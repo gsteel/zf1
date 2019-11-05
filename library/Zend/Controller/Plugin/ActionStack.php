@@ -8,7 +8,7 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
      * Registry key under which actions are stored
      * @var string
      */
-    protected $_registryKey = 'Zend_Controller_Plugin_ActionStack';
+    protected $_registryKey = \Zend_Controller_Plugin_ActionStack::class;
 
     /**
      * Valid keys for stack items

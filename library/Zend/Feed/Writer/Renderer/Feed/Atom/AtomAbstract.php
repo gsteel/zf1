@@ -157,7 +157,7 @@ class Zend_Feed_Writer_Renderer_Feed_Atom_AtomAbstract
     protected function _setGenerator(DOMDocument $dom, DOMElement $root)
     {
         if(!$this->getDataContainer()->getGenerator()) {
-            $this->getDataContainer()->setGenerator('Zend_Feed_Writer',
+            $this->getDataContainer()->setGenerator(\Zend_Feed_Writer::class,
                 Zend_Version::VERSION, 'http://framework.zend.com');
         }
 

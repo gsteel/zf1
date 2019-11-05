@@ -71,7 +71,7 @@ class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
      * Registry key in which helper is stored
      * @var string
      */
-    protected $_regKey = 'Zend_View_Helper_Doctype';
+    protected $_regKey = \Zend_View_Helper_Doctype::class;
 
     /**
      * Constructor

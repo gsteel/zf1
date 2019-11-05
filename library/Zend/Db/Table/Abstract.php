@@ -192,14 +192,14 @@ abstract class Zend_Db_Table_Abstract
      *
      * @var string
      */
-    protected $_rowClass = 'Zend_Db_Table_Row';
+    protected $_rowClass = \Zend_Db_Table_Row::class;
 
     /**
      * Classname for rowset
      *
      * @var string
      */
-    protected $_rowsetClass = 'Zend_Db_Table_Rowset';
+    protected $_rowsetClass = \Zend_Db_Table_Rowset::class;
 
     /**
      * Associative array map of declarative referential integrity rules.
@@ -461,7 +461,7 @@ abstract class Zend_Db_Table_Abstract
     public function getReference($tableClassname, $ruleKey = null)
     {
         $thisClass = get_class($this);
-        if ($thisClass === 'Zend_Db_Table') {
+        if ($thisClass === \Zend_Db_Table::class) {
             $thisClass = $this->_definitionConfigName;
         }
         $refMap = $this->_getReferenceMapNormalized();
@@ -1217,7 +1217,7 @@ abstract class Zend_Db_Table_Abstract
 
         // get this class name
         $thisClass = get_class($this);
-        if ($thisClass === 'Zend_Db_Table') {
+        if ($thisClass === \Zend_Db_Table::class) {
             $thisClass = $this->_definitionConfigName;
         }
 

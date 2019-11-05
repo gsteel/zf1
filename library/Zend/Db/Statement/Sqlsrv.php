@@ -318,7 +318,7 @@ class Zend_Db_Statement_Sqlsrv extends Zend_Db_Statement
      * @return mixed One object instance of the specified class.
      * @throws Zend_Db_Statement_Exception
      */
-    public function fetchObject($class = 'stdClass', array $config = array())
+    public function fetchObject($class = \stdClass::class, array $config = array())
     {
         if (!$this->_stmt) {
             return false;

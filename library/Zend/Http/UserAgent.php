@@ -285,7 +285,7 @@ class Zend_Http_UserAgent implements Serializable
     {
         // Validate device class
         $r = new ReflectionClass($deviceClass);
-        if (!$r->implementsInterface('Zend_Http_UserAgent_Device')) {
+        if (!$r->implementsInterface(\Zend_Http_UserAgent_Device::class)) {
             throw new Zend_Http_UserAgent_Exception(sprintf(
                 'Invalid device class provided ("%s"); must implement Zend_Http_UserAgent_Device',
                 $deviceClass
@@ -333,7 +333,7 @@ class Zend_Http_UserAgent implements Serializable
             } elseif (is_array($deviceConfig) && isset($deviceConfig['path'])) {
                 $loader = $this->getPluginLoader('device');
                 $path   = $deviceConfig['path'];
-                $prefix = isset($deviceConfig['prefix']) ? $deviceConfig['prefix'] : 'Zend_Http_UserAgent';
+                $prefix = isset($deviceConfig['prefix']) ? $deviceConfig['prefix'] : \Zend_Http_UserAgent::class;
                 $loader->addPrefixPath($prefix, $path);
 
                 $device = $loader->load($browserType);

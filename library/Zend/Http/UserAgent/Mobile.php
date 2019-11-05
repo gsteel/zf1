@@ -33,7 +33,7 @@ require_once 'Zend/Http/UserAgent/AbstractDevice.php';
 class Zend_Http_UserAgent_Mobile extends Zend_Http_UserAgent_AbstractDevice
 {
 
-    const DEFAULT_FEATURES_ADAPTER_CLASSNAME = 'Zend_Http_UserAgent_Features_Adapter_Browscap';
+    const DEFAULT_FEATURES_ADAPTER_CLASSNAME = \Zend_Http_UserAgent_Features_Adapter_Browscap::class;
 
     const DEFAULT_FEATURES_ADAPTER_PATH = 'Zend/Http/UserAgent/Features/Adapter/Browscap.php';
 

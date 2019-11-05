@@ -256,7 +256,7 @@ abstract class Zend_Date_DateObject {
 
         if (isset(self::$_cache)) {
             if (self::$_cacheTags) {
-                self::$_cache->save( serialize($date), $id, array('Zend_Date'));
+                self::$_cache->save( serialize($date), $id, array(\Zend_Date::class));
             } else {
                 self::$_cache->save( serialize($date), $id);
             }
@@ -353,7 +353,7 @@ abstract class Zend_Date_DateObject {
 
             if (isset(self::$_cache)) {
                 if (self::$_cacheTags) {
-                    self::$_cache->save( serialize($timestamp), $idstamp, array('Zend_Date'));
+                    self::$_cache->save( serialize($timestamp), $idstamp, array(\Zend_Date::class));
                 } else {
                     self::$_cache->save( serialize($timestamp), $idstamp);
                 }
@@ -845,7 +845,7 @@ abstract class Zend_Date_DateObject {
 
         if (isset(self::$_cache)) {
             if (self::$_cacheTags) {
-                self::$_cache->save( serialize($array), $id, array('Zend_Date'));
+                self::$_cache->save( serialize($array), $id, array(\Zend_Date::class));
             } else {
                 self::$_cache->save( serialize($array), $id);
             }

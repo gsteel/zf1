@@ -177,7 +177,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
             require_once 'Zend/Mail/Exception.php';
             throw new Zend_Mail_Exception("Class '{$class}' does not exist");
         }
-        if ( !is_subclass_of($class, 'Zend_Mail_Part_Interface') ) {
+        if ( !is_subclass_of($class, \Zend_Mail_Part_Interface::class) ) {
             /**
              * @see Zend_Mail_Exception
              */

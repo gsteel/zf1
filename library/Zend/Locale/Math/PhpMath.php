@@ -36,15 +36,15 @@ class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
     public static function disable()
     {
         self::$_bcmathDisabled = true;
-        self::$add   = array('Zend_Locale_Math_PhpMath', 'Add');
-        self::$sub   = array('Zend_Locale_Math_PhpMath', 'Sub');
-        self::$pow   = array('Zend_Locale_Math_PhpMath', 'Pow');
-        self::$mul   = array('Zend_Locale_Math_PhpMath', 'Mul');
-        self::$div   = array('Zend_Locale_Math_PhpMath', 'Div');
-        self::$comp  = array('Zend_Locale_Math_PhpMath', 'Comp');
-        self::$sqrt  = array('Zend_Locale_Math_PhpMath', 'Sqrt');
-        self::$mod   = array('Zend_Locale_Math_PhpMath', 'Mod');
-        self::$scale = array('Zend_Locale_Math_PhpMath', 'Scale');
+        self::$add   = array(\Zend_Locale_Math_PhpMath::class, 'Add');
+        self::$sub   = array(\Zend_Locale_Math_PhpMath::class, 'Sub');
+        self::$pow   = array(\Zend_Locale_Math_PhpMath::class, 'Pow');
+        self::$mul   = array(\Zend_Locale_Math_PhpMath::class, 'Mul');
+        self::$div   = array(\Zend_Locale_Math_PhpMath::class, 'Div');
+        self::$comp  = array(\Zend_Locale_Math_PhpMath::class, 'Comp');
+        self::$sqrt  = array(\Zend_Locale_Math_PhpMath::class, 'Sqrt');
+        self::$mod   = array(\Zend_Locale_Math_PhpMath::class, 'Mod');
+        self::$scale = array(\Zend_Locale_Math_PhpMath::class, 'Scale');
 
         self::$defaultScale     = 0;
         self::$defaultPrecision = 1;

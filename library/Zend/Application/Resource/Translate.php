@@ -1,7 +1,7 @@
 <?php
 class Zend_Application_Resource_Translate extends Zend_Application_Resource_ResourceAbstract
 {
-    const DEFAULT_REGISTRY_KEY = 'Zend_Translate';
+    const DEFAULT_REGISTRY_KEY = \Zend_Translate::class;
 
     /**
      * @var Zend_Translate

@@ -54,7 +54,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      * Registry key for placeholder
      * @var string
      */
-    protected $_regKey = 'Zend_View_Helper_HeadScript';
+    protected $_regKey = \Zend_View_Helper_HeadScript::class;
 
     /**
      * Are arbitrary attributes allowed?

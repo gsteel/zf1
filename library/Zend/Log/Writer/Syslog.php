@@ -79,7 +79,7 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
      *
      * @var string
      */
-    protected $_application = 'Zend_Log';
+    protected $_application = \Zend_Log::class;
 
     /**
      * Facility used by this syslog-writer instance

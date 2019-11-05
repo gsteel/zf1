@@ -107,7 +107,7 @@ abstract class Zend_Translate_Adapter {
         'reload'          => false,
         'route'           => null,
         'scan'            => null,
-        'tag'             => 'Zend_Translate'
+        'tag'             => \Zend_Translate::class
     );
 
     /**
@@ -961,7 +961,7 @@ abstract class Zend_Translate_Adapter {
         require_once 'Zend/Cache.php';
         if (self::$_cacheTags) {
             if ($tag == null) {
-                $tag = 'Zend_Translate';
+                $tag = \Zend_Translate::class;
             }
 
             self::$_cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array($tag));

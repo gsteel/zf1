@@ -321,7 +321,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
             }
 
             if (class_exists($plugin)
-            && is_subclass_of($plugin, 'Zend_Application_Resource_Resource')
+            && is_subclass_of($plugin, \Zend_Application_Resource_Resource::class)
             ) { //@SEE ZF-7550
                 $spec = (array) $spec;
                 $spec['bootstrap'] = $this;

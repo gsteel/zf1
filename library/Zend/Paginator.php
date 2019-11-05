@@ -281,7 +281,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
                 } else if ($data instanceof Zend_Db_Select) {
                     $adapter = 'DbSelect';
                 } else if ($data instanceof Iterator) {
-                    $adapter = 'Iterator';
+                    $adapter = \Iterator::class;
                 } else if (is_integer($data)) {
                     $adapter = 'Null';
                 } else {
@@ -1147,7 +1147,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
                     require_once 'Zend/View/Exception.php';
 
                     throw new Zend_View_Exception('Scrolling style must implement ' .
-                        'Zend_Paginator_ScrollingStyle_Interface');
+                        \Zend_Paginator_ScrollingStyle_Interface::class);
                 }
 
                 return $scrollingStyle;

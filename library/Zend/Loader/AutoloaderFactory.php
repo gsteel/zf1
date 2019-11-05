@@ -20,7 +20,7 @@
 
 require_once __DIR__ . '/SplAutoloader.php';
 
-if (class_exists('Zend_Loader_AutoloaderFactory')) return;
+if (class_exists(\Zend_Loader_AutoloaderFactory::class)) return;
 
 /**
  * @package    Zend_Loader
@@ -29,8 +29,8 @@ if (class_exists('Zend_Loader_AutoloaderFactory')) return;
  */
 abstract class Zend_Loader_AutoloaderFactory
 {
-    const STANDARD_AUTOLOADER  = 'Zend_Loader_StandardAutoloader';
-    const CLASS_MAP_AUTOLOADER = 'Zend_Loader_ClassMapAutoloader';
+    const STANDARD_AUTOLOADER  = \Zend_Loader_StandardAutoloader::class;
+    const CLASS_MAP_AUTOLOADER = \Zend_Loader_ClassMapAutoloader::class;
 
     /**
      * @var array All autoloaders registered using the factory
@@ -115,7 +115,7 @@ abstract class Zend_Loader_AutoloaderFactory
                 // unfortunately is_subclass_of is broken on some 5.3 versions
                 // additionally instanceof is also broken for this use case
                 if (version_compare(PHP_VERSION, '5.3.7', '>=')) {
-                        if (!is_subclass_of($class, 'Zend_Loader_SplAutoloader')) {
+                        if (!is_subclass_of($class, \Zend_Loader_SplAutoloader::class)) {
                         require_once 'Exception/InvalidArgumentException.php';
                         throw new Zend_Loader_Exception_InvalidArgumentException(sprintf(
                             'Autoloader class %s must implement Zend\\Loader\\SplAutoloader', 

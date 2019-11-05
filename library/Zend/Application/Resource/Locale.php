@@ -2,7 +2,7 @@
 class Zend_Application_Resource_Locale
     extends Zend_Application_Resource_ResourceAbstract
 {
-    const DEFAULT_REGISTRY_KEY = 'Zend_Locale';
+    const DEFAULT_REGISTRY_KEY = \Zend_Locale::class;
 
     /**
      * @var Zend_Locale

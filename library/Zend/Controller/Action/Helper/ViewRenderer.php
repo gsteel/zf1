@@ -303,7 +303,7 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
      */
     protected function _generateDefaultPrefix()
     {
-        $default = 'Zend_View';
+        $default = \Zend_View::class;
         if (null === $this->_actionController) {
             return $default;
         }

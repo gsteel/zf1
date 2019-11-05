@@ -14,7 +14,7 @@ abstract class Zend_Cache
      *
      * @var array
      */
-    public static $standardBackends = array('File', 'Sqlite', 'Memcached', 'Libmemcached', 'Apc', 'ZendPlatform',
+    public static $standardBackends = array('File', 'Sqlite', \Memcached::class, 'Libmemcached', 'Apc', 'ZendPlatform',
                                             'Xcache', 'TwoLevels', 'WinCache', 'ZendServer_Disk', 'ZendServer_ShMem');
 
     /**
@@ -22,7 +22,7 @@ abstract class Zend_Cache
      *
      * @var array
      */
-    public static $standardExtendedBackends = array('File', 'Apc', 'TwoLevels', 'Memcached', 'Libmemcached', 'Sqlite', 'WinCache');
+    public static $standardExtendedBackends = array('File', 'Apc', 'TwoLevels', \Memcached::class, 'Libmemcached', 'Sqlite', 'WinCache');
 
     /**
      * Only for backward compatibility (may be removed in next major release)
@@ -38,7 +38,7 @@ abstract class Zend_Cache
      * @var array
      * @deprecated
      */
-    public static $availableBackends = array('File', 'Sqlite', 'Memcached', 'Libmemcached', 'Apc', 'ZendPlatform', 'Xcache', 'WinCache', 'TwoLevels');
+    public static $availableBackends = array('File', 'Sqlite', \Memcached::class, 'Libmemcached', 'Apc', 'ZendPlatform', 'Xcache', 'WinCache', 'TwoLevels');
 
     /**
      * Consts for clean() method
@@ -67,7 +67,7 @@ abstract class Zend_Cache
         if (is_string($backend)) {
             $backendObject = self::_makeBackend($backend, $backendOptions, $customBackendNaming, $autoload);
         } else {
-            if ((is_object($backend)) && (in_array('Zend_Cache_Backend_Interface', class_implements($backend)))) {
+            if ((is_object($backend)) && (in_array(\Zend_Cache_Backend_Interface::class, class_implements($backend)))) {
                 $backendObject = $backend;
             } else {
                 self::throwException('backend must be a backend name (string) or an object which implements Zend_Cache_Backend_Interface');

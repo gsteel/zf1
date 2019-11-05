@@ -476,7 +476,7 @@ class Zend_Session extends Zend_Session_Abstract
 
             if (self::$_throwStartupExceptions) {
                 require_once 'Zend/Session/Exception.php';
-                set_error_handler(array('Zend_Session_Exception', 'handleSessionStartError'), $errorLevel);
+                set_error_handler(array(\Zend_Session_Exception::class, 'handleSessionStartError'), $errorLevel);
             }
 
             $startedCleanly = session_start();
@@ -487,7 +487,7 @@ class Zend_Session extends Zend_Session_Abstract
 
             if (!$startedCleanly || Zend_Session_Exception::$sessionStartError != null) {
                 if (self::$_throwStartupExceptions) {
-                    set_error_handler(array('Zend_Session_Exception', 'handleSilentWriteClose'), $errorLevel);
+                    set_error_handler(array(\Zend_Session_Exception::class, 'handleSilentWriteClose'), $errorLevel);
                 }
                 session_write_close();
                 if (self::$_throwStartupExceptions) {

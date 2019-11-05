@@ -102,7 +102,7 @@ class Zend_Db_Adapter_Sqlsrv extends Zend_Db_Adapter_Abstract
      *
      * @var string
      */
-    protected $_defaultStmtClass = 'Zend_Db_Statement_Sqlsrv';
+    protected $_defaultStmtClass = \Zend_Db_Statement_Sqlsrv::class;
 
     /**
      * Creates a connection resource.

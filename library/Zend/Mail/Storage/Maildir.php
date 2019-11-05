@@ -50,7 +50,7 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
      * used message class, change it in an extened class to extend the returned message class
      * @var string
      */
-    protected $_messageClass = 'Zend_Mail_Message_File';
+    protected $_messageClass = \Zend_Mail_Message_File::class;
 
     /**
      * data of found message files in maildir dir

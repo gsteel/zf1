@@ -190,7 +190,7 @@ class Zend_Reflection_File implements Reflector
      * @param  string $reflectionClass Reflection class to use
      * @return Zend_Reflection_Docblock
      */
-    public function getDocblock($reflectionClass = 'Zend_Reflection_Docblock')
+    public function getDocblock($reflectionClass = \Zend_Reflection_Docblock::class)
     {
         $instance = new $reflectionClass($this);
         if (!$instance instanceof Zend_Reflection_Docblock) {
@@ -206,7 +206,7 @@ class Zend_Reflection_File implements Reflector
      * @param  string $reflectionClass Name of reflection class to use for instances
      * @return array Array of Zend_Reflection_Class instances
      */
-    public function getClasses($reflectionClass = 'Zend_Reflection_Class')
+    public function getClasses($reflectionClass = \Zend_Reflection_Class::class)
     {
         $classes = array();
         foreach ($this->_classes as $class) {
@@ -226,7 +226,7 @@ class Zend_Reflection_File implements Reflector
      * @param  string $reflectionClass Name of reflection class to use for instances
      * @return array Array of Zend_Reflection_Functions
      */
-    public function getFunctions($reflectionClass = 'Zend_Reflection_Function')
+    public function getFunctions($reflectionClass = \Zend_Reflection_Function::class)
     {
         $functions = array();
         foreach ($this->_functions as $function) {
@@ -248,7 +248,7 @@ class Zend_Reflection_File implements Reflector
      * @return Zend_Reflection_Class
      * @throws Zend_Reflection_Exception for invalid class name or invalid reflection class
      */
-    public function getClass($name = null, $reflectionClass = 'Zend_Reflection_Class')
+    public function getClass($name = null, $reflectionClass = \Zend_Reflection_Class::class)
     {
         if ($name === null) {
             reset($this->_classes);

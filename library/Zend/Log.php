@@ -277,7 +277,7 @@ class Zend_Log
         }
 
         $reflection = new ReflectionClass($className);
-        if (!$reflection->implementsInterface('Zend_Log_FactoryInterface')) {
+        if (!$reflection->implementsInterface(\Zend_Log_FactoryInterface::class)) {
             throw new Zend_Log_Exception(
                 $className . ' does not implement Zend_Log_FactoryInterface and can not be constructed from config.'
             );

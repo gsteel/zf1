@@ -2,7 +2,7 @@
 class Zend_Application_Resource_Navigation
     extends Zend_Application_Resource_ResourceAbstract
 {
-    const DEFAULT_REGISTRY_KEY = 'Zend_Navigation';
+    const DEFAULT_REGISTRY_KEY = \Zend_Navigation::class;
 
     /**
      * @var Zend_Navigation

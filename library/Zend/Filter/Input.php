@@ -603,8 +603,8 @@ class Zend_Filter_Input
 
         if ($this->_translator === null) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Translate')) {
-                $translator = Zend_Registry::get('Zend_Translate');
+            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
+                $translator = Zend_Registry::get(\Zend_Translate::class);
                 if ($translator instanceof Zend_Translate_Adapter) {
                     return $translator;
                 } elseif ($translator instanceof Zend_Translate) {

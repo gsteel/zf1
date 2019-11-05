@@ -88,7 +88,7 @@ class Zend_Db_Adapter_Oracle extends Zend_Db_Adapter_Abstract
      *
      * @var string
      */
-    protected $_defaultStmtClass = 'Zend_Db_Statement_Oracle';
+    protected $_defaultStmtClass = \Zend_Db_Statement_Oracle::class;
 
     /**
      * Check if LOB field are returned as string

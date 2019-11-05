@@ -92,7 +92,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
      *
      * @var string
      */
-    protected $_defaultStmtClass = 'Zend_Db_Statement_Mysqli';
+    protected $_defaultStmtClass = \Zend_Db_Statement_Mysqli::class;
 
     /**
      * Quote a raw string.
@@ -283,7 +283,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
             return;
         }
 
-        if (!extension_loaded('mysqli')) {
+        if (!extension_loaded(\mysqli::class)) {
             /**
              * @see Zend_Db_Adapter_Mysqli_Exception
              */

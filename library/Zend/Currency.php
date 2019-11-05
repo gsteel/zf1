@@ -78,7 +78,7 @@ class Zend_Currency
         'locale'    => null,
         'value'     => 0,
         'service'   => null,
-        'tag'       => 'Zend_Locale'
+        'tag'       => \Zend_Locale::class
     );
 
     /**

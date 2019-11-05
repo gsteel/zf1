@@ -164,7 +164,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
 
         // base path
         if (array_key_exists('basePath', $config)) {
-            $prefix = 'Zend_View';
+            $prefix = \Zend_View::class;
             if (array_key_exists('basePathPrefix', $config)) {
                 $prefix = $config['basePathPrefix'];
             }
@@ -365,7 +365,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      * @param  string $prefix Prefix to use for helper and filter paths
      * @return Zend_View_Abstract
      */
-    public function setBasePath($path, $classPrefix = 'Zend_View')
+    public function setBasePath($path, $classPrefix = \Zend_View::class)
     {
         $path        = rtrim($path, '/');
         $path        = rtrim($path, '\\');
@@ -392,7 +392,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      * @param  string $prefix Prefix to use for helper and filter paths
      * @return Zend_View_Abstract
      */
-    public function addBasePath($path, $classPrefix = 'Zend_View')
+    public function addBasePath($path, $classPrefix = \Zend_View::class)
     {
         $path        = rtrim($path, '/');
         $path        = rtrim($path, '\\');

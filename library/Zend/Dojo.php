@@ -60,7 +60,7 @@ class Zend_Dojo
              ->addPrefixPath('Zend_Dojo_Form_Element', 'Zend/Dojo/Form/Element', 'element')
              ->addElementPrefixPath('Zend_Dojo_Form_Decorator', 'Zend/Dojo/Form/Decorator', 'decorator')
              ->addDisplayGroupPrefixPath('Zend_Dojo_Form_Decorator', 'Zend/Dojo/Form/Decorator')
-             ->setDefaultDisplayGroupClass('Zend_Dojo_Form_DisplayGroup');
+             ->setDefaultDisplayGroupClass(\Zend_Dojo_Form_DisplayGroup::class);
 
         foreach ($form->getSubForms() as $subForm) {
             self::enableForm($subForm);

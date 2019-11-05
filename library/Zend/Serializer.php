@@ -67,7 +67,7 @@ class Zend_Serializer
 
         // ZF-8842:
         // check that the loaded class implements Zend_Serializer_Adapter_AdapterInterface without execute code
-        if (!in_array('Zend_Serializer_Adapter_AdapterInterface', class_implements($adapterClass))) {
+        if (!in_array(\Zend_Serializer_Adapter_AdapterInterface::class, class_implements($adapterClass))) {
             require_once 'Zend/Serializer/Exception.php';
             throw new Zend_Serializer_Exception('The serializer adapter class "'.$adapterClass.'" must implement Zend_Serializer_Adapter_AdapterInterface');
         }

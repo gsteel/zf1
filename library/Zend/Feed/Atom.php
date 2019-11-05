@@ -55,7 +55,7 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
      *
      * @var string
      */
-    protected $_entryClassName = 'Zend_Feed_Entry_Atom';
+    protected $_entryClassName = \Zend_Feed_Entry_Atom::class;
 
     /**
      * The element name for individual feed elements (Atom <entry>
@@ -242,7 +242,7 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
             $feed->appendChild($image);
         }
 
-        $generator = !empty($array->generator) ? $array->generator : 'Zend_Feed';
+        $generator = !empty($array->generator) ? $array->generator : \Zend_Feed::class;
         $generator = $this->_element->createElement('generator', $generator);
         $feed->appendChild($generator);
 

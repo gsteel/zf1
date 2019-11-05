@@ -123,9 +123,9 @@ class Zend_Http_Client
     protected $config = array(
         'maxredirects'    => 5,
         'strictredirects' => false,
-        'useragent'       => 'Zend_Http_Client',
+        'useragent'       => \Zend_Http_Client::class,
         'timeout'         => 10,
-        'adapter'         => 'Zend_Http_Client_Adapter_Socket',
+        'adapter'         => \Zend_Http_Client_Adapter_Socket::class,
         'httpversion'     => self::HTTP_1,
         'keepalive'       => false,
         'storeresponse'   => true,
@@ -641,7 +641,7 @@ class Zend_Http_Client
      */
     public function setCookieJar($cookiejar = true)
     {
-        Zend_Loader::loadClass('Zend_Http_CookieJar');
+        Zend_Loader::loadClass(\Zend_Http_CookieJar::class);
 
         if ($cookiejar instanceof Zend_Http_CookieJar) {
             $this->cookiejar = $cookiejar;
@@ -679,7 +679,7 @@ class Zend_Http_Client
      */
     public function setCookie($cookie, $value = null)
     {
-        Zend_Loader::loadClass('Zend_Http_Cookie');
+        Zend_Loader::loadClass(\Zend_Http_Cookie::class);
 
         if (is_array($cookie)) {
             foreach ($cookie as $c => $v) {
@@ -992,7 +992,7 @@ class Zend_Http_Client
         if(!is_string($this->_stream_name)) {
             // If name is not given, create temp name
             $this->_stream_name = tempnam(isset($this->config['stream_tmp_dir'])?$this->config['stream_tmp_dir']:sys_get_temp_dir(),
-                 'Zend_Http_Client');
+                 \Zend_Http_Client::class);
         }
 
         if (false === ($fp = @fopen($this->_stream_name, "w+b"))) {

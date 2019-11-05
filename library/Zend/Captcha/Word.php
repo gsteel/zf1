@@ -74,7 +74,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
      *
      * @var string
      */
-    protected $_sessionClass = 'Zend_Session_Namespace';
+    protected $_sessionClass = \Zend_Session_Namespace::class;
 
     /**
      * Should the numbers be used or only letters

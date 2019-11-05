@@ -48,7 +48,7 @@ class Zend_Reflection_Method extends ReflectionMethod
      * @return Zend_Reflection_Docblock
      * @throws Zend_Reflection_Exception
      */
-    public function getDocblock($reflectionClass = 'Zend_Reflection_Docblock')
+    public function getDocblock($reflectionClass = \Zend_Reflection_Docblock::class)
     {
         if ('' == $this->getDocComment()) {
             require_once 'Zend/Reflection/Exception.php';
@@ -86,7 +86,7 @@ class Zend_Reflection_Method extends ReflectionMethod
      * @param  string $reflectionClass Name of reflection class to use
      * @return Zend_Reflection_Class
      */
-    public function getDeclaringClass($reflectionClass = 'Zend_Reflection_Class')
+    public function getDeclaringClass($reflectionClass = \Zend_Reflection_Class::class)
     {
         $phpReflection  = parent::getDeclaringClass();
         $zendReflection = new $reflectionClass($phpReflection->getName());
@@ -104,7 +104,7 @@ class Zend_Reflection_Method extends ReflectionMethod
      * @param  string $reflectionClass Name of reflection class to use
      * @return array of Zend_Reflection_Parameter objects
      */
-    public function getParameters($reflectionClass = 'Zend_Reflection_Parameter')
+    public function getParameters($reflectionClass = \Zend_Reflection_Parameter::class)
     {
         $phpReflections  = parent::getParameters();
         $zendReflections = array();

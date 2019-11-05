@@ -40,7 +40,7 @@ class Zend_Http_UserAgent_Storage_Session implements Zend_Http_UserAgent_Storage
     /**
      * Default session namespace
      */
-    const NAMESPACE_DEFAULT = 'Zend_Http_UserAgent';
+    const NAMESPACE_DEFAULT = \Zend_Http_UserAgent::class;
 
     /**
      * Default session object member name

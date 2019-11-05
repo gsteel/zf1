@@ -38,7 +38,7 @@ class Zend_Reflection_Function extends ReflectionFunction
      * @param  string $reflectionClass Name of reflection class to use
      * @return Zend_Reflection_Docblock
      */
-    public function getDocblock($reflectionClass = 'Zend_Reflection_Docblock')
+    public function getDocblock($reflectionClass = \Zend_Reflection_Docblock::class)
     {
         if ('' == ($comment = $this->getDocComment())) {
             require_once 'Zend/Reflection/Exception.php';
@@ -93,7 +93,7 @@ class Zend_Reflection_Function extends ReflectionFunction
      * @param  string $reflectionClass Name of reflection class to use
      * @return array Array of Zend_Reflection_Parameter
      */
-    public function getParameters($reflectionClass = 'Zend_Reflection_Parameter')
+    public function getParameters($reflectionClass = \Zend_Reflection_Parameter::class)
     {
         $phpReflections  = parent::getParameters();
         $zendReflections = array();

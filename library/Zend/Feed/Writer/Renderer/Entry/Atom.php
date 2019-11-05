@@ -374,7 +374,7 @@ class Zend_Feed_Writer_Renderer_Entry_Atom
     protected function _loadXhtml($content)
     {
         $xhtml = '';
-        if (class_exists('tidy', false)) {
+        if (class_exists(\tidy::class, false)) {
             $tidy = new tidy;
             $config = array(
                 'output-xhtml' => true,

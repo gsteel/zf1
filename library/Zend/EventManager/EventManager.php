@@ -48,7 +48,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
     /**
      * @var string Class representing the event being emitted
      */
-    protected $eventClass = 'Zend_EventManager_Event';
+    protected $eventClass = \Zend_EventManager_Event::class;
 
     /**
      * Identifiers, used to pull static signals from StaticEventManager

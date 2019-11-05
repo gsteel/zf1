@@ -16,11 +16,11 @@ class Zend_Controller_Action_Helper_ActionStack extends Zend_Controller_Action_H
     public function __construct()
     {
         $front = Zend_Controller_Front::getInstance();
-        if (!$front->hasPlugin('Zend_Controller_Plugin_ActionStack')) {
+        if (!$front->hasPlugin(\Zend_Controller_Plugin_ActionStack::class)) {
             $this->_actionStack = new Zend_Controller_Plugin_ActionStack();
             $front->registerPlugin($this->_actionStack, 97);
         } else {
-            $this->_actionStack = $front->getPlugin('Zend_Controller_Plugin_ActionStack');
+            $this->_actionStack = $front->getPlugin(\Zend_Controller_Plugin_ActionStack::class);
         }
     }
 

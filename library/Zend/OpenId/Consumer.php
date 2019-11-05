@@ -506,7 +506,7 @@ class Zend_OpenId_Consumer
                     array(
                         'maxredirects' => 4,
                         'timeout'      => 15,
-                        'useragent'    => 'Zend_OpenId'
+                        'useragent'    => \Zend_OpenId::class
                     )
                 );
         } else {

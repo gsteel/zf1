@@ -150,7 +150,7 @@ interface Zend_Db_Statement_Interface
      * @return mixed One object instance of the specified class.
      * @throws Zend_Db_Statement_Exception
      */
-    public function fetchObject($class = 'stdClass', array $config = array());
+    public function fetchObject($class = \stdClass::class, array $config = array());
 
     /**
      * Retrieve a statement attribute.

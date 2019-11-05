@@ -70,14 +70,14 @@ abstract class Zend_Db_Adapter_Abstract
      *
      * @var string
      */
-    protected $_defaultStmtClass = 'Zend_Db_Statement';
+    protected $_defaultStmtClass = \Zend_Db_Statement::class;
 
     /**
      * Default class name for the profiler object.
      *
      * @var string
      */
-    protected $_defaultProfilerClass = 'Zend_Db_Profiler';
+    protected $_defaultProfilerClass = \Zend_Db_Profiler::class;
 
     /**
      * Database connection
@@ -402,7 +402,7 @@ abstract class Zend_Db_Adapter_Abstract
             /** @see Zend_Db_Profiler_Exception */
             require_once 'Zend/Db/Profiler/Exception.php';
             throw new Zend_Db_Profiler_Exception('Class ' . get_class($profilerInstance) . ' does not extend '
-                . 'Zend_Db_Profiler');
+                . \Zend_Db_Profiler::class);
         }
 
         if (null !== $enabled) {

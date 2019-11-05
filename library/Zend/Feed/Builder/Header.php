@@ -58,7 +58,7 @@ class Zend_Feed_Builder_Header extends ArrayObject
         $this->offsetSet('link', $link);
         $this->offsetSet('charset', $charset);
         $this->setLastUpdate(time())
-             ->setGenerator('Zend_Feed');
+             ->setGenerator(\Zend_Feed::class);
     }
 
     /**

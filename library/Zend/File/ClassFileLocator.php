@@ -57,7 +57,7 @@ class Zend_File_ClassFileLocator extends FilterIterator
         }
 
         parent::__construct($iterator);
-        $this->setInfoClass('Zend_File_PhpClassFile');
+        $this->setInfoClass(\Zend_File_PhpClassFile::class);
 
         // Forward-compat with PHP 5.3
         if (version_compare(PHP_VERSION, '5.3.0', '<')) {
