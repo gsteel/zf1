@@ -24,7 +24,7 @@ class Zend_Controller_Action_Helper_AutoCompleteDojo extends Zend_Controller_Act
     public function prepareAutoCompletion($data, $keepLayouts = false)
     {
         if (!$data instanceof Zend_Dojo_Data) {
-            require_once 'Zend/Dojo/Data.php';
+            // require_once 'Zend/Dojo/Data.php';
             $items = array();
             foreach ($data as $key => $value) {
                 $items[] = array('label' => $value, 'name' => $value);
