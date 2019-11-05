@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Controller
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /**
@@ -28,10 +28,14 @@
  */
 // require_once 'Zend/XmlRpc/Fault.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @see Zend_Xml_Exception */
+/**
+ * @see Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
@@ -45,52 +49,59 @@
  * generated and stored in {@link $_fault}; developers may check for it using
  * {@link isFault()} and {@link getFault()}.
  *
- * @category Zend
- * @package  Zend_XmlRpc
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version $Id$
+ * @category  Zend
+ * @package   Zend_XmlRpc
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 class Zend_XmlRpc_Request
 {
     /**
      * Request character encoding
+     *
      * @var string
      */
     protected $_encoding = 'UTF-8';
 
     /**
      * Method to call
+     *
      * @var string
      */
     protected $_method;
 
     /**
      * XML request
+     *
      * @var string
      */
     protected $_xml;
 
     /**
      * Method parameters
+     *
      * @var array
      */
     protected $_params = array();
 
     /**
      * Fault object, if any
+     *
      * @var Zend_XmlRpc_Fault
      */
     protected $_fault = null;
 
     /**
      * XML-RPC type for each param
+     *
      * @var array
      */
     protected $_types = array();
 
     /**
      * XML-RPC request params
+     *
      * @var array
      */
     protected $_xmlRpcParams = array();
@@ -99,7 +110,7 @@ class Zend_XmlRpc_Request
      * Create a new XML-RPC request
      *
      * @param string $method (optional)
-     * @param array $params  (optional)
+     * @param array  $params (optional)
      */
     public function __construct($method = null, $params = null)
     {
@@ -116,7 +127,7 @@ class Zend_XmlRpc_Request
     /**
      * Set encoding to use in request
      *
-     * @param string $encoding
+     * @param  string $encoding
      * @return Zend_XmlRpc_Request
      */
     public function setEncoding($encoding)
@@ -139,7 +150,7 @@ class Zend_XmlRpc_Request
     /**
      * Set method to call
      *
-     * @param string $method
+     * @param  string $method
      * @return boolean Returns true on success, false if method name is invalid
      */
     public function setMethod($method)
@@ -170,8 +181,8 @@ class Zend_XmlRpc_Request
      * Adds a parameter to the parameter stack, associating it with the type
      * $type if provided
      *
-     * @param mixed $value
-     * @param string $type Optional; type hinting
+     * @param  mixed  $value
+     * @param  string $type  Optional; type hinting
      * @return void
      */
     public function addParam($value, $type = null)
@@ -298,7 +309,7 @@ class Zend_XmlRpc_Request
     /**
      * Load XML and parse into request components
      *
-     * @param string $request
+     * @param  string $request
      * @return boolean True on success, false if an error occurred.
      */
     public function loadXml($request)
@@ -415,8 +426,8 @@ class Zend_XmlRpc_Request
 
         $generator = Zend_XmlRpc_Value::getGenerator();
         $generator->openElement('methodCall')
-                  ->openElement('methodName', $method)
-                  ->closeElement('methodName');
+            ->openElement('methodName', $method)
+            ->closeElement('methodName');
 
         if (is_array($args) && count($args)) {
             $generator->openElement('params');

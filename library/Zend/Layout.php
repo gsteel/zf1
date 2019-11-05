@@ -12,73 +12,82 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Layout
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Layout
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
  * Provide Layout support for MVC applications
  *
- * @category   Zend
- * @package    Zend_Layout
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Layout
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Layout
 {
     /**
      * Placeholder container for layout variables
+     *
      * @var Zend_View_Helper_Placeholder_Container
      */
     protected $_container;
 
     /**
      * Key used to store content from 'default' named response segment
+     *
      * @var string
      */
     protected $_contentKey = 'content';
 
     /**
      * Are layouts enabled?
+     *
      * @var bool
      */
     protected $_enabled = true;
 
     /**
      * Helper class
+     *
      * @var string
      */
     protected $_helperClass = \Zend_Layout_Controller_Action_Helper_Layout::class;
 
     /**
      * Inflector used to resolve layout script
+     *
      * @var Zend_Filter_Inflector
      */
     protected $_inflector;
 
     /**
      * Flag: is inflector enabled?
+     *
      * @var bool
      */
     protected $_inflectorEnabled = true;
 
     /**
      * Inflector target
+     *
      * @var string
      */
     protected $_inflectorTarget = ':script.:suffix';
 
     /**
      * Layout view
+     *
      * @var string
      */
     protected $_layout = 'layout';
 
     /**
      * Layout view script path
+     *
      * @var string
      */
     protected $_viewScriptPath = null;
@@ -88,24 +97,28 @@ class Zend_Layout
 
     /**
      * Flag: is MVC integration enabled?
+     *
      * @var bool
      */
     protected $_mvcEnabled = true;
 
     /**
      * Instance registered with MVC, if any
+     *
      * @var Zend_Layout
      */
     protected static $_mvcInstance;
 
     /**
      * Flag: is MVC successful action only flag set?
+     *
      * @var bool
      */
     protected $_mvcSuccessfulActionOnly = true;
 
     /**
      * Plugin class
+     *
      * @var string
      */
     protected $_pluginClass = \Zend_Layout_Controller_Plugin_Layout::class;
@@ -117,6 +130,7 @@ class Zend_Layout
 
     /**
      * View script suffix for layout script
+     *
      * @var string
      */
     protected $_viewSuffix = 'phtml';
@@ -328,7 +342,7 @@ class Zend_Layout
      *
      * Note: enables layout by default, can be disabled
      *
-     * @param  string $name
+     * @param  string  $name
      * @param  boolean $enabled
      * @return Zend_Layout
      */
@@ -477,7 +491,7 @@ class Zend_Layout
     /**
      * Set MVC Successful Action Only flag
      *
-     * @param bool $successfulActionOnly
+     * @param  bool $successfulActionOnly
      * @return Zend_Layout
      */
     public function setMvcSuccessfulActionOnly($successfulActionOnly)
@@ -557,7 +571,7 @@ class Zend_Layout
      *
      * If no view object currently set, retrieves it from the ViewRenderer.
      *
-     * @todo Set inflector from view renderer at same time
+     * @todo   Set inflector from view renderer at same time
      * @return Zend_View_Interface
      */
     public function getView()
@@ -640,8 +654,8 @@ class Zend_Layout
             // require_once 'Zend/Filter/Inflector.php';
             $inflector = new Zend_Filter_Inflector();
             $inflector->setTargetReference($this->_inflectorTarget)
-                      ->addRules(array(':script' => array('Word_CamelCaseToDash', 'StringToLower')))
-                      ->setStaticRuleReference('suffix', $this->_viewSuffix);
+                ->addRules(array(':script' => array('Word_CamelCaseToDash', 'StringToLower')))
+                ->setStaticRuleReference('suffix', $this->_viewSuffix);
             $this->setInflector($inflector);
         }
 
@@ -684,7 +698,7 @@ class Zend_Layout
      * Set layout variable
      *
      * @param  string $key
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return void
      */
     public function __set($key, $value)
@@ -734,8 +748,8 @@ class Zend_Layout
     /**
      * Assign one or more layout variables
      *
-     * @param  mixed $spec Assoc array or string key; if assoc array, sets each
-     * key as a layout variable
+     * @param  mixed $spec  Assoc array or string key; if assoc array, sets each
+     *                      key as a layout variable
      * @param  mixed $value Value if $spec is a key
      * @return Zend_Layout
      * @throws Zend_Layout_Exception if non-array/string value passed to $spec
@@ -776,8 +790,7 @@ class Zend_Layout
             $name = $this->getLayout();
         }
 
-        if ($this->inflectorEnabled() && (null !== ($inflector = $this->getInflector())))
-        {
+        if ($this->inflectorEnabled() && (null !== ($inflector = $this->getInflector()))) {
             $name = $this->_inflector->filter(array('script' => $name));
         }
 

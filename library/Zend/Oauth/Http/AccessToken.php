@@ -12,24 +12,28 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** Zend_Oauth_Http */
+/**
+ * Zend_Oauth_Http 
+ */
 // require_once 'Zend/Oauth/Http.php';
 
-/** Zend_Oauth_Token_Access */
+/**
+ * Zend_Oauth_Token_Access 
+ */
 // require_once 'Zend/Oauth/Token/Access.php';
 
 /**
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Oauth_Http_AccessToken extends Zend_Oauth_Http
 {
@@ -132,7 +136,7 @@ class Zend_Oauth_Http_AccessToken extends Zend_Oauth_Http
      * Generate and return a HTTP Client configured for the Query String Request
      * Scheme specified by OAuth, for use in requesting an Access Token.
      *
-     * @param  array $params
+     * @param  array  $params
      * @param  string $url
      * @return Zend_Http_Client
      */
@@ -153,16 +157,18 @@ class Zend_Oauth_Http_AccessToken extends Zend_Oauth_Http
     {
         $httpClient = null;
         switch ($this->_preferredRequestScheme) {
-            case Zend_Oauth::REQUEST_SCHEME_HEADER:
-                $httpClient = $this->getRequestSchemeHeaderClient($params);
-                break;
-            case Zend_Oauth::REQUEST_SCHEME_POSTBODY:
-                $httpClient = $this->getRequestSchemePostBodyClient($params);
-                break;
-            case Zend_Oauth::REQUEST_SCHEME_QUERYSTRING:
-                $httpClient = $this->getRequestSchemeQueryStringClient($params,
-                    $this->_consumer->getAccessTokenUrl());
-                break;
+        case Zend_Oauth::REQUEST_SCHEME_HEADER:
+            $httpClient = $this->getRequestSchemeHeaderClient($params);
+            break;
+        case Zend_Oauth::REQUEST_SCHEME_POSTBODY:
+            $httpClient = $this->getRequestSchemePostBodyClient($params);
+            break;
+        case Zend_Oauth::REQUEST_SCHEME_QUERYSTRING:
+            $httpClient = $this->getRequestSchemeQueryStringClient(
+                $params,
+                $this->_consumer->getAccessTokenUrl()
+            );
+            break;
         }
         return $httpClient->request();
     }

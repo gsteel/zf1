@@ -12,13 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Form
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
@@ -45,6 +47,7 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
 {
     /**
      * Element types that represent buttons
+     *
      * @var array
      */
     protected $_buttonTypes = array(
@@ -55,6 +58,7 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
 
     /**
      * View helper to use when rendering
+     *
      * @var string
      */
     protected $_helper;
@@ -257,12 +261,12 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
         }
 
         switch ($this->getPlacement()) {
-            case self::APPEND:
-                return $content . $separator . $elementContent;
-            case self::PREPEND:
-                return $elementContent . $separator . $content;
-            default:
-                return $elementContent;
+        case self::APPEND:
+            return $content . $separator . $elementContent;
+        case self::PREPEND:
+            return $elementContent . $separator . $content;
+        default:
+            return $elementContent;
         }
     }
 }

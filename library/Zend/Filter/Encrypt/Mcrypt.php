@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -24,16 +24,18 @@
  */
 // require_once 'Zend/Filter/Encrypt/Interface.php';
 
-/** @see Zend_Crypt_Math */
+/**
+ * @see Zend_Crypt_Math 
+ */
 // require_once 'Zend/Crypt/Math.php';
 
 /**
  * Encryption adapter for mcrypt
  *
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_Encrypt_Mcrypt implements Zend_Filter_Encrypt_Interface
 {
@@ -163,7 +165,7 @@ class Zend_Filter_Encrypt_Mcrypt implements Zend_Filter_Encrypt_Interface
     /**
      * Sets the initialization vector
      *
-     * @param string $vector (Optional) Vector to set
+     * @param  string $vector (Optional) Vector to set
      * @return Zend_Filter_Encrypt_Mcrypt
      */
     public function setVector($vector = null)
@@ -208,7 +210,7 @@ class Zend_Filter_Encrypt_Mcrypt implements Zend_Filter_Encrypt_Interface
     /**
      * Sets a internal compression for values to encrypt
      *
-     * @param string|array $compression
+     * @param  string|array $compression
      * @return Zend_Filter_Encrypt_Mcrypt
      */
     public function setCompression($compression)
@@ -295,7 +297,8 @@ class Zend_Filter_Encrypt_Mcrypt implements Zend_Filter_Encrypt_Interface
             $this->_encryption['algorithm'],
             $this->_encryption['algorithm_directory'],
             $this->_encryption['mode'],
-            $this->_encryption['mode_directory']);
+            $this->_encryption['mode_directory']
+        );
 
         if ($cipher === false) {
             // require_once 'Zend/Filter/Exception.php';

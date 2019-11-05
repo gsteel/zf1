@@ -189,8 +189,8 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     /**
      * Test if a cache is available for the given id and (if yes) return it (false else)
      *
-     * @param string $id cache id
-     * @param boolean $doNotTestCacheValidity if set to true, the cache validity won't be tested
+     * @param  string  $id                     cache id
+     * @param  boolean $doNotTestCacheValidity if set to true, the cache validity won't be tested
      * @return string|false cached datas
      */
     public function load($id, $doNotTestCacheValidity = false)
@@ -218,7 +218,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     /**
      * Test if a cache is available or not (for the given id)
      *
-     * @param string $id cache id
+     * @param  string $id cache id
      * @return mixed false (a cache is not available) or "last modified" timestamp (int) of the available cache record
      */
     public function test($id)
@@ -301,8 +301,8 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
      * Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG => remove cache entries matching any given tags
      *                                               ($tags can be an array of strings or a single string)
      *
-     * @param string $mode clean mode
-     * @param array $tags array of tags
+     * @param  string $mode clean mode
+     * @param  array  $tags array of tags
      * @return boolean true if no problem
      */
     public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
@@ -337,7 +337,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
      *
      * In case of multiple tags, a logical AND is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of matching cache ids (string)
      */
     public function getIdsMatchingTags($tags = array())
@@ -350,7 +350,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
      *
      * In case of multiple tags, a logical OR is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of not matching cache ids (string)
      */
     public function getIdsNotMatchingTags($tags = array())
@@ -363,7 +363,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
      *
      * In case of multiple tags, a logical AND is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of any matching cache ids (string)
      */
     public function getIdsMatchingAnyTags($tags = array())
@@ -399,7 +399,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
      * - tags : a string array of tags
      * - mtime : timestamp of last modification time
      *
-     * @param string $id cache id
+     * @param  string $id cache id
      * @return array array of metadatas (false if the cache id is not found)
      */
     public function getMetadatas($id)
@@ -421,8 +421,8 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     /**
      * Give (if possible) an extra lifetime to the given cache id
      *
-     * @param string $id cache id
-     * @param int $extraLifetime
+     * @param  string $id            cache id
+     * @param  int    $extraLifetime
      * @return boolean true if ok
      */
     public function touch($id, $extraLifetime)
@@ -492,7 +492,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     /**
      * Get a metadatas record
      *
-     * @param  string $id  Cache id
+     * @param  string $id Cache id
      * @return array|false Associative array of metadatas
      */
     protected function _getMetadatas($id)
@@ -512,9 +512,9 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     /**
      * Set a metadatas record
      *
-     * @param  string $id        Cache id
-     * @param  array  $metadatas Associative array of metadatas
-     * @param  boolean $save     optional pass false to disable saving to file
+     * @param  string  $id        Cache id
+     * @param  array   $metadatas Associative array of metadatas
+     * @param  boolean $save      optional pass false to disable saving to file
      * @return boolean True if no problem
      */
     protected function _setMetadatas($id, $metadatas, $save = true)
@@ -636,7 +636,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
             return false;
         }
         if (!@unlink($file)) {
-            # we can't remove the file (because of locks or any problem)
+            // we can't remove the file (because of locks or any problem)
             $this->_log("Zend_Cache_Backend_File::_remove() : we can't remove $file");
             return false;
         }
@@ -688,57 +688,57 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
                 }
                 $id = $this->_fileNameToId($fileName);
                 $metadatas = $this->_getMetadatas($id);
-                if ($metadatas === FALSE) {
+                if ($metadatas === false) {
                     $metadatas = array('expire' => 1, 'tags' => array());
                 }
                 switch ($mode) {
-                    case Zend_Cache::CLEANING_MODE_ALL:
-                        $result = $result && $this->remove($id);
-                        break;
-                    case Zend_Cache::CLEANING_MODE_OLD:
-                        if (time() > $metadatas['expire']) {
-                            $result = $this->remove($id) && $result;
+                case Zend_Cache::CLEANING_MODE_ALL:
+                    $result = $result && $this->remove($id);
+                    break;
+                case Zend_Cache::CLEANING_MODE_OLD:
+                    if (time() > $metadatas['expire']) {
+                        $result = $this->remove($id) && $result;
+                    }
+                    break;
+                case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
+                    $matching = true;
+                    foreach ($tags as $tag) {
+                        if (!in_array($tag, $metadatas['tags'])) {
+                            $matching = false;
+                            break;
                         }
-                        break;
-                    case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
-                        $matching = true;
-                        foreach ($tags as $tag) {
-                            if (!in_array($tag, $metadatas['tags'])) {
-                                $matching = false;
-                                break;
-                            }
+                    }
+                    if ($matching) {
+                        $result = $this->remove($id) && $result;
+                    }
+                    break;
+                case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
+                    $matching = false;
+                    foreach ($tags as $tag) {
+                        if (in_array($tag, $metadatas['tags'])) {
+                            $matching = true;
+                            break;
                         }
-                        if ($matching) {
-                            $result = $this->remove($id) && $result;
+                    }
+                    if (!$matching) {
+                        $result = $this->remove($id) && $result;
+                    }
+                    break;
+                case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
+                    $matching = false;
+                    foreach ($tags as $tag) {
+                        if (in_array($tag, $metadatas['tags'])) {
+                            $matching = true;
+                            break;
                         }
-                        break;
-                    case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
-                        $matching = false;
-                        foreach ($tags as $tag) {
-                            if (in_array($tag, $metadatas['tags'])) {
-                                $matching = true;
-                                break;
-                            }
-                        }
-                        if (!$matching) {
-                            $result = $this->remove($id) && $result;
-                        }
-                        break;
-                    case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
-                        $matching = false;
-                        foreach ($tags as $tag) {
-                            if (in_array($tag, $metadatas['tags'])) {
-                                $matching = true;
-                                break;
-                            }
-                        }
-                        if ($matching) {
-                            $result = $this->remove($id) && $result;
-                        }
-                        break;
-                    default:
-                        Zend_Cache::throwException('Invalid mode for clean() method');
-                        break;
+                    }
+                    if ($matching) {
+                        $result = $this->remove($id) && $result;
+                    }
+                    break;
+                default:
+                    Zend_Cache::throwException('Invalid mode for clean() method');
+                    break;
                 }
             }
             if ((is_dir($file)) and ($this->_options['hashed_directory_level']>0)) {
@@ -778,58 +778,58 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
                 $fileName = basename($file);
                 $id = $this->_fileNameToId($fileName);
                 $metadatas = $this->_getMetadatas($id);
-                if ($metadatas === FALSE) {
+                if ($metadatas === false) {
                     continue;
                 }
                 if (time() > $metadatas['expire']) {
                     continue;
                 }
                 switch ($mode) {
-                    case 'ids':
+                case 'ids':
+                    $result[] = $id;
+                    break;
+                case 'tags':
+                    $result = array_unique(array_merge($result, $metadatas['tags']));
+                    break;
+                case 'matching':
+                    $matching = true;
+                    foreach ($tags as $tag) {
+                        if (!in_array($tag, $metadatas['tags'])) {
+                            $matching = false;
+                            break;
+                        }
+                    }
+                    if ($matching) {
                         $result[] = $id;
-                        break;
-                    case 'tags':
-                        $result = array_unique(array_merge($result, $metadatas['tags']));
-                        break;
-                    case 'matching':
-                        $matching = true;
-                        foreach ($tags as $tag) {
-                            if (!in_array($tag, $metadatas['tags'])) {
-                                $matching = false;
-                                break;
-                            }
+                    }
+                    break;
+                case 'notMatching':
+                    $matching = false;
+                    foreach ($tags as $tag) {
+                        if (in_array($tag, $metadatas['tags'])) {
+                            $matching = true;
+                            break;
                         }
-                        if ($matching) {
-                            $result[] = $id;
+                    }
+                    if (!$matching) {
+                        $result[] = $id;
+                    }
+                    break;
+                case 'matchingAny':
+                    $matching = false;
+                    foreach ($tags as $tag) {
+                        if (in_array($tag, $metadatas['tags'])) {
+                            $matching = true;
+                            break;
                         }
-                        break;
-                    case 'notMatching':
-                        $matching = false;
-                        foreach ($tags as $tag) {
-                            if (in_array($tag, $metadatas['tags'])) {
-                                $matching = true;
-                                break;
-                            }
-                        }
-                        if (!$matching) {
-                            $result[] = $id;
-                        }
-                        break;
-                    case 'matchingAny':
-                        $matching = false;
-                        foreach ($tags as $tag) {
-                            if (in_array($tag, $metadatas['tags'])) {
-                                $matching = true;
-                                break;
-                            }
-                        }
-                        if ($matching) {
-                            $result[] = $id;
-                        }
-                        break;
-                    default:
-                        Zend_Cache::throwException('Invalid mode for _get() method');
-                        break;
+                    }
+                    if ($matching) {
+                        $result[] = $id;
+                    }
+                    break;
+                default:
+                    Zend_Cache::throwException('Invalid mode for _get() method');
+                    break;
                 }
             }
             if ((is_dir($file)) and ($this->_options['hashed_directory_level']>0)) {
@@ -912,7 +912,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     /**
      * Return the complete directory path of a filename (including hashedDirectoryStructure)
      *
-     * @param  string $id Cache id
+     * @param  string  $id    Cache id
      * @param  boolean $parts if true, returns array of directory parts instead of single string
      * @return string Complete directory path
      */
@@ -938,7 +938,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     /**
      * Make the directory strucuture for the given id
      *
-     * @param string $id cache id
+     * @param  string $id cache id
      * @return boolean true
      */
     protected function _recursiveMkdirAndChmod($id)
@@ -989,9 +989,11 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         }
         $f = @fopen($file, 'rb');
         if ($f) {
-            if ($this->_options['file_locking']) @flock($f, LOCK_SH);
+            if ($this->_options['file_locking']) { @flock($f, LOCK_SH);
+            }
             $result = stream_get_contents($f);
-            if ($this->_options['file_locking']) @flock($f, LOCK_UN);
+            if ($this->_options['file_locking']) { @flock($f, LOCK_UN);
+            }
             @fclose($f);
         }
         return $result;
@@ -1009,11 +1011,12 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         $result = false;
         $f = @fopen($file, 'ab+');
         if ($f) {
-            if ($this->_options['file_locking']) @flock($f, LOCK_EX);
+            if ($this->_options['file_locking']) { @flock($f, LOCK_EX);
+            }
             fseek($f, 0);
             ftruncate($f, 0);
             $tmp = @fwrite($f, $string);
-            if (!($tmp === FALSE)) {
+            if (!($tmp === false)) {
                 $result = true;
             }
             @fclose($f);

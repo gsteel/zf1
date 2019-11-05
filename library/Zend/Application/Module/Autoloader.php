@@ -4,7 +4,7 @@ class Zend_Application_Module_Autoloader extends Zend_Loader_Autoloader_Resource
     /**
      * Constructor
      *
-     * @param  array|Zend_Config $options
+     * @param array|Zend_Config $options
      */
     public function __construct($options)
     {

@@ -3,12 +3,14 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
 {
     /**
      * HTTP status code for redirects
+     *
      * @var int
      */
     protected $_code = 302;
 
     /**
      * Whether or not calls to _redirect() should exit script execution
+     *
      * @var boolean
      */
     protected $_exit = true;
@@ -16,24 +18,28 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
     /**
      * Whether or not _redirect() should attempt to prepend the base URL to the
      * passed URL (if it's a relative URL)
+     *
      * @var boolean
      */
     protected $_prependBase = true;
 
     /**
      * Url to which to redirect
+     *
      * @var string
      */
     protected $_redirectUrl = null;
 
     /**
      * Whether or not to use an absolute URI when redirecting
+     *
      * @var boolean
      */
     protected $_useAbsoluteUri = false;
 
     /**
      * Whether or not to close the session before exiting
+     *
      * @var boolean
      */
     protected $_closeSessionOnExit = true;
@@ -274,7 +280,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      * Build a URL based on a route
      *
      * @param  array   $urlOptions
-     * @param  string  $name Route name
+     * @param  string  $name       Route name
      * @param  boolean $reset
      * @param  boolean $encode
      * @return void
@@ -477,7 +483,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      * Overloading for old 'goto', 'setGoto', and 'gotoAndExit' methods
      *
      * @param  string $method
-     * @param  array $args
+     * @param  array  $args
      * @return mixed
      * @throws Zend_Controller_Action_Exception for invalid methods
      */

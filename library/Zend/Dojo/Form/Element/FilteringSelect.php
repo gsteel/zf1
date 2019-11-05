@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_ComboBox */
+/**
+ * Zend_Dojo_Form_Element_ComboBox 
+ */
 // require_once 'Zend/Dojo/Form/Element/ComboBox.php';
 
 /**
@@ -36,12 +38,14 @@ class Zend_Dojo_Form_Element_FilteringSelect extends Zend_Dojo_Form_Element_Comb
 {
     /**
      * Use FilteringSelect dijit view helper
+     *
      * @var string
      */
     public $helper = 'FilteringSelect';
 
     /**
      * Flag: autoregister inArray validator?
+     *
      * @var bool
      */
     protected $_registerInArrayValidator = true;

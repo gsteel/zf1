@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Pubsubhubbub
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Pubsubhubbub
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -35,10 +35,10 @@
 // require_once 'Zend/Feed/Reader.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Pubsubhubbub
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Pubsubhubbub
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Pubsubhubbub_Subscriber_Callback
     extends Zend_Feed_Pubsubhubbub_CallbackAbstract
@@ -85,8 +85,8 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
      * unsubscription request. This should be the Hub Server confirming the
      * the request prior to taking action on it.
      *
-     * @param  array $httpGetData GET data if available and not in $_GET
-     * @param  bool $sendResponseNow Whether to send response now or when asked
+     * @param  array $httpGetData     GET data if available and not in $_GET
+     * @param  bool  $sendResponseNow Whether to send response now or when asked
      * @return void
      */
     public function handle(array $httpGetData = null, $sendResponseNow = false)
@@ -106,17 +106,17 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'
             && $this->_hasValidVerifyToken(null, false)
             && (stripos($contentType, 'application/atom+xml') === 0
-                || stripos($contentType, 'application/rss+xml') === 0
-                || stripos($contentType, 'application/xml') === 0
-                || stripos($contentType, 'text/xml') === 0
-                || stripos($contentType, 'application/rdf+xml') === 0)
+            || stripos($contentType, 'application/rss+xml') === 0
+            || stripos($contentType, 'application/xml') === 0
+            || stripos($contentType, 'text/xml') === 0
+            || stripos($contentType, 'application/rdf+xml') === 0)
         ) {
             $this->setFeedUpdate($this->_getRawBody());
             $this->getHttpResponse()
-                 ->setHeader('X-Hub-On-Behalf-Of', $this->getSubscriberCount());
-        /**
-         * Handle any (un)subscribe confirmation requests
-         */
+                ->setHeader('X-Hub-On-Behalf-Of', $this->getSubscriberCount());
+            /**
+             * Handle any (un)subscribe confirmation requests
+             */
         } elseif ($this->isValidHubVerification($httpGetData)) {
             $data = $this->_currentSubscriptionData;
             $this->getHttpResponse()->setBody($httpGetData['hub_challenge']);
@@ -125,9 +125,9 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
                 $data['lease_seconds'] = $httpGetData['hub_lease_seconds'];
             }
             $this->getStorage()->setSubscription($data);
-        /**
-         * Hey, C'mon! We tried everything else!
-         */
+            /**
+             * Hey, C'mon! We tried everything else!
+             */
         } else {
             $this->getHttpResponse()->setHttpResponseCode(404);
         }
@@ -231,7 +231,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber_Callback
      * with that sent from Hub, otherwise merely ascertains its existence.
      *
      * @param  array $httpGetData
-     * @param  bool $checkValue
+     * @param  bool  $checkValue
      * @return bool
      */
     protected function _hasValidVerifyToken(array $httpGetData = null, $checkValue = true)

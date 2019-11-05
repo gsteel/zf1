@@ -39,42 +39,49 @@ class Zend_Mobile_Push_Response_Gcm
 
     /**
      * Multicast ID
+     *
      * @var int
      */
     protected $_id;
 
     /**
      * Success Count
+     *
      * @var int
      */
     protected $_successCnt;
 
     /**
      * Failure Count
+     *
      * @var int
      */
     protected $_failureCnt;
 
     /**
      * Canonical registration id count
+     *
      * @var int
      */
     protected $_canonicalCnt;
 
     /**
      * Message
+     *
      * @var Zend_Mobile_Push_Message_Gcm
      */
     protected $_message;
 
     /**
      * Results
+     *
      * @var array
      */
     protected $_results;
 
     /**
      * Raw Response
+     *
      * @var array
      */
     protected $_response;
@@ -82,8 +89,8 @@ class Zend_Mobile_Push_Response_Gcm
     /**
      * Constructor
      *
-     * @param string $responseString JSON encoded response
-     * @param Zend_Mobile_Push_Message_Gcm $message
+     * @param  string                       $responseString JSON encoded response
+     * @param  Zend_Mobile_Push_Message_Gcm $message
      * @return Zend_Mobile_Push_Response_Gcm
      * @throws Zend_Mobile_Push_Exception_ServerUnavailable
      */
@@ -116,7 +123,7 @@ class Zend_Mobile_Push_Response_Gcm
     /**
      * Set Message
      *
-     * @param Zend_Mobile_Push_Message_Gcm $message
+     * @param  Zend_Mobile_Push_Message_Gcm $message
      * @return Zend_Mobile_Push_Response_Gcm
      */
     public function setMessage(Zend_Mobile_Push_Message_Gcm $message)
@@ -144,11 +151,12 @@ class Zend_Mobile_Push_Response_Gcm
      */
     public function setResponse(array $response)
     {
-        if (!isset($response['results']) ||
-            !isset($response['success']) ||
-            !isset($response['failure']) ||
-            !isset($response['canonical_ids']) ||
-            !isset($response['multicast_id'])) {
+        if (!isset($response['results']) 
+            || !isset($response['success']) 
+            || !isset($response['failure']) 
+            || !isset($response['canonical_ids']) 
+            || !isset($response['multicast_id'])
+        ) {
             throw new Zend_Mobile_Push_Exception('Response did not contain the proper fields');
         }
         $this->_response = $response;
@@ -209,7 +217,7 @@ class Zend_Mobile_Push_Response_Gcm
     /**
      * Get Singular Result
      *
-     * @param  int   $flag one of the RESULT_* flags
+     * @param  int $flag one of the RESULT_* flags
      * @return array singular array with keys being registration id
      *               value is the type of result
      */

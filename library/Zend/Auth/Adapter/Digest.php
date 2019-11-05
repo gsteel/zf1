@@ -32,10 +32,10 @@ class Zend_Auth_Adapter_Digest implements Zend_Auth_Adapter_Interface
     /**
      * Sets adapter options
      *
-     * @param  mixed $filename
-     * @param  mixed $realm
-     * @param  mixed $username
-     * @param  mixed $password
+     * @param mixed $filename
+     * @param mixed $realm
+     * @param mixed $username
+     * @param mixed $password
      */
     public function __construct($filename = null, $realm = null, $username = null, $password = null)
     {
@@ -198,8 +198,8 @@ class Zend_Auth_Adapter_Digest implements Zend_Auth_Adapter_Interface
      * attempting to iteratively guess the unknown string (e.g. password) being
      * compared against.
      *
-     * @param string $a
-     * @param string $b
+     * @param  string $a
+     * @param  string $b
      * @return bool
      */
     protected function _secureStringCompare($a, $b)

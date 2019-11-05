@@ -21,10 +21,14 @@
  */
 
 
-/** @see Zend_Cache_Backend_Interface */
+/**
+ * @see Zend_Cache_Backend_Interface 
+ */
 // require_once 'Zend/Cache/Backend/Interface.php';
 
-/** @see Zend_Cache_Backend */
+/**
+ * @see Zend_Cache_Backend 
+ */
 // require_once 'Zend/Cache/Backend.php';
 
 
@@ -51,9 +55,9 @@ abstract class Zend_Cache_Backend_ZendServer extends Zend_Cache_Backend implemen
     /**
      * Store data
      *
-     * @param mixed  $data        Object to store
-     * @param string $id          Cache id
-     * @param int    $timeToLive  Time to live in seconds
+     * @param  mixed  $data       Object to store
+     * @param  string $id         Cache id
+     * @param  int    $timeToLive Time to live in seconds
      * @throws Zend_Cache_Exception
      */
     abstract protected function _store($data, $id, $timeToLive);
@@ -61,7 +65,7 @@ abstract class Zend_Cache_Backend_ZendServer extends Zend_Cache_Backend implemen
     /**
      * Fetch data
      *
-     * @param string $id          Cache id
+     * @param  string $id Cache id
      * @throws Zend_Cache_Exception
      */
     abstract protected function _fetch($id);
@@ -69,7 +73,7 @@ abstract class Zend_Cache_Backend_ZendServer extends Zend_Cache_Backend implemen
     /**
      * Unset data
      *
-     * @param string $id          Cache id
+     * @param string $id Cache id
      */
     abstract protected function _unset($id);
 
@@ -106,7 +110,7 @@ abstract class Zend_Cache_Backend_ZendServer extends Zend_Cache_Backend implemen
         $tmp = $this->_fetch('internal-metadatas---' . $id);
         if ($tmp !== false) {
             if (!is_array($tmp) || !isset($tmp['mtime'])) {
-                Zend_Cache::throwException('Cache metadata for \'' . $id . '\' id is corrupted' );
+                Zend_Cache::throwException('Cache metadata for \'' . $id . '\' id is corrupted');
             }
             return $tmp['mtime'];
         }
@@ -132,10 +136,10 @@ abstract class Zend_Cache_Backend_ZendServer extends Zend_Cache_Backend implemen
      * Note : $data is always "string" (serialization is done by the
      * core not by the backend)
      *
-     * @param string $data datas to cache
-     * @param string $id cache id
-     * @param array $tags array of strings, the cache record will be tagged by each string entry
-     * @param int $specificLifetime if != false, set a specific lifetime for this cache record (null => infinite lifetime)
+     * @param  string $data             datas to cache
+     * @param  string $id               cache id
+     * @param  array  $tags             array of strings, the cache record will be tagged by each string entry
+     * @param  int    $specificLifetime if != false, set a specific lifetime for this cache record (null => infinite lifetime)
      * @return boolean true if no problem
      */
     public function save($data, $id, $tags = array(), $specificLifetime = false)
@@ -186,22 +190,22 @@ abstract class Zend_Cache_Backend_ZendServer extends Zend_Cache_Backend implemen
     public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
     {
         switch ($mode) {
-            case Zend_Cache::CLEANING_MODE_ALL:
-                $this->_clear();
-                return true;
+        case Zend_Cache::CLEANING_MODE_ALL:
+            $this->_clear();
+            return true;
                 break;
-            case Zend_Cache::CLEANING_MODE_OLD:
-                $this->_log("Zend_Cache_Backend_ZendServer::clean() : CLEANING_MODE_OLD is unsupported by the Zend Server backends.");
-                break;
-            case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
-            case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
-            case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
-                $this->_clear();
-                $this->_log('Zend_Cache_Backend_ZendServer::clean() : tags are unsupported by the Zend Server backends.');
-                break;
-            default:
-                Zend_Cache::throwException('Invalid mode for clean() method');
-                break;
+        case Zend_Cache::CLEANING_MODE_OLD:
+            $this->_log("Zend_Cache_Backend_ZendServer::clean() : CLEANING_MODE_OLD is unsupported by the Zend Server backends.");
+            break;
+        case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
+        case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
+        case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
+            $this->_clear();
+            $this->_log('Zend_Cache_Backend_ZendServer::clean() : tags are unsupported by the Zend Server backends.');
+            break;
+        default:
+            Zend_Cache::throwException('Invalid mode for clean() method');
+            break;
         }
     }
 }

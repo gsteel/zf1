@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Dom
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Dom
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -29,10 +29,14 @@
  */
 // require_once 'Zend/Dom/Query/Result.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @see Zend_Xml_Exception */
+/**
+ * @see Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
@@ -45,14 +49,17 @@
  */
 class Zend_Dom_Query
 {
-    /**#@+
+    /**
+* #@+
      * Document types
      */
     const DOC_DOM   = 'docDom';
     const DOC_XML   = 'docXml';
     const DOC_HTML  = 'docHtml';
     const DOC_XHTML = 'docXhtml';
-    /**#@-*/
+    /**
+     * #@-
+     */
 
     /**
      * @var string|DOMDocument
@@ -61,24 +68,28 @@ class Zend_Dom_Query
 
     /**
      * DOMDocument errors, if any
+     *
      * @var false|array
      */
     protected $_documentErrors = false;
 
     /**
      * Document type
+     *
      * @var string
      */
     protected $_docType;
 
     /**
      * Document encoding
+     *
      * @var null|string
      */
     protected $_encoding;
 
     /**
      * XPath namespaces
+     *
      * @var array
      */
     protected $_xpathNamespaces = array();
@@ -87,7 +98,7 @@ class Zend_Dom_Query
      * Constructor
      *
      * @param null|string|DOMDocument $document
-     * @param null|string $encoding
+     * @param null|string             $encoding
      */
     public function __construct($document = null, $encoding = null)
     {
@@ -121,7 +132,7 @@ class Zend_Dom_Query
      * Set document to query
      *
      * @param  string|DOMDocument $document
-     * @param  null|string $encoding Document encoding
+     * @param  null|string        $encoding Document encoding
      * @return Zend_Dom_Query
      */
     public function setDocument($document, $encoding = null)
@@ -165,7 +176,7 @@ class Zend_Dom_Query
     /**
      * Register HTML document
      *
-     * @param  string $document
+     * @param  string      $document
      * @param  null|string $encoding Document encoding
      * @return Zend_Dom_Query
      */
@@ -182,7 +193,7 @@ class Zend_Dom_Query
     /**
      * Register XHTML document
      *
-     * @param  string $document
+     * @param  string      $document
      * @param  null|string $encoding Document encoding
      * @return Zend_Dom_Query
      */
@@ -199,7 +210,7 @@ class Zend_Dom_Query
     /**
      * Register XML document
      *
-     * @param  string $document
+     * @param  string      $document
      * @param  null|string $encoding Document encoding
      * @return Zend_Dom_Query
      */
@@ -259,7 +270,7 @@ class Zend_Dom_Query
      * Perform an XPath query
      *
      * @param  string|array $xpathQuery
-     * @param  string       $query CSS selector query
+     * @param  string       $query      CSS selector query
      * @throws Zend_Dom_Exception
      * @return Zend_Dom_Query_Result
      */
@@ -279,26 +290,26 @@ class Zend_Dom_Query
         }
         $type   = $this->getDocumentType();
         switch ($type) {
-            case self::DOC_DOM:
-                $domDoc = $this->_document;
-                $success = true;
-                break;
-            case self::DOC_XML:
-                try {
-                    $domDoc = Zend_Xml_Security::scan($document, $domDoc);
-                    $success = ($domDoc !== false);
-                } catch (Zend_Xml_Exception $e) {
-                    // require_once 'Zend/Dom/Exception.php';
-                    throw new Zend_Dom_Exception(
-                        $e->getMessage()
-                    );
-                }
-                break;
-            case self::DOC_HTML:
-            case self::DOC_XHTML:
-            default:
-                $success = $domDoc->loadHTML($document);
-                break;
+        case self::DOC_DOM:
+            $domDoc = $this->_document;
+            $success = true;
+            break;
+        case self::DOC_XML:
+            try {
+                $domDoc = Zend_Xml_Security::scan($document, $domDoc);
+                $success = ($domDoc !== false);
+            } catch (Zend_Xml_Exception $e) {
+                // require_once 'Zend/Dom/Exception.php';
+                throw new Zend_Dom_Exception(
+                    $e->getMessage()
+                );
+            }
+            break;
+        case self::DOC_HTML:
+        case self::DOC_XHTML:
+        default:
+            $success = $domDoc->loadHTML($document);
+            break;
         }
         $errors = libxml_get_errors();
         if (!empty($errors)) {
@@ -329,7 +340,7 @@ class Zend_Dom_Query
     /**
      * Prepare node list
      *
-     * @param  DOMDocument $document
+     * @param  DOMDocument  $document
      * @param  string|array $xpathQuery
      * @return array
      */

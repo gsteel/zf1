@@ -86,6 +86,7 @@ class Zend_Db_Profiler_Query
 
     /**
      * Clone handler for the query object.
+     *
      * @return void
      */
     public function __clone()
@@ -149,8 +150,8 @@ class Zend_Db_Profiler_Query
     }
 
     /**
-     * @param string $param
-     * @param mixed $variable
+     * @param  string $param
+     * @param  mixed  $variable
      * @return void
      */
     public function bindParam($param, $variable)
@@ -159,7 +160,7 @@ class Zend_Db_Profiler_Query
     }
 
     /**
-     * @param array $param
+     * @param  array $param
      * @return void
      */
     public function bindParams(array $params)

@@ -12,19 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Mail
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Mail
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
 /**
- * @category   Zend
- * @package    Zend_Mail
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Mail
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 final class Zend_Mail_Header_HeaderName
 {
@@ -58,7 +58,7 @@ final class Zend_Mail_Header_HeaderName
     /**
      * Determine if the header name contains any invalid characters.
      *
-     * @param string $name
+     * @param  string $name
      * @return bool
      */
     public static function isValid($name)
@@ -78,7 +78,7 @@ final class Zend_Mail_Header_HeaderName
      *
      * Raises an exception if invalid.
      *
-     * @param string $name
+     * @param  string $name
      * @throws Exception\RuntimeException
      * @return void
      */

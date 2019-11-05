@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Locale
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Locale
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -26,10 +26,10 @@
  * Sampling of PHP environments and platforms suggests that at least 80% to 90% support bcmath.
  * Thus, this file should be as light as possible.
  *
- * @category   Zend
- * @package    Zend_Locale
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Locale
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 class Zend_Locale_Math
@@ -168,15 +168,15 @@ class Zend_Locale_Math
      * Normalizes an input to standard english notation
      * Fixes a problem of BCMath with setLocale which is PHP related
      *
-     * @param   integer  $value  Value to normalize
-     * @return  string           Normalized string without BCMath problems
+     * @param  integer $value Value to normalize
+     * @return string           Normalized string without BCMath problems
      */
     public static function normalize($value)
     {
         $convert = localeconv();
-        $value = str_replace($convert['thousands_sep'], "",(string) $value);
+        $value = str_replace($convert['thousands_sep'], "", (string) $value);
         $value = str_replace($convert['positive_sign'], "", $value);
-        $value = str_replace($convert['decimal_point'], ".",$value);
+        $value = str_replace($convert['decimal_point'], ".", $value);
         if (!empty($convert['negative_sign']) and (strpos($value, $convert['negative_sign']))) {
             $value = str_replace($convert['negative_sign'], "", $value);
             $value = "-" . $value;
@@ -189,8 +189,8 @@ class Zend_Locale_Math
      * Localizes an input from standard english notation
      * Fixes a problem of BCMath with setLocale which is PHP related
      *
-     * @param   integer  $value  Value to normalize
-     * @return  string           Normalized string without BCMath problems
+     * @param  integer $value Value to normalize
+     * @return string           Normalized string without BCMath problems
      */
     public static function localize($value)
     {
@@ -206,8 +206,8 @@ class Zend_Locale_Math
      * Changes exponential numbers to plain string numbers
      * Fixes a problem of BCMath with numbers containing exponents
      *
-     * @param integer $value Value to erase the exponent
-     * @param integer $scale (Optional) Scale to use
+     * @param  integer $value Value to erase the exponent
+     * @param  integer $scale (Optional) Scale to use
      * @return string
      */
     public static function exponent($value, $scale = null)
@@ -320,8 +320,8 @@ class Zend_Locale_Math
     /**
      * BCMod - fixes a problem of BCMath and exponential numbers
      *
-     * @param  string  $op1
-     * @param  string  $op2
+     * @param  string $op1
+     * @param  string $op2
      * @return string
      */
     public static function Mod($op1, $op2)

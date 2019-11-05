@@ -12,19 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Log
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Log
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
- * @category   Zend
- * @package    Zend_Log
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Log
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  *
  * Convenience methods for log [@see Zend_Log::__call()]:
  *
@@ -114,7 +114,7 @@ class Zend_Log
     /**
      * Class constructor.  Create a new logger
      *
-     * @param Zend_Log_Writer_Abstract|null  $writer  default writer
+     * @param Zend_Log_Writer_Abstract|null $writer default writer
      */
     public function __construct(Zend_Log_Writer_Abstract $writer = null)
     {
@@ -228,13 +228,13 @@ class Zend_Log
         return $filter;
     }
 
-   /**
-    * Construct formatter object from configuration array or Zend_Config object
-    *
-    * @param  array|Zend_Config $config Zend_Config or Array
-    * @return Zend_Log_Formatter_Interface
-    * @throws Zend_Log_Exception
-    */
+    /**
+     * Construct formatter object from configuration array or Zend_Config object
+     *
+     * @param  array|Zend_Config $config Zend_Config or Array
+     * @return Zend_Log_Formatter_Interface
+     * @throws Zend_Log_Exception
+     */
     protected function _constructFormatterFromConfig($config)
     {
         $formatter = $this->_constructFromConfig('formatter', $config, $this->_defaultFormatterNamespace);
@@ -252,9 +252,9 @@ class Zend_Log
     /**
      * Construct a filter or writer from config
      *
-     * @param string $type 'writer' of 'filter'
-     * @param mixed $config Zend_Config or Array
-     * @param string $namespace
+     * @param  string $type      'writer' of 'filter'
+     * @param  mixed  $config    Zend_Config or Array
+     * @param  string $namespace
      * @return object
      * @throws Zend_Log_Exception
      */
@@ -289,9 +289,9 @@ class Zend_Log
     /**
      * Get the writer or filter full classname
      *
-     * @param array $config
-     * @param string $type filter|writer
-     * @param string $defaultNamespace
+     * @param  array  $config
+     * @param  string $type             filter|writer
+     * @param  string $defaultNamespace
      * @return string full classname
      * @throws Zend_Log_Exception
      */
@@ -324,13 +324,14 @@ class Zend_Log
     /**
      * Packs message and priority into Event array
      *
-     * @param  string   $message   Message to log
-     * @param  integer  $priority  Priority of message
+     * @param  string  $message  Message to log
+     * @param  integer $priority Priority of message
      * @return array Event array
      */
     protected function _packEvent($message, $priority)
     {
-        return array_merge(array(
+        return array_merge(
+            array(
             'timestamp'    => date($this->_timestampFormat),
             'message'      => $message,
             'priority'     => $priority,
@@ -347,7 +348,9 @@ class Zend_Log
      */
     public function __destruct()
     {
-        /** @var Zend_Log_Writer_Abstract $writer */
+        /**
+ * @var Zend_Log_Writer_Abstract $writer 
+*/
         foreach($this->_writers as $writer) {
             $writer->shutdown();
         }
@@ -359,8 +362,8 @@ class Zend_Log
      *     instead of
      *   $log->log('message', Zend_Log::PRIORITY_NAME)
      *
-     * @param  string  $method  priority name
-     * @param  string  $params  message to log
+     * @param  string $method priority name
+     * @param  string $params message to log
      * @return void
      * @throws Zend_Log_Exception
      */
@@ -369,16 +372,16 @@ class Zend_Log
         $priority = strtoupper($method);
         if (($priority = array_search($priority, $this->_priorities)) !== false) {
             switch (is_array($params) || $params instanceof \Countable ? count($params) : 0) {
-                case 0:
-                    throw new Zend_Log_Exception('Missing log message');
-                case 1:
-                    $message = array_shift($params);
-                    $extras = null;
-                    break;
-                default:
-                    $message = array_shift($params);
-                    $extras  = array_shift($params);
-                    break;
+            case 0:
+                throw new Zend_Log_Exception('Missing log message');
+            case 1:
+                $message = array_shift($params);
+                $extras = null;
+                break;
+            default:
+                $message = array_shift($params);
+                $extras  = array_shift($params);
+                break;
             }
             $this->log($message, $priority, $extras);
         } else {
@@ -389,9 +392,9 @@ class Zend_Log
     /**
      * Log a message at a priority
      *
-     * @param  string   $message   Message to log
-     * @param  integer  $priority  Priority of message
-     * @param  mixed    $extras    Extra information to log in event
+     * @param  string  $message  Message to log
+     * @param  integer $priority Priority of message
+     * @param  mixed   $extras   Extra information to log in event
      * @return void
      * @throws Zend_Log_Exception
      */
@@ -429,7 +432,9 @@ class Zend_Log
         }
 
         // abort if rejected by the global filters
-        /** @var Zend_Log_Filter_Interface $filter */
+        /**
+ * @var Zend_Log_Filter_Interface $filter 
+*/
         foreach ($this->_filters as $filter) {
             if (! $filter->accept($event)) {
                 return;
@@ -437,7 +442,9 @@ class Zend_Log
         }
 
         // send to each writer
-        /** @var Zend_Log_Writer_Abstract $writer */
+        /**
+ * @var Zend_Log_Writer_Abstract $writer 
+*/
         foreach ($this->_writers as $writer) {
             $writer->write($event);
         }
@@ -457,7 +464,8 @@ class Zend_Log
         $name = strtoupper($name);
 
         if (isset($this->_priorities[$priority])
-            || false !== array_search($name, $this->_priorities)) {
+            || false !== array_search($name, $this->_priorities)
+        ) {
             throw new Zend_Log_Exception('Existing priorities cannot be overwritten');
         }
 
@@ -518,8 +526,8 @@ class Zend_Log
     /**
      * Set an extra item to pass to the log writers.
      *
-     * @param  string $name    Name of the field
-     * @param  string $value   Value of the field
+     * @param  string $name  Name of the field
+     * @param  string $value Value of the field
      * @return Zend_Log
      */
     public function setEventItem($name, $value)
@@ -581,12 +589,12 @@ class Zend_Log
     /**
      * Error Handler will convert error into log message, and then call the original error handler
      *
-     * @link http://www.php.net/manual/en/function.set-error-handler.php Custom error handler
-     * @param int $errno
-     * @param string $errstr
-     * @param string $errfile
-     * @param int $errline
-     * @param array $errcontext
+     * @link   http://www.php.net/manual/en/function.set-error-handler.php Custom error handler
+     * @param  int    $errno
+     * @param  string $errstr
+     * @param  string $errfile
+     * @param  int    $errline
+     * @param  array  $errcontext
      * @return boolean
      */
     public function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
@@ -611,7 +619,7 @@ class Zend_Log
     /**
      * Set timestamp format for log entries.
      *
-     * @param string $format
+     * @param  string $format
      * @return Zend_Log
      */
     public function setTimestampFormat($format)

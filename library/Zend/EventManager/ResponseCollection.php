@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 if (version_compare(PHP_VERSION, '5.3.0', '<')) {
@@ -33,6 +33,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
 
         /**
          * Mode used when iterating
+         *
          * @var int
          */
         protected $mode = self::IT_MODE_KEEP;
@@ -350,12 +351,12 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
 /**
  * Collection of signal handler return values
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_EventManager_ResponseCollection extends SplStack 
+class Zend_EventManager_ResponseCollection extends SplStack
 {
     protected $stopped = false;
 
@@ -410,7 +411,7 @@ class Zend_EventManager_ResponseCollection extends SplStack
     /**
      * Check if any of the responses match the given value.
      *
-     * @param  mixed $value The value to look for among responses
+     * @param mixed $value The value to look for among responses
      */
     public function contains($value)
     {

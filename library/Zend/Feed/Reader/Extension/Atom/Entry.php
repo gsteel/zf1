@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -50,10 +50,10 @@
 // require_once 'Zend/Feed/Reader/Feed/Atom/Source.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Reader_Extension_Atom_Entry
     extends Zend_Feed_Reader_Extension_EntryAbstract
@@ -135,26 +135,26 @@ class Zend_Feed_Reader_Extension_Atom_Entry
             $el = $el->item(0);
             $type = $el->getAttribute('type');
             switch ($type) {
-                case '':
-                case 'text':
-                case 'text/plain':
-                case 'html':
-                case 'text/html':
-                    $content = $el->nodeValue;
+            case '':
+            case 'text':
+            case 'text/plain':
+            case 'html':
+            case 'text/html':
+                $content = $el->nodeValue;
                 break;
-                case 'xhtml':
-                    $this->getXpath()->registerNamespace('xhtml', 'http://www.w3.org/1999/xhtml');
-                    $xhtml = $this->getXpath()->query(
-                        $this->getXpathPrefix() . '/atom:content/xhtml:div'
-                    )->item(0);
-                    //$xhtml->setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
-                    $d = new DOMDocument('1.0', $this->getEncoding());
-                    $xhtmls = $d->importNode($xhtml, true);
-                    $d->appendChild($xhtmls);
-                    $content = $this->_collectXhtml(
-                        $d->saveXML(),
-                        $d->lookupPrefix('http://www.w3.org/1999/xhtml')
-                    );
+            case 'xhtml':
+                $this->getXpath()->registerNamespace('xhtml', 'http://www.w3.org/1999/xhtml');
+                $xhtml = $this->getXpath()->query(
+                    $this->getXpathPrefix() . '/atom:content/xhtml:div'
+                )->item(0);
+                //$xhtml->setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+                $d = new DOMDocument('1.0', $this->getEncoding());
+                $xhtmls = $d->importNode($xhtml, true);
+                $d->appendChild($xhtmls);
+                $content = $this->_collectXhtml(
+                    $d->saveXML(),
+                    $d->lookupPrefix('http://www.w3.org/1999/xhtml')
+                );
                 break;
             }
         }
@@ -173,7 +173,8 @@ class Zend_Feed_Reader_Extension_Atom_Entry
      */
     protected function _collectXhtml($xhtml, $prefix)
     {
-        if (!empty($prefix)) $prefix = $prefix . ':';
+        if (!empty($prefix)) { $prefix = $prefix . ':';
+        }
         $matches = array(
             "/<\?xml[^<]*>[^<]*<" . $prefix . "div[^<]*/",
             "/<\/" . $prefix . "div>\s*$/"
@@ -331,9 +332,11 @@ class Zend_Feed_Reader_Extension_Atom_Entry
             return $this->_data['baseUrl'];
         }
 
-        $baseUrl = $this->getXpath()->evaluate('string('
+        $baseUrl = $this->getXpath()->evaluate(
+            'string('
             . $this->getXpathPrefix() . '/@xml:base[1]'
-        . ')');
+            . ')'
+        );
 
         if (!$baseUrl) {
             $baseUrl = $this->getXpath()->evaluate('string(//@xml:base[1])');
@@ -595,7 +598,7 @@ class Zend_Feed_Reader_Extension_Atom_Entry
     /**
      * Get an author entry
      *
-     * @param DOMElement $element
+     * @param  DOMElement $element
      * @return string
      */
     protected function _getAuthor(DOMElement $element)
@@ -630,12 +633,12 @@ class Zend_Feed_Reader_Extension_Atom_Entry
     protected function _registerNamespaces()
     {
         switch ($this->_getAtomType()) {
-            case Zend_Feed_Reader::TYPE_ATOM_03:
-                $this->getXpath()->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_03);
-                break;
-            default:
-                $this->getXpath()->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_10);
-                break;
+        case Zend_Feed_Reader::TYPE_ATOM_03:
+            $this->getXpath()->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_03);
+            break;
+        default:
+            $this->getXpath()->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_10);
+            break;
         }
     }
 
@@ -648,11 +651,13 @@ class Zend_Feed_Reader_Extension_Atom_Entry
         $prefixAtom03 = $dom->lookupPrefix(Zend_Feed_Reader::NAMESPACE_ATOM_03);
         $prefixAtom10 = $dom->lookupPrefix(Zend_Feed_Reader::NAMESPACE_ATOM_10);
         if ($dom->isDefaultNamespace(Zend_Feed_Reader::NAMESPACE_ATOM_03)
-        || !empty($prefixAtom03)) {
+            || !empty($prefixAtom03)
+        ) {
             return Zend_Feed_Reader::TYPE_ATOM_03;
         }
         if ($dom->isDefaultNamespace(Zend_Feed_Reader::NAMESPACE_ATOM_10)
-        || !empty($prefixAtom10)) {
+            || !empty($prefixAtom10)
+        ) {
             return Zend_Feed_Reader::TYPE_ATOM_10;
         }
     }

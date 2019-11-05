@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** @see Zend_Serializer_Adapter_AdapterInterface */
+/**
+ * @see Zend_Serializer_Adapter_AdapterInterface 
+ */
 // require_once 'Zend/Serializer/Adapter/AdapterInterface.php';
 
 /**
@@ -72,8 +74,8 @@ abstract class Zend_Serializer_Adapter_AdapterAbstract implements Zend_Serialize
     /**
      * Set a serializer option
      *
-     * @param  string $name Option name
-     * @param  mixed $value Option value
+     * @param  string $name  Option name
+     * @param  mixed  $value Option value
      * @return Zend_Serializer_Adapter_AdapterAbstract
      */
     public function setOption($name, $value)

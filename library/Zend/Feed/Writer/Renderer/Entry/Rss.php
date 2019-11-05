@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Writer
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Writer
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Feed/Writer/Renderer/RendererAbstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Writer
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Writer
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Writer_Renderer_Entry_Rss
     extends Zend_Feed_Writer_Renderer_RendererAbstract
@@ -40,7 +40,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * @param  Zend_Feed_Writer_Entry $container
      * @return void
      */
-    public function __construct (Zend_Feed_Writer_Entry $container)
+    public function __construct(Zend_Feed_Writer_Entry $container)
     {
         parent::__construct($container);
     }
@@ -82,13 +82,14 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * Set entry title
      *
      * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setTitle(DOMDocument $dom, DOMElement $root)
     {
         if(!$this->getDataContainer()->getDescription()
-        && !$this->getDataContainer()->getTitle()) {
+            && !$this->getDataContainer()->getTitle()
+        ) {
             // require_once 'Zend/Feed/Exception.php';
             $message = 'RSS 2.0 entry elements SHOULD contain exactly one'
             . ' title element but a title has not been set. In addition, there'
@@ -111,13 +112,14 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * Set entry description
      *
      * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setDescription(DOMDocument $dom, DOMElement $root)
     {
         if(!$this->getDataContainer()->getDescription()
-        && !$this->getDataContainer()->getTitle()) {
+            && !$this->getDataContainer()->getTitle()
+        ) {
             // require_once 'Zend/Feed/Exception.php';
             $message = 'RSS 2.0 entry elements SHOULD contain exactly one'
             . ' description element but a description has not been set. In'
@@ -144,7 +146,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * Set date entry was last modified
      *
      * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setDateModified(DOMDocument $dom, DOMElement $root)
@@ -165,7 +167,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * Set date entry was created
      *
      * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setDateCreated(DOMDocument $dom, DOMElement $root)
@@ -184,7 +186,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * Set entry authors
      *
      * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setAuthors(DOMDocument $dom, DOMElement $root)
@@ -209,7 +211,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * Set entry enclosure
      *
      * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setEnclosure(DOMDocument $dom, DOMElement $root)
@@ -240,8 +242,10 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
         }
         if (isset($data['length']) && (int) $data['length'] <= 0) {
             // require_once 'Zend/Feed/Exception.php';
-            $exception = new Zend_Feed_Exception('Enclosure "length" must be an integer'
-            . ' indicating the content\'s length in bytes');
+            $exception = new Zend_Feed_Exception(
+                'Enclosure "length" must be an integer'
+                . ' indicating the content\'s length in bytes'
+            );
             if (!$this->_ignoreExceptions) {
                 throw $exception;
             } else {
@@ -260,7 +264,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * Set link to entry
      *
      * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setLink(DOMDocument $dom, DOMElement $root)
@@ -278,13 +282,14 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * Set entry identifier
      *
      * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setId(DOMDocument $dom, DOMElement $root)
     {
         if(!$this->getDataContainer()->getId()
-        && !$this->getDataContainer()->getLink()) {
+            && !$this->getDataContainer()->getLink()
+        ) {
             return;
         }
 
@@ -292,7 +297,8 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
         $root->appendChild($id);
         if (!$this->getDataContainer()->getId()) {
             $this->getDataContainer()->setId(
-                $this->getDataContainer()->getLink());
+                $this->getDataContainer()->getLink()
+            );
         }
         $text = $dom->createTextNode($this->getDataContainer()->getId());
         $id->appendChild($text);
@@ -305,7 +311,7 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
      * Set link to entry comments
      *
      * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setCommentLink(DOMDocument $dom, DOMElement $root)
@@ -323,8 +329,8 @@ class Zend_Feed_Writer_Renderer_Entry_Rss
     /**
      * Set entry categories
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setCategories(DOMDocument $dom, DOMElement $root)

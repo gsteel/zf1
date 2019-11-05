@@ -14,7 +14,7 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
      * Register a plugin.
      *
      * @param  Zend_Controller_Plugin_Abstract $plugin
-     * @param  int $stackIndex
+     * @param  int                             $stackIndex
      * @return Zend_Controller_Plugin_Broker
      */
     public function registerPlugin(Zend_Controller_Plugin_Abstract $plugin, $stackIndex = null)
@@ -55,7 +55,7 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
     /**
      * Unregister a plugin.
      *
-     * @param string|Zend_Controller_Plugin_Abstract $plugin Plugin object or class name
+     * @param  string|Zend_Controller_Plugin_Abstract $plugin Plugin object or class name
      * @return Zend_Controller_Plugin_Broker
      */
     public function unregisterPlugin($plugin)
@@ -114,12 +114,12 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
         }
 
         switch (count($found)) {
-            case 0:
-                return false;
-            case 1:
-                return $found[0];
-            default:
-                return $found;
+        case 0:
+            return false;
+        case 1:
+            return $found[0];
+        default:
+            return $found;
         }
     }
 
@@ -136,7 +136,7 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
     /**
      * Set request object, and register with each plugin
      *
-     * @param Zend_Controller_Request_Abstract $request
+     * @param  Zend_Controller_Request_Abstract $request
      * @return Zend_Controller_Plugin_Broker
      */
     public function setRequest(Zend_Controller_Request_Abstract $request)
@@ -163,7 +163,7 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
     /**
      * Set response object
      *
-     * @param Zend_Controller_Response_Abstract $response
+     * @param  Zend_Controller_Response_Abstract $response
      * @return Zend_Controller_Plugin_Broker
      */
     public function setResponse(Zend_Controller_Response_Abstract $response)
@@ -193,7 +193,7 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
      * Called before Zend_Controller_Front begins evaluating the
      * request against its routes.
      *
-     * @param Zend_Controller_Request_Abstract $request
+     * @param  Zend_Controller_Request_Abstract $request
      * @return void
      */
     public function routeStartup(Zend_Controller_Request_Abstract $request)
@@ -278,8 +278,8 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
                     throw new Zend_Controller_Exception($e->getMessage() . $e->getTraceAsString(), $e->getCode(), $e);
                 } else {
                     $this->getResponse()->setException($e);
-					// skip rendering of normal dispatch give the error handler a try
-					$this->getRequest()->setDispatched(false);
+                    // skip rendering of normal dispatch give the error handler a try
+                    $this->getRequest()->setDispatched(false);
                 }
             }
         }
@@ -316,8 +316,8 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
      */
     public function dispatchLoopShutdown()
     {
-       foreach ($this->_plugins as $plugin) {
-           try {
+        foreach ($this->_plugins as $plugin) {
+            try {
                 $plugin->dispatchLoopShutdown();
             } catch (Exception $e) {
                 if (Zend_Controller_Front::getInstance()->throwExceptions()) {
@@ -326,6 +326,6 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
                     $this->getResponse()->setException($e);
                 }
             }
-       }
+        }
     }
 }

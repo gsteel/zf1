@@ -37,7 +37,8 @@
 class Zend_View_Helper_Navigation_Links
     extends Zend_View_Helper_Navigation_HelperAbstract
 {
-    /**#@+
+    /**
+* #@+
      * Constants used for specifying which link types to find and render
      *
      * @var int
@@ -59,7 +60,9 @@ class Zend_View_Helper_Navigation_Links
     const RENDER_BOOKMARK   = 0x4000;
     const RENDER_CUSTOM     = 0x8000;
     const RENDER_ALL        = 0xffff;
-    /**#@+**/
+    /**
+     * #@+
+     **/
 
     /**
      * Maps render constants to W3C link types
@@ -109,8 +112,8 @@ class Zend_View_Helper_Navigation_Links
      * View helper entry point:
      * Retrieves helper and optionally sets container to operate on
      *
-     * @param  Zend_Navigation_Container $container  [optional] container to
-     *                                               operate on
+     * @param  Zend_Navigation_Container $container [optional] container to
+     *                                              operate on
      * @return Zend_View_Helper_Navigation_Links     fluent interface, returns
      *                                               self
      */
@@ -134,16 +137,18 @@ class Zend_View_Helper_Navigation_Links
      * $h->findRelFoo($page);     // $h->findRelation($page, 'rel', 'foo');
      * </code>
      *
-     * @param  string $method             method name
-     * @param  array  $arguments          method arguments
+     * @param  string $method    method name
+     * @param  array  $arguments method arguments
      * @throws Zend_Navigation_Exception  if method does not exist in container
      */
     public function __call($method, array $arguments = array())
     {
         if (@preg_match('/find(Rel|Rev)(.+)/', $method, $match)) {
-            return $this->findRelation($arguments[0],
-                                       strtolower($match[1]),
-                                       strtolower($match[2]));
+            return $this->findRelation(
+                $arguments[0],
+                strtolower($match[1]),
+                strtolower($match[2])
+            );
         }
 
         return parent::__call($method, $arguments);
@@ -178,7 +183,7 @@ class Zend_View_Helper_Navigation_Links
      * Note that custom relations can also be rendered directly using the
      * {@link renderLink()} method.
      *
-     * @param  int $renderFlag                    render flag
+     * @param  int $renderFlag render flag
      * @return Zend_View_Helper_Navigation_Links  fluent interface, returns self
      */
     public function setRenderFlag($renderFlag)
@@ -219,12 +224,12 @@ class Zend_View_Helper_Navigation_Links
      * );
      * </code>
      *
-     * @param  Zend_Navigation_Page $page  page to find links for
+     * @param  Zend_Navigation_Page $page page to find links for
      * @return array                       related pages
      */
     public function findAllRelations(Zend_Navigation_Page $page,
-                                     $flag = null)
-    {
+        $flag = null
+    ) {
         if (!is_int($flag)) {
             $flag = self::RENDER_ALL;
         }
@@ -261,9 +266,9 @@ class Zend_View_Helper_Navigation_Links
      * This method will first look for relations in the page instance, then
      * by searching the root container if nothing was found in the page.
      *
-     * @param  Zend_Navigation_Page $page       page to find relations for
-     * @param  string              $rel         relation, "rel" or "rev"
-     * @param  string              $type        link type, e.g. 'start', 'next'
+     * @param  Zend_Navigation_Page $page page to find relations for
+     * @param  string               $rel  relation, "rel" or "rev"
+     * @param  string               $type link type, e.g. 'start', 'next'
      * @return Zend_Navigaiton_Page|array|null  page(s), or null if not found
      * @throws Zend_View_Exception              if $rel is not "rel" or "rev"
      */
@@ -271,9 +276,12 @@ class Zend_View_Helper_Navigation_Links
     {
         if (!in_array($rel, array('rel', 'rev'))) {
             // require_once 'Zend/View/Exception.php';
-            $e = new Zend_View_Exception(sprintf(
-                'Invalid argument: $rel must be "rel" or "rev"; "%s" given',
-                $rel));
+            $e = new Zend_View_Exception(
+                sprintf(
+                    'Invalid argument: $rel must be "rel" or "rev"; "%s" given',
+                    $rel
+                )
+            );
             $e->setView($this->view);
             throw $e;
         }
@@ -289,9 +297,9 @@ class Zend_View_Helper_Navigation_Links
      * Finds relations of given $type for $page by checking if the
      * relation is specified as a property of $page
      *
-     * @param  Zend_Navigation_Page $page       page to find relations for
-     * @param  string              $rel         relation, 'rel' or 'rev'
-     * @param  string              $type        link type, e.g. 'start', 'next'
+     * @param  Zend_Navigation_Page $page page to find relations for
+     * @param  string               $rel  relation, 'rel' or 'rev'
+     * @param  string               $type link type, e.g. 'start', 'next'
      * @return Zend_Navigation_Page|array|null  page(s), or null if not found
      */
     protected function _findFromProperty(Zend_Navigation_Page $page, $rel, $type)
@@ -320,9 +328,9 @@ class Zend_View_Helper_Navigation_Links
      * Finds relations of given $rel=$type for $page by using the helper to
      * search for the relation in the root container
      *
-     * @param  Zend_Navigation_Page $page  page to find relations for
-     * @param  string              $rel    relation, 'rel' or 'rev'
-     * @param  string              $type   link type, e.g. 'start', 'next', etc
+     * @param  Zend_Navigation_Page $page page to find relations for
+     * @param  string               $rel  relation, 'rel' or 'rev'
+     * @param  string               $type link type, e.g. 'start', 'next', etc
      * @return array|null                  array of pages, or null if not found
      */
     protected function _findFromSearch(Zend_Navigation_Page $page, $rel, $type)
@@ -348,7 +356,7 @@ class Zend_View_Helper_Navigation_Links
      * tells search engines which document is considered by the author to be the
      * starting point of the collection.
      *
-     * @param  Zend_Navigation_Page $page  page to find relation for
+     * @param  Zend_Navigation_Page $page page to find relation for
      * @return Zend_Navigation_Page|null   page or null
      */
     public function searchRelStart(Zend_Navigation_Page $page)
@@ -375,15 +383,17 @@ class Zend_View_Helper_Navigation_Links
      * agents may choose to preload the "next" document, to reduce the perceived
      * load time.
      *
-     * @param  Zend_Navigation_Page $page  page to find relation for
+     * @param  Zend_Navigation_Page $page page to find relation for
      * @return Zend_Navigation_Page|null   page(s) or null
      */
     public function searchRelNext(Zend_Navigation_Page $page)
     {
         $found = null;
         $break = false;
-        $iterator = new RecursiveIteratorIterator($this->_findRoot($page),
-                RecursiveIteratorIterator::SELF_FIRST);
+        $iterator = new RecursiveIteratorIterator(
+            $this->_findRoot($page),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
         foreach ($iterator as $intermediate) {
             if ($intermediate === $page) {
                 // current page; break at next accepted page
@@ -408,7 +418,7 @@ class Zend_View_Helper_Navigation_Links
      * Refers to the previous document in an ordered series of documents. Some
      * user agents also support the synonym "Previous".
      *
-     * @param  Zend_Navigation_Page $page  page to find relation for
+     * @param  Zend_Navigation_Page $page page to find relation for
      * @return Zend_Navigation_Page|null   page or null
      */
     public function searchRelPrev(Zend_Navigation_Page $page)
@@ -416,8 +426,9 @@ class Zend_View_Helper_Navigation_Links
         $found = null;
         $prev = null;
         $iterator = new RecursiveIteratorIterator(
-                $this->_findRoot($page),
-                RecursiveIteratorIterator::SELF_FIRST);
+            $this->_findRoot($page),
+            RecursiveIteratorIterator::SELF_FIRST
+        );
         foreach ($iterator as $intermediate) {
             if (!$this->accept($intermediate)) {
                 continue;
@@ -440,7 +451,7 @@ class Zend_View_Helper_Navigation_Links
      * From {@link http://www.w3.org/TR/html4/types.html#type-links}:
      * Refers to a document serving as a chapter in a collection of documents.
      *
-     * @param  Zend_Navigation_Page $page       page to find relation for
+     * @param  Zend_Navigation_Page $page page to find relation for
      * @return Zend_Navigation_Page|array|null  page(s) or null
      */
     public function searchRelChapter(Zend_Navigation_Page $page)
@@ -458,20 +469,21 @@ class Zend_View_Helper_Navigation_Links
 
         foreach ($root as $chapter) {
             // exclude self and start page from chapters
-            if ($chapter !== $page &&
-                !in_array($chapter, $start) &&
-                $this->accept($chapter)) {
+            if ($chapter !== $page 
+                && !in_array($chapter, $start) 
+                && $this->accept($chapter)
+            ) {
                 $found[] = $chapter;
             }
         }
 
         switch (count($found)) {
-            case 0:
-                return null;
-            case 1:
-                return $found[0];
-            default:
-                return $found;
+        case 0:
+            return null;
+        case 1:
+            return $found[0];
+        default:
+            return $found;
         }
     }
 
@@ -482,7 +494,7 @@ class Zend_View_Helper_Navigation_Links
      * From {@link http://www.w3.org/TR/html4/types.html#type-links}:
      * Refers to a document serving as a section in a collection of documents.
      *
-     * @param  Zend_Navigation_Page $page       page to find relation for
+     * @param  Zend_Navigation_Page $page page to find relation for
      * @return Zend_Navigation_Page|array|null  page(s) or null
      */
     public function searchRelSection(Zend_Navigation_Page $page)
@@ -499,12 +511,12 @@ class Zend_View_Helper_Navigation_Links
         }
 
         switch (count($found)) {
-            case 0:
-                return null;
-            case 1:
-                return $found[0];
-            default:
-                return $found;
+        case 0:
+            return null;
+        case 1:
+            return $found[0];
+        default:
+            return $found;
         }
     }
 
@@ -516,7 +528,7 @@ class Zend_View_Helper_Navigation_Links
      * Refers to a document serving as a subsection in a collection of
      * documents.
      *
-     * @param  Zend_Navigation_Page $page       page to find relation for
+     * @param  Zend_Navigation_Page $page page to find relation for
      * @return Zend_Navigation_Page|array|null  page(s) or null
      */
     public function searchRelSubsection(Zend_Navigation_Page $page)
@@ -538,12 +550,12 @@ class Zend_View_Helper_Navigation_Links
         }
 
         switch (count($found)) {
-            case 0:
-                return null;
-            case 1:
-                return $found[0];
-            default:
-                return $found;
+        case 0:
+            return null;
+        case 1:
+            return $found[0];
+        default:
+            return $found;
         }
     }
 
@@ -554,7 +566,7 @@ class Zend_View_Helper_Navigation_Links
      * From {@link http://www.w3.org/TR/html4/types.html#type-links}:
      * Refers to a document serving as a section in a collection of documents.
      *
-     * @param  Zend_Navigation_Page $page  page to find relation for
+     * @param  Zend_Navigation_Page $page page to find relation for
      * @return Zend_Navigation_Page|null   page(s) or null
      */
     public function searchRevSection(Zend_Navigation_Page $page)
@@ -562,8 +574,9 @@ class Zend_View_Helper_Navigation_Links
         $found = null;
 
         if ($parent = $page->getParent()) {
-            if ($parent instanceof Zend_Navigation_Page &&
-                $this->_findRoot($page)->hasPage($parent)) {
+            if ($parent instanceof Zend_Navigation_Page 
+                && $this->_findRoot($page)->hasPage($parent)
+            ) {
                 $found = $parent;
             }
         }
@@ -579,7 +592,7 @@ class Zend_View_Helper_Navigation_Links
      * Refers to a document serving as a subsection in a collection of
      * documents.
      *
-     * @param  Zend_Navigation_Page $page  page to find relation for
+     * @param  Zend_Navigation_Page $page page to find relation for
      * @return Zend_Navigation_Page|null   page(s) or null
      */
     public function searchRevSubsection(Zend_Navigation_Page $page)
@@ -611,7 +624,7 @@ class Zend_View_Helper_Navigation_Links
      * makes sure finder methods will not traverse above the container given
      * to the render method.
      *
-     * @param  Zend_Navigaiton_Page $page  page to find root for
+     * @param  Zend_Navigaiton_Page $page page to find root for
      * @return Zend_Navigation_Container   the root container of the given page
      */
     protected function _findRoot(Zend_Navigation_Page $page)
@@ -637,9 +650,9 @@ class Zend_View_Helper_Navigation_Links
     /**
      * Converts a $mixed value to an array of pages
      *
-     * @param  mixed $mixed                     mixed value to get page(s) from
-     * @param  bool  $recursive                 whether $value should be looped
-     *                                          if it is an array or a config
+     * @param  mixed $mixed     mixed value to get page(s) from
+     * @param  bool  $recursive whether $value should be looped
+     *                          if it is an array or a config
      * @return Zend_Navigation_Page|array|null  empty if unable to convert
      */
     protected function _convertToPages($mixed, $recursive = true)
@@ -661,10 +674,12 @@ class Zend_View_Helper_Navigation_Links
             }
         } elseif (is_string($mixed)) {
             // value is a string; make an URI page
-            return Zend_Navigation_Page::factory(array(
+            return Zend_Navigation_Page::factory(
+                array(
                 'type' => 'uri',
                 'uri'  => $mixed
-            ));
+                )
+            );
         } elseif (is_array($mixed) && !empty($mixed)) {
             if ($recursive && is_numeric(key($mixed))) {
                 // first key is numeric; assume several pages
@@ -694,15 +709,15 @@ class Zend_View_Helper_Navigation_Links
     /**
      * Renders the given $page as a link element, with $attrib = $relation
      *
-     * @param  Zend_Navigation_Page $page      the page to render the link for
-     * @param  string               $attrib    the attribute to use for $type,
-     *                                         either 'rel' or 'rev'
-     * @param  string               $relation  relation type, muse be one of;
-     *                                         alternate, appendix, bookmark,
-     *                                         chapter, contents, copyright,
-     *                                         glossary, help, home, index, next,
-     *                                         prev, section, start, stylesheet,
-     *                                         subsection
+     * @param  Zend_Navigation_Page $page     the page to render the link for
+     * @param  string               $attrib   the attribute to use for $type,
+     *                                        either 'rel' or 'rev'
+     * @param  string               $relation relation type, muse be one of;
+     *                                        alternate, appendix, bookmark,
+     *                                        chapter, contents, copyright,
+     *                                        glossary, help, home, index,
+     *                                        next, prev, section, start,
+     *                                        stylesheet, subsection
      * @return string                          rendered link element
      * @throws Zend_View_Exception             if $attrib is invalid
      */
@@ -710,9 +725,12 @@ class Zend_View_Helper_Navigation_Links
     {
         if (!in_array($attrib, array('rel', 'rev'))) {
             // require_once 'Zend/View/Exception.php';
-            $e = new Zend_View_Exception(sprintf(
+            $e = new Zend_View_Exception(
+                sprintf(
                     'Invalid relation attribute "%s", must be "rel" or "rev"',
-                    $attrib));
+                    $attrib
+                )
+            );
             $e->setView($this->view);
             throw $e;
         }
@@ -741,10 +759,11 @@ class Zend_View_Helper_Navigation_Links
      *
      * Implements {@link Zend_View_Helper_Navigation_Helper::render()}.
      *
-     * @param  Zend_Navigation_Container $container  [optional] container to
-     *                                               render. Default is to
-     *                                               render the container
-     *                                               registered in the helper.
+     * @param  Zend_Navigation_Container $container [optional] container to
+     *                                              render. Default is to
+     *                                              render the container
+     *                                              registered in the
+     *                                              helper.
      * @return string                                helper output
      */
     public function render(Zend_Navigation_Container $container = null)

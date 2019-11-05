@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Element */
+/**
+ * Zend_Form_Element 
+ */
 // require_once 'Zend/Form/Element.php';
 
 /**
@@ -36,12 +38,14 @@ abstract class Zend_Dojo_Form_Element_Dijit extends Zend_Form_Element
 {
     /**
      * Dijit parameters
+     *
      * @var array
      */
     public $dijitParams = array();
 
     /**
      * View helper to use
+     *
      * @var string
      */
     public $helper;
@@ -49,7 +53,7 @@ abstract class Zend_Dojo_Form_Element_Dijit extends Zend_Form_Element
     /**
      * Constructor
      *
-     * @todo Should we set dojo view helper paths here?
+     * @todo   Should we set dojo view helper paths here?
      * @param  mixed $spec
      * @param  mixed $options
      * @return void
@@ -64,7 +68,7 @@ abstract class Zend_Dojo_Form_Element_Dijit extends Zend_Form_Element
      * Set a dijit parameter
      *
      * @param  string $key
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return Zend_Dojo_Form_Element_Dijit
      */
     public function setDijitParam($key, $value)
@@ -162,10 +166,10 @@ abstract class Zend_Dojo_Form_Element_Dijit extends Zend_Form_Element
         $decorators = $this->getDecorators();
         if (empty($decorators)) {
             $this->addDecorator('DijitElement')
-                 ->addDecorator('Errors')
-                 ->addDecorator('Description', array('tag' => 'p', 'class' => 'description'))
-                 ->addDecorator('HtmlTag', array('tag' => 'dd'))
-                 ->addDecorator('Label', array('tag' => 'dt'));
+                ->addDecorator('Errors')
+                ->addDecorator('Description', array('tag' => 'p', 'class' => 'description'))
+                ->addDecorator('HtmlTag', array('tag' => 'dd'))
+                ->addDecorator('Label', array('tag' => 'dt'));
         }
     }
 

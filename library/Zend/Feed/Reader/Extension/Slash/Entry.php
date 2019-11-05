@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -30,10 +30,10 @@
 // require_once 'Zend/Feed/Reader/Extension/EntryAbstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Reader_Extension_Slash_Entry
     extends Zend_Feed_Reader_Extension_EntryAbstract
@@ -77,8 +77,9 @@ class Zend_Feed_Reader_Extension_Slash_Entry
         if (!empty($stringParade)) {
             $stringParade = explode(',', $stringParade);
 
-            foreach ($stringParade as $hit)
+            foreach ($stringParade as $hit) {
                 $hitParade[] = $hit + 0; //cast to integer
+            }
         }
 
         $this->_data[$name] = $hitParade;
@@ -110,6 +111,7 @@ class Zend_Feed_Reader_Extension_Slash_Entry
 
     /**
      * Get the entry data specified by name
+     *
      * @param string $name
      * @param string $type
      *

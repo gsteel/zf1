@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_FormElement */
+/**
+ * Zend_View_Helper_FormElement 
+ */
 // require_once 'Zend/View/Helper/FormElement.php';
 
 /**
@@ -36,9 +38,9 @@ class Zend_View_Helper_Fieldset extends Zend_View_Helper_FormElement
     /**
      * Render HTML form
      *
-     * @param  string $name Form name
+     * @param  string $name    Form name
      * @param  string $content Form content
-     * @param  array $attribs HTML form attributes
+     * @param  array  $attribs HTML form attributes
      * @return string
      */
     public function fieldset($name, $content, $attribs = null)

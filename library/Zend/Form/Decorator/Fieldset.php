@@ -19,14 +19,15 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
  * Zend_Form_Decorator_Fieldset
  *
  * Any options passed will be used as HTML attributes of the fieldset tag.
- * 
  *
  * @category   Zend
  * @package    Zend_Form
@@ -39,6 +40,7 @@ class Zend_Form_Decorator_Fieldset extends Zend_Form_Decorator_Abstract
 {
     /**
      * Attribs that should be removed prior to rendering
+     *
      * @var array
      */
     public $stripAttribs = array(
@@ -52,12 +54,14 @@ class Zend_Form_Decorator_Fieldset extends Zend_Form_Decorator_Abstract
 
     /**
      * Fieldset legend
+     *
      * @var string
      */
     protected $_legend;
 
     /**
      * Default placement: surround content
+     *
      * @var string
      */
     protected $_placement = null;

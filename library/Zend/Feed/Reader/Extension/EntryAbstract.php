@@ -12,18 +12,18 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Feed_Reader_Extension_EntryAbstract
 {
@@ -73,8 +73,8 @@ abstract class Zend_Feed_Reader_Extension_EntryAbstract
      * Constructor
      *
      * @param  Zend_Feed_Entry_Abstract $entry
-     * @param  int $entryKey
-     * @param  string $type
+     * @param  int                      $entryKey
+     * @param  string                   $type
      * @return void
      */
     public function __construct(DOMElement $entry, $entryKey, $type = null)
@@ -94,7 +94,7 @@ abstract class Zend_Feed_Reader_Extension_EntryAbstract
         ) {
             $this->setXpathPrefix('//rss:item[' . ($this->_entryKey+1) . ']');
         } elseif ($this->getType() == Zend_Feed_Reader::TYPE_ATOM_10
-                  || $this->getType() == Zend_Feed_Reader::TYPE_ATOM_03
+            || $this->getType() == Zend_Feed_Reader::TYPE_ATOM_03
         ) {
             $this->setXpathPrefix('//atom:entry[' . ($this->_entryKey+1) . ']');
         } else {

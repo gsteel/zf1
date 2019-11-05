@@ -20,10 +20,14 @@
  * @version    $Id$
  */
 
-/** Zend_Log */
+/**
+ * Zend_Log 
+ */
 // require_once 'Zend/Log.php';
 
-/** Zend_Log_Writer_Abstract */
+/**
+ * Zend_Log_Writer_Abstract 
+ */
 // require_once 'Zend/Log/Writer/Abstract.php';
 
 /**
@@ -252,8 +256,8 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
         }
 
         if ($this->_application !== self::$_lastApplication
-            || $this->_facility !== self::$_lastFacility)
-        {
+            || $this->_facility !== self::$_lastFacility
+        ) {
             $this->_initializeSyslog();
         }
 

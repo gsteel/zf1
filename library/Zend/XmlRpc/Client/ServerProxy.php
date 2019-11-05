@@ -67,7 +67,7 @@ class Zend_XmlRpc_Client_ServerProxy
     /**
      * Get the next successive namespace
      *
-     * @param string $name
+     * @param  string $name
      * @return Zend_XmlRpc_Client_ServerProxy
      */
     public function __get($namespace)
@@ -84,7 +84,7 @@ class Zend_XmlRpc_Client_ServerProxy
      * Call a method in this namespace.
      *
      * @param  string $methodN
-     * @param  array $args
+     * @param  array  $args
      * @return mixed
      */
     public function __call($method, $args)

@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -29,7 +29,7 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
@@ -87,6 +87,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
 
     /**
      * If no $_ENV['MAGIC'] is set, try and autodiscover it based on common locations
+     *
      * @var array
      */
     protected $_magicFiles = array(
@@ -103,6 +104,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
 
     /**
      * Indicates whether use of $_magicFiles should be attempted.
+     *
      * @var boolean
      */
     protected $_tryCommonMagicFiles = true;
@@ -165,11 +167,11 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
     public function getMagicFile()
     {
         if (version_compare(PHP_VERSION, '5.3.0', '<')
-            && null === $this->_magicfile) {
+            && null === $this->_magicfile
+        ) {
             if (!empty($_ENV['MAGIC'])) {
                 $this->setMagicFile($_ENV['MAGIC']);
-            } elseif (
-                !(@ini_get("safe_mode") == 'On' || @ini_get("safe_mode") === 1)
+            } elseif (!(@ini_get("safe_mode") == 'On' || @ini_get("safe_mode") === 1)
                 && $this->shouldTryCommonMagicFiles() // @see ZF-11784
             ) {
                 // require_once 'Zend/Validate/Exception.php';
@@ -241,7 +243,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
      *
      * @param  boolean $flag
      * @return Zend_Validate_File_MimeType Provides fluent interface
-     * @see http://framework.zend.com/issues/browse/ZF-11784
+     * @see    http://framework.zend.com/issues/browse/ZF-11784
      */
     public function setTryCommonMagicFilesFlag($flag = true)
     {
@@ -254,7 +256,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
      * Accessor for Zend_Validate_File_MimeType::_magicFiles
      *
      * @return boolean
-     * @see http://framework.zend.com/issues/browse/ZF-11784
+     * @see    http://framework.zend.com/issues/browse/ZF-11784
      */
     public function shouldTryCommonMagicFiles()
     {
@@ -426,7 +428,8 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
 
     /**
      * Try to detect mime type of given file.
-     * @param string $file File which mime type should be detected
+     *
+     * @param  string $file File which mime type should be detected
      * @return string File mime type or null if not detected
      */
     protected function _detectMimeType($file)
@@ -454,8 +457,9 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
             }
         }
 
-        if (empty($type) &&
-            (function_exists('mime_content_type') && ini_get('mime_magic.magicfile'))) {
+        if (empty($type) 
+            && (function_exists('mime_content_type') && ini_get('mime_magic.magicfile'))
+        ) {
                 $type = mime_content_type($file);
         }
 

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Config
- * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Config
+ * @copyright Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -30,10 +30,10 @@
 // require_once 'Zend/Config/Yaml.php';
 
 /**
- * @category   Zend
- * @package    Zend_Config
- * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Config
+ * @copyright Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Config_Writer_Yaml extends Zend_Config_Writer_FileAbstract
 {
@@ -74,7 +74,7 @@ class Zend_Config_Writer_Yaml extends Zend_Config_Writer_FileAbstract
     /**
      * Render a Zend_Config into a YAML config string.
      *
-     * @since 1.10
+     * @since  1.10
      * @return string
      */
     public function render()
@@ -110,7 +110,7 @@ class Zend_Config_Writer_Yaml extends Zend_Config_Writer_FileAbstract
      *
      * Until we have Zend_Yaml...
      *
-     * @param array $data YAML data
+     * @param  array $data YAML data
      * @return string
      */
     public static function encode($data)
@@ -121,8 +121,8 @@ class Zend_Config_Writer_Yaml extends Zend_Config_Writer_FileAbstract
     /**
      * Service function for encoding YAML
      *
-     * @param int $indent Current indent level
-     * @param array $data Data to encode
+     * @param  int   $indent Current indent level
+     * @param  array $data   Data to encode
      * @return string
      */
     protected static function _encodeYaml($indent, $data)

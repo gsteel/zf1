@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_File_Transfer
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -29,7 +29,7 @@
  *
  * @category  Zend
  * @package   Zend_File_Transfer
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_File_Transfer
@@ -85,9 +85,9 @@ class Zend_File_Transfer
     /**
      * Returns all set adapters
      *
-     * @param boolean $direction On null, all directions are returned
-     *                           On false, download direction is returned
-     *                           On true, upload direction is returned
+     * @param  boolean $direction On null, all directions are returned
+     *                            On false, download direction is returned
+     *                            On true, upload direction is returned
      * @return array|Zend_File_Transfer_Adapter
      */
     public function getAdapter($direction = null)

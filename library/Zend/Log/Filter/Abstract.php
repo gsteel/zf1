@@ -20,10 +20,14 @@
  * @version    $Id$
  */
 
-/** @see Zend_Log_Filter_Interface */
+/**
+ * @see Zend_Log_Filter_Interface 
+ */
 // require_once 'Zend/Log/Filter/Interface.php';
 
-/** @see Zend_Log_FactoryInterface */
+/**
+ * @see Zend_Log_FactoryInterface 
+ */
 // require_once 'Zend/Log/FactoryInterface.php';
 
 /**

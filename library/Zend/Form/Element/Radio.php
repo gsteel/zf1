@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Element_Multi */
+/**
+ * Zend_Form_Element_Multi 
+ */
 // require_once 'Zend/Form/Element/Multi.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Form_Element_Radio extends Zend_Form_Element_Multi
 {
     /**
      * Use formRadio view helper by default
+     *
      * @var string
      */
     public $helper = 'formRadio';
@@ -56,8 +59,8 @@ class Zend_Form_Element_Radio extends Zend_Form_Element_Multi
 
         // Disable 'for' attribute
         if (isset($this->_decorators['Label'])
-            && !isset($this->_decorators['Label']['options']['disableFor']))
-        {
+            && !isset($this->_decorators['Label']['options']['disableFor'])
+        ) {
              $this->_decorators['Label']['options']['disableFor'] = true;
         }
 

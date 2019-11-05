@@ -212,106 +212,106 @@ class Zend_Markup_Parser_Bbcode implements Zend_Markup_Parser_ParserInterface
 
         while ($this->_pointer < $this->_valueLen) {
             switch ($this->_state) {
-                case self::STATE_SCAN:
-                    $matches = array();
-                    $regex   = '#\G(?<text>[^\[]*)(?<open>\[(?<name>[' . self::NAME_CHARSET . ']+)?)?#';
-                    preg_match($regex, $this->_value, $matches, null, $this->_pointer);
+            case self::STATE_SCAN:
+                $matches = array();
+                $regex   = '#\G(?<text>[^\[]*)(?<open>\[(?<name>[' . self::NAME_CHARSET . ']+)?)?#';
+                preg_match($regex, $this->_value, $matches, null, $this->_pointer);
 
-                    $this->_pointer += strlen($matches[0]);
+                $this->_pointer += strlen($matches[0]);
 
-                    if (!empty($matches['text'])) {
-                        $this->_buffer .= $matches['text'];
-                    }
+                if (!empty($matches['text'])) {
+                    $this->_buffer .= $matches['text'];
+                }
 
-                    if (!isset($matches['open'])) {
-                        // great, no tag, we are ending the string
-                        break;
-                    }
-                    if (!isset($matches['name'])) {
-                        $this->_buffer .= $matches['open'];
-                        break;
-                    }
-
-                    $this->_temp = array(
-                        'tag'        => '[' . $matches['name'],
-                        'name'       => $matches['name'],
-                        'attributes' => array()
-                    );
-
-                    if ($this->_pointer >= $this->_valueLen) {
-                        // damn, no tag
-                        $this->_buffer .= $this->_temp['tag'];
-                        break 2;
-                    }
-
-                    if ($this->_value[$this->_pointer] == '=') {
-                        $this->_pointer++;
-
-                        $this->_temp['tag'] .= '=';
-                        $this->_state        = self::STATE_PARSEVALUE;
-                        $attribute           = $this->_temp['name'];
-                    } else {
-                        $this->_state = self::STATE_SCANATTRS;
-                    }
+                if (!isset($matches['open'])) {
+                    // great, no tag, we are ending the string
                     break;
-                case self::STATE_SCANATTRS:
-                    $matches = array();
-                    $regex   = '#\G((?<end>\s*\])|\s+(?<attribute>[' . self::NAME_CHARSET . ']+)(?<eq>=?))#';
-                    if (!preg_match($regex, $this->_value, $matches, null, $this->_pointer)) {
-                        break 2;
-                    }
-
-                    $this->_pointer += strlen($matches[0]);
-
-                    if (!empty($matches['end'])) {
-                        if (!empty($this->_buffer)) {
-                            $this->_tokens[] = array(
-                                'tag' => $this->_buffer,
-                                'type' => Zend_Markup_Token::TYPE_NONE
-                            );
-                            $this->_buffer = '';
-                        }
-                        $this->_temp['tag'] .= $matches['end'];
-                        $this->_temp['type'] = Zend_Markup_Token::TYPE_TAG;
-
-                        $this->_tokens[] = $this->_temp;
-                        $this->_temp     = array();
-
-                        $this->_state = self::STATE_SCAN;
-                    } else {
-                        // attribute name
-                        $attribute = $matches['attribute'];
-
-                        $this->_temp['tag'] .= $matches[0];
-
-                        $this->_temp['attributes'][$attribute] = '';
-
-                        if (empty($matches['eq'])) {
-                            $this->_state = self::STATE_SCANATTRS;
-                        } else {
-                            $this->_state = self::STATE_PARSEVALUE;
-                        }
-                    }
+                }
+                if (!isset($matches['name'])) {
+                    $this->_buffer .= $matches['open'];
                     break;
-                case self::STATE_PARSEVALUE:
-                    $matches = array();
-                    $regex   = '#\G((?<quote>"|\')(?<valuequote>.*?)\\2|(?<value>[^\]\s]+))#';
-                    if (!preg_match($regex, $this->_value, $matches, null, $this->_pointer)) {
-                        $this->_state = self::STATE_SCANATTRS;
-                        break;
-                    }
+                }
 
-                    $this->_pointer += strlen($matches[0]);
+                $this->_temp = array(
+                    'tag'        => '[' . $matches['name'],
+                    'name'       => $matches['name'],
+                    'attributes' => array()
+                );
 
-                    if (!empty($matches['quote'])) {
-                        $this->_temp['attributes'][$attribute] = $matches['valuequote'];
-                    } else {
-                        $this->_temp['attributes'][$attribute] = $matches['value'];
+                if ($this->_pointer >= $this->_valueLen) {
+                    // damn, no tag
+                    $this->_buffer .= $this->_temp['tag'];
+                    break 2;
+                }
+
+                if ($this->_value[$this->_pointer] == '=') {
+                    $this->_pointer++;
+
+                    $this->_temp['tag'] .= '=';
+                    $this->_state        = self::STATE_PARSEVALUE;
+                    $attribute           = $this->_temp['name'];
+                } else {
+                    $this->_state = self::STATE_SCANATTRS;
+                }
+                break;
+            case self::STATE_SCANATTRS:
+                $matches = array();
+                $regex   = '#\G((?<end>\s*\])|\s+(?<attribute>[' . self::NAME_CHARSET . ']+)(?<eq>=?))#';
+                if (!preg_match($regex, $this->_value, $matches, null, $this->_pointer)) {
+                    break 2;
+                }
+
+                $this->_pointer += strlen($matches[0]);
+
+                if (!empty($matches['end'])) {
+                    if (!empty($this->_buffer)) {
+                        $this->_tokens[] = array(
+                            'tag' => $this->_buffer,
+                            'type' => Zend_Markup_Token::TYPE_NONE
+                        );
+                        $this->_buffer = '';
                     }
+                    $this->_temp['tag'] .= $matches['end'];
+                    $this->_temp['type'] = Zend_Markup_Token::TYPE_TAG;
+
+                    $this->_tokens[] = $this->_temp;
+                    $this->_temp     = array();
+
+                    $this->_state = self::STATE_SCAN;
+                } else {
+                    // attribute name
+                    $attribute = $matches['attribute'];
+
                     $this->_temp['tag'] .= $matches[0];
 
+                    $this->_temp['attributes'][$attribute] = '';
+
+                    if (empty($matches['eq'])) {
+                        $this->_state = self::STATE_SCANATTRS;
+                    } else {
+                        $this->_state = self::STATE_PARSEVALUE;
+                    }
+                }
+                break;
+            case self::STATE_PARSEVALUE:
+                $matches = array();
+                $regex   = '#\G((?<quote>"|\')(?<valuequote>.*?)\\2|(?<value>[^\]\s]+))#';
+                if (!preg_match($regex, $this->_value, $matches, null, $this->_pointer)) {
                     $this->_state = self::STATE_SCANATTRS;
                     break;
+                }
+
+                $this->_pointer += strlen($matches[0]);
+
+                if (!empty($matches['quote'])) {
+                    $this->_temp['attributes'][$attribute] = $matches['valuequote'];
+                } else {
+                    $this->_temp['attributes'][$attribute] = $matches['value'];
+                }
+                $this->_temp['tag'] .= $matches[0];
+
+                $this->_state = self::STATE_SCANATTRS;
+                break;
             }
         }
 
@@ -361,32 +361,38 @@ class Zend_Markup_Parser_Bbcode implements Zend_Markup_Parser_ParserInterface
                 if ($token['type'] == Zend_Markup_Token::TYPE_TAG) {
                     if ($token['tag'] == self::NEWLINE) {
                         // this is a newline tag, add it as a token
-                        $this->_current->addChild(new Zend_Markup_Token(
-                            "\n",
-                            Zend_Markup_Token::TYPE_NONE,
-                            '',
-                            array(),
-                            $this->_current
-                        ));
+                        $this->_current->addChild(
+                            new Zend_Markup_Token(
+                                "\n",
+                                Zend_Markup_Token::TYPE_NONE,
+                                '',
+                                array(),
+                                $this->_current
+                            )
+                        );
                     } elseif (isset($token['name']) && ($token['name'][0] == '/')) {
                         // this is a stopper, add it as a empty token
-                        $this->_current->addChild(new Zend_Markup_Token(
-                            $token['tag'],
-                            Zend_Markup_Token::TYPE_NONE,
-                            '',
-                            array(),
-                            $this->_current
-                        ));
+                        $this->_current->addChild(
+                            new Zend_Markup_Token(
+                                $token['tag'],
+                                Zend_Markup_Token::TYPE_NONE,
+                                '',
+                                array(),
+                                $this->_current
+                            )
+                        );
                     } elseif (isset($this->_tags[$this->_current->getName()]['parse_inside'])
                         && !$this->_tags[$this->_current->getName()]['parse_inside']
                     ) {
-                        $this->_current->addChild(new Zend_Markup_Token(
-                            $token['tag'],
-                            Zend_Markup_Token::TYPE_NONE,
-                            '',
-                            array(),
-                            $this->_current
-                        ));
+                        $this->_current->addChild(
+                            new Zend_Markup_Token(
+                                $token['tag'],
+                                Zend_Markup_Token::TYPE_NONE,
+                                '',
+                                array(),
+                                $this->_current
+                            )
+                        );
                     } else {
                         // add the tag
                         $child = new Zend_Markup_Token(
@@ -407,13 +413,15 @@ class Zend_Markup_Parser_Bbcode implements Zend_Markup_Parser_ParserInterface
                     }
                 } else {
                     // no tag, just add it as a simple token
-                    $this->_current->addChild(new Zend_Markup_Token(
-                        $token['tag'],
-                        Zend_Markup_Token::TYPE_NONE,
-                        '',
-                        array(),
-                        $this->_current
-                    ));
+                    $this->_current->addChild(
+                        new Zend_Markup_Token(
+                            $token['tag'],
+                            Zend_Markup_Token::TYPE_NONE,
+                            '',
+                            array(),
+                            $this->_current
+                        )
+                    );
                 }
             }
         }

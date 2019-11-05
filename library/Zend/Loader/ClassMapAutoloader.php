@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Loader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 // Grab SplAutoloader interface
@@ -26,20 +26,22 @@
  *
  * Utilizes class-map files to lookup classfile locations.
  * 
- * @package    Zend_Loader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    New BSD {@link http://framework.zend.com/license/new-bsd}
+ * @package   Zend_Loader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   New BSD {@link http://framework.zend.com/license/new-bsd}
  */
 class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
 {
     /**
      * Registry of map files that have already been loaded
+     *
      * @var array
      */
     protected $mapsLoaded = array();
 
     /**
      * Class name/filename map
+     *
      * @var array
      */
     protected $map = array();
@@ -234,8 +236,8 @@ class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
      * Helper callback to resolve a parent path in a Phar archive
      * 
      * @param  string $value 
-     * @param  int $key 
-     * @param  array $parts 
+     * @param  int    $key 
+     * @param  array  $parts 
      * @return void
      */
     public static function resolvePharParentPath($value, $key, &$parts)

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -75,10 +75,10 @@
 // require_once 'Zend/Feed/Reader/Collection/Category.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implements Zend_Feed_Reader_EntryInterface
 {
@@ -101,8 +101,8 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
      * Constructor
      *
      * @param  Zend_Feed_Entry_Abstract $entry
-     * @param  string $entryKey
-     * @param  string $type
+     * @param  string                   $entryKey
+     * @param  string                   $type
      * @return void
      */
     public function __construct(DOMElement $entry, $entryKey, $type = null)
@@ -135,7 +135,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
     /**
      * Get an author entry
      *
-     * @param DOMElement $element
+     * @param  DOMElement $element
      * @return string
      */
     public function getAuthor($index = 0)
@@ -171,7 +171,8 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
         }
 
         if ($this->getType() !== Zend_Feed_Reader::TYPE_RSS_10
-        && $this->getType() !== Zend_Feed_Reader::TYPE_RSS_090) {
+            && $this->getType() !== Zend_Feed_Reader::TYPE_RSS_090
+        ) {
             $list = $this->_xpath->query($this->_xpathQueryRss . '//author');
         } else {
             $list = $this->_xpath->query($this->_xpathQueryRdf . '//rss:author');
@@ -349,6 +350,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
 
     /**
      * Get the entry enclosure
+     *
      * @return string
      */
     public function getEnclosure()
@@ -453,8 +455,9 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
 
         $links = array();
 
-        if ($this->getType() !== Zend_Feed_Reader::TYPE_RSS_10 &&
-            $this->getType() !== Zend_Feed_Reader::TYPE_RSS_090) {
+        if ($this->getType() !== Zend_Feed_Reader::TYPE_RSS_10 
+            && $this->getType() !== Zend_Feed_Reader::TYPE_RSS_090
+        ) {
             $list = $this->_xpath->query($this->_xpathQueryRss.'//link');
         } else {
             $list = $this->_xpath->query($this->_xpathQueryRdf.'//rss:link');
@@ -484,8 +487,9 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
             return $this->_data['categories'];
         }
 
-        if ($this->getType() !== Zend_Feed_Reader::TYPE_RSS_10 &&
-            $this->getType() !== Zend_Feed_Reader::TYPE_RSS_090) {
+        if ($this->getType() !== Zend_Feed_Reader::TYPE_RSS_10 
+            && $this->getType() !== Zend_Feed_Reader::TYPE_RSS_090
+        ) {
             $list = $this->_xpath->query($this->_xpathQueryRss.'//category');
         } else {
             $list = $this->_xpath->query($this->_xpathQueryRdf.'//rss:category');

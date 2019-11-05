@@ -45,7 +45,7 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
- * @todo Implement proxy settings
+ * @todo       Implement proxy settings
  */
 abstract class Zend_Mail_Protocol_Abstract
 {
@@ -62,6 +62,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
     /**
      * Maximum of the transaction log
+     *
      * @var integer
      */
     protected $_maximumLog = 64;
@@ -69,6 +70,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
     /**
      * Hostname or IP address of remote server
+     *
      * @var string
      */
     protected $_host;
@@ -76,6 +78,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
     /**
      * Port number of connection
+     *
      * @var integer
      */
     protected $_port;
@@ -83,6 +86,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
     /**
      * Instance of Zend_Validate to check hostnames
+     *
      * @var Zend_Validate
      */
     protected $_validHost;
@@ -90,6 +94,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
     /**
      * Socket connection resource
+     *
      * @var resource
      */
     protected $_socket;
@@ -97,6 +102,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
     /**
      * Last request sent to server
+     *
      * @var string
      */
     protected $_request;
@@ -104,6 +110,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
     /**
      * Array of server responses to last request
+     *
      * @var array
      */
     protected $_response;
@@ -111,7 +118,8 @@ abstract class Zend_Mail_Protocol_Abstract
 
     /**
      * String template for parsing server responses using sscanf (default: 3 digit code and response string)
-     * @var resource
+     *
+     * @var        resource
      * @deprecated Since 1.10.3
      */
     protected $_template = '%d%s';
@@ -119,6 +127,7 @@ abstract class Zend_Mail_Protocol_Abstract
 
     /**
      * Log of mail requests and server responses for a session
+     *
      * @var array
      */
     private $_log = array();
@@ -163,7 +172,7 @@ abstract class Zend_Mail_Protocol_Abstract
     /**
      * Set the maximum log size
      *
-     * @param integer $maximumLog Maximum log size
+     * @param  integer $maximumLog Maximum log size
      * @return void
      */
     public function setMaximumLog($maximumLog)
@@ -437,11 +446,11 @@ abstract class Zend_Mail_Protocol_Abstract
     /**
      * Set stream timeout
      *
-     * @param integer $timeout
+     * @param  integer $timeout
      * @return boolean
      */
     protected function _setStreamTimeout($timeout)
     {
-       return stream_set_timeout($this->_socket, $timeout);
+        return stream_set_timeout($this->_socket, $timeout);
     }
 }

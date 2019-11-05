@@ -12,26 +12,29 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** @see Zend_Validate_Abstract */
+/**
+ * @see Zend_Validate_Abstract 
+ */
 // require_once 'Zend/Validate/Abstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Identical extends Zend_Validate_Abstract
 {
     /**
      * Error codes
+     *
      * @const string
      */
     const NOT_SAME      = 'notSame';
@@ -39,6 +42,7 @@ class Zend_Validate_Identical extends Zend_Validate_Abstract
 
     /**
      * Error messages
+     *
      * @var array
      */
     protected $_messageTemplates = array(
@@ -55,6 +59,7 @@ class Zend_Validate_Identical extends Zend_Validate_Abstract
 
     /**
      * Original token against which to validate
+     *
      * @var string
      */
     protected $_tokenString;
@@ -119,7 +124,7 @@ class Zend_Validate_Identical extends Zend_Validate_Abstract
     /**
      * Sets the strict parameter
      *
-     * @param Zend_Validate_Identical
+     * @param  Zend_Validate_Identical
      * @return $this
      */
     public function setStrict($strict)

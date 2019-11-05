@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_File
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_File
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 // require_once 'Zend/File/PhpClassFile.php';
@@ -23,9 +23,9 @@
 /**
  * Locate files containing PHP classes, interfaces, or abstracts
  *
- * @package    Zend_File
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    New BSD {@link http://framework.zend.com/license/new-bsd}
+ * @package   Zend_File
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   New BSD {@link http://framework.zend.com/license/new-bsd}
  */
 class Zend_File_ClassFileLocator extends FilterIterator
 {
@@ -35,7 +35,7 @@ class Zend_File_ClassFileLocator extends FilterIterator
      * Expects either a directory, or a DirectoryIterator (or its recursive variant)
      * instance.
      *
-     * @param  string|DirectoryIterator $dirOrIterator
+     * @param string|DirectoryIterator $dirOrIterator
      */
     public function __construct($dirOrIterator = '.')
     {
@@ -108,66 +108,66 @@ class Zend_File_ClassFileLocator extends FilterIterator
                 continue;
             }
             switch ($token[0]) {
-                case T_NAMESPACE:
-                    // Namespace found; grab it for later
-                    $namespace = '';
-                    for ($i++; $i < $count; $i++) {
-                        $token = $tokens[$i];
-                        if (is_string($token)) {
-                            if (';' === $token) {
-                                $saveNamespace = false;
-                                break;
-                            }
-                            if ('{' === $token) {
-                                $saveNamespace = true;
-                                break;
-                            }
-                            continue;
+            case T_NAMESPACE:
+                // Namespace found; grab it for later
+                $namespace = '';
+                for ($i++; $i < $count; $i++) {
+                    $token = $tokens[$i];
+                    if (is_string($token)) {
+                        if (';' === $token) {
+                            $saveNamespace = false;
+                            break;
                         }
-                        [$type, $content, $line] = $token;
-                        switch ($type) {
-                            case T_STRING:
-                            case T_NS_SEPARATOR:
-                                $namespace .= $content;
-                                break;
+                        if ('{' === $token) {
+                            $saveNamespace = true;
+                            break;
                         }
+                        continue;
                     }
-                    if ($saveNamespace) {
-                        $savedNamespace = $namespace;
+                    [$type, $content, $line] = $token;
+                    switch ($type) {
+                    case T_STRING:
+                    case T_NS_SEPARATOR:
+                        $namespace .= $content;
+                        break;
                     }
-                    break;
-                case $t_trait:
-                case T_CLASS:
-                case T_INTERFACE:
-                    // Abstract class, class, interface or trait found
+                }
+                if ($saveNamespace) {
+                    $savedNamespace = $namespace;
+                }
+                break;
+            case $t_trait:
+            case T_CLASS:
+            case T_INTERFACE:
+                // Abstract class, class, interface or trait found
 
-                    // Get the classname
-                    for ($i++; $i < $count; $i++) {
-                        $token = $tokens[$i];
-                        if (is_string($token)) {
-                            continue;
-                        }
-                        [$type, $content, $line] = $token;
-                        if (T_STRING == $type) {
-                    // If a classname was found, set it in the object, and
-                    // return boolean true (found)
-                            if (!isset($namespace) || null === $namespace) {
-                                if (isset($saveNamespace) && $saveNamespace) {
-                                    $namespace = $savedNamespace;
-                                } else {
-                                    $namespace = null;
+                // Get the classname
+                for ($i++; $i < $count; $i++) {
+                    $token = $tokens[$i];
+                    if (is_string($token)) {
+                        continue;
                     }
-
+                    [$type, $content, $line] = $token;
+                    if (T_STRING == $type) {
+                        // If a classname was found, set it in the object, and
+                        // return boolean true (found)
+                        if (!isset($namespace) || null === $namespace) {
+                            if (isset($saveNamespace) && $saveNamespace) {
+                                $namespace = $savedNamespace;
+                            } else {
+                                $namespace = null;
                             }
-                            $class = (null === $namespace) ? $content : $namespace . '\\' . $content;
-                            $file->addClass($class);
-                            $namespace = null;
-                    break;
+
                         }
+                        $class = (null === $namespace) ? $content : $namespace . '\\' . $content;
+                        $file->addClass($class);
+                        $namespace = null;
+                        break;
                     }
-                    break;
-                default:
-                    break;
+                }
+                break;
+            default:
+                break;
             }
         }
         $classes = $file->getClasses();

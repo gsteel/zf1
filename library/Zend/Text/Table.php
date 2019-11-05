@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Text_Table
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -24,7 +24,7 @@
  *
  * @category  Zend
  * @package   Zend_Text_Table
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Text_Table
@@ -195,8 +195,10 @@ class Zend_Text_Table
         foreach ($columnWidths as $columnNum => $columnWidth) {
             if (is_int($columnWidth) === false or $columnWidth < 1) {
                 // require_once 'Zend/Text/Table/Exception.php';
-                throw new Zend_Text_Table_Exception('Column ' . $columnNum . ' has an invalid'
-                                                    . ' column width');
+                throw new Zend_Text_Table_Exception(
+                    'Column ' . $columnNum . ' has an invalid'
+                    . ' column width'
+                );
             }
         }
 
@@ -401,8 +403,10 @@ class Zend_Text_Table
                 $result .= $this->_decorator->getTopLeft();
 
                 foreach ($columnWidths as $columnNum => $columnWidth) {
-                    $result .= str_repeat($this->_decorator->getHorizontal(),
-                                          $columnWidth);
+                    $result .= str_repeat(
+                        $this->_decorator->getHorizontal(),
+                        $columnWidth
+                    );
 
                     if (($columnNum + 1) === $numColumns) {
                         $result .= $this->_decorator->getTopRight();
@@ -435,8 +439,10 @@ class Zend_Text_Table
                     // Loop through all column widths
                     foreach ($this->_columnWidths as $columnNum => $columnWidth) {
                         // Add the horizontal line
-                        $result .= str_repeat($this->_decorator->getHorizontal(),
-                                              $columnWidth);
+                        $result .= str_repeat(
+                            $this->_decorator->getHorizontal(),
+                            $columnWidth
+                        );
 
                         // If this is the last line, break out
                         if (($columnNum + 1) === $totalNumColumns) {
@@ -465,25 +471,25 @@ class Zend_Text_Table
                         }
 
                         switch ($connector) {
-                            case 0x0:
-                                $result .= $this->_decorator->getHorizontal();
-                                break;
+                        case 0x0:
+                            $result .= $this->_decorator->getHorizontal();
+                            break;
 
-                            case 0x1:
-                                $result .= $this->_decorator->getHorizontalUp();
-                                break;
+                        case 0x1:
+                            $result .= $this->_decorator->getHorizontalUp();
+                            break;
 
-                            case 0x2:
-                                $result .= $this->_decorator->getHorizontalDown();
-                                break;
+                        case 0x2:
+                            $result .= $this->_decorator->getHorizontalDown();
+                            break;
 
-                            case 0x3:
-                                $result .= $this->_decorator->getCross();
-                                break;
+                        case 0x3:
+                            $result .= $this->_decorator->getCross();
+                            break;
 
-                            default:
-                                // This can never happen, but the CS tells I have to have it ...
-                                break;
+                        default:
+                            // This can never happen, but the CS tells I have to have it ...
+                            break;
                         }
                     }
 
@@ -499,8 +505,10 @@ class Zend_Text_Table
                 $result .= $this->_decorator->getBottomLeft();
 
                 foreach ($columnWidths as $columnNum => $columnWidth) {
-                    $result .= str_repeat($this->_decorator->getHorizontal(),
-                                          $columnWidth);
+                    $result .= str_repeat(
+                        $this->_decorator->getHorizontal(),
+                        $columnWidth
+                    );
 
                     if (($columnNum + 1) === $numColumns) {
                         $result .= $this->_decorator->getBottomRight();

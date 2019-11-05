@@ -12,17 +12,21 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** Zend_Memory_Container */
+/**
+ * Zend_Memory_Container 
+ */
 // require_once 'Zend/Memory/Container.php';
 
-/** Zend_Memory_Value */
+/**
+ * Zend_Memory_Value 
+ */
 // require_once 'Zend/Memory/Value.php';
 
 /**
@@ -30,12 +34,13 @@
  *
  * Movable (may be swapped with specified backend and unloaded).
  *
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Memory_Container_Movable extends Zend_Memory_Container {
+class Zend_Memory_Container_Movable extends Zend_Memory_Container
+{
     /**
      * Internal object Id
      *
@@ -57,7 +62,9 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
      */
     private $_value;
 
-    /** Value states */
+    /**
+ * Value states 
+*/
     const LOADED   = 1;
     const SWAPPED  = 2;
     const LOCKED   = 4;
@@ -73,8 +80,8 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
      * Object constructor
      *
      * @param Zend_Memory_Manager $memoryManager
-     * @param integer $id
-     * @param string $value
+     * @param integer             $id
+     * @param string              $value
      */
     public function __construct(Zend_Memory_Manager $memoryManager, $id, $value)
     {
@@ -89,7 +96,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
      */
     public function lock()
     {
-        if ( !($this->_state & self::LOADED) ) {
+        if (!($this->_state & self::LOADED) ) {
             $this->_memManager->load($this, $this->_id);
             $this->_state |= self::LOADED;
         }
@@ -128,7 +135,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
      * Loads object if necessary and moves it to the top of loaded objects list.
      * Swaps objects from the bottom of loaded objects list, if necessary.
      *
-     * @param string $property
+     * @param  string $property
      * @return string
      * @throws Zend_Memory_Exception
      */
@@ -139,7 +146,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
             throw new Zend_Memory_Exception('Unknown property: Zend_Memory_container::$' . $property);
         }
 
-        if ( !($this->_state & self::LOADED) ) {
+        if (!($this->_state & self::LOADED) ) {
             $this->_memManager->load($this, $this->_id);
             $this->_state |= self::LOADED;
         }
@@ -150,7 +157,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
     /**
      * Set handler
      *
-     * @param string $property
+     * @param  string $property
      * @param  string $value
      * @throws Zend_Exception
      */
@@ -178,7 +185,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
      */
     public function &getRef()
     {
-        if ( !($this->_state & self::LOADED) ) {
+        if (!($this->_state & self::LOADED) ) {
             $this->_memManager->load($this, $this->_id);
             $this->_state |= self::LOADED;
         }
@@ -217,7 +224,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
      */
     public function startTrace()
     {
-        if ( !($this->_state & self::LOADED) ) {
+        if (!($this->_state & self::LOADED) ) {
             $this->_memManager->load($this, $this->_id);
             $this->_state |= self::LOADED;
         }
@@ -263,7 +270,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
      * Check if object is marked as swapped
      *
      * @internal
-     * @return boolean
+     * @return   boolean
      */
     public function isSwapped()
     {
@@ -274,7 +281,7 @@ class Zend_Memory_Container_Movable extends Zend_Memory_Container {
      * Get object id
      *
      * @internal
-     * @return integer
+     * @return   integer
      */
     public function getId()
     {

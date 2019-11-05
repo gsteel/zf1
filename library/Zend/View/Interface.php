@@ -12,21 +12,21 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_View
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
 /**
  * Interface class for Zend_View compatible template engine implementations
  *
- * @category   Zend
- * @package    Zend_View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_View
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 interface Zend_View_Interface
 {
@@ -44,7 +44,7 @@ interface Zend_View_Interface
     /**
      * Set the path to find the view script used by render()
      *
-     * @param string|array The directory (-ies) to set as the path. Note that
+     * @param  string|array The directory (-ies) to set as the path. Note that
      * the concrete view implentation may not necessarily support multiple
      * directories.
      * @return void
@@ -79,8 +79,8 @@ interface Zend_View_Interface
     /**
      * Assign a variable to the view
      *
-     * @param string $key The variable name.
-     * @param mixed $val The variable value.
+     * @param  string $key The variable name.
+     * @param  mixed  $val The variable value.
      * @return void
      */
     public function __set($key, $val);
@@ -88,7 +88,7 @@ interface Zend_View_Interface
     /**
      * Allows testing with empty() and isset() to work
      *
-     * @param string $key
+     * @param  string $key
      * @return boolean
      */
     public function __isset($key);
@@ -96,7 +96,7 @@ interface Zend_View_Interface
     /**
      * Allows unset() on object properties to work
      *
-     * @param string $key
+     * @param  string $key
      * @return void
      */
     public function __unset($key);
@@ -108,11 +108,11 @@ interface Zend_View_Interface
      * specified value, OR passing an array of key => value pairs to set en
      * masse.
      *
-     * @see __set()
-     * @param string|array $spec The assignment strategy to use (key or array of key
-     * => value pairs)
-     * @param mixed $value (Optional) If assigning a named variable, use this
-     * as the value.
+     * @see    __set()
+     * @param  string|array $spec  The assignment strategy to use (key or array of key
+     *                             => value pairs)
+     * @param  mixed        $value (Optional) If assigning a named variable, use this
+     *                             as the value.
      * @return void
      */
     public function assign($spec, $value = null);
@@ -130,7 +130,7 @@ interface Zend_View_Interface
     /**
      * Processes a view script and returns the output.
      *
-     * @param string $name The script name to process.
+     * @param  string $name The script name to process.
      * @return string The script output.
      */
     public function render($name);

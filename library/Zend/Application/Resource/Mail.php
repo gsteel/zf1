@@ -32,8 +32,8 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
                 if (!isset($options['transport']['register'])
                     || $options['transport']['register'] == '1'
                     || (isset($options['transport']['register'])
-                        && !is_numeric($options['transport']['register'])
-                        && (bool)$options['transport']['register'] == true)
+                    && !is_numeric($options['transport']['register'])
+                    && (bool)$options['transport']['register'] == true)
                 ) {
                     Zend_Mail::setDefaultTransport($this->_transport);
                 }
@@ -94,20 +94,20 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
         unset($options['register']); //@see ZF-11022
 
         switch($transportName) {
-            case \Zend_Mail_Transport_Smtp::class:
-                if (!isset($options['host'])) {
-                    throw new Zend_Application_Resource_Exception(
-                        'A host is necessary for smtp transport,'
-                        . ' but none was given'
-                    );
-                }
+        case \Zend_Mail_Transport_Smtp::class:
+            if (!isset($options['host'])) {
+                throw new Zend_Application_Resource_Exception(
+                    'A host is necessary for smtp transport,'
+                    . ' but none was given'
+                );
+            }
 
-                $transport = new $transportName($options['host'], $options);
-                break;
-            case \Zend_Mail_Transport_Sendmail::class:
-            default:
-                $transport = new $transportName($options);
-                break;
+            $transport = new $transportName($options['host'], $options);
+            break;
+        case \Zend_Mail_Transport_Sendmail::class:
+        default:
+            $transport = new $transportName($options);
+            break;
         }
 
         return $transport;

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -30,10 +30,10 @@
 // require_once 'Zend/Uri.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Reader_FeedSet extends ArrayObject
 {
@@ -56,15 +56,16 @@ class Zend_Feed_Reader_FeedSet extends ArrayObject
      * Note that feeds are not loaded at this point, but will be lazy
      * loaded automatically when each links 'feed' array key is accessed.
      *
-     * @param DOMNodeList $links
-     * @param string $uri
+     * @param  DOMNodeList $links
+     * @param  string      $uri
      * @return void
      */
     public function addLinks(DOMNodeList $links, $uri)
     {
         foreach ($links as $link) {
             if (strtolower($link->getAttribute('rel')) !== 'alternate'
-                || !$link->getAttribute('type') || !$link->getAttribute('href')) {
+                || !$link->getAttribute('type') || !$link->getAttribute('href')
+            ) {
                 continue;
             }
             if (!isset($this->rss) && $link->getAttribute('type') == 'application/rss+xml') {
@@ -74,11 +75,13 @@ class Zend_Feed_Reader_FeedSet extends ArrayObject
             } elseif(!isset($this->rdf) && $link->getAttribute('type') == 'application/rdf+xml') {
                 $this->rdf = $this->_absolutiseUri(trim($link->getAttribute('href')), $uri);
             }
-            $this[] = new self(array(
+            $this[] = new self(
+                array(
                 'rel' => 'alternate',
                 'type' => $link->getAttribute('type'),
                 'href' => $this->_absolutiseUri(trim($link->getAttribute('href')), $uri),
-            ));
+                )
+            );
         }
     }
 
@@ -128,9 +131,9 @@ class Zend_Feed_Reader_FeedSet extends ArrayObject
      * Supports lazy loading of feeds using Zend_Feed_Reader::import() but
      * delegates any other operations to the parent class.
      *
-     * @param string $offset
+     * @param  string $offset
      * @return mixed
-     * @uses Zend_Feed_Reader
+     * @uses   Zend_Feed_Reader
      */
     public function offsetGet($offset)
     {

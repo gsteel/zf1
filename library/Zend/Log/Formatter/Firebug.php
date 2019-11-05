@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Log_Formatter_Abstract */
+/**
+ * Zend_Log_Formatter_Abstract 
+ */
 // require_once 'Zend/Log/Formatter/Abstract.php';
 
 /**
@@ -33,10 +35,10 @@
 class Zend_Log_Formatter_Firebug extends Zend_Log_Formatter_Abstract
 {
     /**
-	 * Factory for Zend_Log_Formatter_Firebug classe
-	 *
-     * @param array|Zend_Config $options useless
-	 * @return Zend_Log_Formatter_Firebug
+     * Factory for Zend_Log_Formatter_Firebug classe
+     *
+     * @param  array|Zend_Config $options useless
+     * @return Zend_Log_Formatter_Firebug
      */
     public static function factory($options)
     {
@@ -51,7 +53,7 @@ class Zend_Log_Formatter_Firebug extends Zend_Log_Formatter_Abstract
      * {@see Zend_Log_Writer_Firebug::setFormatter()} method you can
      * pass as much of the event data as you are interested in.
      *
-     * @param  array    $event    event data
+     * @param  array $event event data
      * @return mixed              event message
      */
     public function format($event)

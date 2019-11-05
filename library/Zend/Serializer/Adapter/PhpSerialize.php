@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** @see Zend_Serializer_Adapter_AdapterAbstract */
+/**
+ * @see Zend_Serializer_Adapter_AdapterAbstract 
+ */
 // require_once 'Zend/Serializer/Adapter/AdapterAbstract.php';
 
 /**
@@ -33,7 +35,7 @@
 class Zend_Serializer_Adapter_PhpSerialize extends Zend_Serializer_Adapter_AdapterAbstract
 {
     /**
-     *  @var null|string Serialized boolean false value
+     * @var null|string Serialized boolean false value
      */
     private static $_serializedFalse = null;
 
@@ -76,7 +78,7 @@ class Zend_Serializer_Adapter_PhpSerialize extends Zend_Serializer_Adapter_Adapt
      *
      * @todo   Allow integration with unserialize_callback_func
      * @param  string $serialized
-     * @param  array $opts
+     * @param  array  $opts
      * @return mixed
      * @throws Zend_Serializer_Exception on unserialize error
      */

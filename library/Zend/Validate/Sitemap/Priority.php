@@ -28,7 +28,7 @@
 /**
  * Validates whether a given value is valid as a sitemap <priority> value
  *
- * @link       http://www.sitemaps.org/protocol.php Sitemaps XML format
+ * @link http://www.sitemaps.org/protocol.php Sitemaps XML format
  *
  * @category   Zend
  * @package    Zend_Validate
@@ -40,7 +40,6 @@ class Zend_Validate_Sitemap_Priority extends Zend_Validate_Abstract
 {
     /**
      * Validation key for not valid
-     *
      */
     const NOT_VALID = 'sitemapPriorityNotValid';
     const INVALID   = 'sitemapPriorityInvalid';
@@ -60,7 +59,7 @@ class Zend_Validate_Sitemap_Priority extends Zend_Validate_Abstract
      *
      * @link http://www.sitemaps.org/protocol.php#prioritydef <priority>
      *
-     * @param  string  $value  value to validate
+     * @param  string $value value to validate
      * @return boolean
      */
     public function isValid($value)

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -39,17 +39,21 @@
  */
 // require_once 'Zend/Feed/Reader/FeedSet.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @see Zend_Xml_Exception */
+/**
+ * @see Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Reader
 {
@@ -140,7 +144,7 @@ class Zend_Feed_Reader
     /**
      * Set the feed cache
      *
-     * @param Zend_Cache_Core $cache
+     * @param  Zend_Cache_Core $cache
      * @return void
      */
     public static function setCache(Zend_Cache_Core $cache)
@@ -222,8 +226,8 @@ class Zend_Feed_Reader
     /**
      * Import a feed by providing a URL
      *
-     * @param  string $url The URL to the feed
-     * @param  string $etag OPTIONAL Last received ETag for this resource
+     * @param  string $url          The URL to the feed
+     * @param  string $etag         OPTIONAL Last received ETag for this resource
      * @param  string $lastModified OPTIONAL Last-Modified value for this resource
      * @return Zend_Feed_Reader_FeedInterface
      */
@@ -373,8 +377,10 @@ class Zend_Feed_Reader
             $reader = new Zend_Feed_Reader_Feed_Atom($dom, $type);
         } else {
             // require_once 'Zend/Feed/Exception.php';
-            throw new Zend_Feed_Exception('The URI used does not point to a '
-            . 'valid Atom, RSS or RDF feed that Zend_Feed_Reader can parse.');
+            throw new Zend_Feed_Exception(
+                'The URI used does not point to a '
+                . 'valid Atom, RSS or RDF feed that Zend_Feed_Reader can parse.'
+            );
         }
         return $reader;
     }
@@ -482,8 +488,10 @@ class Zend_Feed_Reader
             }
         } else {
             // require_once 'Zend/Feed/Exception.php';
-            throw new Zend_Feed_Exception('Invalid object/scalar provided: must'
-            . ' be of type Zend_Feed_Reader_FeedInterface, DomDocument or string');
+            throw new Zend_Feed_Exception(
+                'Invalid object/scalar provided: must'
+                . ' be of type Zend_Feed_Reader_FeedInterface, DomDocument or string'
+            );
         }
         $xpath = new DOMXPath($dom);
 
@@ -493,25 +501,25 @@ class Zend_Feed_Reader
 
             if (strlen($version) > 0) {
                 switch($version) {
-                    case '2.0':
-                        $type = self::TYPE_RSS_20;
-                        break;
+                case '2.0':
+                    $type = self::TYPE_RSS_20;
+                    break;
 
-                    case '0.94':
-                        $type = self::TYPE_RSS_094;
-                        break;
+                case '0.94':
+                    $type = self::TYPE_RSS_094;
+                    break;
 
-                    case '0.93':
-                        $type = self::TYPE_RSS_093;
-                        break;
+                case '0.93':
+                    $type = self::TYPE_RSS_093;
+                    break;
 
-                    case '0.92':
-                        $type = self::TYPE_RSS_092;
-                        break;
+                case '0.92':
+                    $type = self::TYPE_RSS_092;
+                    break;
 
-                    case '0.91':
-                        $type = self::TYPE_RSS_091;
-                        break;
+                case '0.91':
+                    $type = self::TYPE_RSS_091;
+                    break;
                 }
             }
 
@@ -569,7 +577,7 @@ class Zend_Feed_Reader
     /**
      * Set plugin loader for use with Extensions
      *
-     * @param  Zend_Loader_PluginLoader_Interface $loader
+     * @param Zend_Loader_PluginLoader_Interface $loader
      */
     public static function setPluginLoader(Zend_Loader_PluginLoader_Interface $loader)
     {
@@ -579,15 +587,17 @@ class Zend_Feed_Reader
     /**
      * Get plugin loader for use with Extensions
      *
-     * @return  Zend_Loader_PluginLoader_Interface $loader
+     * @return Zend_Loader_PluginLoader_Interface $loader
      */
     public static function getPluginLoader()
     {
         if (!isset(self::$_pluginLoader)) {
             // require_once 'Zend/Loader/PluginLoader.php';
-            self::$_pluginLoader = new Zend_Loader_PluginLoader(array(
+            self::$_pluginLoader = new Zend_Loader_PluginLoader(
+                array(
                 'Zend_Feed_Reader_Extension_' => 'Zend/Feed/Reader/Extension/',
-            ));
+                )
+            );
         }
         return self::$_pluginLoader;
     }
@@ -636,8 +646,9 @@ class Zend_Feed_Reader
         $feedName  = $name . '_Feed';
         $entryName = $name . '_Entry';
         if (self::isRegistered($name)) {
-            if (self::getPluginLoader()->isLoaded($feedName) ||
-                self::getPluginLoader()->isLoaded($entryName)) {
+            if (self::getPluginLoader()->isLoaded($feedName) 
+                || self::getPluginLoader()->isLoaded($entryName)
+            ) {
                 return;
             }
         }
@@ -655,8 +666,10 @@ class Zend_Feed_Reader
             && !self::getPluginLoader()->isLoaded($entryName)
         ) {
             // require_once 'Zend/Feed/Exception.php';
-            throw new Zend_Feed_Exception('Could not load extension: ' . $name
-                . 'using Plugin Loader. Check prefix paths are configured and extension exists.');
+            throw new Zend_Feed_Exception(
+                'Could not load extension: ' . $name
+                . 'using Plugin Loader. Check prefix paths are configured and extension exists.'
+            );
         }
     }
 
@@ -741,7 +754,7 @@ class Zend_Feed_Reader
      * Utility method to apply array_unique operation to a multidimensional
      * array.
      *
-     * @param array
+     * @param  array
      * @return array
      */
     public static function arrayUnique(array $array)

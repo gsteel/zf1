@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Element_Xhtml */
+/**
+ * Zend_Form_Element_Xhtml 
+ */
 // require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Form_Element_Textarea extends Zend_Form_Element_Xhtml
 {
     /**
      * Use formTextarea view helper by default
+     *
      * @var string
      */
     public $helper = 'formTextarea';

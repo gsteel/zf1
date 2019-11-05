@@ -541,14 +541,16 @@ class Zend_Acl
      * @return Zend_Acl Provides a fluent interface
      */
     public function setRule($operation, $type, $roles = null, $resources = null, $privileges = null,
-                            Zend_Acl_Assert_Interface $assert = null)
-    {
+        Zend_Acl_Assert_Interface $assert = null
+    ) {
         $allResources = null;
         // ensure that the rule type is valid; normalize input to uppercase
         $type = strtoupper($type);
         if (self::TYPE_ALLOW !== $type && self::TYPE_DENY !== $type) {
-            throw new Zend_Acl_Exception("Unsupported rule type; must be either '" . self::TYPE_ALLOW . "' or '"
-                                       . self::TYPE_DENY . "'");
+            throw new Zend_Acl_Exception(
+                "Unsupported rule type; must be either '" . self::TYPE_ALLOW . "' or '"
+                . self::TYPE_DENY . "'"
+            );
         }
 
         // ensure that all specified Roles exist; normalize input to array of Role objects or null
@@ -603,33 +605,18 @@ class Zend_Acl
         switch ($operation) {
 
             // add to the rules
-            case self::OP_ADD:
-                if ($resources !== null) {
-                    // this block will iterate the provided resources
-                    foreach ($resources as $resource) {
-                        foreach ($roles as $role) {
-                            $rules =& $this->_getRules($resource, $role, true);
-                            if (0 === count($privileges)) {
-                                $rules['allPrivileges']['type']   = $type;
-                                $rules['allPrivileges']['assert'] = $assert;
-                                if (!isset($rules['byPrivilegeId'])) {
-                                    $rules['byPrivilegeId'] = array();
-                                }
-                            } else {
-                                foreach ($privileges as $privilege) {
-                                    $rules['byPrivilegeId'][$privilege]['type']   = $type;
-                                    $rules['byPrivilegeId'][$privilege]['assert'] = $assert;
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    // this block will apply to all resources in a global rule
+        case self::OP_ADD:
+            if ($resources !== null) {
+                // this block will iterate the provided resources
+                foreach ($resources as $resource) {
                     foreach ($roles as $role) {
-                        $rules =& $this->_getRules(null, $role, true);
+                        $rules =& $this->_getRules($resource, $role, true);
                         if (0 === count($privileges)) {
                             $rules['allPrivileges']['type']   = $type;
                             $rules['allPrivileges']['assert'] = $assert;
+                            if (!isset($rules['byPrivilegeId'])) {
+                                $rules['byPrivilegeId'] = array();
+                            }
                         } else {
                             foreach ($privileges as $privilege) {
                                 $rules['byPrivilegeId'][$privilege]['type']   = $type;
@@ -638,95 +625,112 @@ class Zend_Acl
                         }
                     }
                 }
-                break;
-
-            // remove from the rules
-            case self::OP_REMOVE:
-                if ($resources !== null) {
-                    // this block will iterate the provided resources
-                    foreach ($resources as $resource) {
-                        foreach ($roles as $role) {
-                            $rules =& $this->_getRules($resource, $role);
-                            if (null === $rules) {
-                                continue;
-                            }
-                            if (0 === count($privileges)) {
-                                if (null === $resource && null === $role) {
-                                    if ($type === $rules['allPrivileges']['type']) {
-                                        $rules = array(
-                                            'allPrivileges' => array(
-                                                'type'   => self::TYPE_DENY,
-                                                'assert' => null
-                                                ),
-                                            'byPrivilegeId' => array()
-                                            );
-                                    }
-                                    continue;
-                                }
-
-                                if (isset($rules['allPrivileges']['type']) &&
-                                    $type === $rules['allPrivileges']['type'])
-                                {
-                                    unset($rules['allPrivileges']);
-                                }
-                            } else {
-                                foreach ($privileges as $privilege) {
-                                    if (isset($rules['byPrivilegeId'][$privilege]) &&
-                                        $type === $rules['byPrivilegeId'][$privilege]['type'])
-                                    {
-                                        unset($rules['byPrivilegeId'][$privilege]);
-                                    }
-                                }
-                            }
+            } else {
+                // this block will apply to all resources in a global rule
+                foreach ($roles as $role) {
+                    $rules =& $this->_getRules(null, $role, true);
+                    if (0 === count($privileges)) {
+                        $rules['allPrivileges']['type']   = $type;
+                        $rules['allPrivileges']['assert'] = $assert;
+                    } else {
+                        foreach ($privileges as $privilege) {
+                            $rules['byPrivilegeId'][$privilege]['type']   = $type;
+                            $rules['byPrivilegeId'][$privilege]['assert'] = $assert;
                         }
                     }
-                } else {
-                    // this block will apply to all resources in a global rule
+                }
+            }
+            break;
+
+            // remove from the rules
+        case self::OP_REMOVE:
+            if ($resources !== null) {
+                // this block will iterate the provided resources
+                foreach ($resources as $resource) {
                     foreach ($roles as $role) {
-                        /**
-                         * since null (all resources) was passed to this setRule() call, we need
-                         * clean up all the rules for the global allResources, as well as the indivually
-                         * set resources (per privilege as well)
-                         */
-                        foreach (array_merge(array(null), $allResources) as $resource) {
-                            $rules =& $this->_getRules($resource, $role, true);
-                            if (null === $rules) {
+                        $rules =& $this->_getRules($resource, $role);
+                        if (null === $rules) {
+                            continue;
+                        }
+                        if (0 === count($privileges)) {
+                            if (null === $resource && null === $role) {
+                                if ($type === $rules['allPrivileges']['type']) {
+                                    $rules = array(
+                                        'allPrivileges' => array(
+                                            'type'   => self::TYPE_DENY,
+                                            'assert' => null
+                                            ),
+                                        'byPrivilegeId' => array()
+                                        );
+                                }
                                 continue;
                             }
-                            if (0 === count($privileges)) {
-                                if (null === $role) {
-                                    if ($type === $rules['allPrivileges']['type']) {
-                                        $rules = array(
-                                            'allPrivileges' => array(
-                                                'type'   => self::TYPE_DENY,
-                                                'assert' => null
-                                                ),
-                                            'byPrivilegeId' => array()
-                                            );
-                                    }
-                                    continue;
-                                }
 
-                                if (isset($rules['allPrivileges']['type']) && $type === $rules['allPrivileges']['type']) {
-                                    unset($rules['allPrivileges']);
-                                }
-                            } else {
-                                foreach ($privileges as $privilege) {
-                                    if (isset($rules['byPrivilegeId'][$privilege]) &&
-                                        $type === $rules['byPrivilegeId'][$privilege]['type'])
-                                    {
-                                        unset($rules['byPrivilegeId'][$privilege]);
-                                    }
+                            if (isset($rules['allPrivileges']['type']) 
+                                && $type === $rules['allPrivileges']['type']
+                            ) {
+                                unset($rules['allPrivileges']);
+                            }
+                        } else {
+                            foreach ($privileges as $privilege) {
+                                if (isset($rules['byPrivilegeId'][$privilege]) 
+                                    && $type === $rules['byPrivilegeId'][$privilege]['type']
+                                ) {
+                                    unset($rules['byPrivilegeId'][$privilege]);
                                 }
                             }
                         }
                     }
                 }
-                break;
+            } else {
+                // this block will apply to all resources in a global rule
+                foreach ($roles as $role) {
+                    /**
+                     * since null (all resources) was passed to this setRule() call, we need
+                     * clean up all the rules for the global allResources, as well as the indivually
+                     * set resources (per privilege as well)
+                     */
+                    foreach (array_merge(array(null), $allResources) as $resource) {
+                        $rules =& $this->_getRules($resource, $role, true);
+                        if (null === $rules) {
+                            continue;
+                        }
+                        if (0 === count($privileges)) {
+                            if (null === $role) {
+                                if ($type === $rules['allPrivileges']['type']) {
+                                    $rules = array(
+                                        'allPrivileges' => array(
+                                            'type'   => self::TYPE_DENY,
+                                            'assert' => null
+                                            ),
+                                        'byPrivilegeId' => array()
+                                        );
+                                }
+                                continue;
+                            }
 
-            default:
-                throw new Zend_Acl_Exception("Unsupported operation; must be either '" . self::OP_ADD . "' or '"
-                                           . self::OP_REMOVE . "'");
+                            if (isset($rules['allPrivileges']['type']) && $type === $rules['allPrivileges']['type']) {
+                                unset($rules['allPrivileges']);
+                            }
+                        } else {
+                            foreach ($privileges as $privilege) {
+                                if (isset($rules['byPrivilegeId'][$privilege]) 
+                                    && $type === $rules['byPrivilegeId'][$privilege]['type']
+                                ) {
+                                    unset($rules['byPrivilegeId'][$privilege]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            break;
+
+        default:
+            throw new Zend_Acl_Exception(
+                "Unsupported operation; must be either '" . self::OP_ADD . "' or '"
+                    . self::OP_REMOVE . "'"
+            );
         }
 
         return $this;
@@ -891,13 +895,13 @@ class Zend_Acl
      *
      * @param  Zend_Acl_Role_Interface     $role
      * @param  Zend_Acl_Resource_Interface $resource
-     * @param  array                  $dfs
+     * @param  array                       $dfs
      * @return boolean|null
      * @throws Zend_Acl_Exception
      */
     protected function _roleDFSVisitAllPrivileges(Zend_Acl_Role_Interface $role, Zend_Acl_Resource_Interface $resource = null,
-                                                 &$dfs = null)
-    {
+        &$dfs = null
+    ) {
         if (null === $dfs) {
             throw new Zend_Acl_Exception('$dfs parameter may not be null');
         }
@@ -935,8 +939,8 @@ class Zend_Acl
      * @throws Zend_Acl_Exception
      */
     protected function _roleDFSOnePrivilege(Zend_Acl_Role_Interface $role, Zend_Acl_Resource_Interface $resource = null,
-                                            $privilege = null)
-    {
+        $privilege = null
+    ) {
         if (null === $privilege) {
             throw new Zend_Acl_Exception('$privilege parameter may not be null');
         }
@@ -977,8 +981,8 @@ class Zend_Acl
      * @throws Zend_Acl_Exception
      */
     protected function _roleDFSVisitOnePrivilege(Zend_Acl_Role_Interface $role, Zend_Acl_Resource_Interface $resource = null,
-                                                $privilege = null, &$dfs = null)
-    {
+        $privilege = null, &$dfs = null
+    ) {
         if (null === $privilege) {
             throw new Zend_Acl_Exception('$privilege parameter may not be null');
         }
@@ -1023,8 +1027,8 @@ class Zend_Acl
      * @return string|null
      */
     protected function _getRuleType(Zend_Acl_Resource_Interface $resource = null, Zend_Acl_Role_Interface $role = null,
-                                    $privilege = null)
-    {
+        $privilege = null
+    ) {
         $assertionValue = null;
         // get the rules for the $resource and $role
         if (null === ($rules = $this->_getRules($resource, $role))) {
@@ -1052,7 +1056,7 @@ class Zend_Acl
                 ($this->_isAllowedRole instanceof Zend_Acl_Role_Interface) ? $this->_isAllowedRole : $role,
                 ($this->_isAllowedResource instanceof Zend_Acl_Resource_Interface) ? $this->_isAllowedResource : $resource,
                 $this->_isAllowedPrivilege
-                );
+            );
         }
 
         if (null === $rule['assert'] || $assertionValue) {
@@ -1080,8 +1084,8 @@ class Zend_Acl
      * @return array|null
      */
     protected function &_getRules(Zend_Acl_Resource_Interface $resource = null, Zend_Acl_Role_Interface $role = null,
-                                  $create = false)
-    {
+        $create = false
+    ) {
         // create a reference to null
         $null = null;
         $nullRef =& $null;
@@ -1126,14 +1130,16 @@ class Zend_Acl
 
 
     /**
-     * @return array of registered roles (Deprecated)
+     * @return     array of registered roles (Deprecated)
      * @deprecated Deprecated since version 1.10 (December 2009)
      */
     public function getRegisteredRoles()
     {
-        trigger_error('The method getRegisteredRoles() was deprecated as of '
+        trigger_error(
+            'The method getRegisteredRoles() was deprecated as of '
                     . 'version 1.0, and may be removed. You\'re encouraged '
-                    . 'to use getRoles() instead.');
+            . 'to use getRoles() instead.'
+        );
 
         return $this->_getRoleRegistry()->getRoles();
     }

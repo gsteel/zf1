@@ -81,11 +81,11 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
     /**
      * Binds a parameter to the specified variable name.
      *
-     * @param mixed $parameter Name the parameter, either integer or string.
-     * @param mixed $variable  Reference to PHP variable containing the value.
-     * @param mixed $type      OPTIONAL Datatype of SQL parameter.
-     * @param mixed $length    OPTIONAL Length of SQL parameter.
-     * @param mixed $options   OPTIONAL Other options.
+     * @param  mixed $parameter Name the parameter, either integer or string.
+     * @param  mixed $variable  Reference to PHP variable containing the value.
+     * @param  mixed $type      OPTIONAL Datatype of SQL parameter.
+     * @param  mixed $length    OPTIONAL Length of SQL parameter.
+     * @param  mixed $options   OPTIONAL Other options.
      * @return bool
      * @throws Zend_Db_Statement_Mysqli_Exception
      */
@@ -176,7 +176,7 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
     /**
      * Executes a prepared statement.
      *
-     * @param array $params OPTIONAL Values to bind to parameter placeholders.
+     * @param  array $params OPTIONAL Values to bind to parameter placeholders.
      * @return bool
      * @throws Zend_Db_Statement_Mysqli_Exception
      */
@@ -201,7 +201,7 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
             call_user_func_array(
                 array($this->_stmt, 'bind_param'),
                 $stmtParams
-                );
+            );
         }
 
         // execute the statement
@@ -261,9 +261,9 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
     /**
      * Fetches a row from the result set.
      *
-     * @param int $style  OPTIONAL Fetch mode for this fetch operation.
-     * @param int $cursor OPTIONAL Absolute, relative, or other.
-     * @param int $offset OPTIONAL Number for absolute or relative cursors.
+     * @param  int $style  OPTIONAL Fetch mode for this fetch operation.
+     * @param  int $cursor OPTIONAL Absolute, relative, or other.
+     * @param  int $offset OPTIONAL Number for absolute or relative cursors.
      * @return mixed Array, object, or scalar depending on fetch mode.
      * @throws Zend_Db_Statement_Mysqli_Exception
      */
@@ -275,12 +275,12 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
         // fetch the next result
         $retval = $this->_stmt->fetch();
         switch ($retval) {
-            case null: // end of data
-            case false: // error occurred
-                $this->_stmt->reset();
-                return false;
-            default:
-                // fallthrough
+        case null: // end of data
+        case false: // error occurred
+            $this->_stmt->reset();
+            return false;
+        default:
+            // fallthrough
         }
 
         // make sure we have a fetch mode
@@ -297,30 +297,30 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
 
         $row = false;
         switch ($style) {
-            case Zend_Db::FETCH_NUM:
-                $row = $values;
+        case Zend_Db::FETCH_NUM:
+            $row = $values;
+            break;
+        case Zend_Db::FETCH_ASSOC:
+            $row = array_combine($this->_keys, $values);
+            break;
+        case Zend_Db::FETCH_BOTH:
+            $assoc = array_combine($this->_keys, $values);
+            $row = array_merge($values, $assoc);
+            break;
+        case Zend_Db::FETCH_OBJ:
+            $row = (object) array_combine($this->_keys, $values);
+            break;
+        case Zend_Db::FETCH_BOUND:
+            $assoc = array_combine($this->_keys, $values);
+            $row = array_merge($values, $assoc);
+            return $this->_fetchBound($row);
                 break;
-            case Zend_Db::FETCH_ASSOC:
-                $row = array_combine($this->_keys, $values);
-                break;
-            case Zend_Db::FETCH_BOTH:
-                $assoc = array_combine($this->_keys, $values);
-                $row = array_merge($values, $assoc);
-                break;
-            case Zend_Db::FETCH_OBJ:
-                $row = (object) array_combine($this->_keys, $values);
-                break;
-            case Zend_Db::FETCH_BOUND:
-                $assoc = array_combine($this->_keys, $values);
-                $row = array_merge($values, $assoc);
-                return $this->_fetchBound($row);
-                break;
-            default:
-                /**
-                 * @see Zend_Db_Statement_Mysqli_Exception
-                 */
-                // require_once 'Zend/Db/Statement/Mysqli/Exception.php';
-                throw new Zend_Db_Statement_Mysqli_Exception("Invalid fetch mode '$style' specified");
+        default:
+            /**
+             * @see Zend_Db_Statement_Mysqli_Exception
+             */
+            // require_once 'Zend/Db/Statement/Mysqli/Exception.php';
+            throw new Zend_Db_Statement_Mysqli_Exception("Invalid fetch mode '$style' specified");
                 break;
         }
         return $row;

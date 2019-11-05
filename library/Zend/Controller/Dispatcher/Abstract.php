@@ -3,24 +3,28 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
 {
     /**
      * Default action
+     *
      * @var string
      */
     protected $_defaultAction = 'index';
 
     /**
      * Default controller
+     *
      * @var string
      */
     protected $_defaultController = 'index';
 
     /**
      * Default module
+     *
      * @var string
      */
     protected $_defaultModule = 'default';
 
     /**
      * Front Controller instance
+     *
      * @var Zend_Controller_Front
      */
     protected $_frontController;
@@ -28,24 +32,28 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     /**
      * Array of invocation parameters to use when instantiating action
      * controllers
+     *
      * @var array
      */
     protected $_invokeParams = array();
 
     /**
      * Path delimiter character
+     *
      * @var string
      */
     protected $_pathDelimiter = '_';
 
     /**
      * Response object to pass to action controllers, if any
+     *
      * @var Zend_Controller_Response_Abstract|null
      */
     protected $_response = null;
 
     /**
      * Word delimiter characters
+     *
      * @var array
      */
     protected $_wordDelimiter = array('-', '.');
@@ -66,7 +74,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      * object, and reformat it to a proper class name that a class extending
      * Zend_Controller_Action would use.
      *
-     * @param string $unformatted
+     * @param  string $unformatted
      * @return string
      */
     public function formatControllerName($unformatted)
@@ -80,7 +88,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      * object, and reformat into a proper method name that would be found
      * inside a class extending Zend_Controller_Action.
      *
-     * @param string $unformatted
+     * @param  string $unformatted
      * @return string
      */
     public function formatActionName($unformatted)
@@ -95,7 +103,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      * Verify a delimiter to use in controllers or actions. May be a single
      * string or an array of strings.
      *
-     * @param string|array $spec
+     * @param  string|array $spec
      * @return array
      * @throws Zend_Controller_Dispatcher_Exception with invalid delimiters
      */
@@ -139,7 +147,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      * Set the word delimiter to use in controllers and actions. May be a
      * single string or an array of strings.
      *
-     * @param string|array $spec
+     * @param  string|array $spec
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function setWordDelimiter($spec)
@@ -167,7 +175,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      * Set the path delimiter to use in controllers. May be a single string or
      * an array of strings.
      *
-     * @param string $spec
+     * @param  string $spec
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function setPathDelimiter($spec)
@@ -189,8 +197,8 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      * the following word Title cased. All non-alphanumeric characters are
      * removed.
      *
-     * @param string $unformatted
-     * @param boolean $isAction Defaults to false
+     * @param  string  $unformatted
+     * @param  boolean $isAction    Defaults to false
      * @return string
      */
     protected function _formatName($unformatted, $isAction = false)
@@ -228,7 +236,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     /**
      * Set front controller instance
      *
-     * @param Zend_Controller_Front $controller
+     * @param  Zend_Controller_Front $controller
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function setFrontController(Zend_Controller_Front $controller)
@@ -240,8 +248,8 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     /**
      * Add or modify a parameter to use when instantiating an action controller
      *
-     * @param string $name
-     * @param mixed $value
+     * @param  string $name
+     * @param  mixed  $value
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function setParam($name, $value)
@@ -254,7 +262,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     /**
      * Set parameters to pass to action controller constructors
      *
-     * @param array $params
+     * @param  array $params
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function setParams(array $params)
@@ -266,7 +274,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     /**
      * Retrieve a single parameter from the controller parameter stack
      *
-     * @param string $name
+     * @param  string $name
      * @return mixed
      */
     public function getParam($name)
@@ -295,7 +303,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      * only that parameter; if an array of parameter names is provided, clears
      * each.
      *
-     * @param null|string|array single key or array of keys for params to clear
+     * @param  null|string|array single key or array of keys for params to clear
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function clearParams($name = null)
@@ -318,7 +326,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     /**
      * Set response object to pass to action controllers
      *
-     * @param Zend_Controller_Response_Abstract|null $response
+     * @param  Zend_Controller_Response_Abstract|null $response
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function setResponse(Zend_Controller_Response_Abstract $response = null)
@@ -340,7 +348,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     /**
      * Set the default controller (minus any formatting)
      *
-     * @param string $controller
+     * @param  string $controller
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function setDefaultControllerName($controller)
@@ -362,7 +370,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     /**
      * Set the default action (minus any formatting)
      *
-     * @param string $action
+     * @param  string $action
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function setDefaultAction($action)
@@ -384,7 +392,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     /**
      * Set the default module
      *
-     * @param string $module
+     * @param  string $module
      * @return Zend_Controller_Dispatcher_Abstract
      */
     public function setDefaultModule($module)

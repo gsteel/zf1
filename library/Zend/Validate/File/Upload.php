@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -29,12 +29,13 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_File_Upload extends Zend_Validate_Abstract
 {
-    /**@#+
+    /**
+* @#+
      * @const string Error constants
      */
     const INI_SIZE       = 'fileUploadErrorIniSize';
@@ -47,7 +48,9 @@ class Zend_Validate_File_Upload extends Zend_Validate_Abstract
     const ATTACK         = 'fileUploadErrorAttack';
     const FILE_NOT_FOUND = 'fileUploadErrorFileNotFound';
     const UNKNOWN        = 'fileUploadErrorUnknown';
-    /**@#-*/
+    /**
+     * @#-
+     */
 
     /**
      * @var array Error message templates
@@ -67,6 +70,7 @@ class Zend_Validate_File_Upload extends Zend_Validate_Abstract
 
     /**
      * Internal array of files
+     *
      * @var array
      */
     protected $_files = array();
@@ -154,9 +158,9 @@ class Zend_Validate_File_Upload extends Zend_Validate_Abstract
      *
      * Returns true if and only if the file was uploaded without errors
      *
-     * @param  string $value Single file to check for upload errors, when giving null the $_FILES array
-     *                       from initialization will be used
-     * @param  string|null   $file
+     * @param  string      $value Single file to check for upload errors, when giving null the $_FILES array
+     *                            from initialization will be used
+     * @param  string|null $file
      * @return boolean
      */
     public function isValid($value, $file = null)
@@ -184,43 +188,43 @@ class Zend_Validate_File_Upload extends Zend_Validate_Abstract
         foreach ($files as $file => $content) {
             $this->_value = $file;
             switch($content['error']) {
-                case 0:
-                    if (!is_uploaded_file($content['tmp_name'])) {
-                        $this->_throw($content, self::ATTACK);
-                    }
-                    break;
+            case 0:
+                if (!is_uploaded_file($content['tmp_name'])) {
+                    $this->_throw($content, self::ATTACK);
+                }
+                break;
 
-                case 1:
-                    $this->_throw($content, self::INI_SIZE);
-                    break;
+            case 1:
+                $this->_throw($content, self::INI_SIZE);
+                break;
 
-                case 2:
-                    $this->_throw($content, self::FORM_SIZE);
-                    break;
+            case 2:
+                $this->_throw($content, self::FORM_SIZE);
+                break;
 
-                case 3:
-                    $this->_throw($content, self::PARTIAL);
-                    break;
+            case 3:
+                $this->_throw($content, self::PARTIAL);
+                break;
 
-                case 4:
-                    $this->_throw($content, self::NO_FILE);
-                    break;
+            case 4:
+                $this->_throw($content, self::NO_FILE);
+                break;
 
-                case 6:
-                    $this->_throw($content, self::NO_TMP_DIR);
-                    break;
+            case 6:
+                $this->_throw($content, self::NO_TMP_DIR);
+                break;
 
-                case 7:
-                    $this->_throw($content, self::CANT_WRITE);
-                    break;
+            case 7:
+                $this->_throw($content, self::CANT_WRITE);
+                break;
 
-                case 8:
-                    $this->_throw($content, self::EXTENSION);
-                    break;
+            case 8:
+                $this->_throw($content, self::EXTENSION);
+                break;
 
-                default:
-                    $this->_throw($content, self::UNKNOWN);
-                    break;
+            default:
+                $this->_throw($content, self::UNKNOWN);
+                break;
             }
         }
 

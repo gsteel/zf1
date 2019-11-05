@@ -9,48 +9,56 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
 
     /**
      * Supported contexts
+     *
      * @var array
      */
     protected $_contexts = array();
 
     /**
      * JSON auto-serialization flag
+     *
      * @var boolean
      */
     protected $_autoJsonSerialization = true;
 
     /**
      * Controller property key to utilize for context switching
+     *
      * @var string
      */
     protected $_contextKey = 'contexts';
 
     /**
      * Request parameter containing requested context
+     *
      * @var string
      */
     protected $_contextParam = 'format';
 
     /**
      * Current context
+     *
      * @var string
      */
     protected $_currentContext;
 
     /**
      * Default context (xml)
+     *
      * @var string
      */
     protected $_defaultContext = 'xml';
 
     /**
      * Whether or not to disable layouts when switching contexts
+     *
      * @var boolean
      */
     protected $_disableLayout = true;
 
     /**
      * Methods that require special configuration
+     *
      * @var array
      */
     protected $_specialConfig = array(
@@ -61,6 +69,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
 
     /**
      * Methods that are not configurable via setOptions and setConfig
+     *
      * @var array
      */
     protected $_unconfigurable = array(
@@ -80,6 +89,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
 
     /**
      * Original view suffix prior to detecting context switch
+     *
      * @var string
      */
     protected $_viewSuffixOrig;
@@ -99,7 +109,8 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         }
 
         if (empty($this->_contexts)) {
-            $this->addContexts(array(
+            $this->addContexts(
+                array(
                 'json' => array(
                     'suffix'    => 'json',
                     'headers'   => array('Content-Type' => 'application/json'),
@@ -112,7 +123,8 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
                     'suffix'    => 'xml',
                     'headers'   => array('Content-Type' => 'application/xml'),
                 )
-            ));
+                )
+            );
         }
 
         $this->init();
@@ -347,28 +359,28 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
 
                 $count = count($suffixInfo);
                 switch (true) {
-                    case (($count < 2) && (null === $context)):
-                        throw new Zend_Controller_Action_Exception('Invalid suffix information provided in config');
-                    case ($count < 2):
-                        $suffix = array_shift($suffixInfo);
-                        $this->setSuffix($context, $suffix);
-                        break;
-                    case (($count < 3) && (null === $context)):
-                        $context = array_shift($suffixInfo);
-                        $suffix  = array_shift($suffixInfo);
-                        $this->setSuffix($context, $suffix);
-                        break;
-                    case (($count == 3) && (null === $context)):
-                        $context = array_shift($suffixInfo);
-                        $suffix  = array_shift($suffixInfo);
-                        $prependViewRendererSuffix = array_shift($suffixInfo);
-                        $this->setSuffix($context, $suffix, $prependViewRendererSuffix);
-                        break;
-                    case ($count >= 2):
-                        $suffix  = array_shift($suffixInfo);
-                        $prependViewRendererSuffix = array_shift($suffixInfo);
-                        $this->setSuffix($context, $suffix, $prependViewRendererSuffix);
-                        break;
+                case (($count < 2) && (null === $context)):
+                    throw new Zend_Controller_Action_Exception('Invalid suffix information provided in config');
+                case ($count < 2):
+                    $suffix = array_shift($suffixInfo);
+                    $this->setSuffix($context, $suffix);
+                    break;
+                case (($count < 3) && (null === $context)):
+                    $context = array_shift($suffixInfo);
+                    $suffix  = array_shift($suffixInfo);
+                    $this->setSuffix($context, $suffix);
+                    break;
+                case (($count == 3) && (null === $context)):
+                    $context = array_shift($suffixInfo);
+                    $suffix  = array_shift($suffixInfo);
+                    $prependViewRendererSuffix = array_shift($suffixInfo);
+                    $this->setSuffix($context, $suffix, $prependViewRendererSuffix);
+                    break;
+                case ($count >= 2):
+                    $suffix  = array_shift($suffixInfo);
+                    $prependViewRendererSuffix = array_shift($suffixInfo);
+                    $this->setSuffix($context, $suffix, $prependViewRendererSuffix);
+                    break;
                 }
             }
         }
@@ -506,8 +518,8 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
      * Passing an empty header value to the setters disables the response
      * header.
      *
-     * @param  string $type   Context type for which to set suffix
-     * @param  string $header Header to set
+     * @param  string $type    Context type for which to set suffix
+     * @param  string $header  Header to set
      * @param  string $content Header content
      * @return Zend_Controller_Action_Helper_ContextSwitch Provides a fluent interface
      */
@@ -880,8 +892,8 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         $this->_contexts[$context] = array();
 
         $this->setSuffix($context,    ($spec['suffix'] ?? ''))
-             ->setHeaders($context,   ($spec['headers'] ?? array()))
-             ->setCallbacks($context, ($spec['callbacks'] ?? array()));
+            ->setHeaders($context,   ($spec['headers'] ?? array()))
+            ->setCallbacks($context, ($spec['callbacks'] ?? array()));
         return $this;
     }
 

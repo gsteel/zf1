@@ -41,63 +41,72 @@ abstract class Zend_Mail_Transport_Abstract
 {
     /**
      * Mail body
-     * @var string
+     *
+     * @var    string
      * @access public
      */
     public $body = '';
 
     /**
      * MIME boundary
-     * @var string
+     *
+     * @var    string
      * @access public
      */
     public $boundary = '';
 
     /**
      * Mail header string
-     * @var string
+     *
+     * @var    string
      * @access public
      */
     public $header = '';
 
     /**
      * Array of message headers
-     * @var array
+     *
+     * @var    array
      * @access protected
      */
     protected $_headers = array();
 
     /**
      * Message is a multipart message
-     * @var boolean
+     *
+     * @var    boolean
      * @access protected
      */
     protected $_isMultipart = false;
 
     /**
      * Zend_Mail object
-     * @var false|Zend_Mail
+     *
+     * @var    false|Zend_Mail
      * @access protected
      */
     protected $_mail = false;
 
     /**
      * Array of message parts
-     * @var array
+     *
+     * @var    array
      * @access protected
      */
     protected $_parts = array();
 
     /**
      * Recipients string
-     * @var string
+     *
+     * @var    string
      * @access public
      */
     public $recipients = '';
 
     /**
      * EOL character string used by transport
-     * @var string
+     *
+     * @var    string
      * @access public
      */
     public $EOL = "\r\n";
@@ -121,7 +130,7 @@ abstract class Zend_Mail_Transport_Abstract
      * Content-Type of either multipart/alternative or multipart/mixed depending
      * on the mail parts present in the {@link $_mail Zend_Mail object} present.
      *
-     * @param string $boundary
+     * @param  string $boundary
      * @return array
      */
     protected function _getHeaders($boundary)
@@ -155,9 +164,9 @@ abstract class Zend_Mail_Transport_Abstract
     /**
      * Prepend header name to header value
      *
-     * @param string $item
-     * @param string $key
-     * @param string $prefix
+     * @param  string $item
+     * @param  string $key
+     * @param  string $prefix
      * @static
      * @access protected
      * @return void
@@ -172,7 +181,7 @@ abstract class Zend_Mail_Transport_Abstract
      *
      * Prepares and generates {@link $header} based on the headers provided.
      *
-     * @param mixed $headers
+     * @param  mixed $headers
      * @access protected
      * @return void
      * @throws Zend_Mail_Transport_Exception if any header lines exceed 998
@@ -233,8 +242,8 @@ abstract class Zend_Mail_Transport_Abstract
     protected function _buildBody()
     {
         if (($text = $this->_mail->getBodyText())
-            && ($html = $this->_mail->getBodyHtml()))
-        {
+            && ($html = $this->_mail->getBodyHtml())
+        ) {
             // Generate unique boundary for multipart/alternative
             $mime = new Zend_Mime(null);
             $boundaryLine = $mime->boundaryLine($this->EOL);

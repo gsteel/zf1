@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Text_Figlet
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -24,7 +24,7 @@
  *
  * @category  Zend
  * @package   Zend_Text_Figlet
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Text_Figlet
@@ -667,7 +667,8 @@ class Zend_Text_Figlet
         $smushAmount = $this->_smushAmount();
 
         if (($this->_outlineLength + $this->_currentCharWidth - $smushAmount) > $this->_outlineLengthLimit
-            || ($this->_inCharLineLength + 1) > $this->_inCharLineLengthLimit) {
+            || ($this->_inCharLineLength + 1) > $this->_inCharLineLengthLimit
+        ) {
             return false;
         }
 
@@ -977,8 +978,10 @@ class Zend_Text_Figlet
         if (substr($fontFile, -3) === '.gz') {
             if (!function_exists('gzcompress')) {
                 // require_once 'Zend/Text/Figlet/Exception.php';
-                throw new Zend_Text_Figlet_Exception('GZIP library is required for '
-                                                     . 'gzip compressed font files');
+                throw new Zend_Text_Figlet_Exception(
+                    'GZIP library is required for '
+                    . 'gzip compressed font files'
+                );
             }
 
             $fontFile   = 'compress.zlib://' . $fontFile;
@@ -1003,15 +1006,17 @@ class Zend_Text_Figlet
         $magic = $this->_readMagic($fp);
 
         // Get the header
-        $numsRead = sscanf(fgets($fp, 1000),
-                           '%*c%c %d %*d %d %d %d %d %d',
-                           $this->_hardBlank,
-                           $this->_charHeight,
-                           $this->_maxLength,
-                           $smush,
-                           $cmtLines,
-                           $rightToLeft,
-                           $this->_fontSmush);
+        $numsRead = sscanf(
+            fgets($fp, 1000),
+            '%*c%c %d %*d %d %d %d %d %d',
+            $this->_hardBlank,
+            $this->_charHeight,
+            $this->_maxLength,
+            $smush,
+            $cmtLines,
+            $rightToLeft,
+            $this->_fontSmush
+        );
 
         if ($magic !== self::FONTFILE_MAGIC_NUMBER || $numsRead < 5) {
             // require_once 'Zend/Text/Figlet/Exception.php';
@@ -1090,9 +1095,10 @@ class Zend_Text_Figlet
             // Convert it if required
             if (substr($uniCode, 0, 2) === '0x') {
                 $uniCode = hexdec(substr($uniCode, 2));
-            } else if (substr($uniCode, 0, 1) === '0' and
-                       $uniCode !== '0' or
-                       substr($uniCode, 0, 2) === '-0') {
+            } else if (substr($uniCode, 0, 1) === '0' 
+                and $uniCode !== '0' 
+                or substr($uniCode, 0, 2) === '-0'
+            ) {
                 $uniCode = octdec($uniCode);
             } else {
                 $uniCode = (int) $uniCode;

@@ -12,20 +12,21 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Loader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 // require_once __DIR__ . '/SplAutoloader.php';
 
-if (class_exists(\Zend_Loader_AutoloaderFactory::class)) return;
+if (class_exists(\Zend_Loader_AutoloaderFactory::class)) { return;
+}
 
 /**
- * @package    Zend_Loader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @package   Zend_Loader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Loader_AutoloaderFactory
 {
@@ -106,21 +107,25 @@ abstract class Zend_Loader_AutoloaderFactory
                 $autoloader = self::getStandardAutoloader();
                 if (!class_exists($class) && !$autoloader->autoload($class)) {
                     // require_once 'Exception/InvalidArgumentException.php';
-                    throw new Zend_Loader_Exception_InvalidArgumentException(sprintf(
-                        'Autoloader class "%s" not loaded', 
-                        $class
-                    ));
+                    throw new Zend_Loader_Exception_InvalidArgumentException(
+                        sprintf(
+                            'Autoloader class "%s" not loaded', 
+                            $class
+                        )
+                    );
                 }
 
                 // unfortunately is_subclass_of is broken on some 5.3 versions
                 // additionally instanceof is also broken for this use case
                 if (version_compare(PHP_VERSION, '5.3.7', '>=')) {
-                        if (!is_subclass_of($class, \Zend_Loader_SplAutoloader::class)) {
+                    if (!is_subclass_of($class, \Zend_Loader_SplAutoloader::class)) {
                         // require_once 'Exception/InvalidArgumentException.php';
-                        throw new Zend_Loader_Exception_InvalidArgumentException(sprintf(
-                            'Autoloader class %s must implement Zend\\Loader\\SplAutoloader', 
-                            $class
-                        ));
+                        throw new Zend_Loader_Exception_InvalidArgumentException(
+                            sprintf(
+                                'Autoloader class %s must implement Zend\\Loader\\SplAutoloader', 
+                                $class
+                            )
+                        );
                     }
                 }
 
@@ -152,7 +157,7 @@ abstract class Zend_Loader_AutoloaderFactory
     /**
      * Retrieves an autoloader by class name
      *
-     * @param string $class
+     * @param  string $class
      * @return Zend_Loader_SplAutoloader
      * @throws Zend_Loader_Exception_InvalidArgumentException for non-registered class
      */

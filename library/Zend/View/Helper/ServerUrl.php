@@ -53,12 +53,12 @@ class Zend_View_Helper_ServerUrl
     public function __construct()
     {
         switch (true) {
-            case (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] === true)):
-            case (isset($_SERVER['HTTP_SCHEME']) && ($_SERVER['HTTP_SCHEME'] == 'https')):
-            case (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443)):
-                $scheme = 'https';
-                break;
-            default:
+        case (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] === true)):
+        case (isset($_SERVER['HTTP_SCHEME']) && ($_SERVER['HTTP_SCHEME'] == 'https')):
+        case (isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] == 443)):
+            $scheme = 'https';
+            break;
+        default:
             $scheme = 'http';
         }
         $this->setScheme($scheme);
@@ -69,8 +69,9 @@ class Zend_View_Helper_ServerUrl
             $name = $_SERVER['SERVER_NAME'];
             $port = $_SERVER['SERVER_PORT'];
 
-            if (($scheme == 'http' && $port == 80) ||
-                ($scheme == 'https' && $port == 443)) {
+            if (($scheme == 'http' && $port == 80) 
+                || ($scheme == 'https' && $port == 443)
+            ) {
                 $this->setHost($name);
             } else {
                 $this->setHost($name . ':' . $port);
@@ -82,11 +83,11 @@ class Zend_View_Helper_ServerUrl
      * View helper entry point:
      * Returns the current host's URL like http://site.com
      *
-     * @param  string|boolean $requestUri  [optional] if true, the request URI
-     *                                     found in $_SERVER will be appended
-     *                                     as a path. If a string is given, it
-     *                                     will be appended as a path. Default
-     *                                     is to not append any path.
+     * @param  string|boolean $requestUri [optional] if true, the request URI
+     *                                    found in $_SERVER will be appended
+     *                                    as a path. If a string is given, it
+     *                                    will be appended as a path. Default
+     *                                    is to not append any path.
      * @return string                      server url
      */
     public function serverUrl($requestUri = null)
@@ -115,7 +116,7 @@ class Zend_View_Helper_ServerUrl
     /**
      * Sets host
      *
-     * @param  string $host                new host
+     * @param  string $host new host
      * @return Zend_View_Helper_ServerUrl  fluent interface, returns self
      */
     public function setHost($host)
@@ -137,7 +138,7 @@ class Zend_View_Helper_ServerUrl
     /**
      * Sets scheme (typically http or https)
      *
-     * @param  string $scheme              new scheme (typically http or https)
+     * @param  string $scheme new scheme (typically http or https)
      * @return Zend_View_Helper_ServerUrl  fluent interface, returns self
      */
     public function setScheme($scheme)

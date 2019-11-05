@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_ValidationTextBox */
+/**
+ * Zend_Dojo_Form_Element_ValidationTextBox 
+ */
 // require_once 'Zend/Dojo/Form/Element/ValidationTextBox.php';
 
 /**
@@ -36,12 +38,14 @@ class Zend_Dojo_Form_Element_NumberTextBox extends Zend_Dojo_Form_Element_Valida
 {
     /**
      * Use NumberTextBox dijit view helper
+     *
      * @var string
      */
     public $helper = 'NumberTextBox';
 
     /**
      * Allowed numeric type formats
+     *
      * @var array
      */
     protected $_allowedTypes = array(

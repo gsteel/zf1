@@ -39,16 +39,18 @@
 class Zend_View_Helper_FormNote extends Zend_View_Helper_FormElement
 {
     /**
-    * Helper to show a "note" based on a hidden value.
+     * Helper to show a "note" based on a hidden value.
      *
      * @access public
      *
-     * @param string|array $name If a string, the element name.  If an
-     * array, all other parameters are ignored, and the array elements
-     * are extracted in place of added parameters.
+     * @param string|array $name  If a string, the element name.  If an
+     *                            array, all other parameters are
+     *                            ignored, and the array elements are
+     *                            extracted in place of added
+     *                            parameters.
      *
-     * @param array $value The note to display.  HTML is *not* escaped; the
-     * note is displayed as-is.
+     * @param array        $value The note to display.  HTML is *not* escaped; the
+     *                            note is displayed as-is.
      *
      * @return string The element XHTML.
      */

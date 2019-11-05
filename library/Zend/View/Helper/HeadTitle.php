@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_Placeholder_Container_Standalone */
+/**
+ * Zend_View_Helper_Placeholder_Container_Standalone 
+ */
 // require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
 
 /**
@@ -36,12 +38,14 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
 {
     /**
      * Registry key for placeholder
+     *
      * @var string
      */
     protected $_regKey = \Zend_View_Helper_HeadTitle::class;
 
     /**
      * Whether or not auto-translation is enabled
+     *
      * @var boolean
      */
     protected $_translate = false;
@@ -93,11 +97,14 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
      */
     public function setDefaultAttachOrder($setType)
     {
-        if (!in_array($setType, array(
+        if (!in_array(
+            $setType, array(
             Zend_View_Helper_Placeholder_Container_Abstract::APPEND,
             Zend_View_Helper_Placeholder_Container_Abstract::SET,
             Zend_View_Helper_Placeholder_Container_Abstract::PREPEND
-        ))) {
+            )
+        )
+        ) {
             // require_once 'Zend/View/Exception.php';
             throw new Zend_View_Exception("You must use a valid attach order: 'PREPEND', 'APPEND' or 'SET'");
         }

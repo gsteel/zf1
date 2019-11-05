@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Config
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Config
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -27,10 +27,10 @@
 
 
 /**
- * @category   Zend
- * @package    Zend_Config
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Config
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Config_Ini extends Zend_Config
 {
@@ -163,7 +163,7 @@ class Zend_Config_Ini extends Zend_Config
      * Load the INI file from disk using parse_ini_file(). Use a private error
      * handler to convert any loading errors into a Zend_Config_Exception
      *
-     * @param string $filename
+     * @param  string $filename
      * @throws Zend_Config_Exception
      * @return array
      */
@@ -193,7 +193,7 @@ class Zend_Config_Ini extends Zend_Config
      * never be a valid key name in an INI file that has been loaded using
      * parse_ini_file().
      *
-     * @param string $filename
+     * @param  string $filename
      * @throws Zend_Config_Exception
      * @return array
      */
@@ -206,21 +206,21 @@ class Zend_Config_Ini extends Zend_Config
             $pieces = explode($this->_sectionSeparator, $key);
             $thisSection = trim($pieces[0]);
             switch (is_array($pieces) || $pieces instanceof \Countable ? count($pieces) : 0) {
-                case 1:
-                    $iniArray[$thisSection] = $data;
-                    break;
+            case 1:
+                $iniArray[$thisSection] = $data;
+                break;
 
-                case 2:
-                    $extendedSection = trim($pieces[1]);
-                    $iniArray[$thisSection] = array_merge(array(';extends'=>$extendedSection), $data);
-                    break;
+            case 2:
+                $extendedSection = trim($pieces[1]);
+                $iniArray[$thisSection] = array_merge(array(';extends'=>$extendedSection), $data);
+                break;
 
-                default:
-                    /**
-                     * @see Zend_Config_Exception
-                     */
-                    // require_once 'Zend/Config/Exception.php';
-                    throw new Zend_Config_Exception("Section '$thisSection' may not extend multiple sections in $filename");
+            default:
+                /**
+                 * @see Zend_Config_Exception
+                 */
+                // require_once 'Zend/Config/Exception.php';
+                throw new Zend_Config_Exception("Section '$thisSection' may not extend multiple sections in $filename");
             }
         }
 

@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_TimeSync
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -24,7 +24,7 @@
  *
  * @category  Zend
  * @package   Zend_TimeSync
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_TimeSync_Protocol
@@ -95,11 +95,15 @@ abstract class Zend_TimeSync_Protocol
      */
     protected function _connect()
     {
-        $socket = @fsockopen($this->_timeserver, $this->_port, $errno, $errstr,
-                             Zend_TimeSync::$options['timeout']);
+        $socket = @fsockopen(
+            $this->_timeserver, $this->_port, $errno, $errstr,
+            Zend_TimeSync::$options['timeout']
+        );
         if ($socket === false) {
-            throw new Zend_TimeSync_Exception('could not connect to ' .
-                "'$this->_timeserver' on port '$this->_port', reason: '$errstr'");
+            throw new Zend_TimeSync_Exception(
+                'could not connect to ' .
+                "'$this->_timeserver' on port '$this->_port', reason: '$errstr'"
+            );
         }
 
         $this->_socket = $socket;
@@ -119,7 +123,7 @@ abstract class Zend_TimeSync_Protocol
     /**
      * Return information sent/returned from the timeserver
      *
-     * @return  array
+     * @return array
      */
     public function getInfo()
     {

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Filter/Interface.php';
 
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_File_Rename implements Zend_Filter_Interface
 {
@@ -46,9 +46,9 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
      * 'target'    => Target filename or directory, the new name of the sourcefile
      * 'overwrite' => Shall existing files be overwritten ?
      *
-     * @param  string|array $options Target file or directory to be renamed
-     * @param  string $target Source filename or directory (deprecated)
-     * @param  bool $overwrite Should existing files be overwritten (deprecated)
+     * @param  string|array $options   Target file or directory to be renamed
+     * @param  string       $target    Source filename or directory (deprecated)
+     * @param  bool         $overwrite Should existing files be overwritten (deprecated)
      * @return void
      */
     public function __construct($options)
@@ -123,7 +123,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
             $options = array('target' => $options);
         } elseif (!is_array($options)) {
             // require_once 'Zend/Filter/Exception.php';
-            throw new Zend_Filter_Exception ('Invalid options to rename filter provided');
+            throw new Zend_Filter_Exception('Invalid options to rename filter provided');
         }
 
         $this->_convertOptions($options);
@@ -205,7 +205,8 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
      * @param  array $options
      * @return array
      */
-    protected function _convertOptions($options) {
+    protected function _convertOptions($options)
+    {
         $files = array();
         foreach ($options as $key => $value) {
             if (is_array($value)) {
@@ -214,20 +215,20 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
             }
 
             switch ($key) {
-                case "source":
-                    $files['source'] = (string) $value;
-                    break;
+            case "source":
+                $files['source'] = (string) $value;
+                break;
 
-                case 'target' :
-                    $files['target'] = (string) $value;
-                    break;
+            case 'target' :
+                $files['target'] = (string) $value;
+                break;
 
-                case 'overwrite' :
-                    $files['overwrite'] = (boolean) $value;
-                    break;
+            case 'overwrite' :
+                $files['overwrite'] = (boolean) $value;
+                break;
 
-                default:
-                    break;
+            default:
+                break;
             }
         }
 

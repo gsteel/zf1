@@ -20,10 +20,14 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Registry */
+/**
+ * Zend_Registry 
+ */
 // require_once 'Zend/Registry.php';
 
-/** Zend_View_Helper_Abstract.php */
+/**
+ * Zend_View_Helper_Abstract.php 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**
@@ -36,7 +40,8 @@
  */
 class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
 {
-    /**#@+
+    /**
+* #@+
      * DocType constants
      */
     const XHTML11             = 'XHTML11';
@@ -53,22 +58,27 @@ class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
     const HTML5               = 'HTML5';
     const CUSTOM_XHTML        = 'CUSTOM_XHTML';
     const CUSTOM              = 'CUSTOM';
-    /**#@-*/
+    /**
+     * #@-
+     */
 
     /**
      * Default DocType
+     *
      * @var string
      */
     protected $_defaultDoctype = self::HTML4_LOOSE;
 
     /**
      * Registry containing current doctype and mappings
+     *
      * @var ArrayObject
      */
     protected $_registry;
 
     /**
      * Registry key in which helper is stored
+     *
      * @var string
      */
     protected $_regKey = \Zend_View_Helper_Doctype::class;
@@ -83,7 +93,8 @@ class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
     public function __construct()
     {
         if (!Zend_Registry::isRegistered($this->_regKey)) {
-            $this->_registry = new ArrayObject(array(
+            $this->_registry = new ArrayObject(
+                array(
                 'doctypes' => array(
                     self::XHTML11             => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">',
                     self::XHTML1_STRICT       => '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
@@ -98,7 +109,8 @@ class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
                     self::HTML4_FRAMESET      => '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">',
                     self::HTML5               => '<!DOCTYPE html>',
                 )
-            ));
+                )
+            );
             Zend_Registry::set($this->_regKey, $this->_registry);
             $this->setDoctype($this->_defaultDoctype);
         } else {
@@ -116,35 +128,35 @@ class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
     {
         if (null !== $doctype) {
             switch ($doctype) {
-                case self::XHTML11:
-                case self::XHTML1_STRICT:
-                case self::XHTML1_TRANSITIONAL:
-                case self::XHTML1_FRAMESET:
-                case self::XHTML_BASIC1:
-                case self::XHTML1_RDFA:
-                case self::XHTML1_RDFA11:
-                case self::XHTML5:
-                case self::HTML4_STRICT:
-                case self::HTML4_LOOSE:
-                case self::HTML4_FRAMESET:
-                case self::HTML5:
-                    $this->setDoctype($doctype);
-                    break;
-                default:
-                    if (substr($doctype, 0, 9) != '<!DOCTYPE') {
-                        // require_once 'Zend/View/Exception.php';
-                        $e = new Zend_View_Exception('The specified doctype is malformed');
-                        $e->setView($this->view);
-                        throw $e;
-                    }
-                    if (stristr($doctype, 'xhtml')) {
-                        $type = self::CUSTOM_XHTML;
-                    } else {
-                        $type = self::CUSTOM;
-                    }
-                    $this->setDoctype($type);
-                    $this->_registry['doctypes'][$type] = $doctype;
-                    break;
+            case self::XHTML11:
+            case self::XHTML1_STRICT:
+            case self::XHTML1_TRANSITIONAL:
+            case self::XHTML1_FRAMESET:
+            case self::XHTML_BASIC1:
+            case self::XHTML1_RDFA:
+            case self::XHTML1_RDFA11:
+            case self::XHTML5:
+            case self::HTML4_STRICT:
+            case self::HTML4_LOOSE:
+            case self::HTML4_FRAMESET:
+            case self::HTML5:
+                $this->setDoctype($doctype);
+                break;
+            default:
+                if (substr($doctype, 0, 9) != '<!DOCTYPE') {
+                    // require_once 'Zend/View/Exception.php';
+                    $e = new Zend_View_Exception('The specified doctype is malformed');
+                    $e->setView($this->view);
+                    throw $e;
+                }
+                if (stristr($doctype, 'xhtml')) {
+                    $type = self::CUSTOM_XHTML;
+                } else {
+                    $type = self::CUSTOM;
+                }
+                $this->setDoctype($type);
+                $this->_registry['doctypes'][$type] = $doctype;
+                break;
             }
         }
 
@@ -202,12 +214,12 @@ class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
     {
         switch ( $this->getDoctype() )
         {
-            case self::XHTML1_STRICT:
-            case self::XHTML11:
-            case self::HTML4_STRICT:
-                return true;
-            default: 
-                return false;
+        case self::XHTML1_STRICT:
+        case self::XHTML11:
+        case self::HTML4_STRICT:
+            return true;
+        default: 
+            return false;
         }
     }
     
@@ -216,7 +228,8 @@ class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
      *
      * @return booleean
      */
-    public function isHtml5() {
+    public function isHtml5()
+    {
         return (stristr($this->doctype(), '<!DOCTYPE html>') ? true : false);
     }
     
@@ -225,7 +238,8 @@ class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
      *
      * @return booleean
      */
-    public function isRdfa() {
+    public function isRdfa()
+    {
         return (stristr($this->getDoctype(), 'rdfa') ? true : false);
     }
 

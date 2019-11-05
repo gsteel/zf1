@@ -33,7 +33,7 @@
 /**
  * Validates whether a given value is valid as a sitemap <loc> value
  *
- * @link       http://www.sitemaps.org/protocol.php Sitemaps XML format
+ * @link http://www.sitemaps.org/protocol.php Sitemaps XML format
  *
  * @category   Zend
  * @package    Zend_Validate
@@ -45,7 +45,6 @@ class Zend_Validate_Sitemap_Loc extends Zend_Validate_Abstract
 {
     /**
      * Validation key for not valid
-     *
      */
     const NOT_VALID = 'sitemapLocNotValid';
     const INVALID   = 'sitemapLocInvalid';
@@ -65,7 +64,7 @@ class Zend_Validate_Sitemap_Loc extends Zend_Validate_Abstract
      *
      * @link http://www.sitemaps.org/protocol.php#locdef <loc>
      *
-     * @param  string  $value  value to validate
+     * @param  string $value value to validate
      * @return boolean
      */
     public function isValid($value)

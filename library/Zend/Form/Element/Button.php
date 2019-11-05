@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Element_Submit */
+/**
+ * Zend_Form_Element_Submit 
+ */
 // require_once 'Zend/Form/Element/Submit.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Form_Element_Button extends Zend_Form_Element_Submit
 {
     /**
      * Use formButton view helper by default
+     *
      * @var string
      */
     public $helper = 'formButton';
@@ -45,7 +48,7 @@ class Zend_Form_Element_Button extends Zend_Form_Element_Submit
      *
      * There is no need to reset the value
      *
-     * @param  mixed $value Is always ignored
+     * @param  mixed $value   Is always ignored
      * @param  mixed $context Is always ignored
      * @return boolean Returns always TRUE
      */

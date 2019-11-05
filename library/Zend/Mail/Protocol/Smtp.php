@@ -124,24 +124,24 @@ class Zend_Mail_Protocol_Smtp extends Zend_Mail_Protocol_Abstract
     {
         if (isset($config['ssl'])) {
             switch (strtolower($config['ssl'])) {
-                case 'tls':
-                    $this->_secure = 'tls';
-                    break;
+            case 'tls':
+                $this->_secure = 'tls';
+                break;
 
-                case 'ssl':
-                    $this->_transport = 'ssl';
-                    $this->_secure = 'ssl';
-                    if ($port == null) {
-                        $port = 465;
-                    }
-                    break;
+            case 'ssl':
+                $this->_transport = 'ssl';
+                $this->_secure = 'ssl';
+                if ($port == null) {
+                    $port = 465;
+                }
+                break;
 
-                default:
-                    /**
-                     * @see Zend_Mail_Protocol_Exception
-                     */
-                    // require_once 'Zend/Mail/Protocol/Exception.php';
-                    throw new Zend_Mail_Protocol_Exception($config['ssl'] . ' is unsupported SSL type');
+            default:
+                /**
+                 * @see Zend_Mail_Protocol_Exception
+                 */
+                // require_once 'Zend/Mail/Protocol/Exception.php';
+                throw new Zend_Mail_Protocol_Exception($config['ssl'] . ' is unsupported SSL type');
                     break;
             }
         }

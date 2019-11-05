@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -36,10 +36,10 @@
  *
  * Class also provides Zend_Memory_Container_Interface interface and works as proxy for such cases.
  *
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Memory_AccessController implements Zend_Memory_Container_Interface
 {
@@ -126,7 +126,7 @@ class Zend_Memory_AccessController implements Zend_Memory_Container_Interface
      * Loads object if necessary and moves it to the top of loaded objects list.
      * Swaps objects from the bottom of loaded objects list, if necessary.
      *
-     * @param string $property
+     * @param  string $property
      * @return string
      * @throws Zend_Memory_Exception
      */
@@ -138,7 +138,7 @@ class Zend_Memory_AccessController implements Zend_Memory_Container_Interface
     /**
      * Set handler
      *
-     * @param string $property
+     * @param  string $property
      * @param  string $value
      * @throws Zend_Exception
      */

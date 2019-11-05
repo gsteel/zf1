@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Json
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Json
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -26,17 +26,19 @@
  */
 // require_once 'Zend/Json/Expr.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
 /**
  * Class for encoding to and decoding from JSON.
  *
- * @category   Zend
- * @package    Zend_Json
- * @uses       Zend_Json_Expr
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Json
+ * @uses      Zend_Json_Expr
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Json
 {
@@ -66,9 +68,11 @@ class Zend_Json
      *
      * Uses ext/json's json_decode if available.
      *
-     * @param string $encodedValue Encoded in JSON format
-     * @param int $objectDecodeType Optional; flag indicating how to decode
-     * objects. See {@link Zend_Json_Decoder::decode()} for details.
+     * @param  string $encodedValue     Encoded in JSON format
+     * @param  int    $objectDecodeType Optional; flag indicating how to decode
+     *                                  objects. See {@link
+     *                                  Zend_Json_Decoder::decode()} for
+     *                                  details.
      * @return mixed
      */
     public static function decode($encodedValue, $objectDecodeType = Zend_Json::TYPE_ARRAY)
@@ -85,18 +89,18 @@ class Zend_Json
                     // require_once 'Zend/Json/Exception.php';
                     throw new Zend_Json_Exception('Decoding failed');
                 }
-            // php >= 5.3
+                // php >= 5.3
             } elseif (($jsonLastErr = json_last_error()) != JSON_ERROR_NONE) {
                 // require_once 'Zend/Json/Exception.php';
                 switch ($jsonLastErr) {
-                    case JSON_ERROR_DEPTH:
-                        throw new Zend_Json_Exception('Decoding failed: Maximum stack depth exceeded');
-                    case JSON_ERROR_CTRL_CHAR:
-                        throw new Zend_Json_Exception('Decoding failed: Unexpected control character found');
-                    case JSON_ERROR_SYNTAX:
-                        throw new Zend_Json_Exception('Decoding failed: Syntax error');
-                    default:
-                        throw new Zend_Json_Exception('Decoding failed');
+                case JSON_ERROR_DEPTH:
+                    throw new Zend_Json_Exception('Decoding failed: Maximum stack depth exceeded');
+                case JSON_ERROR_CTRL_CHAR:
+                    throw new Zend_Json_Exception('Decoding failed: Unexpected control character found');
+                case JSON_ERROR_SYNTAX:
+                    throw new Zend_Json_Exception('Decoding failed: Syntax error');
+                default:
+                    throw new Zend_Json_Exception('Decoding failed');
                 }
             }
 
@@ -122,9 +126,9 @@ class Zend_Json
      *
      * @see Zend_Json_Expr
      *
-     * @param  mixed $valueToEncode
-     * @param  boolean $cycleCheck Optional; whether or not to check for object recursion; off by default
-     * @param  array $options Additional options used during encoding
+     * @param  mixed   $valueToEncode
+     * @param  boolean $cycleCheck    Optional; whether or not to check for object recursion; off by default
+     * @param  array   $options       Additional options used during encoding
      * @return string JSON encoded object
      */
     public static function encode($valueToEncode, $cycleCheck = false, $options = array())
@@ -140,7 +144,7 @@ class Zend_Json
         // Pre-encoding look for Zend_Json_Expr objects and replacing by tmp ids
         $javascriptExpressions = array();
         if(isset($options['enableJsonExprFinder'])
-           && ($options['enableJsonExprFinder'] == true)
+            && ($options['enableJsonExprFinder'] == true)
         ) {
             /**
              * @see Zend_Json_Encoder
@@ -186,24 +190,24 @@ class Zend_Json
      *
      * NOTE: This method is used internally by the encode method.
      *
-     * @see encode
-     * @param array|object|Zend_Json_Expr $value a string - object property to be encoded
-     * @param array $javascriptExpressions
-     * @param null $currentKey
+     * @see   encode
+     * @param array|object|Zend_Json_Expr $value                 a string - object property to be encoded
+     * @param array                       $javascriptExpressions
+     * @param null                        $currentKey
      *
      * @internal param mixed $valueToCheck
-     * @return void
+     * @return   void
      */
     protected static function _recursiveJsonExprFinder(&$value, array &$javascriptExpressions, $currentKey = null)
     {
-         if ($value instanceof Zend_Json_Expr) {
+        if ($value instanceof Zend_Json_Expr) {
             // TODO: Optimize with ascii keys, if performance is bad
             $magicKey = "____" . $currentKey . "_" . (count($javascriptExpressions));
             $javascriptExpressions[] = array(
 
-                //if currentKey is integer, encodeUnicodeString call is not required.
-                "magicKey" => (is_int($currentKey)) ? $magicKey : Zend_Json_Encoder::encodeUnicodeString($magicKey),
-                "value"    => $value->__toString(),
+               //if currentKey is integer, encodeUnicodeString call is not required.
+               "magicKey" => (is_int($currentKey)) ? $magicKey : Zend_Json_Encoder::encodeUnicodeString($magicKey),
+               "value"    => $value->__toString(),
             );
             $value = $magicKey;
         } elseif (is_array($value)) {
@@ -226,13 +230,14 @@ class Zend_Json
      * matchs the pattern that try to detect if it is a new Zend_Json_Expr
      * if it matches, we return a new Zend_Json_Expr instead of a text node
      *
-     * @param SimpleXMLElement $simpleXmlElementObject
+     * @param  SimpleXMLElement $simpleXmlElementObject
      * @return Zend_Json_Expr|string
      */
-    protected static function _getXmlValue($simpleXmlElementObject) {
+    protected static function _getXmlValue($simpleXmlElementObject)
+    {
         $pattern = '/^[\s]*new Zend_Json_Expr[\s]*\([\s]*[\"\']{1}(.*)[\"\']{1}[\s]*\)[\s]*$/';
         $matchings = array();
-        $match = preg_match ($pattern, $simpleXmlElementObject, $matchings);
+        $match = preg_match($pattern, $simpleXmlElementObject, $matchings);
         if ($match) {
             return new Zend_Json_Expr($matchings[1]);
         } else {
@@ -255,9 +260,9 @@ class Zend_Json
      *
      * Throws a Zend_Json_Exception if the XML tree is deeper than the allowed limit.
      *
-     * @param SimpleXMLElement $simpleXmlElementObject
-     * @param boolean $ignoreXmlAttributes
-     * @param integer $recursionDepth
+     * @param  SimpleXMLElement $simpleXmlElementObject
+     * @param  boolean          $ignoreXmlAttributes
+     * @param  integer          $recursionDepth
      * @return array
      */
     protected static function _processXml($simpleXmlElementObject, $ignoreXmlAttributes, $recursionDepth=0)
@@ -269,7 +274,8 @@ class Zend_Json
             // require_once 'Zend/Json/Exception.php';
             throw new Zend_Json_Exception(
                 "Function _processXml exceeded the allowed recursion depth of " .
-                self::$maxRecursionDepthAllowed);
+                self::$maxRecursionDepthAllowed
+            );
         } // End of if ($recursionDepth > self::$maxRecursionDepthAllowed)
 
         $children = $simpleXmlElementObject->children();
@@ -287,13 +293,13 @@ class Zend_Json
                 } 
                 return array($name => $attributes);
             } else {
-               return array($name => $value);
+                return array($name => $value);
             }
         } else {
             $childArray= array();
             foreach ($children as $child) {
                 $childname = $child->getName();
-                $element = self::_processXml($child,$ignoreXmlAttributes,$recursionDepth+1);
+                $element = self::_processXml($child, $ignoreXmlAttributes, $recursionDepth+1);
                 if (array_key_exists($childname, $childArray)) {
                     if (empty($subChild[$childname])) {
                         $childArray[$childname] = array($childArray[$childname]);
@@ -337,9 +343,9 @@ class Zend_Json
      *
      * @static
      * @access public
-     * @param string $xmlStringContents XML String to be converted
-     * @param boolean $ignoreXmlAttributes Include or exclude XML attributes in
-     * the xml2json conversion process.
+     * @param  string  $xmlStringContents   XML String to be converted
+     * @param  boolean $ignoreXmlAttributes Include or exclude XML attributes in
+     *                                      the xml2json conversion process.
      * @return mixed - JSON formatted string on success
      * @throws Zend_Json_Exception
      */
@@ -373,8 +379,8 @@ class Zend_Json
      * Use 'format' option to select output format - currently html and txt supported, txt is default
      * Use 'indent' option to override the indentation string set in the format - by default for the 'txt' format it's a tab
      *
-     * @param string $json Original JSON string
-     * @param array $options Encoding options
+     * @param  string $json    Original JSON string
+     * @param  array  $options Encoding options
      * @return string
      */
     public static function prettyPrint($json, $options = array())
@@ -392,15 +398,15 @@ class Zend_Json
         }
 
         switch ($format) {
-            case 'html':
-                $lineBreak = '<br />';
-                $ind = '&nbsp;&nbsp;&nbsp;&nbsp;';
-                break;
-            default:
-            case 'txt':
-                $lineBreak = "\n";
-                $ind = "\t";
-                break;
+        case 'html':
+            $lineBreak = '<br />';
+            $ind = '&nbsp;&nbsp;&nbsp;&nbsp;';
+            break;
+        default:
+        case 'txt':
+            $lineBreak = "\n";
+            $ind = "\t";
+            break;
         }
 
         // override the defined indent setting with the supplied option
@@ -439,5 +445,5 @@ class Zend_Json
             }
         }
         return $result;
-   }
+    }
 }

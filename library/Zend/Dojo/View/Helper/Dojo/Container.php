@@ -20,12 +20,13 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo */
+/**
+ * Zend_Dojo 
+ */
 // require_once 'Zend/Dojo.php';
 
 /**
  * Container for  Dojo View Helper
- *
  *
  * @package    Zend_Dojo
  * @subpackage View
@@ -41,126 +42,147 @@ class Zend_Dojo_View_Helper_Dojo_Container
 
     /**
      * addOnLoad capture lock
+     *
      * @var bool
      */
     protected $_captureLock = false;
 
     /**
      * addOnLoad object on which to apply lambda
+     *
      * @var string
      */
     protected $_captureObj;
 
     /**
      * Base CDN url to utilize
+     *
      * @var string
      */
     protected $_cdnBase = Zend_Dojo::CDN_BASE_GOOGLE;
 
     /**
      * Path segment following version string of CDN path
+     *
      * @var string
      */
     protected $_cdnDojoPath = Zend_Dojo::CDN_DOJO_PATH_GOOGLE;
 
     /**
      * Dojo version to use from CDN
+     *
      * @var string
      */
     protected $_cdnVersion = '1.5.0';
 
     /**
      * Has the dijit loader been registered?
+     *
      * @var bool
      */
     protected $_dijitLoaderRegistered = false;
 
     /**
      * Registered programmatic dijits
+     *
      * @var array
      */
     protected $_dijits = array();
 
     /**
      * Dojo configuration
+     *
      * @var array
      */
     protected $_djConfig = array();
 
     /**
      * Whether or not dojo is enabled
+     *
      * @var bool
      */
     protected $_enabled = false;
 
     /**
      * Are we rendering as XHTML?
+     *
      * @var bool
      */
     protected $_isXhtml = false;
 
     /**
      * Arbitrary javascript to include in dojo script
+     *
      * @var array
      */
     protected $_javascriptStatements = array();
 
     /**
      * Dojo layers (custom builds) to use
+     *
      * @var array
      */
     protected $_layers = array();
 
     /**
      * Relative path to dojo
+     *
      * @var string
      */
     protected $_localPath = null;
 
     /**
      * Root of dojo where all dojo files are installed
+     *
      * @var string
      */
     protected $_localRelativePath = null;
 
     /**
      * Modules to require
+     *
      * @var array
      */
     protected $_modules = array();
 
     /**
      * Registered module paths
+     *
      * @var array
      */
     protected $_modulePaths = array();
 
     /**
      * Actions to perform on window load
+     *
      * @var array
      */
     protected $_onLoadActions = array();
 
     /**
      * Register the Dojo stylesheet?
+     *
      * @var bool
      */
     protected $_registerDojoStylesheet = false;
 
     /**
      * Style sheet modules to load
+     *
      * @var array
      */
     protected $_stylesheetModules = array();
 
     /**
      * Local stylesheets
+     *
      * @var array
      */
     protected $_stylesheets = array();
 
     /**
      * Array of onLoad events specific to Zend_Dojo integration operations
+     *
      * @var array
      */
     protected $_zendLoadActions = array();
@@ -211,7 +233,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
     /**
      * Add options for the Dojo Container to use
      *
-     * @param array|Zend_Config Array or Zend_Config object with options to use
+     * @param  array|Zend_Config Array or Zend_Config object with options to use
      * @return Zend_Dojo_View_Helper_Dojo_Container
      */
     public function setOptions($options)
@@ -223,56 +245,56 @@ class Zend_Dojo_View_Helper_Dojo_Container
         foreach($options as $key => $value) {
             $key = strtolower($key);
             switch($key) {
-                case 'requiremodules':
-                    $this->requireModule($value);
-                    break;
-                case 'modulepaths':
-                    foreach($value as $module => $path) {
-                        $this->registerModulePath($module, $path);
-                    }
-                    break;
-                case 'layers':
-                    $value = (array) $value;
-                    foreach($value as $layer) {
-                        $this->addLayer($layer);
-                    }
-                    break;
-                case 'cdnbase':
-                    $this->setCdnBase($value);
-                    break;
-                case 'cdnversion':
-                    $this->setCdnVersion($value);
-                    break;
-                case 'cdndojopath':
-                    $this->setCdnDojoPath($value);
-                    break;
-                case 'localpath':
-                    $this->setLocalPath($value);
-                    break;
-                case 'djconfig':
-                    $this->setDjConfig($value);
-                    break;
-                case 'stylesheetmodules':
-                    $value = (array) $value;
-                    foreach($value as $module) {
-                        $this->addStylesheetModule($module);
-                    }
-                    break;
-                case 'stylesheets':
-                    $value = (array) $value;
-                    foreach($value as $stylesheet) {
-                        $this->addStylesheet($stylesheet);
-                    }
-                    break;
-                case 'registerdojostylesheet':
-                    $this->registerDojoStylesheet($value);
-                    break;
-                case 'enable':
-                    if($value) {
-                        $this->enable();
-                    } else {
-                        $this->disable();
-                    }
+            case 'requiremodules':
+                $this->requireModule($value);
+                break;
+            case 'modulepaths':
+                foreach($value as $module => $path) {
+                    $this->registerModulePath($module, $path);
+                }
+                break;
+            case 'layers':
+                $value = (array) $value;
+                foreach($value as $layer) {
+                    $this->addLayer($layer);
+                }
+                break;
+            case 'cdnbase':
+                $this->setCdnBase($value);
+                break;
+            case 'cdnversion':
+                $this->setCdnVersion($value);
+                break;
+            case 'cdndojopath':
+                $this->setCdnDojoPath($value);
+                break;
+            case 'localpath':
+                $this->setLocalPath($value);
+                break;
+            case 'djconfig':
+                $this->setDjConfig($value);
+                break;
+            case 'stylesheetmodules':
+                $value = (array) $value;
+                foreach($value as $module) {
+                    $this->addStylesheetModule($module);
+                }
+                break;
+            case 'stylesheets':
+                $value = (array) $value;
+                foreach($value as $stylesheet) {
+                    $this->addStylesheet($stylesheet);
+                }
+                break;
+            case 'registerdojostylesheet':
+                $this->registerDojoStylesheet($value);
+                break;
+            case 'enable':
+                if($value) {
+                    $this->enable();
+                } else {
+                    $this->disable();
+                }
             }
         }
 
@@ -322,7 +344,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
      * Register a module path
      *
      * @param  string $module The module to register a path for
-     * @param  string $path The path to register for the module
+     * @param  string $path   The path to register for the module
      * @return Zend_Dojo_View_Helper_Dojo_Container
      */
     public function registerModulePath($module, $path)
@@ -515,7 +537,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
      * Set Dojo configuration
      *
      * @param  string $option
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return Zend_Dojo_View_Helper_Dojo_Container
      */
     public function setDjConfig(array $config)
@@ -528,7 +550,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
      * Set Dojo configuration option
      *
      * @param  string $option
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return Zend_Dojo_View_Helper_Dojo_Container
      */
     public function setDjConfigOption($option, $value)
@@ -552,7 +574,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
      * Get dojo configuration value
      *
      * @param  string $option
-     * @param  mixed $default
+     * @param  mixed  $default
      * @return mixed
      */
     public function getDjConfigOption($option, $default = null)
@@ -713,7 +735,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
      * Add a programmatic dijit
      *
      * @param  string $id
-     * @param  array $params
+     * @param  array  $params
      * @return Zend_Dojo_View_Helper_Dojo_Container
      */
     public function addDijit($id, array $params)
@@ -735,7 +757,7 @@ class Zend_Dojo_View_Helper_Dojo_Container
      * Set a programmatic dijit (overwrites)
      *
      * @param  string $id
-     * @param  array $params
+     * @param  array  $params
      * @return Zend_Dojo_View_Helper_Dojo_Container
      */
     public function setDijit($id, array $params)

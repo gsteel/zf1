@@ -12,7 +12,7 @@ class Zend_Acl_Role implements Zend_Acl_Role_Interface
     /**
      * Sets the Role identifier
      *
-     * @param  string $roleId
+     * @param string $roleId
      */
     public function __construct($roleId)
     {

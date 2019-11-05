@@ -12,31 +12,33 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Registry
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Registry
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
  * Generic storage class helps to manage global data.
  *
- * @category   Zend
- * @package    Zend_Registry
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Registry
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Registry extends ArrayObject
 {
     /**
      * Class name of the singleton registry object.
+     *
      * @var string
      */
     private static $_registryClassName = \Zend_Registry::class;
 
     /**
      * Registry object provides storage for shared objects.
+     *
      * @var Zend_Registry
      */
     private static $_registry = null;
@@ -58,8 +60,8 @@ class Zend_Registry extends ArrayObject
     /**
      * Set the default registry instance to a specified instance.
      *
-     * @param Zend_Registry $registry An object instance of type Zend_Registry,
-     *   or a subclass.
+     * @param  Zend_Registry $registry An object instance of type Zend_Registry,
+     *                                 or a subclass.
      * @return void
      * @throws Zend_Exception if registry is already initialized.
      */
@@ -89,7 +91,7 @@ class Zend_Registry extends ArrayObject
      * Does not affect the currently initialized instance, it only applies
      * for the next time you instantiate.
      *
-     * @param string $registryClassName
+     * @param  string $registryClassName
      * @return void
      * @throws Zend_Exception if the registry is initialized or if the
      *   class name is not valid.
@@ -120,6 +122,7 @@ class Zend_Registry extends ArrayObject
     /**
      * Unset the default registry instance.
      * Primarily used in tearDown() in unit tests.
+     *
      * @returns void
      */
     public static function _unsetInstance()
@@ -134,7 +137,7 @@ class Zend_Registry extends ArrayObject
      * can be called statically.  In the latter case, it uses the default
      * static instance stored in the class.
      *
-     * @param string $index - get the value associated with $index
+     * @param  string $index - get the value associated with $index
      * @return mixed
      * @throws Zend_Exception if no entry is registered for $index.
      */
@@ -157,9 +160,9 @@ class Zend_Registry extends ArrayObject
      * can be called statically.  In the latter case, it uses the default
      * static instance stored in the class.
      *
-     * @param string $index The location in the ArrayObject in which to store
-     *   the value.
-     * @param mixed $value The object to store in the ArrayObject.
+     * @param  string $index The location in the ArrayObject in which to store
+     *                       the value.
+     * @param  mixed  $value The object to store in the ArrayObject.
      * @return void
      */
     public static function set($index, $value)
@@ -187,7 +190,7 @@ class Zend_Registry extends ArrayObject
      * Constructs a parent ArrayObject with default
      * ARRAY_AS_PROPS to allow acces as an object
      *
-     * @param array $array data array
+     * @param array   $array data array
      * @param integer $flags ArrayObject flags
      */
     public function __construct($array = array(), $flags = parent::ARRAY_AS_PROPS)
@@ -196,7 +199,7 @@ class Zend_Registry extends ArrayObject
     }
 
     /**
-     * @param string $index
+     * @param   string $index
      * @returns mixed
      *
      * Workaround for http://bugs.php.net/bug.php?id=40442 (ZF-960).

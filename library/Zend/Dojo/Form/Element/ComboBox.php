@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_DijitMulti */
+/**
+ * Zend_Dojo_Form_Element_DijitMulti 
+ */
 // require_once 'Zend/Dojo/Form/Element/DijitMulti.php';
 
 /**
@@ -36,12 +38,14 @@ class Zend_Dojo_Form_Element_ComboBox extends Zend_Dojo_Form_Element_DijitMulti
 {
     /**
      * Use ComboBox dijit view helper
+     *
      * @var string
      */
     public $helper = 'ComboBox';
 
     /**
      * Flag: autoregister inArray validator?
+     *
      * @var bool
      */
     protected $_registerInArrayValidator = false;
@@ -172,7 +176,7 @@ class Zend_Dojo_Form_Element_ComboBox extends Zend_Dojo_Form_Element_DijitMulti
      * Is the value valid?
      *
      * @param  string $value
-     * @param  mixed $context
+     * @param  mixed  $context
      * @return bool
      */
     public function isValid($value, $context = null)

@@ -122,10 +122,10 @@ class Zend_Cache_Backend_Xcache extends Zend_Cache_Backend implements Zend_Cache
      * Note : $data is always "string" (serialization is done by the
      * core not by the backend)
      *
-     * @param string $data datas to cache
-     * @param string $id cache id
-     * @param array $tags array of strings, the cache record will be tagged by each string entry
-     * @param int $specificLifetime if != false, set a specific lifetime for this cache record (null => infinite lifetime)
+     * @param  string $data             datas to cache
+     * @param  string $id               cache id
+     * @param  array  $tags             array of strings, the cache record will be tagged by each string entry
+     * @param  int    $specificLifetime if != false, set a specific lifetime for this cache record (null => infinite lifetime)
      * @return boolean true if no problem
      */
     public function save($data, $id, $tags = array(), $specificLifetime = false)
@@ -167,44 +167,44 @@ class Zend_Cache_Backend_Xcache extends Zend_Cache_Backend implements Zend_Cache
     public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
     {
         switch ($mode) {
-            case Zend_Cache::CLEANING_MODE_ALL:
-                // Necessary because xcache_clear_cache() need basic authentification
-                $backup = array();
-                if (isset($_SERVER['PHP_AUTH_USER'])) {
-                    $backup['PHP_AUTH_USER'] = $_SERVER['PHP_AUTH_USER'];
-                }
-                if (isset($_SERVER['PHP_AUTH_PW'])) {
-                    $backup['PHP_AUTH_PW'] = $_SERVER['PHP_AUTH_PW'];
-                }
-                if ($this->_options['user']) {
-                    $_SERVER['PHP_AUTH_USER'] = $this->_options['user'];
-                }
-                if ($this->_options['password']) {
-                    $_SERVER['PHP_AUTH_PW'] = $this->_options['password'];
-                }
+        case Zend_Cache::CLEANING_MODE_ALL:
+            // Necessary because xcache_clear_cache() need basic authentification
+            $backup = array();
+            if (isset($_SERVER['PHP_AUTH_USER'])) {
+                $backup['PHP_AUTH_USER'] = $_SERVER['PHP_AUTH_USER'];
+            }
+            if (isset($_SERVER['PHP_AUTH_PW'])) {
+                $backup['PHP_AUTH_PW'] = $_SERVER['PHP_AUTH_PW'];
+            }
+            if ($this->_options['user']) {
+                $_SERVER['PHP_AUTH_USER'] = $this->_options['user'];
+            }
+            if ($this->_options['password']) {
+                $_SERVER['PHP_AUTH_PW'] = $this->_options['password'];
+            }
 
-                $cnt = xcache_count(XC_TYPE_VAR);
-                for ($i=0; $i < $cnt; $i++) {
-                    xcache_clear_cache(XC_TYPE_VAR, $i);
-                }
+            $cnt = xcache_count(XC_TYPE_VAR);
+            for ($i=0; $i < $cnt; $i++) {
+                xcache_clear_cache(XC_TYPE_VAR, $i);
+            }
 
-                if (isset($backup['PHP_AUTH_USER'])) {
-                    $_SERVER['PHP_AUTH_USER'] = $backup['PHP_AUTH_USER'];
-                    $_SERVER['PHP_AUTH_PW'] = $backup['PHP_AUTH_PW'];
-                }
-                return true;
+            if (isset($backup['PHP_AUTH_USER'])) {
+                $_SERVER['PHP_AUTH_USER'] = $backup['PHP_AUTH_USER'];
+                $_SERVER['PHP_AUTH_PW'] = $backup['PHP_AUTH_PW'];
+            }
+            return true;
                 break;
-            case Zend_Cache::CLEANING_MODE_OLD:
-                $this->_log("Zend_Cache_Backend_Xcache::clean() : CLEANING_MODE_OLD is unsupported by the Xcache backend");
-                break;
-            case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
-            case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
-            case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
-                $this->_log(self::TAGS_UNSUPPORTED_BY_CLEAN_OF_XCACHE_BACKEND);
-                break;
-            default:
-                Zend_Cache::throwException('Invalid mode for clean() method');
-                break;
+        case Zend_Cache::CLEANING_MODE_OLD:
+            $this->_log("Zend_Cache_Backend_Xcache::clean() : CLEANING_MODE_OLD is unsupported by the Xcache backend");
+            break;
+        case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
+        case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
+        case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
+            $this->_log(self::TAGS_UNSUPPORTED_BY_CLEAN_OF_XCACHE_BACKEND);
+            break;
+        default:
+            Zend_Cache::throwException('Invalid mode for clean() method');
+            break;
         }
     }
 

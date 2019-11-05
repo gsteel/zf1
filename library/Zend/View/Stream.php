@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_View
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -32,10 +32,10 @@
  *     Mike Naberezny (@link http://mikenaberezny.com)
  *     Paul M. Jones  (@link http://paul-m-jones.com)
  *
- * @category   Zend
- * @package    Zend_View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_View
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Stream
 {
@@ -80,7 +80,6 @@ class Zend_View_Stream
 
         /**
          * Convert <?= ?> to long-form <?php echo ?> and <? ?> to <?php ?>
-         *
          */
         $this->_data = preg_replace('/\<\?\=/',          "<?php echo ",  $this->_data);
         $this->_data = preg_replace('/<\?(?!xml|php)/s', '<?php ',       $this->_data);
@@ -149,35 +148,35 @@ class Zend_View_Stream
     public function stream_seek($offset, $whence)
     {
         switch ($whence) {
-            case SEEK_SET:
-                if ($offset < strlen($this->_data) && $offset >= 0) {
+        case SEEK_SET:
+            if ($offset < strlen($this->_data) && $offset >= 0) {
                 $this->_pos = $offset;
-                    return true;
-                } else {
-                    return false;
-                }
-                break;
-
-            case SEEK_CUR:
-                if ($offset >= 0) {
-                    $this->_pos += $offset;
-                    return true;
-                } else {
-                    return false;
-                }
-                break;
-
-            case SEEK_END:
-                if (strlen($this->_data) + $offset >= 0) {
-                    $this->_pos = strlen($this->_data) + $offset;
-                    return true;
-                } else {
-                    return false;
-                }
-                break;
-
-            default:
+                return true;
+            } else {
                 return false;
+            }
+            break;
+
+        case SEEK_CUR:
+            if ($offset >= 0) {
+                $this->_pos += $offset;
+                return true;
+            } else {
+                return false;
+            }
+            break;
+
+        case SEEK_END:
+            if (strlen($this->_data) + $offset >= 0) {
+                $this->_pos = strlen($this->_data) + $offset;
+                return true;
+            } else {
+                return false;
+            }
+            break;
+
+        default:
+            return false;
         }
     }
 }

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Validate/Interface.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
 {
@@ -63,6 +63,7 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
     /**
      * Flag indidcating whether or not value should be obfuscated in error
      * messages
+     *
      * @var bool
      */
     protected $_obscureValue = false;
@@ -70,25 +71,28 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
     /**
      * Array of validation failure message codes
      *
-     * @var array
+     * @var        array
      * @deprecated Since 1.5.0
      */
     protected $_errors = array();
 
     /**
      * Translation object
+     *
      * @var Zend_Translate
      */
     protected $_translator;
 
     /**
      * Default translation object for all validate objects
+     *
      * @var Zend_Translate
      */
     protected static $_defaultTranslator;
 
     /**
      * Is translation disabled?
+     *
      * @var Boolean
      */
     protected $_translatorDisabled = false;
@@ -134,7 +138,7 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
      * Sets the validation failure message template for a particular key
      *
      * @param  string $messageString
-     * @param  string $messageKey     OPTIONAL
+     * @param  string $messageKey    OPTIONAL
      * @return Zend_Validate_Abstract Provides a fluent interface
      * @throws Zend_Validate_Exception
      */
@@ -259,7 +263,7 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
     /**
      * Joins elements of a multidimensional array
      *
-     * @param array $pieces
+     * @param  array $pieces
      * @return string
      */
     protected function _implodeRecursive(array $pieces)
@@ -310,7 +314,7 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
     /**
      * Returns array of validation failure message codes
      *
-     * @return array
+     * @return     array
      * @deprecated Since 1.5.0
      */
     public function getErrors()

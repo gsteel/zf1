@@ -12,21 +12,22 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Loader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-if (interface_exists(\Zend_Loader_SplAutoloader::class)) return;
+if (interface_exists(\Zend_Loader_SplAutoloader::class)) { return;
+}
 
 /**
  * Defines an interface for classes that may register with the spl_autoload 
  * registry
  *
- * @package    Zend_Loader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @package   Zend_Loader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 interface Zend_Loader_SplAutoloader
 {
@@ -54,8 +55,8 @@ interface Zend_Loader_SplAutoloader
     /**
      * Autoload a class
      *
-     * @param   $class
-     * @return  mixed
+     * @param  $class
+     * @return mixed
      *          False [if unable to load $class]
      *          get_class($class) [if $class is successfully loaded]
      */

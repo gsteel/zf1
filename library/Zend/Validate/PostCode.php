@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -30,10 +30,10 @@
 // require_once 'Zend/Locale/Format.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_PostCode extends Zend_Validate_Abstract
 {
@@ -68,7 +68,7 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
      * Accepts either a string locale, a Zend_Locale object, or an array or
      * Zend_Config object containing the keys "locale" and/or "format".
      *
-     * @param string|Zend_Locale|array|Zend_Config $options
+     * @param  string|Zend_Locale|array|Zend_Config $options
      * @throws Zend_Validate_Exception On empty format
      */
     public function __construct($options = null)
@@ -116,7 +116,7 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
     /**
      * Sets the locale to use
      *
-     * @param string|Zend_Locale $locale
+     * @param  string|Zend_Locale $locale
      * @throws Zend_Validate_Exception On unrecognised region
      * @throws Zend_Validate_Exception On not detected format
      * @return Zend_Validate_PostCode  Provides a fluent interface
@@ -160,7 +160,7 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
     /**
      * Sets a self defined postal format as regex
      *
-     * @param string $format
+     * @param  string $format
      * @throws Zend_Validate_Exception On empty format
      * @return Zend_Validate_PostCode  Provides a fluent interface
      */

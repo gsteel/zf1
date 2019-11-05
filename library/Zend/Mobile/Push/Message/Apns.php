@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Mobile_Push_Message_Abstract **/
+/**
+ * Zend_Mobile_Push_Message_Abstract 
+ **/
 // require_once 'Zend/Mobile/Push/Message/Abstract.php';
 
 /**
@@ -144,7 +146,7 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
     /**
      * Set Badge
      *
-     * @param int $badge
+     * @param  int $badge
      * @return Zend_Mobile_Push_Message_Apns
      * @throws Zend_Mobile_Push_Message_Exception
      */
@@ -172,7 +174,7 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
     /**
      * Set Expire
      *
-     * @param int $expire
+     * @param  int $expire
      * @return Zend_Mobile_Push_Message_Apns
      * @throws Zend_Mobile_Push_Message_Exception
      */
@@ -198,7 +200,7 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
     /**
      * Set Sound
      *
-     * @param string $sound
+     * @param  string $sound
      * @return Zend_Mobile_Push_Message_Apns
      * @throws Zend_Mobile_Push_Message_Exception
      */
@@ -214,8 +216,8 @@ class Zend_Mobile_Push_Message_Apns extends Zend_Mobile_Push_Message_Abstract
     /**
      * Add Custom Data
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string $key
+     * @param  mixed  $value
      * @return Zend_Mobile_Push_Message_Apns
      * @throws Zend_Mobile_Push_Message_Exception
      */

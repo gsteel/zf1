@@ -18,104 +18,104 @@ class Zend_Application_Resource_Frontcontroller extends Zend_Application_Resourc
 
         foreach ($this->getOptions() as $key => $value) {
             switch (strtolower($key)) {
-                case 'controllerdirectory':
-                    if (is_string($value)) {
-                        $front->setControllerDirectory($value);
-                    } elseif (is_array($value)) {
-                        foreach ($value as $module => $directory) {
-                            $front->addControllerDirectory($directory, $module);
-                        }
+            case 'controllerdirectory':
+                if (is_string($value)) {
+                    $front->setControllerDirectory($value);
+                } elseif (is_array($value)) {
+                    foreach ($value as $module => $directory) {
+                        $front->addControllerDirectory($directory, $module);
                     }
-                    break;
+                }
+                break;
 
-                case 'modulecontrollerdirectoryname':
-                    $front->setModuleControllerDirectoryName($value);
-                    break;
+            case 'modulecontrollerdirectoryname':
+                $front->setModuleControllerDirectoryName($value);
+                break;
 
-                case 'moduledirectory':
-                    if (is_string($value)) {
-                        $front->addModuleDirectory($value);
-                    } elseif (is_array($value)) {
-                        foreach ($value as $moduleDir) {
-                            $front->addModuleDirectory($moduleDir);
-                        }
+            case 'moduledirectory':
+                if (is_string($value)) {
+                    $front->addModuleDirectory($value);
+                } elseif (is_array($value)) {
+                    foreach ($value as $moduleDir) {
+                        $front->addModuleDirectory($moduleDir);
                     }
-                    break;
+                }
+                break;
 
-                case 'defaultcontrollername':
-                    $front->setDefaultControllerName($value);
-                    break;
+            case 'defaultcontrollername':
+                $front->setDefaultControllerName($value);
+                break;
 
-                case 'defaultaction':
-                    $front->setDefaultAction($value);
-                    break;
+            case 'defaultaction':
+                $front->setDefaultAction($value);
+                break;
 
-                case 'defaultmodule':
-                    $front->setDefaultModule($value);
-                    break;
+            case 'defaultmodule':
+                $front->setDefaultModule($value);
+                break;
 
-                case 'baseurl':
-                    if (!empty($value)) {
-                        $front->setBaseUrl($value);
-                    }
-                    break;
+            case 'baseurl':
+                if (!empty($value)) {
+                    $front->setBaseUrl($value);
+                }
+                break;
 
-                case 'params':
-                    $front->setParams($value);
-                    break;
+            case 'params':
+                $front->setParams($value);
+                break;
 
-                case 'plugins':
-                    foreach ((array) $value as $pluginClass) {
-                        $stackIndex = null;
-                        if (is_array($pluginClass)) {
-                            $pluginClass = array_change_key_case($pluginClass, CASE_LOWER);
-                            if (isset($pluginClass['class'])) {
-                                if (isset($pluginClass['stackindex'])) {
-                                    $stackIndex = $pluginClass['stackindex'];
-                                }
-
-                                $pluginClass = $pluginClass['class'];
+            case 'plugins':
+                foreach ((array) $value as $pluginClass) {
+                    $stackIndex = null;
+                    if (is_array($pluginClass)) {
+                        $pluginClass = array_change_key_case($pluginClass, CASE_LOWER);
+                        if (isset($pluginClass['class'])) {
+                            if (isset($pluginClass['stackindex'])) {
+                                $stackIndex = $pluginClass['stackindex'];
                             }
-                        }
 
-                        $plugin = new $pluginClass();
-                        $front->registerPlugin($plugin, $stackIndex);
-                    }
-                    break;
-
-                case 'returnresponse':
-                    $front->returnResponse((bool) $value);
-                    break;
-
-                case 'throwexceptions':
-                    $front->throwExceptions((bool) $value);
-                    break;
-
-                case 'actionhelperpaths':
-                    if (is_array($value)) {
-                        foreach ($value as $helperPrefix => $helperPath) {
-                            Zend_Controller_Action_HelperBroker::addPath($helperPath, $helperPrefix);
+                            $pluginClass = $pluginClass['class'];
                         }
                     }
-                    break;
 
-                case 'dispatcher':
-                    if (!isset($value['class'])) {
-                        throw new Zend_Application_Exception('You must specify both ');
+                    $plugin = new $pluginClass();
+                    $front->registerPlugin($plugin, $stackIndex);
+                }
+                break;
+
+            case 'returnresponse':
+                $front->returnResponse((bool) $value);
+                break;
+
+            case 'throwexceptions':
+                $front->throwExceptions((bool) $value);
+                break;
+
+            case 'actionhelperpaths':
+                if (is_array($value)) {
+                    foreach ($value as $helperPrefix => $helperPath) {
+                        Zend_Controller_Action_HelperBroker::addPath($helperPath, $helperPrefix);
                     }
-                    if (!isset($value['params'])) {
-                        $value['params'] = array();
-                    }
+                }
+                break;
+
+            case 'dispatcher':
+                if (!isset($value['class'])) {
+                    throw new Zend_Application_Exception('You must specify both ');
+                }
+                if (!isset($value['params'])) {
+                    $value['params'] = array();
+                }
                     
-                    $dispatchClass = $value['class'];
-                    if (!class_exists($dispatchClass)) {
-                        throw new Zend_Application_Exception('Dispatcher class not found!');
-                    }
-                    $front->setDispatcher(new $dispatchClass((array)$value['params']));
-                    break;
-                default:
-                    $front->setParam($key, $value);
-                    break;
+                $dispatchClass = $value['class'];
+                if (!class_exists($dispatchClass)) {
+                    throw new Zend_Application_Exception('Dispatcher class not found!');
+                }
+                $front->setDispatcher(new $dispatchClass((array)$value['params']));
+                break;
+            default:
+                $front->setParam($key, $value);
+                break;
             }
         }
 

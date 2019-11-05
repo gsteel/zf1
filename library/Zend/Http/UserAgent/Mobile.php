@@ -272,7 +272,7 @@ class Zend_Http_UserAgent_Mobile extends Zend_Http_UserAgent_AbstractDevice
      * Comparison of the UserAgent chain and User Agent signatures
      *
      * @param  string $userAgent User Agent chain
-     * @param  array $server $_SERVER like param
+     * @param  array  $server    $_SERVER like param
      * @return bool
      */
     public static function match($userAgent, $server)
@@ -403,23 +403,23 @@ class Zend_Http_UserAgent_Mobile extends Zend_Http_UserAgent_AbstractDevice
     {
         $return = '';
         switch ($preferredMarkup) {
-            case 'wml_1_1':
-            case 'wml_1_2':
-            case 'wml_1_3':
-                $return = 'wml'; //text/vnd.wap.wml encoding="ISO-8859-15"
-            case 'html_wi_imode_compact_generic':
-            case 'html_wi_imode_html_1':
-            case 'html_wi_imode_html_2':
-            case 'html_wi_imode_html_3':
-            case 'html_wi_imode_html_4':
-            case 'html_wi_imode_html_5':
-                $return = 'chtml'; //text/html
-            case 'html_wi_oma_xhtmlmp_1_0': //application/vnd.wap.xhtml+xml
-            case 'html_wi_w3_xhtmlbasic': //application/xhtml+xml DTD XHTML Basic 1.0
-                $return = 'xhtml';
-            case 'html_web_3_2': //text/html DTD Html 3.2 Final
-            case 'html_web_4_0': //text/html DTD Html 4.01 Transitional
-                $return = '';
+        case 'wml_1_1':
+        case 'wml_1_2':
+        case 'wml_1_3':
+            $return = 'wml'; //text/vnd.wap.wml encoding="ISO-8859-15"
+        case 'html_wi_imode_compact_generic':
+        case 'html_wi_imode_html_1':
+        case 'html_wi_imode_html_2':
+        case 'html_wi_imode_html_3':
+        case 'html_wi_imode_html_4':
+        case 'html_wi_imode_html_5':
+            $return = 'chtml'; //text/html
+        case 'html_wi_oma_xhtmlmp_1_0': //application/vnd.wap.xhtml+xml
+        case 'html_wi_w3_xhtmlbasic': //application/xhtml+xml DTD XHTML Basic 1.0
+            $return = 'xhtml';
+        case 'html_web_3_2': //text/html DTD Html 3.2 Final
+        case 'html_web_4_0': //text/html DTD Html 4.01 Transitional
+            $return = '';
         }
         return $return;
     }

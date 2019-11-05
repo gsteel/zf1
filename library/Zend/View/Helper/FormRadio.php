@@ -40,12 +40,14 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
 {
     /**
      * Input type to use
+     *
      * @var string
      */
     protected $_inputType = 'radio';
 
     /**
      * Whether or not this element represents an array collection by default
+     *
      * @var bool
      */
     protected $_isArray = false;
@@ -55,22 +57,25 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
      *
      * @access public
      *
-     * @param string|array $name If a string, the element name.  If an
-     * array, all other parameters are ignored, and the array elements
-     * are extracted in place of added parameters.
+     * @param string|array $name    If a string, the element name.  If an
+     *                              array, all other parameters are
+     *                              ignored, and the array elements are
+     *                              extracted in place of added
+     *                              parameters.
      *
-     * @param mixed $value The radio value to mark as 'checked'.
+     * @param mixed        $value   The radio value to mark as 'checked'.
      *
-     * @param array $options An array of key-value pairs where the array
-     * key is the radio value, and the array value is the radio text.
+     * @param array        $options An array of key-value pairs where the array
+     *                              key is the radio value, and the array value
+     *                              is the radio text.
      *
      * @param array|string $attribs Attributes added to each radio.
      *
      * @return string The radio buttons XHTML.
      */
     public function formRadio($name, $value = null, $attribs = null,
-        $options = null, $listsep = "<br />\n")
-    {
+        $options = null, $listsep = "<br />\n"
+    ) {
 
         $escape = null;
         $disable = null;
@@ -100,13 +105,13 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
         $labelPlacement = 'append';
         foreach ($label_attribs as $key => $val) {
             switch (strtolower($key)) {
-                case 'placement':
-                    unset($label_attribs[$key]);
-                    $val = strtolower($val);
-                    if (in_array($val, array('prepend', 'append'))) {
-                        $labelPlacement = $val;
-                    }
-                    break;
+            case 'placement':
+                unset($label_attribs[$key]);
+                $val = strtolower($val);
+                if (in_array($val, array('prepend', 'append'))) {
+                    $labelPlacement = $val;
+                }
+                break;
             }
         }
 

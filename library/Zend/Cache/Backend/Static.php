@@ -44,6 +44,7 @@ class Zend_Cache_Backend_Static
 
     /**
      * Static backend options
+     *
      * @var array
      */
     protected $_options = array(
@@ -61,12 +62,14 @@ class Zend_Cache_Backend_Static
 
     /**
      * Cache for handling tags
+     *
      * @var Zend_Cache_Core
      */
     protected $_tagCache = null;
 
     /**
      * Tagged items
+     *
      * @var array
      */
     protected $_tagged = null;
@@ -77,7 +80,7 @@ class Zend_Cache_Backend_Static
      * standard backend interface
      *
      * @param  string $name
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return Zend_Cache_Backend_Static
      */
     public function setOption($name, $value)
@@ -206,10 +209,10 @@ class Zend_Cache_Backend_Static
      * Note : $data is always "string" (serialization is done by the
      * core not by the backend)
      *
-     * @param  string $data            Datas to cache
-     * @param  string $id              Cache id
-     * @param  array $tags             Array of strings, the cache record will be tagged by each string entry
-     * @param  int   $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
+     * @param  string $data             Datas to cache
+     * @param  string $id               Cache id
+     * @param  array  $tags             Array of strings, the cache record will be tagged by each string entry
+     * @param  int    $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
      * @return boolean true if no problem
      */
     public function save($data, $id, $tags = array(), $specificLifetime = false)
@@ -244,7 +247,8 @@ class Zend_Cache_Backend_Static
             $data = $dataUnserialized['data'];
         }
         $ext = $this->_options['file_extension'];
-        if ($extension) $ext = $extension;
+        if ($extension) { $ext = $extension;
+        }
         $file = rtrim($pathName, '/') . '/' . $fileName . $ext;
         if ($this->_options['file_locking']) {
             $result = file_put_contents($file, $data, LOCK_EX);
@@ -277,7 +281,7 @@ class Zend_Cache_Backend_Static
     {
         if (!is_dir($path)) {
             $oldUmask = umask(0);
-            if ( !@mkdir($path, $this->_octdec($this->_options['cache_directory_perm']), true)) {
+            if (!@mkdir($path, $this->_octdec($this->_options['cache_directory_perm']), true)) {
                 $lastErr = error_get_last();
                 umask($oldUmask);
                 Zend_Cache::throwException("Can't create directory: {$lastErr['message']}");
@@ -399,72 +403,72 @@ class Zend_Cache_Backend_Static
     {
         $result = false;
         switch ($mode) {
-            case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
-            case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
-                if (empty($tags)) {
-                    throw new Zend_Exception('Cannot use tag matching modes as no tags were defined');
-                }
-                if ($this->_tagged === null && $tagged = $this->getInnerCache()->load(self::INNER_CACHE_NAME)) {
-                    $this->_tagged = $tagged;
-                } elseif (!$this->_tagged) {
-                    return true;
-                }
-                foreach ($tags as $tag) {
-                    $urls = array_keys($this->_tagged);
-                    foreach ($urls as $url) {
-                        if (isset($this->_tagged[$url]['tags']) && in_array($tag, $this->_tagged[$url]['tags'])) {
-                            $this->remove($url);
-                            unset($this->_tagged[$url]);
-                        }
-                    }
-                }
-                $this->getInnerCache()->save($this->_tagged, self::INNER_CACHE_NAME);
-                $result = true;
-                break;
-            case Zend_Cache::CLEANING_MODE_ALL:
-                if ($this->_tagged === null) {
-                    $tagged = $this->getInnerCache()->load(self::INNER_CACHE_NAME);
-                    $this->_tagged = $tagged;
-                }
-                if ($this->_tagged === null || empty($this->_tagged)) {
-                    return true;
-                }
+        case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
+        case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
+            if (empty($tags)) {
+                throw new Zend_Exception('Cannot use tag matching modes as no tags were defined');
+            }
+            if ($this->_tagged === null && $tagged = $this->getInnerCache()->load(self::INNER_CACHE_NAME)) {
+                $this->_tagged = $tagged;
+            } elseif (!$this->_tagged) {
+                return true;
+            }
+            foreach ($tags as $tag) {
                 $urls = array_keys($this->_tagged);
                 foreach ($urls as $url) {
-                    $this->remove($url);
-                    unset($this->_tagged[$url]);
-                }
-                $this->getInnerCache()->save($this->_tagged, self::INNER_CACHE_NAME);
-                $result = true;
-                break;
-            case Zend_Cache::CLEANING_MODE_OLD:
-                $this->_log("Zend_Cache_Backend_Static : Selected Cleaning Mode Currently Unsupported By This Backend");
-                break;
-            case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
-                if (empty($tags)) {
-                    throw new Zend_Exception('Cannot use tag matching modes as no tags were defined');
-                }
-                if ($this->_tagged === null) {
-                    $tagged = $this->getInnerCache()->load(self::INNER_CACHE_NAME);
-                    $this->_tagged = $tagged;
-                }
-                if ($this->_tagged === null || empty($this->_tagged)) {
-                    return true;
-                }
-                $urls = array_keys($this->_tagged);
-                foreach ($urls as $url) {
-                    $difference = array_diff($tags, $this->_tagged[$url]['tags']);
-                    if (count($tags) == count($difference)) {
+                    if (isset($this->_tagged[$url]['tags']) && in_array($tag, $this->_tagged[$url]['tags'])) {
                         $this->remove($url);
                         unset($this->_tagged[$url]);
                     }
                 }
-                $this->getInnerCache()->save($this->_tagged, self::INNER_CACHE_NAME);
-                $result = true;
-                break;
-            default:
-                Zend_Cache::throwException('Invalid mode for clean() method');
-                break;
+            }
+            $this->getInnerCache()->save($this->_tagged, self::INNER_CACHE_NAME);
+            $result = true;
+            break;
+        case Zend_Cache::CLEANING_MODE_ALL:
+            if ($this->_tagged === null) {
+                $tagged = $this->getInnerCache()->load(self::INNER_CACHE_NAME);
+                $this->_tagged = $tagged;
+            }
+            if ($this->_tagged === null || empty($this->_tagged)) {
+                return true;
+            }
+            $urls = array_keys($this->_tagged);
+            foreach ($urls as $url) {
+                $this->remove($url);
+                unset($this->_tagged[$url]);
+            }
+            $this->getInnerCache()->save($this->_tagged, self::INNER_CACHE_NAME);
+            $result = true;
+            break;
+        case Zend_Cache::CLEANING_MODE_OLD:
+            $this->_log("Zend_Cache_Backend_Static : Selected Cleaning Mode Currently Unsupported By This Backend");
+            break;
+        case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
+            if (empty($tags)) {
+                throw new Zend_Exception('Cannot use tag matching modes as no tags were defined');
+            }
+            if ($this->_tagged === null) {
+                $tagged = $this->getInnerCache()->load(self::INNER_CACHE_NAME);
+                $this->_tagged = $tagged;
+            }
+            if ($this->_tagged === null || empty($this->_tagged)) {
+                return true;
+            }
+            $urls = array_keys($this->_tagged);
+            foreach ($urls as $url) {
+                $difference = array_diff($tags, $this->_tagged[$url]['tags']);
+                if (count($tags) == count($difference)) {
+                    $this->remove($url);
+                    unset($this->_tagged[$url]);
+                }
+            }
+            $this->getInnerCache()->save($this->_tagged, self::INNER_CACHE_NAME);
+            $result = true;
+            break;
+        default:
+            Zend_Cache::throwException('Invalid mode for clean() method');
+            break;
         }
         return $result;
     }
@@ -525,9 +529,9 @@ class Zend_Cache_Backend_Static
      *
      * Throw an exception if a problem is found
      *
-     * @param  string $string Cache id or tag
-     * @throws Zend_Cache_Exception
-     * @return void
+     * @param      string $string Cache id or tag
+     * @throws     Zend_Cache_Exception
+     * @return     void
      * @deprecated Not usable until perhaps ZF 2.0
      */
     protected static function _validateIdOrTag($string)
@@ -543,9 +547,9 @@ class Zend_Cache_Backend_Static
 
         // Validation assumes no query string, fragments or scheme included - only the path
         if (!preg_match(
-                '/^(?:\/(?:(?:%[[:xdigit:]]{2}|[A-Za-z0-9-_.!~*\'()\[\]:@&=+$,;])*)?)+$/',
-                $string
-            )
+            '/^(?:\/(?:(?:%[[:xdigit:]]{2}|[A-Za-z0-9-_.!~*\'()\[\]:@&=+$,;])*)?)+$/',
+            $string
+        )
         ) {
             Zend_Cache::throwException("Invalid id or tag '$string' : must be a valid URL path");
         }
@@ -555,7 +559,7 @@ class Zend_Cache_Backend_Static
      * Detect an octal string and return its octal value for file permission ops
      * otherwise return the non-string (assumed octal or decimal int already)
      *
-     * @param string $val The potential octal in need of conversion
+     * @param  string $val The potential octal in need of conversion
      * @return int
      */
     protected function _octdec($val)
@@ -569,7 +573,7 @@ class Zend_Cache_Backend_Static
     /**
      * Decode a request URI from the provided ID
      *
-     * @param string $id
+     * @param  string $id
      * @return string
      */
     protected function _decodeId($id)

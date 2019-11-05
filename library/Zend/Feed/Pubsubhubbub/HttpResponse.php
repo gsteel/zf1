@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Pubsubhubbub
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Pubsubhubbub
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Feed/Pubsubhubbub.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Pubsubhubbub
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Pubsubhubbub
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Pubsubhubbub_HttpResponse
 {
@@ -100,8 +100,8 @@ class Zend_Feed_Pubsubhubbub_HttpResponse
      * If $replace is true, replaces any headers already defined with that
      * $name.
      *
-     * @param  string $name
-     * @param  string $value
+     * @param  string  $name
+     * @param  string  $value
      * @param  boolean $replace
      * @return Zend_Feed_Pubsubhubbub_HttpResponse
      */
@@ -179,8 +179,10 @@ class Zend_Feed_Pubsubhubbub_HttpResponse
     {
         if (!is_int($code) || (100 > $code) || (599 < $code)) {
             // require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
-            throw new Zend_Feed_Pubsubhubbub_Exception('Invalid HTTP response'
-            . ' code:' . $code);
+            throw new Zend_Feed_Pubsubhubbub_Exception(
+                'Invalid HTTP response'
+                . ' code:' . $code
+            );
         }
         $this->_httpResponseCode = $code;
         return $this;

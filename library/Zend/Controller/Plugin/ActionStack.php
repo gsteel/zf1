@@ -1,17 +1,21 @@
 <?php
 class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
 {
-    /** @var Zend_Registry */
+    /**
+     * @var Zend_Registry 
+     */
     protected $_registry;
 
     /**
      * Registry key under which actions are stored
+     *
      * @var string
      */
     protected $_registryKey = \Zend_Controller_Plugin_ActionStack::class;
 
     /**
      * Valid keys for stack items
+     *
      * @var array
      */
     protected $_validKeys = array(
@@ -33,7 +37,7 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
      * Constructor
      *
      * @param  Zend_Registry $registry
-     * @param  string $key
+     * @param  string        $key
      * @return void
      */
     public function __construct(Zend_Registry $registry = null, $key = null)
@@ -99,8 +103,8 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
     /**
      *  Set clearRequestParams flag
      *
-     *  @param  bool $clearRequestParams
-     *  @return Zend_Controller_Plugin_ActionStack
+     * @param  bool $clearRequestParams
+     * @return Zend_Controller_Plugin_ActionStack
      */
     public function setClearRequestParams($clearRequestParams)
     {
@@ -234,9 +238,9 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
         }
 
         $request->setModuleName($next->getModuleName())
-                ->setControllerName($next->getControllerName())
-                ->setActionName($next->getActionName())
-                ->setParams($next->getParams())
-                ->setDispatched(false);
+            ->setControllerName($next->getControllerName())
+            ->setActionName($next->getActionName())
+            ->setParams($next->getParams())
+            ->setDispatched(false);
     }
 }

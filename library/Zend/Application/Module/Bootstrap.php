@@ -4,6 +4,7 @@ abstract class Zend_Application_Module_Bootstrap
 {
     /**
      * Set this explicitly to reduce impact of determining module name
+     *
      * @var string
      */
     protected $_moduleName;
@@ -29,9 +30,11 @@ abstract class Zend_Application_Module_Bootstrap
         }
 
         if ($application->hasOption('resourceloader')) {
-            $this->setOptions(array(
+            $this->setOptions(
+                array(
                 'resourceloader' => $application->getOption('resourceloader')
-            ));
+                )
+            );
         }
         $this->initResourceLoader();
 

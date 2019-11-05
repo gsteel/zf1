@@ -38,4 +38,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_XmlRpc_Client_HttpException extends Zend_XmlRpc_Client_Exception
-{}
+{
+
+}

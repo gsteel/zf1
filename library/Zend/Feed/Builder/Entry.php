@@ -13,11 +13,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -27,10 +27,10 @@
  * Classes implementing the Zend_Feed_Builder_Interface interface
  * uses this class to describe an entry of a feed
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Builder_Entry extends ArrayObject
 {
@@ -59,7 +59,7 @@ class Zend_Feed_Builder_Entry extends ArrayObject
     public function __get($name)
     {
         if (!$this->offsetExists($name)) {
-            return NULL;
+            return null;
         }
 
         return $this->offsetGet($name);
@@ -68,8 +68,8 @@ class Zend_Feed_Builder_Entry extends ArrayObject
     /**
      * Write properties accessor
      *
-     * @param  string $name name of the property to set
-     * @param  mixed $value value to set
+     * @param  string $name  name of the property to set
+     * @param  mixed  $value value to set
      * @return void
      */
     public function __set($name, $value)
@@ -182,8 +182,10 @@ class Zend_Feed_Builder_Entry extends ArrayObject
      */
     public function setSource($title, $url)
     {
-        $this->offsetSet('source', array('title' => $title,
-                                         'url' => $url));
+        $this->offsetSet(
+            'source', array('title' => $title,
+            'url' => $url)
+        );
         return $this;
     }
 

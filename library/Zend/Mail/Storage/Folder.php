@@ -32,24 +32,28 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
 {
     /**
      * subfolders of folder array(localName => Zend_Mail_Storage_Folder folder)
+     *
      * @var array
      */
     protected $_folders;
 
     /**
      * local name (name of folder in parent folder)
+     *
      * @var string
      */
     protected $_localName;
 
     /**
      * global name (absolute name of folder)
+     *
      * @var string
      */
     protected $_globalName;
 
     /**
      * folder is selectable if folder is able to hold messages, else it's just a parent folder
+     *
      * @var bool
      */
     protected $_selectable = true;
@@ -164,8 +168,8 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
     /**
      * add or replace subfolder named $name
      *
-     * @param string $name local name of subfolder
-     * @param Zend_Mail_Storage_Folder $folder instance for new subfolder
+     * @param  string                   $name   local name of subfolder
+     * @param  Zend_Mail_Storage_Folder $folder instance for new subfolder
      * @return null
      */
     public function __set($name, Zend_Mail_Storage_Folder $folder)
@@ -176,7 +180,7 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
     /**
      * remove subfolder named $name
      *
-     * @param string $name local name of subfolder
+     * @param  string $name local name of subfolder
      * @return null
      */
     public function __unset($name)

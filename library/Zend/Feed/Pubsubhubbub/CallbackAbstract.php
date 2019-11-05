@@ -92,8 +92,10 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
             $config = $config->toArray();
         } elseif (!is_array($config)) {
             // require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
-            throw new Zend_Feed_Pubsubhubbub_Exception('Array or Zend_Config object'
-            . 'expected, got ' . gettype($config));
+            throw new Zend_Feed_Pubsubhubbub_Exception(
+                'Array or Zend_Config object'
+                . 'expected, got ' . gettype($config)
+            );
         }
         if (array_key_exists('storage', $config)) {
             $this->setStorage($config['storage']);
@@ -140,8 +142,10 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
     {
         if ($this->_storage === null) {
             // require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
-            throw new Zend_Feed_Pubsubhubbub_Exception('No storage object has been'
-                . ' set that subclasses Zend_Feed_Pubsubhubbub_Model_SubscriptionInterface');
+            throw new Zend_Feed_Pubsubhubbub_Exception(
+                'No storage object has been'
+                . ' set that subclasses Zend_Feed_Pubsubhubbub_Model_SubscriptionInterface'
+            );
         }
         return $this->_storage;
     }
@@ -159,12 +163,14 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
     {
         if (!is_object($httpResponse)
             || (!$httpResponse instanceof Zend_Feed_Pubsubhubbub_HttpResponse
-                && !$httpResponse instanceof Zend_Controller_Response_Http)
+            && !$httpResponse instanceof Zend_Controller_Response_Http)
         ) {
             // require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
-            throw new Zend_Feed_Pubsubhubbub_Exception('HTTP Response object must'
+            throw new Zend_Feed_Pubsubhubbub_Exception(
+                'HTTP Response object must'
                 . ' implement one of Zend_Feed_Pubsubhubbub_HttpResponse or'
-                . ' Zend_Controller_Response_Http');
+                . ' Zend_Controller_Response_Http'
+            );
         }
         $this->_httpResponse = $httpResponse;
         return $this;
@@ -199,8 +205,10 @@ abstract class Zend_Feed_Pubsubhubbub_CallbackAbstract
         $count = intval($count);
         if ($count <= 0) {
             // require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
-            throw new Zend_Feed_Pubsubhubbub_Exception('Subscriber count must be'
-                . ' greater than zero');
+            throw new Zend_Feed_Pubsubhubbub_Exception(
+                'Subscriber count must be'
+                . ' greater than zero'
+            );
         }
         $this->_subscriberCount = $count;
         return $this;

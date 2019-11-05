@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Log_Formatter_Abstract */
+/**
+ * Zend_Log_Formatter_Abstract 
+ */
 // require_once 'Zend/Log/Formatter/Abstract.php';
 
 /**
@@ -52,7 +54,7 @@ class Zend_Log_Formatter_Xml extends Zend_Log_Formatter_Abstract
      * Class constructor
      * (the default encoding is UTF-8)
      *
-     * @param array|Zend_Config $options
+     * @param  array|Zend_Config $options
      * @return void
      */
     public function __construct($options = array())
@@ -63,7 +65,7 @@ class Zend_Log_Formatter_Xml extends Zend_Log_Formatter_Abstract
             $args = func_get_args();
 
             $options = array(
-            	'rootElement' => array_shift($args)
+                'rootElement' => array_shift($args)
             );
 
             if (count($args)) {
@@ -92,10 +94,10 @@ class Zend_Log_Formatter_Xml extends Zend_Log_Formatter_Abstract
     }
 
     /**
-	 * Factory for Zend_Log_Formatter_Xml classe
-	 *
-	 * @param array|Zend_Config $options
-	 * @return Zend_Log_Formatter_Xml
+     * Factory for Zend_Log_Formatter_Xml classe
+     *
+     * @param  array|Zend_Config $options
+     * @return Zend_Log_Formatter_Xml
      */
     public static function factory($options)
     {
@@ -127,7 +129,7 @@ class Zend_Log_Formatter_Xml extends Zend_Log_Formatter_Abstract
     /**
      * Formats data into a single line to be written by the writer.
      *
-     * @param  array    $event    event data
+     * @param  array $event event data
      * @return string             formatted line to write to the log
      */
     public function format($event)
@@ -148,7 +150,7 @@ class Zend_Log_Formatter_Xml extends Zend_Log_Formatter_Abstract
         foreach ($dataToInsert as $key => $value) {
             if (empty($value) 
                 || is_scalar($value) 
-                || (is_object($value) && method_exists($value,'__toString'))
+                || (is_object($value) && method_exists($value, '__toString'))
             ) {
                 if($key == "message") {
                     $value = htmlspecialchars($value, ENT_COMPAT, $enc);

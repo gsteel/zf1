@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
@@ -39,6 +41,7 @@ class Zend_Form_Decorator_DtDdWrapper extends Zend_Form_Decorator_Abstract
 {
     /**
      * Default placement: surround content
+     *
      * @var string
      */
     protected $_placement = null;
@@ -60,7 +63,7 @@ class Zend_Form_Decorator_DtDdWrapper extends Zend_Form_Decorator_Abstract
         $elementName = $this->getElement()->getName();
 
         $dtLabel = $this->getOption('dtLabel');
-        if( null === $dtLabel ) {
+        if(null === $dtLabel ) {
             $dtLabel = '&#160;';
         }
 

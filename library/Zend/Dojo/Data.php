@@ -12,45 +12,49 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Dojo
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Dojo
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
  * dojo.data support for Zend Framework
  *
- * @uses       ArrayAccess
- * @uses       Iterator
- * @uses       Countable
- * @package    Zend_Dojo
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @uses      ArrayAccess
+ * @uses      Iterator
+ * @uses      Countable
+ * @package   Zend_Dojo
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
 {
     /**
      * Identifier field of item
+     *
      * @var string|int
      */
     protected $_identifier;
 
     /**
      * Collected items
+     *
      * @var array
      */
     protected $_items = array();
 
     /**
      * Label field of item
+     *
      * @var string
      */
     protected $_label;
 
     /**
      * Data container metadata
+     *
      * @var array
      */
     protected $_metadata = array();
@@ -58,9 +62,9 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
     /**
      * Constructor
      *
-     * @param  string|null $identifier
+     * @param  string|null            $identifier
      * @param  array|Traversable|null $items
-     * @param  string|null $label
+     * @param  string|null            $label
      * @return void
      */
     public function __construct($identifier = null, $items = null, $label = null)
@@ -79,7 +83,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
     /**
      * Set the items to collect
      *
-     * @param array|Traversable $items
+     * @param  array|Traversable $items
      * @return Zend_Dojo_Data
      */
     public function setItems($items)
@@ -92,7 +96,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      * Set an individual item, optionally by identifier (overwrites)
      *
      * @param  array|object $item
-     * @param  string|null $identifier
+     * @param  string|null  $identifier
      * @return Zend_Dojo_Data
      */
     public function setItem($item, $id = null)
@@ -106,7 +110,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      * Add an individual item, optionally by identifier
      *
      * @param  array|object $item
-     * @param  string|null $id
+     * @param  string|null  $id
      * @return Zend_Dojo_Data
      */
     public function addItem($item, $id = null)
@@ -273,7 +277,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
      * Set metadata by key or en masse
      *
      * @param  string|array $spec
-     * @param  mixed $value
+     * @param  mixed        $value
      * @return Zend_Dojo_Data
      */
     public function setMetadata($spec, $value = null)
@@ -439,7 +443,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
     /**
      * ArrayAccess: set value by offset
      *
-     * @param  string $offset
+     * @param  string            $offset
      * @param  array|object|null $value
      * @return void
      */
@@ -522,7 +526,7 @@ class Zend_Dojo_Data implements ArrayAccess,Iterator,Countable
     /**
      * Normalize an item to attach to the collection
      *
-     * @param  array|object $item
+     * @param  array|object    $item
      * @param  string|int|null $id
      * @return array
      */

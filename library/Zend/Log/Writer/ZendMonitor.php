@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Log_Writer_Abstract */
+/**
+ * Zend_Log_Writer_Abstract 
+ */
 // require_once 'Zend/Log/Writer/Abstract.php';
 
 /**
@@ -103,7 +105,7 @@ class Zend_Log_Writer_ZendMonitor extends Zend_Log_Writer_Abstract
     /**
      * Write a message to the log.
      *
-     * @param  array  $event log data event
+     * @param  array $event log data event
      * @return void
      */
     protected function _write($event)

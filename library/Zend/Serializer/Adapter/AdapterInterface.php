@@ -48,8 +48,8 @@ interface Zend_Serializer_Adapter_AdapterInterface
     /**
      * Set a serializer option
      *
-     * @param  string $name Option name
-     * @param  mixed $value Option value
+     * @param  string $name  Option name
+     * @param  mixed  $value Option value
      * @return Zend_Serializer_Adapter_AdapterInterface
      */
     public function setOption($name, $value);
@@ -73,7 +73,7 @@ interface Zend_Serializer_Adapter_AdapterInterface
     /**
      * Generates a storable representation of a value.
      *
-     * @param  mixed $value Data to serialize
+     * @param  mixed $value   Data to serialize
      * @param  array $options Serialize options
      * @return string
      * @throws Zend_Serializer_Exception
@@ -84,7 +84,7 @@ interface Zend_Serializer_Adapter_AdapterInterface
      * Creates a PHP value from a stored representation.
      *
      * @param  string $serialized Serialized string
-     * @param  array $options Unserialize options
+     * @param  array  $options    Unserialize options
      * @return mixed
      * @throws Zend_Serializer_Exception
      */

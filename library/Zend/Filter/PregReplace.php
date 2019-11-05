@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,21 +25,23 @@
 // require_once 'Zend/Filter/Interface.php';
 
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_PregReplace implements Zend_Filter_Interface
 {
     /**
      * Pattern to match
+     *
      * @var mixed
      */
     protected $_matchPattern = null;
 
     /**
      * Replacement pattern
+     *
      * @var mixed
      */
     protected $_replacement = '';
@@ -114,7 +116,7 @@ class Zend_Filter_PregReplace implements Zend_Filter_Interface
     /**
      * Set the match pattern for the regex being called within filter()
      *
-     * @param mixed $match - same as the first argument of preg_replace
+     * @param  mixed $match - same as the first argument of preg_replace
      * @return Zend_Filter_PregReplace
      */
     public function setMatchPattern($match)
@@ -136,7 +138,7 @@ class Zend_Filter_PregReplace implements Zend_Filter_Interface
     /**
      * Set the Replacement pattern/string for the preg_replace called in filter
      *
-     * @param mixed $replacement - same as the second argument of preg_replace
+     * @param  mixed $replacement - same as the second argument of preg_replace
      * @return Zend_Filter_PregReplace
      */
     public function setReplacement($replacement)

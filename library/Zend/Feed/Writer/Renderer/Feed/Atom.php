@@ -12,38 +12,50 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Writer
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Writer
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** @see Zend_Feed_Writer_Feed */
+/**
+ * @see Zend_Feed_Writer_Feed 
+ */
 // require_once 'Zend/Feed/Writer/Feed.php';
 
-/** @see Zend_Version */
+/**
+ * @see Zend_Version 
+ */
 // require_once 'Zend/Version.php';
 
-/** @see Zend_Feed_Writer_Renderer_RendererInterface */
+/**
+ * @see Zend_Feed_Writer_Renderer_RendererInterface 
+ */
 // require_once 'Zend/Feed/Writer/Renderer/RendererInterface.php';
 
-/** @see Zend_Feed_Writer_Renderer_Entry_Atom */
+/**
+ * @see Zend_Feed_Writer_Renderer_Entry_Atom 
+ */
 // require_once 'Zend/Feed/Writer/Renderer/Entry/Atom.php';
 
-/** @see Zend_Feed_Writer_Renderer_Entry_Atom_Deleted */
+/**
+ * @see Zend_Feed_Writer_Renderer_Entry_Atom_Deleted 
+ */
 // require_once 'Zend/Feed/Writer/Renderer/Entry/Atom/Deleted.php';
 
-/** @see Zend_Feed_Writer_Renderer_RendererAbstract */
+/**
+ * @see Zend_Feed_Writer_Renderer_RendererAbstract 
+ */
 // require_once 'Zend/Feed/Writer/Renderer/RendererAbstract.php';
 
 // require_once 'Zend/Feed/Writer/Renderer/Feed/Atom/AtomAbstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Writer
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Writer
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Writer_Renderer_Feed_Atom
     extends Zend_Feed_Writer_Renderer_Feed_Atom_AtomAbstract
@@ -55,7 +67,7 @@ class Zend_Feed_Writer_Renderer_Feed_Atom
      * @param  Zend_Feed_Writer_Feed $container
      * @return void
      */
-    public function __construct (Zend_Feed_Writer_Feed $container)
+    public function __construct(Zend_Feed_Writer_Feed $container)
     {
         parent::__construct($container);
     }

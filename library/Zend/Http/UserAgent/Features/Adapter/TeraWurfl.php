@@ -56,7 +56,7 @@ class Zend_Http_UserAgent_Features_Adapter_TeraWurfl implements Zend_Http_UserAg
 
             $config = $config['terawurfl'];
 
-             if (empty($config['terawurfl_lib_dir'])) {
+            if (empty($config['terawurfl_lib_dir'])) {
                 // No lib_dir given
                 // require_once 'Zend/Http/UserAgent/Features/Exception.php';
                 throw new Zend_Http_UserAgent_Features_Exception('The "terawurfl_lib_dir" parameter is not defined');

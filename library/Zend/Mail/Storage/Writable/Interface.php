@@ -37,8 +37,8 @@ interface Zend_Mail_Storage_Writable_Interface
      * This method also creates parent folders if necessary. Some mail storages may restrict, which folder
      * may be used as parent or which chars may be used in the folder name
      *
-     * @param string                          $name         global name of folder, local name if $parentFolder is set
-     * @param string|Zend_Mail_Storage_Folder $parentFolder parent folder for new folder, else root folder is parent
+     * @param  string                          $name         global name of folder, local name if $parentFolder is set
+     * @param  string|Zend_Mail_Storage_Folder $parentFolder parent folder for new folder, else root folder is parent
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */
@@ -47,7 +47,7 @@ interface Zend_Mail_Storage_Writable_Interface
     /**
      * remove a folder
      *
-     * @param string|Zend_Mail_Storage_Folder $name      name or instance of folder
+     * @param  string|Zend_Mail_Storage_Folder $name name or instance of folder
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */
@@ -58,8 +58,8 @@ interface Zend_Mail_Storage_Writable_Interface
      *
      * The new name has the same restrictions as in createFolder()
      *
-     * @param string|Zend_Mail_Storage_Folder $oldName name or instance of folder
-     * @param string                          $newName new global name of folder
+     * @param  string|Zend_Mail_Storage_Folder $oldName name or instance of folder
+     * @param  string                          $newName new global name of folder
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */

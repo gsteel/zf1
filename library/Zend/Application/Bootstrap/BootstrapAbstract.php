@@ -221,7 +221,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      * Register a new resource plugin
      *
      * @param  string|Zend_Application_Resource_Resource $resource
-     * @param  mixed  $options
+     * @param  mixed                                     $options
      * @return Zend_Application_Bootstrap_BootstrapAbstract
      * @throws Zend_Application_Bootstrap_Exception When invalid resource is provided
      */
@@ -284,7 +284,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
     /**
      * Get a registered plugin resource
      *
-     * @param string $resource
+     * @param  string $resource
      * @return Zend_Application_Resource_Resource
      * @throws Zend_Application_Bootstrap_Exception
      */
@@ -321,7 +321,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
             }
 
             if (class_exists($plugin)
-            && is_subclass_of($plugin, \Zend_Application_Resource_Resource::class)
+                && is_subclass_of($plugin, \Zend_Application_Resource_Resource::class)
             ) { //@SEE ZF-7550
                 $spec = (array) $spec;
                 $spec['bootstrap'] = $this;
@@ -517,7 +517,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      * Implement PHP's magic to retrieve a resource
      * in the bootstrap
      *
-     * @param string $prop
+     * @param  string $prop
      * @return null|mixed
      */
     public function __get($prop)
@@ -529,7 +529,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
      * Implement PHP's magic to ask for the
      * existence of a resource in the bootstrap
      *
-     * @param string $prop
+     * @param  string $prop
      * @return bool
      */
     public function __isset($prop)
@@ -667,7 +667,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
     /**
      * Load a plugin resource
      *
-     * @param  string $resource
+     * @param  string            $resource
      * @param  array|object|null $options
      * @return string|false
      */

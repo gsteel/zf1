@@ -40,8 +40,8 @@ class Zend_Controller_Action_Helper_Cache
      * Tell the helper which actions are cacheable and under which
      * tags (if applicable) they should be recorded with
      *
-     * @param array $actions
-     * @param array $tags
+     * @param  array $actions
+     * @param  array $tags
      * @return void
      */
     public function direct(array $actions, array $tags = array(), $extension = null)
@@ -82,8 +82,8 @@ class Zend_Controller_Action_Helper_Cache
      * The file extension is not required here; usually matches
      * the original REQUEST_URI that was cached.
      *
-     * @param string $relativeUrl
-     * @param bool $recursive
+     * @param  string $relativeUrl
+     * @param  bool   $recursive
      * @return mixed
      */
     public function removePage($relativeUrl, $recursive = false)
@@ -117,7 +117,7 @@ class Zend_Controller_Action_Helper_Cache
      * The file extension is not required here; usually matches
      * the original REQUEST_URI that was cached.
      *
-     * @param array $tags
+     * @param  array $tags
      * @return mixed
      */
     public function removePagesTagged(array $tags)
@@ -138,16 +138,19 @@ class Zend_Controller_Action_Helper_Cache
         $stats = ob_get_status(true);
         foreach ($stats as $status) {
             if ($status['name'] == 'Zend_Cache_Frontend_Page::_flush'
-            || $status['name'] == 'Zend_Cache_Frontend_Capture::_flush') {
+                || $status['name'] == 'Zend_Cache_Frontend_Capture::_flush'
+            ) {
                 $obStarted = true;
             }
         }
-        if (!isset($obStarted) && isset($this->_caching[$controller]) &&
-        in_array($action, $this->_caching[$controller])) {
+        if (!isset($obStarted) && isset($this->_caching[$controller]) 
+            && in_array($action, $this->_caching[$controller])
+        ) {
             $reqUri = $this->getRequest()->getRequestUri();
             $tags = array();
             if (isset($this->_tags[$controller][$action])
-            && !empty($this->_tags[$controller][$action])) {
+                && !empty($this->_tags[$controller][$action])
+            ) {
                 $tags = array_unique($this->_tags[$controller][$action]);
             }
             $extension = null;
@@ -165,7 +168,7 @@ class Zend_Controller_Action_Helper_Cache
      * because it's a major annoyance to have IDs so restricted!
      *
      * @return string
-     * @param string $requestUri
+     * @param  string $requestUri
      */
     protected function _encodeCacheId($requestUri)
     {
@@ -175,7 +178,7 @@ class Zend_Controller_Action_Helper_Cache
     /**
      * Set an instance of the Cache Manager for this helper
      *
-     * @param Zend_Cache_Manager $manager
+     * @param  Zend_Cache_Manager $manager
      * @return void
      */
     public function setManager(Zend_Cache_Manager $manager)
@@ -197,7 +200,8 @@ class Zend_Controller_Action_Helper_Cache
         }
         $front = Zend_Controller_Front::getInstance();
         if ($front->getParam('bootstrap')
-        && $front->getParam('bootstrap')->getResource('CacheManager')) {
+            && $front->getParam('bootstrap')->getResource('CacheManager')
+        ) {
             return $front->getParam('bootstrap')
                 ->getResource('CacheManager');
         }
@@ -230,8 +234,8 @@ class Zend_Controller_Action_Helper_Cache
      * Proxy non-matched methods back to Zend_Cache_Manager where
      * appropriate
      *
-     * @param string $method
-     * @param array $args
+     * @param  string $method
+     * @param  array  $args
      * @return mixed
      */
     public function __call($method, $args)
@@ -241,8 +245,10 @@ class Zend_Controller_Action_Helper_Cache
                 array($this->getManager(), $method), $args
             );
         }
-        throw new Zend_Controller_Action_Exception('Method does not exist:'
-            . $method);
+        throw new Zend_Controller_Action_Exception(
+            'Method does not exist:'
+            . $method
+        );
     }
 
 }

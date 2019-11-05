@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Stdlib
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Stdlib
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 // require_once 'Zend/Stdlib/SplPriorityQueue.php';
@@ -32,10 +32,10 @@
  * "inner" iterator in the form of an SplPriorityQueue object for performing
  * the actual iteration.
  *
- * @category   Zend
- * @package    Zend_Stdlib
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Stdlib
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Serializable
 {
@@ -45,6 +45,7 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
 
     /**
      * Inner queue class to use for iteration
+     *
      * @var string
      */
     protected $queueClass = \Zend_Stdlib_SplPriorityQueue::class;
@@ -52,12 +53,14 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
     /**
      * Actual items aggregated in the priority queue. Each item is an array
      * with keys "data" and "priority".
+     *
      * @var array
      */
     protected $items      = array();
 
     /**
      * Inner queue object
+     *
      * @var SplPriorityQueue
      */
     protected $queue;
@@ -68,7 +71,7 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
      * Priority defaults to 1 (low priority) if none provided.
      * 
      * @param  mixed $data 
-     * @param  int $priority 
+     * @param  int   $priority 
      * @return Zend_Stdlib_PriorityQueue
      */
     public function insert($data, $priority = 1)
@@ -216,13 +219,13 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
     public function toArray($flag = self::EXTR_DATA)
     {
         switch ($flag) {
-            case self::EXTR_BOTH:
-                return $this->items;
-            case self::EXTR_PRIORITY:
-                return array_map(array($this, 'returnPriority'), $this->items);
-            case self::EXTR_DATA:
-            default:
-                return array_map(array($this, 'returnData'), $this->items);
+        case self::EXTR_BOTH:
+            return $this->items;
+        case self::EXTR_PRIORITY:
+            return array_map(array($this, 'returnPriority'), $this->items);
+        case self::EXTR_DATA:
+        default:
+            return array_map(array($this, 'returnData'), $this->items);
         }
     }
 
@@ -283,10 +286,12 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
         if (null === $this->queue) {
             $this->queue = new $this->queueClass();
             if (!$this->queue instanceof SplPriorityQueue) {
-                throw new DomainException(sprintf(
-                    'Zend_Stdlib_PriorityQueue expects an internal queue of type SplPriorityQueue; received "%s"',
-                    get_class($this->queue)
-                ));
+                throw new DomainException(
+                    sprintf(
+                        'Zend_Stdlib_PriorityQueue expects an internal queue of type SplPriorityQueue; received "%s"',
+                        get_class($this->queue)
+                    )
+                );
             }
         }
         return $this->queue;

@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Dojo_View_Helper_Dijit */
+/**
+ * Zend_Dojo_View_Helper_Dijit 
+ */
 // require_once 'Zend/Dojo/View/Helper/Dijit.php';
 
 /**
@@ -31,17 +33,19 @@
  * @subpackage View
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
-  */
+ */
 class Zend_Dojo_View_Helper_Button extends Zend_Dojo_View_Helper_Dijit
 {
     /**
      * Dijit being used
+     *
      * @var string
      */
     protected $_dijit  = 'dijit.form.Button';
 
     /**
      * Dojo module to use
+     *
      * @var string
      */
     protected $_module = 'dijit.form.Button';
@@ -51,8 +55,8 @@ class Zend_Dojo_View_Helper_Button extends Zend_Dojo_View_Helper_Dijit
      *
      * @param  string $id
      * @param  string $value
-     * @param  array $params  Parameters to use for dijit creation
-     * @param  array $attribs HTML attributes
+     * @param  array  $params  Parameters to use for dijit creation
+     * @param  array  $attribs HTML attributes
      * @return string
      */
     public function button($id, $value = null, array $params = array(), array $attribs = array())

@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** @see Zend_Captcha_Word */
+/**
+ * @see Zend_Captcha_Word 
+ */
 // require_once 'Zend/Captcha/Word.php';
 
 /**
@@ -130,28 +132,28 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     /**
      * @return string
      */
-    public function getImgAlt ()
+    public function getImgAlt()
     {
         return $this->_imgAlt;
     }
     /**
      * @return string
      */
-    public function getStartImage ()
+    public function getStartImage()
     {
         return $this->_startImage;
     }
     /**
      * @return int
      */
-    public function getDotNoiseLevel ()
+    public function getDotNoiseLevel()
     {
         return $this->_dotNoiseLevel;
     }
     /**
      * @return int
      */
-    public function getLineNoiseLevel ()
+    public function getLineNoiseLevel()
     {
         return $this->_lineNoiseLevel;
     }
@@ -244,10 +246,10 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     /**
      * Set start image
      *
-     * @param string $startImage
+     * @param  string $startImage
      * @return Zend_Captcha_Image
      */
-    public function setStartImage ($startImage)
+    public function setStartImage($startImage)
     {
         $this->_startImage = $startImage;
         return $this;
@@ -256,10 +258,10 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     /**
      * Set dot noise level
      *
-     * @param int $dotNoiseLevel
+     * @param  int $dotNoiseLevel
      * @return Zend_Captcha_Image
      */
-    public function setDotNoiseLevel ($dotNoiseLevel)
+    public function setDotNoiseLevel($dotNoiseLevel)
     {
         $this->_dotNoiseLevel = $dotNoiseLevel;
         return $this;
@@ -268,10 +270,10 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     /**
      * Set line noise level
      *
-     * @param int $lineNoiseLevel
+     * @param  int $lineNoiseLevel
      * @return Zend_Captcha_Image
      */
-    public function setLineNoiseLevel ($lineNoiseLevel)
+    public function setLineNoiseLevel($lineNoiseLevel)
     {
         $this->_lineNoiseLevel = $lineNoiseLevel;
         return $this;
@@ -280,7 +282,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     /**
      * Set captcha expiration
      *
-     * @param int $expiration
+     * @param  int $expiration
      * @return Zend_Captcha_Image
      */
     public function setExpiration($expiration)
@@ -292,7 +294,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     /**
      * Set garbage collection frequency
      *
-     * @param int $gcFreq
+     * @param  int $gcFreq
      * @return Zend_Captcha_Image
      */
     public function setGcFreq($gcFreq)
@@ -364,10 +366,10 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     /**
      * Set image alternative text
      *
-     * @param string $imgAlt
+     * @param  string $imgAlt
      * @return Zend_Captcha_Image
      */
-    public function setImgAlt ($imgAlt)
+    public function setImgAlt($imgAlt)
     {
         $this->_imgAlt = $imgAlt;
         return $this;
@@ -456,8 +458,8 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
      * Override this function if you want different image generator
      * Wave transform from http://www.captcha.ru/captchas/multiwave/
      *
-     * @param string $id   Captcha ID
-     * @param string $word Captcha word
+     * @param  string $id   Captcha ID
+     * @param  string $word Captcha word
      * @throws Zend_Captcha_Exception
      */
     protected function _generateImage($id, $word)
@@ -508,12 +510,12 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
         $y = ($h - ($textbox[7] - $textbox[1])) / 2;
         imagefttext($img, $fsize, 0, $x, $y, $text_color, $font, $word);
 
-       // generate noise
+        // generate noise
         for ($i=0; $i<$this->_dotNoiseLevel; $i++) {
-           imagefilledellipse($img, random_int(0,$w), random_int(0,$h), 2, 2, $text_color);
+            imagefilledellipse($img, random_int(0, $w), random_int(0, $h), 2, 2, $text_color);
         }
         for($i=0; $i<$this->_lineNoiseLevel; $i++) {
-           imageline($img, random_int(0,$w), random_int(0,$h), random_int(0,$w), random_int(0,$h), $text_color);
+            imageline($img, random_int(0, $w), random_int(0, $h), random_int(0, $w), random_int(0, $h), $text_color);
         }
 
         // transformed image
@@ -571,10 +573,10 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
 
         // generate noise
         for ($i=0; $i<$this->_dotNoiseLevel; $i++) {
-            imagefilledellipse($img2, random_int(0,$w), random_int(0,$h), 2, 2, $text_color);
+            imagefilledellipse($img2, random_int(0, $w), random_int(0, $h), 2, 2, $text_color);
         }
         for ($i=0; $i<$this->_lineNoiseLevel; $i++) {
-           imageline($img2, random_int(0,$w), random_int(0,$h), random_int(0,$w), random_int(0,$h), $text_color);
+            imageline($img2, random_int(0, $w), random_int(0, $h), random_int(0, $w), random_int(0, $h), $text_color);
         }
 
         imagepng($img2, $img_file);
@@ -609,8 +611,8 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     /**
      * Display the captcha
      *
-     * @param Zend_View_Interface $view
-     * @param mixed $element
+     * @param  Zend_View_Interface $view
+     * @param  mixed               $element
      * @return string
      */
     public function render(Zend_View_Interface $view = null, $element = null)

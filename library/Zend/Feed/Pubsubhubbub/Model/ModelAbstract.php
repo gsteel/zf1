@@ -12,15 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Pubsubhubbub
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Pubsubhubbub
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
-/** @see Zend_Db_Table */
+/**
+ * @see Zend_Db_Table 
+ */
 // require_once 'Zend/Db/Table.php';
 
 /**
@@ -30,10 +32,10 @@
 // require_once 'Zend/Registry.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Pubsubhubbub
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Pubsubhubbub
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Pubsubhubbub_Model_ModelAbstract
 {
@@ -47,7 +49,7 @@ class Zend_Feed_Pubsubhubbub_Model_ModelAbstract
     /**
      * Constructor
      *
-     * @param  Zend_Db_Table_Abstract $tableGateway
+     * @param Zend_Db_Table_Abstract $tableGateway
      */
     public function __construct(Zend_Db_Table_Abstract $tableGateway = null)
     {

@@ -86,7 +86,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
     /**
      * Set the request object
      *
-     * @param  Zend_Controller_Request_Abstract|null $request
+     * @param Zend_Controller_Request_Abstract|null $request
      */
     public function setRequest(Zend_Controller_Request_Abstract $request = null)
     {
@@ -110,7 +110,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
     /**
      * Instantiates route based on passed Zend_Config structure
      *
-     * @param Zend_Config $config Configuration object
+     * @param  Zend_Config $config Configuration object
      * @return Zend_Controller_Router_Route_Hostname
      */
     public static function getInstance(Zend_Config $config)
@@ -157,7 +157,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
      * Matches a user submitted path with parts defined by a map. Assigns and
      * returns an array of variables on a successful match.
      *
-     * @param Zend_Controller_Request_Http $request Request to get the host from
+     * @param  Zend_Controller_Request_Http $request Request to get the host from
      * @return array|false An array of assigned values or a false on a mismatch
      */
     public function match($request)
@@ -240,8 +240,8 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
     /**
      * Assembles user submitted parameters forming a hostname defined by this route
      *
-     * @param  array   $data  An array of variable and value pairs used as parameters
-     * @param  boolean $reset Whether or not to set route defaults with those provided in $data
+     * @param  array   $data    An array of variable and value pairs used as parameters
+     * @param  boolean $reset   Whether or not to set route defaults with those provided in $data
      * @param  boolean $encode
      * @param  boolean $partial
      * @throws Zend_Controller_Router_Exception
@@ -311,7 +311,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
     /**
      * Return a single parameter of route's defaults
      *
-     * @param string $name Array key of the parameter
+     * @param  string $name Array key of the parameter
      * @return string Previously set default
      */
     public function getDefault($name)

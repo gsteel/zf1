@@ -26,10 +26,10 @@
 // require_once 'Zend/Markup/TokenList.php';
 
 /**
- * @category   Zend
- * @package    Zend_Markup
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Markup
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Markup_Token
 {
@@ -89,10 +89,10 @@ class Zend_Markup_Token
     /**
      * Construct the token
      *
-     * @param  string $tag
-     * @param  string $type
-     * @param  string $name
-     * @param  array $attributes
+     * @param  string            $tag
+     * @param  string            $type
+     * @param  string            $name
+     * @param  array             $attributes
      * @param  Zend_Markup_Token $parent
      * @return void
      */
@@ -115,7 +115,7 @@ class Zend_Markup_Token
     /**
      * Set the stopper
      *
-     * @param string $stopper
+     * @param  string $stopper
      * @return Zend_Markup_Token
      */
     public function setStopper($stopper)

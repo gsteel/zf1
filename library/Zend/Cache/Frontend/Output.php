@@ -28,7 +28,7 @@ class Zend_Cache_Frontend_Output extends Zend_Cache_Core
     {
         $data = $this->load($id, $doNotTestCacheValidity);
         if ($data !== false) {
-            if ( $echoData ) {
+            if ($echoData ) {
                 echo($data);
                 return true;
             } else {

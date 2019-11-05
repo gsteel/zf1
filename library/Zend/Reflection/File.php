@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Reflection
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Reflection
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -30,10 +30,10 @@
 // require_once 'Zend/Reflection/Function.php';
 
 /**
- * @category   Zend
- * @package    Zend_Reflection
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Reflection
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Reflection_File implements Reflector
 {
@@ -124,7 +124,7 @@ class Zend_Reflection_File implements Reflector
         while (count($includePaths) > 0) {
             $filePath = array_shift($includePaths) . DIRECTORY_SEPARATOR . $fileName;
 
-            if ( ($foundRealpath = realpath($filePath)) !== false) {
+            if (($foundRealpath = realpath($filePath)) !== false) {
                 break;
             }
         }
@@ -245,7 +245,7 @@ class Zend_Reflection_File implements Reflector
      * Retrieve the reflection class of a given class found in this file
      *
      * @param  null|string $name
-     * @param  string $reflectionClass Reflection class to use when creating reflection instance
+     * @param  string      $reflectionClass Reflection class to use when creating reflection instance
      * @return Zend_Reflection_Class
      * @throws Zend_Reflection_Exception for invalid class name or invalid reflection class
      */
@@ -341,7 +341,7 @@ class Zend_Reflection_File implements Reflector
                 if ($token == '{') {
                     $openBraces++;
                 } else if ($token == '}') {
-                    if ( $embeddedVariableTrapped ) {
+                    if ($embeddedVariableTrapped ) {
                         $embeddedVariableTrapped = false;
                     } else {
                         $openBraces--;
@@ -352,55 +352,55 @@ class Zend_Reflection_File implements Reflector
             }
 
             switch ($type) {
-                case T_STRING_VARNAME:
-                case T_DOLLAR_OPEN_CURLY_BRACES:
-                case T_CURLY_OPEN:
-                    $embeddedVariableTrapped = true;
-                    break;
+            case T_STRING_VARNAME:
+            case T_DOLLAR_OPEN_CURLY_BRACES:
+            case T_CURLY_OPEN:
+                $embeddedVariableTrapped = true;
+                break;
 
                 // Name of something
-                case T_STRING:
-                    if ($functionTrapped) {
-                        $this->_functions[] = $value;
-                        $functionTrapped = false;
-                    } elseif ($classTrapped) {
-                        $this->_classes[] = $value;
-                        $classTrapped = false;
-                    }
-                    break;
+            case T_STRING:
+                if ($functionTrapped) {
+                    $this->_functions[] = $value;
+                    $functionTrapped = false;
+                } elseif ($classTrapped) {
+                    $this->_classes[] = $value;
+                    $classTrapped = false;
+                }
+                break;
 
                 // Required file names are T_CONSTANT_ENCAPSED_STRING
-                case T_CONSTANT_ENCAPSED_STRING:
-                    if ($requireTrapped) {
-                        $this->_requiredFiles[] = $value ."\n";
-                        $requireTrapped = false;
-                    }
-                    break;
+            case T_CONSTANT_ENCAPSED_STRING:
+                if ($requireTrapped) {
+                    $this->_requiredFiles[] = $value ."\n";
+                    $requireTrapped = false;
+                }
+                break;
 
                 // Functions
-                case T_FUNCTION:
-                    if ($openBraces == 0) {
-                        $functionTrapped = true;
-                    }
-                    break;
+            case T_FUNCTION:
+                if ($openBraces == 0) {
+                    $functionTrapped = true;
+                }
+                break;
 
                 // Classes
-                case T_CLASS:
-                case T_INTERFACE:
-                    $classTrapped = true;
-                    break;
+            case T_CLASS:
+            case T_INTERFACE:
+                $classTrapped = true;
+                break;
 
                 // All types of requires
-                case T_REQUIRE:
-                case T_REQUIRE_ONCE:
-                case T_INCLUDE:
-                case T_INCLUDE_ONCE:
-                    $requireTrapped = true;
-                    break;
+            case T_REQUIRE:
+            case T_REQUIRE_ONCE:
+            case T_INCLUDE:
+            case T_INCLUDE_ONCE:
+                $requireTrapped = true;
+                break;
 
                 // Default case: do nothing
-                default:
-                    break;
+            default:
+                break;
             }
         }
 
@@ -413,7 +413,8 @@ class Zend_Reflection_File implements Reflector
      * @param  array $tokens Array of tokenizer tokens
      * @return void
      */
-    protected function _checkFileDocBlock($tokens) {
+    protected function _checkFileDocBlock($tokens)
+    {
         foreach ($tokens as $token) {
             $type    = $token[0];
             $value   = $token[1];

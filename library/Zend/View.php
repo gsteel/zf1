@@ -62,12 +62,14 @@ class Zend_View extends Zend_View_Abstract
 {
     /**
      * Whether or not to use streams to mimic short tags
+     *
      * @var bool
      */
     private $_useViewStream = false;
 
     /**
      * Whether or not to use stream wrapper if short_open_tag is false
+     *
      * @var bool
      */
     private $_useStreamWrapper = false;

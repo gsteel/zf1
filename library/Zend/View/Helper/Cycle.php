@@ -33,6 +33,7 @@ class Zend_View_Helper_Cycle implements Iterator
 
     /**
      * Default name
+     *
      * @var string
      */
     const DEFAULT_NAME = 'default';
@@ -61,14 +62,15 @@ class Zend_View_Helper_Cycle implements Iterator
     /**
      * Add elements to alternate
      *
-     * @param array $data
-     * @param string $name
+     * @param  array  $data
+     * @param  string $name
      * @return Zend_View_Helper_Cycle
      */
     public function cycle(array $data = array(), $name = self::DEFAULT_NAME)
     {
-        if(!empty($data))
-           $this->_data[$name] = $data;
+        if(!empty($data)) {
+            $this->_data[$name] = $data;
+        }
 
         $this->setName($name);
         return $this;
@@ -77,8 +79,8 @@ class Zend_View_Helper_Cycle implements Iterator
     /**
      * Add elements to alternate
      *
-     * @param array $data
-     * @param string $name
+     * @param  array  $data
+     * @param  string $name
      * @return Zend_View_Helper_Cycle
      */
     public function assign(Array $data , $name = self::DEFAULT_NAME)
@@ -92,20 +94,22 @@ class Zend_View_Helper_Cycle implements Iterator
     /**
      * Sets actual name of cycle
      *
-     * @param string $name
+     * @param  string $name
      * @return Zend_View_Helper_Cycle
      */
     public function setName($name = self::DEFAULT_NAME)
     {
-       $this->_name = $name;
+        $this->_name = $name;
 
-       if(!isset($this->_data[$this->_name]))
-         $this->_data[$this->_name] = array();
+        if(!isset($this->_data[$this->_name])) {
+            $this->_data[$this->_name] = array();
+        }
 
-       if(!isset($this->_pointers[$this->_name]))
-         $this->rewind();
+        if(!isset($this->_pointers[$this->_name])) {
+            $this->rewind();
+        }
 
-       return $this;
+        return $this;
     }
 
     /**
@@ -157,10 +161,11 @@ class Zend_View_Helper_Cycle implements Iterator
     public function next()
     {
         $count = is_array($this->_data[$this->_name]) || $this->_data[$this->_name] instanceof \Countable ? count($this->_data[$this->_name]) : 0;
-        if ($this->_pointers[$this->_name] == ($count - 1))
+        if ($this->_pointers[$this->_name] == ($count - 1)) {
             $this->_pointers[$this->_name] = 0;
-        else
+        } else {
             $this->_pointers[$this->_name] = ++$this->_pointers[$this->_name];
+        }
         return $this;
     }
 
@@ -172,10 +177,11 @@ class Zend_View_Helper_Cycle implements Iterator
     public function prev()
     {
         $count = is_array($this->_data[$this->_name]) || $this->_data[$this->_name] instanceof \Countable ? count($this->_data[$this->_name]) : 0;
-        if ($this->_pointers[$this->_name] <= 0)
+        if ($this->_pointers[$this->_name] <= 0) {
             $this->_pointers[$this->_name] = $count - 1;
-        else
+        } else {
             $this->_pointers[$this->_name] = --$this->_pointers[$this->_name];
+        }
         return $this;
     }
 
@@ -186,10 +192,11 @@ class Zend_View_Helper_Cycle implements Iterator
      */
     public function key()
     {
-        if ($this->_pointers[$this->_name] < 0)
+        if ($this->_pointers[$this->_name] < 0) {
             return 0;
-        else
+        } else {
             return $this->_pointers[$this->_name];
+        }
     }
 
     /**

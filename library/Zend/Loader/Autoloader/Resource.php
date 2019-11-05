@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Loader_Autoloader_Interface */
+/**
+ * Zend_Loader_Autoloader_Interface 
+ */
 // require_once 'Zend/Loader/Autoloader/Interface.php';
 
 /**
@@ -108,7 +110,7 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
      * </code>
      *
      * @param  string $method
-     * @param  array $args
+     * @param  array  $args
      * @return mixed
      * @throws Zend_Loader_Exception if method not beginning with 'get' or not matching a valid resource type is called
      */
@@ -135,7 +137,7 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
     /**
      * Helper method to calculate the correct class path
      *
-     * @param string $class
+     * @param  string $class
      * @return False if not matched other wise the correct path
      */
     public function getClassPath($class)
@@ -274,8 +276,8 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
     /**
      * Add resource type
      *
-     * @param  string $type identifier for the resource type being loaded
-     * @param  string $path path relative to resource base path containing the resource types
+     * @param  string      $type      identifier for the resource type being loaded
+     * @param  string      $path      path relative to resource base path containing the resource types
      * @param  null|string $namespace sub-component namespace to append to base namespace that qualifies this resource type
      * @return Zend_Loader_Autoloader_Resource
      */

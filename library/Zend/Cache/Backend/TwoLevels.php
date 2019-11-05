@@ -186,11 +186,11 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
      * Note : $data is always "string" (serialization is done by the
      * core not by the backend)
      *
-     * @param  string $data            Datas to cache
-     * @param  string $id              Cache id
-     * @param  array $tags             Array of strings, the cache record will be tagged by each string entry
-     * @param  int   $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
-     * @param  int   $priority         integer between 0 (very low priority) and 10 (maximum priority) used by some particular backends
+     * @param  string $data             Datas to cache
+     * @param  string $id               Cache id
+     * @param  array  $tags             Array of strings, the cache record will be tagged by each string entry
+     * @param  int    $specificLifetime If != false, set a specific lifetime for this cache record (null => infinite lifetime)
+     * @param  int    $priority         integer between 0 (very low priority) and 10 (maximum priority) used by some particular backends
      * @return boolean true if no problem
      */
     public function save($data, $id, $tags = array(), $specificLifetime = false, $priority = 8)
@@ -297,43 +297,43 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
     public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
     {
         switch($mode) {
-            case Zend_Cache::CLEANING_MODE_ALL:
-                $boolFast = $this->_fastBackend->clean(Zend_Cache::CLEANING_MODE_ALL);
-                $boolSlow = $this->_slowBackend->clean(Zend_Cache::CLEANING_MODE_ALL);
-                return $boolFast && $boolSlow;
+        case Zend_Cache::CLEANING_MODE_ALL:
+            $boolFast = $this->_fastBackend->clean(Zend_Cache::CLEANING_MODE_ALL);
+            $boolSlow = $this->_slowBackend->clean(Zend_Cache::CLEANING_MODE_ALL);
+            return $boolFast && $boolSlow;
                 break;
-            case Zend_Cache::CLEANING_MODE_OLD:
-                return $this->_slowBackend->clean(Zend_Cache::CLEANING_MODE_OLD);
-            case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
-                $ids = $this->_slowBackend->getIdsMatchingTags($tags);
-                $res = true;
-                foreach ($ids as $id) {
-                    $bool = $this->remove($id);
-                    $res = $res && $bool;
-                }
-                return $res;
+        case Zend_Cache::CLEANING_MODE_OLD:
+            return $this->_slowBackend->clean(Zend_Cache::CLEANING_MODE_OLD);
+        case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
+            $ids = $this->_slowBackend->getIdsMatchingTags($tags);
+            $res = true;
+            foreach ($ids as $id) {
+                $bool = $this->remove($id);
+                $res = $res && $bool;
+            }
+            return $res;
                 break;
-            case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
-                $ids = $this->_slowBackend->getIdsNotMatchingTags($tags);
-                $res = true;
-                foreach ($ids as $id) {
-                    $bool = $this->remove($id);
-                    $res = $res && $bool;
-                }
-                return $res;
+        case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
+            $ids = $this->_slowBackend->getIdsNotMatchingTags($tags);
+            $res = true;
+            foreach ($ids as $id) {
+                $bool = $this->remove($id);
+                $res = $res && $bool;
+            }
+            return $res;
                 break;
-            case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
-                $ids = $this->_slowBackend->getIdsMatchingAnyTags($tags);
-                $res = true;
-                foreach ($ids as $id) {
-                    $bool = $this->remove($id);
-                    $res = $res && $bool;
-                }
-                return $res;
+        case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
+            $ids = $this->_slowBackend->getIdsMatchingAnyTags($tags);
+            $res = true;
+            foreach ($ids as $id) {
+                $bool = $this->remove($id);
+                $res = $res && $bool;
+            }
+            return $res;
                 break;
-            default:
-                Zend_Cache::throwException('Invalid mode for clean() method');
-                break;
+        default:
+            Zend_Cache::throwException('Invalid mode for clean() method');
+            break;
         }
     }
 
@@ -362,7 +362,7 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
      *
      * In case of multiple tags, a logical AND is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of matching cache ids (string)
      */
     public function getIdsMatchingTags($tags = array())
@@ -375,7 +375,7 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
      *
      * In case of multiple tags, a logical OR is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of not matching cache ids (string)
      */
     public function getIdsNotMatchingTags($tags = array())
@@ -388,7 +388,7 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
      *
      * In case of multiple tags, a logical AND is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of any matching cache ids (string)
      */
     public function getIdsMatchingAnyTags($tags = array())
@@ -414,7 +414,7 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
      * - tags : a string array of tags
      * - mtime : timestamp of last modification time
      *
-     * @param string $id cache id
+     * @param  string $id cache id
      * @return array array of metadatas (false if the cache id is not found)
      */
     public function getMetadatas($id)
@@ -425,8 +425,8 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
     /**
      * Give (if possible) an extra lifetime to the given cache id
      *
-     * @param string $id cache id
-     * @param int $extraLifetime
+     * @param  string $id            cache id
+     * @param  int    $extraLifetime
      * @return boolean true if ok
      */
     public function touch($id, $extraLifetime)
@@ -464,9 +464,9 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
     /**
      * Prepare a serialized array to store datas and metadatas informations
      *
-     * @param string $data data to store
-     * @param int $lifetime original lifetime
-     * @param int $priority priority
+     * @param  string $data     data to store
+     * @param  int    $lifetime original lifetime
+     * @param  int    $priority priority
      * @return string serialize array to store into cache
      */
     private function _prepareData($data, $lifetime, $priority)
@@ -475,20 +475,22 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
         if ($lt === null) {
             $lt = 9999999999;
         }
-        return serialize(array(
+        return serialize(
+            array(
             'data' => $data,
             'lifetime' => $lifetime,
             'expire' => time() + $lt,
             'priority' => $priority
-        ));
+            )
+        );
     }
 
     /**
      * Compute and return the lifetime for the fast backend
      *
-     * @param int $lifetime original lifetime
-     * @param int $priority priority
-     * @param int $maxLifetime maximum lifetime
+     * @param  int $lifetime    original lifetime
+     * @param  int $priority    priority
+     * @param  int $maxLifetime maximum lifetime
      * @return int lifetime for the fast backend
      */
     private function _getFastLifetime($lifetime, $priority, $maxLifetime = null)

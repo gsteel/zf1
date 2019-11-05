@@ -13,11 +13,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -26,7 +26,9 @@
  */
 // require_once 'Zend/Feed/Element.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
 /**
@@ -37,10 +39,10 @@
  * considered to be the entry collection, such that iterating over the
  * feed takes you through each of the feed.s entries.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator, Countable
 {
@@ -65,8 +67,8 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      * The Zend_Feed_Abstract constructor takes the URI of a feed or a
      * feed represented as a string and loads it as XML.
      *
-     * @param  string $uri The full URI of the feed to load, or NULL if not retrieved via HTTP or as an array.
-     * @param  string $string The feed as a string, or NULL if retrieved via HTTP or as an array.
+     * @param  string                      $uri     The full URI of the feed to load, or NULL if not retrieved via HTTP or as an array.
+     * @param  string                      $string  The feed as a string, or NULL if retrieved via HTTP or as an array.
      * @param  Zend_Feed_Builder_Interface $builder The feed as a builder instance or NULL if retrieved as a string or via HTTP.
      * @return void
      * @throws Zend_Feed_Exception If loading the feed failed.
@@ -199,7 +201,8 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
     {
         return new $this->_entryClassName(
             null,
-            $this->_entries[$this->_entryIndex]);
+            $this->_entries[$this->_entryIndex]
+        );
     }
 
 
@@ -246,8 +249,8 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
     /**
      * Generate the entries of the feed when working in write mode
      *
-     * @param  DOMElement $root the root node to use
-     * @param  array $array the data to use
+     * @param  DOMElement $root  the root node to use
+     * @param  array      $array the data to use
      * @return DOMElement root node
      */
     abstract protected function _mapFeedEntries(DOMElement $root, $array);
@@ -273,8 +276,10 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
     {
         if (trim($feed) == '') {
             // require_once 'Zend/Feed/Exception.php';
-            throw new Zend_Feed_Exception('Remote feed being imported'
-            . ' is an Empty string or comes from an empty HTTP response');
+            throw new Zend_Feed_Exception(
+                'Remote feed being imported'
+                . ' is an Empty string or comes from an empty HTTP response'
+            );
         }
         $doc = new DOMDocument;
         $doc = Zend_Xml_Security::scan($feed, $doc);

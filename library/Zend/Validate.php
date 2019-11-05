@@ -25,7 +25,7 @@ class Zend_Validate implements Zend_Validate_Interface
     /**
      * Array of validation failure message codes
      *
-     * @var array
+     * @var        array
      * @deprecated Since 1.5.0
      */
     protected $_errors = array();
@@ -95,7 +95,7 @@ class Zend_Validate implements Zend_Validate_Interface
      *
      * Returns array of validation failure message codes
      *
-     * @return array
+     * @return     array
      * @deprecated Since 1.5.0
      */
     public function getErrors()
@@ -116,7 +116,7 @@ class Zend_Validate implements Zend_Validate_Interface
     /**
      * Sets new default namespaces
      *
-     * @param array|string $namespace
+     * @param  array|string $namespace
      * @return null
      */
     public static function setDefaultNamespaces($namespace)
@@ -131,7 +131,7 @@ class Zend_Validate implements Zend_Validate_Interface
     /**
      * Adds a new default namespace
      *
-     * @param array|string $namespace
+     * @param  array|string $namespace
      * @return null
      */
     public static function addDefaultNamespaces($namespace)
@@ -154,10 +154,10 @@ class Zend_Validate implements Zend_Validate_Interface
     }
 
     /**
-     * @param  mixed    $value
-     * @param  string   $classBaseName
-     * @param  array    $args          OPTIONAL
-     * @param  mixed    $namespaces    OPTIONAL
+     * @param  mixed  $value
+     * @param  string $classBaseName
+     * @param  array  $args          OPTIONAL
+     * @param  mixed  $namespaces    OPTIONAL
      * @return boolean
      * @throws Zend_Validate_Exception
      */

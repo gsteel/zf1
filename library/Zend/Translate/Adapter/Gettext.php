@@ -12,26 +12,31 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version   $Id$
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Locale */
+/**
+ * Zend_Locale 
+ */
 // require_once 'Zend/Locale.php';
 
-/** Zend_Translate_Adapter */
+/**
+ * Zend_Translate_Adapter 
+ */
 // require_once 'Zend/Translate/Adapter.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Translate_Adapter_Gettext extends Zend_Translate_Adapter {
+class Zend_Translate_Adapter_Gettext extends Zend_Translate_Adapter
+{
     // Internal variables
     private $_bigEndian   = false;
     private $_file        = false;
@@ -41,7 +46,7 @@ class Zend_Translate_Adapter_Gettext extends Zend_Translate_Adapter {
     /**
      * Read values from the MO file
      *
-     * @param  string  $bytes
+     * @param string $bytes
      */
     private function _readMOData($bytes)
     {
@@ -55,10 +60,10 @@ class Zend_Translate_Adapter_Gettext extends Zend_Translate_Adapter {
     /**
      * Load translation data (MO file reader)
      *
-     * @param  string  $filename  MO file to add, full path must be given for access
-     * @param  string  $locale    New Locale/Language to set, identical with locale identifier,
-     *                            see Zend_Locale for more information
-     * @param  array   $option    OPTIONAL Options to use
+     * @param  string $filename MO file to add, full path must be given for access
+     * @param  string $locale   New Locale/Language to set, identical with locale identifier,
+     *                          see Zend_Locale for more information
+     * @param  array  $option   OPTIONAL Options to use
      * @throws Zend_Translation_Exception
      * @return array
      */

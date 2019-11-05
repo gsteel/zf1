@@ -20,10 +20,14 @@
  * @version    $Id$
  */
 
-/** @see Zend_Serializer_Adapter_AdapterAbstract */
+/**
+ * @see Zend_Serializer_Adapter_AdapterAbstract 
+ */
 // require_once 'Zend/Serializer/Adapter/AdapterAbstract.php';
 
-/** @see Zend_Json */
+/**
+ * @see Zend_Json 
+ */
 // require_once 'Zend/Json.php';
 
 /**
@@ -68,7 +72,7 @@ class Zend_Serializer_Adapter_Json extends Zend_Serializer_Adapter_AdapterAbstra
      * Deserialize JSON to PHP value
      *
      * @param  string $json
-     * @param  array $opts
+     * @param  array  $opts
      * @return mixed
      */
     public function unserialize($json, array $opts = array())

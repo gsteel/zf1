@@ -13,14 +13,16 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
 /**
@@ -29,10 +31,10 @@
  * Base Zend_Feed class, containing constants and the Zend_Http_Client instance
  * accessor.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed
 {
@@ -147,7 +149,7 @@ class Zend_Feed
      * list of registered namespaces for use by
      * Zend_Feed::lookupNamespace().
      *
-     * @param  string $prefix The namespace prefix
+     * @param  string $prefix       The namespace prefix
      * @param  string $namespaceURI The full namespace URI
      * @return void
      */
@@ -192,8 +194,10 @@ class Zend_Feed
     {
         if (trim($string) == '') {
             // require_once 'Zend/Feed/Exception.php';
-            throw new Zend_Feed_Exception('Document/string being imported'
-            . ' is an Empty string or comes from an empty HTTP response');
+            throw new Zend_Feed_Exception(
+                'Document/string being imported'
+                . ' is an Empty string or comes from an empty HTTP response'
+            );
         }
         $doc = new DOMDocument;
         $doc = Zend_Xml_Security::scan($string, $doc);
@@ -217,8 +221,9 @@ class Zend_Feed
         }
 
         // Try to find the base feed element or a single <entry> of an Atom feed
-        if ($doc->getElementsByTagName('feed')->item(0) ||
-            $doc->getElementsByTagName('entry')->item(0)) {
+        if ($doc->getElementsByTagName('feed')->item(0) 
+            || $doc->getElementsByTagName('entry')->item(0)
+        ) {
             /**
              * @see Zend_Feed_Atom
              */
@@ -325,8 +330,9 @@ class Zend_Feed
                 if (!isset($attributes['rel']) || !@preg_match('~^(?:alternate|service\.feed)~i', $attributes['rel'])) {
                     continue;
                 }
-                if (!isset($attributes['type']) ||
-                        !@preg_match('~^application/(?:atom|rss|rdf)\+xml~', $attributes['type'])) {
+                if (!isset($attributes['type']) 
+                    || !@preg_match('~^application/(?:atom|rss|rdf)\+xml~', $attributes['type'])
+                ) {
                     continue;
                 }
                 if (!isset($attributes['href'])) {
@@ -394,7 +400,7 @@ class Zend_Feed
      * Construct a new Zend_Feed_Abstract object from a Zend_Feed_Builder_Interface data source
      *
      * @param  Zend_Feed_Builder_Interface $builder this object will be used to extract the data of the feed
-     * @param  string                      $format (rss|atom) the requested output format
+     * @param  string                      $format  (rss|atom) the requested output format
      * @return Zend_Feed_Abstract
      */
     public static function importBuilder(Zend_Feed_Builder_Interface $builder, $format = 'atom')

@@ -13,11 +13,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -37,18 +37,18 @@
  * Classes implementing the Zend_Feed_Builder_Interface interface
  * uses this class to describe the header of a feed
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Builder_Header extends ArrayObject
 {
     /**
      * Constructor
      *
-     * @param  string $title title of the feed
-     * @param  string $link canonical url of the feed
+     * @param  string $title   title of the feed
+     * @param  string $link    canonical url of the feed
      * @param  string $charset charset of the textual data
      * @return void
      */
@@ -58,7 +58,7 @@ class Zend_Feed_Builder_Header extends ArrayObject
         $this->offsetSet('link', $link);
         $this->offsetSet('charset', $charset);
         $this->setLastUpdate(time())
-             ->setGenerator(\Zend_Feed::class);
+            ->setGenerator(\Zend_Feed::class);
     }
 
     /**
@@ -70,7 +70,7 @@ class Zend_Feed_Builder_Header extends ArrayObject
     public function __get($name)
     {
         if (!$this->offsetExists($name)) {
-            return NULL;
+            return null;
         }
 
         return $this->offsetGet($name);
@@ -79,8 +79,8 @@ class Zend_Feed_Builder_Header extends ArrayObject
     /**
      * Write properties accessor
      *
-     * @param string $name  name of the property to set
-     * @param mixed  $value value to set
+     * @param  string $name  name of the property to set
+     * @param  mixed  $value value to set
      * @return void
      */
     public function __set($name, $value)
@@ -323,9 +323,11 @@ class Zend_Feed_Builder_Header extends ArrayObject
         if (!$uri->getPort()) {
             $uri->setPort(80);
         }
-        $this->offsetSet('cloud', array('uri' => $uri,
+        $this->offsetSet(
+            'cloud', array('uri' => $uri,
                                         'procedure' => $procedure,
-                                        'protocol' => $protocol));
+            'protocol' => $protocol)
+        );
         return $this;
     }
 
@@ -341,10 +343,12 @@ class Zend_Feed_Builder_Header extends ArrayObject
      */
     public function setTextInput($title, $description, $name, $link)
     {
-        $this->offsetSet('textInput', array('title' => $title,
+        $this->offsetSet(
+            'textInput', array('title' => $title,
                                             'description' => $description,
                                             'name' => $name,
-                                            'link' => $link));
+            'link' => $link)
+        );
         return $this;
     }
 

@@ -19,10 +19,14 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** @see Zend_Captcha_Adapter */
+/**
+ * @see Zend_Captcha_Adapter 
+ */
 // require_once 'Zend/Captcha/Adapter.php';
 
-/** @see Zend_Validate_Abstract */
+/**
+ * @see Zend_Validate_Abstract 
+ */
 // require_once 'Zend/Validate/Abstract.php';
 
 /**
@@ -57,6 +61,7 @@ abstract class Zend_Captcha_Base extends Zend_Validate_Abstract implements Zend_
 
     /**
      * Options to skip when processing options
+     *
      * @var array
      */
     protected $_skipOptions = array(
@@ -77,7 +82,7 @@ abstract class Zend_Captcha_Base extends Zend_Validate_Abstract implements Zend_
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Zend_Captcha_Adapter
      */
     public function setName($name)
@@ -89,7 +94,7 @@ abstract class Zend_Captcha_Base extends Zend_Validate_Abstract implements Zend_
     /**
      * Constructor
      *
-     * @param  array|Zend_Config $options
+     * @param array|Zend_Config $options
      */
     public function __construct($options = null)
     {
@@ -104,8 +109,8 @@ abstract class Zend_Captcha_Base extends Zend_Validate_Abstract implements Zend_
     /**
      * Set single option for the object
      *
-     * @param string $key
-     * @param string $value
+     * @param  string $key
+     * @param  string $value
      * @return Zend_Form_Element
      */
     public function setOption($key, $value)
@@ -114,10 +119,10 @@ abstract class Zend_Captcha_Base extends Zend_Validate_Abstract implements Zend_
             return $this;
         }
 
-        $method = 'set' . ucfirst ($key);
-        if (method_exists ($this, $method)) {
+        $method = 'set' . ucfirst($key);
+        if (method_exists($this, $method)) {
             // Setter exists; use it
-            $this->$method ($value);
+            $this->$method($value);
             $this->_options[$key] = $value;
         } elseif (property_exists($this, $key)) {
             // Assume it's metadata

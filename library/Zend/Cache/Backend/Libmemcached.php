@@ -26,6 +26,7 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
      *                     weight of all servers.
      * =====> (array) client :
      * an array of memcached client options ; the memcached client is described by an associative array :
+     *
      * @see http://php.net/manual/memcached.constants.php
      * - The option name can be the name of the constant without the prefix 'OPT_'
      *   or the integer value of this option constant
@@ -51,7 +52,7 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
     /**
      * Constructor
      *
-     * @param array $options associative array of options
+     * @param  array $options associative array of options
      * @throws Zend_Cache_Exception
      * @return void
      */
@@ -206,20 +207,20 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
     public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
     {
         switch ($mode) {
-            case Zend_Cache::CLEANING_MODE_ALL:
-                return $this->_memcache->flush();
+        case Zend_Cache::CLEANING_MODE_ALL:
+            return $this->_memcache->flush();
                 break;
-            case Zend_Cache::CLEANING_MODE_OLD:
-                $this->_log("Zend_Cache_Backend_Libmemcached::clean() : CLEANING_MODE_OLD is unsupported by the Libmemcached backend");
-                break;
-            case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
-            case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
-            case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
-                $this->_log(self::TAGS_UNSUPPORTED_BY_CLEAN_OF_LIBMEMCACHED_BACKEND);
-                break;
-               default:
-                Zend_Cache::throwException('Invalid mode for clean() method');
-                   break;
+        case Zend_Cache::CLEANING_MODE_OLD:
+            $this->_log("Zend_Cache_Backend_Libmemcached::clean() : CLEANING_MODE_OLD is unsupported by the Libmemcached backend");
+            break;
+        case Zend_Cache::CLEANING_MODE_MATCHING_TAG:
+        case Zend_Cache::CLEANING_MODE_NOT_MATCHING_TAG:
+        case Zend_Cache::CLEANING_MODE_MATCHING_ANY_TAG:
+            $this->_log(self::TAGS_UNSUPPORTED_BY_CLEAN_OF_LIBMEMCACHED_BACKEND);
+            break;
+        default:
+            Zend_Cache::throwException('Invalid mode for clean() method');
+            break;
         }
     }
 
@@ -281,7 +282,7 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
      *
      * In case of multiple tags, a logical AND is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of matching cache ids (string)
      */
     public function getIdsMatchingTags($tags = array())
@@ -295,7 +296,7 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
      *
      * In case of multiple tags, a logical OR is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of not matching cache ids (string)
      */
     public function getIdsNotMatchingTags($tags = array())
@@ -309,7 +310,7 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
      *
      * In case of multiple tags, a logical AND is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of any matching cache ids (string)
      */
     public function getIdsMatchingAnyTags($tags = array())
@@ -364,7 +365,7 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
      * - tags : a string array of tags
      * - mtime : timestamp of last modification time
      *
-     * @param string $id cache id
+     * @param  string $id cache id
      * @return array array of metadatas (false if the cache id is not found)
      */
     public function getMetadatas($id)
@@ -387,8 +388,8 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
     /**
      * Give (if possible) an extra lifetime to the given cache id
      *
-     * @param string $id cache id
-     * @param int $extraLifetime
+     * @param  string $id            cache id
+     * @param  int    $extraLifetime
      * @return boolean true if ok
      */
     public function touch($id, $extraLifetime)

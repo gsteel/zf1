@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Config
- * @package    Writer
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Config
+ * @package   Writer
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 // require_once "Zend/Config/Writer.php";
@@ -24,11 +24,11 @@
 /**
  * Abstract File Writer
  *
- * @category   Zend
- * @package    Zend_package
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_package
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
 {
@@ -62,7 +62,7 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
     /**
      * Set wether to exclusively lock the file or not
      *
-     * @param  boolean     $exclusiveLock
+     * @param  boolean $exclusiveLock
      * @return Zend_Config_Writer_Array
      */
     public function setExclusiveLock($exclusiveLock)
@@ -75,9 +75,9 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
     /**
      * Write configuration to file.
      *
-     * @param string $filename
-     * @param Zend_Config $config
-     * @param bool $exclusiveLock
+     * @param  string      $filename
+     * @param  Zend_Config $config
+     * @param  bool        $exclusiveLock
      * @return void
      */
     public function write($filename = null, Zend_Config $config = null, $exclusiveLock = null)
@@ -123,8 +123,8 @@ class Zend_Config_Writer_FileAbstract extends Zend_Config_Writer
     /**
      * Render a Zend_Config into a config file string.
      *
-     * @since 1.10
-     * @todo For 2.0 this should be redone into an abstract method.
+     * @since  1.10
+     * @todo   For 2.0 this should be redone into an abstract method.
      * @return string
      */
     public function render()

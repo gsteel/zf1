@@ -61,13 +61,13 @@ class Zend_Application_Resource_Translate extends Zend_Application_Resource_Reso
 
             if (!empty($options['cache']) && is_string($options['cache'])) {
                 $bootstrap = $this->getBootstrap();
-                if ($bootstrap instanceof Zend_Application_Bootstrap_ResourceBootstrapper &&
-                    $bootstrap->hasPluginResource('CacheManager')
+                if ($bootstrap instanceof Zend_Application_Bootstrap_ResourceBootstrapper 
+                    && $bootstrap->hasPluginResource('CacheManager')
                 ) {
                     $cacheManager = $bootstrap->bootstrap('CacheManager')
                         ->getResource('CacheManager');
-                    if (null !== $cacheManager &&
-                        $cacheManager->hasCache($options['cache'])
+                    if (null !== $cacheManager 
+                        && $cacheManager->hasCache($options['cache'])
                     ) {
                         $options['cache'] = $cacheManager->getCache($options['cache']);
                     }

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Validate/Abstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_NotEmpty extends Zend_Validate_Abstract
 {
@@ -157,8 +157,9 @@ class Zend_Validate_NotEmpty extends Zend_Validate_Abstract
      */
     public function isValid($value)
     {
-        if ($value !== null && !is_string($value) && !is_int($value) && !is_float($value) &&
-            !is_bool($value) && !is_array($value) && !is_object($value)) {
+        if ($value !== null && !is_string($value) && !is_int($value) && !is_float($value) 
+            && !is_bool($value) && !is_array($value) && !is_object($value)
+        ) {
             $this->_error(self::INVALID);
             return false;
         }
@@ -183,8 +184,9 @@ class Zend_Validate_NotEmpty extends Zend_Validate_Abstract
             $type -= self::OBJECT_STRING;
             $object = true;
 
-            if ((is_object($value) && (!method_exists($value, '__toString'))) ||
-                (is_object($value) && (method_exists($value, '__toString')) && (((string) $value) == ""))) {
+            if ((is_object($value) && (!method_exists($value, '__toString'))) 
+                || (is_object($value) && (method_exists($value, '__toString')) && (((string) $value) == ""))
+            ) {
                 $this->_error(self::IS_EMPTY);
                 return false;
             }

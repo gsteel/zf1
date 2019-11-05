@@ -33,7 +33,7 @@ interface Zend_Mail_Storage_Folder_Interface
     /**
      * get root folder or given folder
      *
-     * @param string $rootFolder get folder structure for given folder, else root
+     * @param  string $rootFolder get folder structure for given folder, else root
      * @return Zend_Mail_Storage_Folder root or wanted folder
      */
     public function getFolders($rootFolder = null);
@@ -43,7 +43,7 @@ interface Zend_Mail_Storage_Folder_Interface
      *
      * folder must be selectable!
      *
-     * @param Zend_Mail_Storage_Folder|string $globalName global name of folder or instance for subfolder
+     * @param  Zend_Mail_Storage_Folder|string $globalName global name of folder or instance for subfolder
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */

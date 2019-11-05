@@ -20,13 +20,19 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Json */
+/**
+ * Zend_Json 
+ */
 // require_once 'Zend/Json.php';
 
-/** Zend_Controller_Front */
+/**
+ * Zend_Controller_Front 
+ */
 // require_once 'Zend/Controller/Front.php';
 
-/** Zend_View_Helper_Abstract.php */
+/**
+ * Zend_View_Helper_Abstract.php 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**
@@ -46,12 +52,12 @@ class Zend_View_Helper_Json extends Zend_View_Helper_Abstract
      * If $encodeJson is false, does not JSON-encode $data
      *
      * @param  mixed $data
-     * @param  bool $keepLayouts
+     * @param  bool  $keepLayouts
      * NOTE:   if boolean, establish $keepLayouts to true|false
      *         if array, admit params for Zend_Json::encode as enableJsonExprFinder=>true|false
      *         this array can contains a 'keepLayout'=>true|false and/or 'encodeData'=>true|false
      *         that will not be passed to Zend_Json::encode method but will be used here
-     * @param  bool $encodeData
+     * @param  bool  $encodeData
      * @return string|void
      */
     public function json($data, $keepLayouts = false, $encodeData = true)

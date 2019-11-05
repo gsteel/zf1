@@ -42,7 +42,7 @@
  * redirections, as well as more advanced features like proxy settings, HTTP
  * authentication and cookie persistence (using a Zend_Http_CookieJar object)
  *
- * @todo Implement proxy settings
+ * @todo       Implement proxy settings
  * @category   Zend
  * @package    Zend_Http
  * @subpackage Header
@@ -120,7 +120,7 @@ class Zend_Http_Header_SetCookie
      * @static
      * @throws Zend_Http_Header_Exception_InvalidArgumentException
      * @param  $headerLine
-     * @param  bool $bypassHeaderFieldName
+     * @param  bool       $bypassHeaderFieldName
      * @return array|SetCookie
      */
     public static function fromString($headerLine, $bypassHeaderFieldName = false)
@@ -146,7 +146,7 @@ class Zend_Http_Header_SetCookie
                 }
 
                 // First K=V pair is always the cookie name and value
-                if ($header->getName() === NULL) {
+                if ($header->getName() === null) {
                     $header->setName($headerKey);
                     $header->setValue($headerValue);
                     continue;
@@ -154,15 +154,22 @@ class Zend_Http_Header_SetCookie
 
                 // Process the remanining elements
                 switch (str_replace(array('-', '_'), '', strtolower($headerKey))) {
-                    case 'expires' : $header->setExpires($headerValue); break;
-                    case 'domain'  : $header->setDomain($headerValue); break;
-                    case 'path'    : $header->setPath($headerValue); break;
-                    case 'secure'  : $header->setSecure(true); break;
-                    case 'httponly': $header->setHttponly(true); break;
-                    case 'version' : $header->setVersion((int) $headerValue); break;
-                    case 'maxage'  : $header->setMaxAge((int) $headerValue); break;
-                    default:
-                        // Intentionally omitted
+                case 'expires' : $header->setExpires($headerValue); 
+                    break;
+                case 'domain'  : $header->setDomain($headerValue); 
+                    break;
+                case 'path'    : $header->setPath($headerValue); 
+                    break;
+                case 'secure'  : $header->setSecure(true); 
+                    break;
+                case 'httponly': $header->setHttponly(true); 
+                    break;
+                case 'version' : $header->setVersion((int) $headerValue); 
+                    break;
+                case 'maxage'  : $header->setMaxAge((int) $headerValue); 
+                    break;
+                default:
+                    // Intentionally omitted
                 }
             }
             $headers[] = $header;
@@ -175,15 +182,15 @@ class Zend_Http_Header_SetCookie
      *
      * @todo Add validation of each one of the parameters (legal domain, etc.)
      *
-     * @param string $name
-     * @param string $value
-     * @param int $expires
-     * @param string $path
-     * @param string $domain
-     * @param bool $secure
-     * @param bool $httponly
-     * @param string $maxAge
-     * @param int $version
+     * @param  string $name
+     * @param  string $value
+     * @param  int    $expires
+     * @param  string $path
+     * @param  string $domain
+     * @param  bool   $secure
+     * @param  bool   $httponly
+     * @param  string $maxAge
+     * @param  int    $version
      * @return SetCookie
      */
     public function __construct($name = null, $value = null, $expires = null, $path = null, $domain = null, $secure = false, $httponly = false, $maxAge = null, $version = null)
@@ -246,7 +253,7 @@ class Zend_Http_Header_SetCookie
         }
 
         $value = $this->getValue();
-        if (strpos($value,'"')!==false) {
+        if (strpos($value, '"')!==false) {
             $value = '"'.urlencode(str_replace('"', '', $value)).'"';
         } else {
             $value = urlencode($value);
@@ -290,7 +297,7 @@ class Zend_Http_Header_SetCookie
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return SetCookie
      */
     public function setName($name)
@@ -376,7 +383,7 @@ class Zend_Http_Header_SetCookie
     }
 
     /**
-     * @param int $expires
+     * @param  int $expires
      * @return SetCookie
      */
     public function setExpires($expires)
@@ -481,7 +488,7 @@ class Zend_Http_Header_SetCookie
      *
      * Always returns false if the cookie is a session cookie (has no expiry time)
      *
-     * @param int $now Timestamp to consider as "now"
+     * @param  int $now Timestamp to consider as "now"
      * @return boolean
      */
     public function isExpired($now = null)

@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_Abstract.php */
+/**
+ * Zend_View_Helper_Abstract.php 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**
@@ -33,7 +35,9 @@
  */
 class Zend_View_Helper_Layout extends Zend_View_Helper_Abstract
 {
-    /** @var Zend_Layout */
+    /**
+     * @var Zend_Layout 
+     */
     protected $_layout;
 
     /**

@@ -12,47 +12,55 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** Zend_Oauth_Http_Utility */
+/**
+ * Zend_Oauth_Http_Utility 
+ */
 // require_once 'Zend/Oauth/Http/Utility.php';
 
-/** Zend_Uri_Http */
+/**
+ * Zend_Uri_Http 
+ */
 // require_once 'Zend/Uri/Http.php';
 
 /**
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Oauth_Signature_SignatureAbstract
 {
     /**
      * Hash algorithm to use when generating signature
+     *
      * @var string
      */
     protected $_hashAlgorithm = null;
 
     /**
      * Key to use when signing
+     *
      * @var string
      */
     protected $_key = null;
 
     /**
      * Consumer secret
+     *
      * @var string
      */
     protected $_consumerSecret = null;
 
     /**
      * Token secret
+     *
      * @var string
      */
     protected $_tokenSecret = '';
@@ -60,7 +68,7 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
     /**
      * Constructor
      *
-     * @param  string $consumerSecret
+     * @param  string      $consumerSecret
      * @param  null|string $tokenSecret
      * @param  null|string $hashAlgo
      * @return void
@@ -80,7 +88,7 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
     /**
      * Sign a request
      *
-     * @param  array $params
+     * @param  array       $params
      * @param  null|string $method
      * @param  null|string $url
      * @return string
@@ -127,7 +135,7 @@ abstract class Zend_Oauth_Signature_SignatureAbstract
     /**
      * Get base signature string
      *
-     * @param  array $params
+     * @param  array       $params
      * @param  null|string $method
      * @param  null|string $url
      * @return string

@@ -50,6 +50,7 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
 
     /**
      * Word delimiters
+     *
      * @var array
      */
     protected $_delimiters;
@@ -61,12 +62,14 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
 
     /**
      * Inflector target
+     *
      * @var string
      */
     protected $_inflectorTarget = '';
 
     /**
      * Current module directory
+     *
      * @var string
      */
     protected $_moduleDir = '';
@@ -74,6 +77,7 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
     /**
      * Whether or not to autorender using controller name as subdirectory;
      * global setting (not reset at next invocation)
+     *
      * @var boolean
      */
     protected $_neverController = false;
@@ -81,12 +85,14 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
     /**
      * Whether or not to autorender postDispatch; global setting (not reset at
      * next invocation)
+     *
      * @var boolean
      */
     protected $_neverRender     = false;
 
     /**
      * Whether or not to use a controller name as a subdirectory when rendering
+     *
      * @var boolean
      */
     protected $_noController    = false;
@@ -94,48 +100,56 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
     /**
      * Whether or not to autorender postDispatch; per controller/action setting (reset
      * at next invocation)
+     *
      * @var boolean
      */
     protected $_noRender        = false;
 
     /**
      * Characters representing path delimiters in the controller
+     *
      * @var string|array
      */
     protected $_pathDelimiters;
 
     /**
      * Which named segment of the response to utilize
+     *
      * @var string
      */
     protected $_responseSegment = null;
 
     /**
      * Which action view script to render
+     *
      * @var string
      */
     protected $_scriptAction    = null;
 
     /**
      * View object basePath
+     *
      * @var string
      */
     protected $_viewBasePathSpec = ':moduleDir/views';
 
     /**
      * View script path specification string
+     *
      * @var string
      */
     protected $_viewScriptPathSpec = ':controller/:action.:suffix';
 
     /**
      * View script path specification string, minus controller segment
+     *
      * @var string
      */
     protected $_viewScriptPathNoControllerSpec = ':action.:suffix';
 
     /**
      * View script suffix
+     *
      * @var string
      */
     protected $_viewSuffix      = 'phtml';
@@ -231,13 +245,15 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         if (null === $this->_inflector) {
             $this->_inflector = new Zend_Filter_Inflector();
             $this->_inflector->setStaticRuleReference('moduleDir', $this->_moduleDir) // moduleDir must be specified before the less specific 'module'
-                 ->addRules(array(
+                ->addRules(
+                    array(
                      ':module'     => array('Word_CamelCaseToDash', 'StringToLower'),
                      ':controller' => array('Word_CamelCaseToDash', new Zend_Filter_Word_UnderscoreToSeparator('/'), 'StringToLower', new Zend_Filter_PregReplace('/\./', '-')),
                      ':action'     => array('Word_CamelCaseToDash', new Zend_Filter_PregReplace('#[^a-z0-9' . preg_quote('/', '#') . ']+#i', '-'), 'StringToLower'),
-                 ))
-                 ->setStaticRuleReference('suffix', $this->_viewSuffix)
-                 ->setTargetReference($this->_inflectorTarget);
+                    )
+                )
+                ->setStaticRuleReference('suffix', $this->_viewSuffix)
+                ->setTargetReference($this->_inflectorTarget);
         }
 
         // Ensure that module directory is current
@@ -258,8 +274,8 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         $this->_inflector = $inflector;
         if ($reference) {
             $this->_inflector->setStaticRuleReference('suffix', $this->_viewSuffix)
-                 ->setStaticRuleReference('moduleDir', $this->_moduleDir)
-                 ->setTargetReference($this->_inflectorTarget);
+                ->setStaticRuleReference('moduleDir', $this->_moduleDir)
+                ->setTargetReference($this->_inflectorTarget);
         }
         return $this;
     }
@@ -362,24 +378,24 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         foreach ($options as $key => $value)
         {
             switch ($key) {
-                case 'neverRender':
-                case 'neverController':
-                case 'noController':
-                case 'noRender':
-                    $property = '_' . $key;
-                    $this->{$property} = ($value) ? true : false;
-                    break;
-                case 'responseSegment':
-                case 'scriptAction':
-                case 'viewBasePathSpec':
-                case 'viewScriptPathSpec':
-                case 'viewScriptPathNoControllerSpec':
-                case 'viewSuffix':
-                    $property = '_' . $key;
-                    $this->{$property} = (string) $value;
-                    break;
-                default:
-                    break;
+            case 'neverRender':
+            case 'neverController':
+            case 'noController':
+            case 'noRender':
+                $property = '_' . $key;
+                $this->{$property} = ($value) ? true : false;
+                break;
+            case 'responseSegment':
+            case 'scriptAction':
+            case 'viewBasePathSpec':
+            case 'viewScriptPathSpec':
+            case 'viewScriptPathNoControllerSpec':
+            case 'viewSuffix':
+                $property = '_' . $key;
+                $this->{$property} = (string) $value;
+                break;
+            default:
+                break;
             }
         }
 
@@ -814,15 +830,15 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         $params     = compact('module', 'controller', 'action');
         foreach ($vars as $key => $value) {
             switch ($key) {
-                case 'module':
-                case 'controller':
-                case 'action':
-                case 'moduleDir':
-                case 'suffix':
-                    $params[$key] = (string) $value;
-                    break;
-                default:
-                    break;
+            case 'module':
+            case 'controller':
+            case 'action':
+            case 'moduleDir':
+            case 'suffix':
+                $params[$key] = (string) $value;
+                break;
+            default:
+                break;
             }
         }
 

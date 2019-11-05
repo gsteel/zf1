@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Dojo_View_Helper_Dijit */
+/**
+ * Zend_Dojo_View_Helper_Dijit 
+ */
 // require_once 'Zend/Dojo/View/Helper/Dijit.php';
 
 /**
@@ -31,23 +33,26 @@
  * @subpackage View
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
-  */
+ */
 abstract class Zend_Dojo_View_Helper_Slider extends Zend_Dojo_View_Helper_Dijit
 {
     /**
      * Dojo module to use
+     *
      * @var string
      */
     protected $_module = 'dijit.form.Slider';
 
     /**
      * Required slider parameters
+     *
      * @var array
      */
     protected $_requiredParams = array('minimum', 'maximum', 'discreteValues');
 
     /**
      * Slider type -- vertical or horizontal
+     *
      * @var string
      */
     protected $_sliderType;
@@ -55,7 +60,7 @@ abstract class Zend_Dojo_View_Helper_Slider extends Zend_Dojo_View_Helper_Dijit
     /**
      * dijit.form.Slider
      *
-     * @param  int $id
+     * @param  int   $id
      * @param  mixed $value
      * @param  array $params  Parameters to use for dijit creation
      * @param  array $attribs HTML attributes
@@ -89,47 +94,47 @@ abstract class Zend_Dojo_View_Helper_Slider extends Zend_Dojo_View_Helper_Dijit
         $id .= '-slider';
 
         switch ($this->_sliderType) {
-            case 'horizontal':
-                if (array_key_exists('topDecoration', $params)) {
-                    $content .= $this->_prepareDecoration('topDecoration', $id, $params['topDecoration']);
-                    unset($params['topDecoration']);
-                }
+        case 'horizontal':
+            if (array_key_exists('topDecoration', $params)) {
+                $content .= $this->_prepareDecoration('topDecoration', $id, $params['topDecoration']);
+                unset($params['topDecoration']);
+            }
 
-                if (array_key_exists('bottomDecoration', $params)) {
-                    $content .= $this->_prepareDecoration('bottomDecoration', $id, $params['bottomDecoration']);
-                    unset($params['bottomDecoration']);
-                }
+            if (array_key_exists('bottomDecoration', $params)) {
+                $content .= $this->_prepareDecoration('bottomDecoration', $id, $params['bottomDecoration']);
+                unset($params['bottomDecoration']);
+            }
 
-                if (array_key_exists('leftDecoration', $params)) {
-                    unset($params['leftDecoration']);
-                }
+            if (array_key_exists('leftDecoration', $params)) {
+                unset($params['leftDecoration']);
+            }
 
-                if (array_key_exists('rightDecoration', $params)) {
-                    unset($params['rightDecoration']);
-                }
-                break;
-            case 'vertical':
-                if (array_key_exists('leftDecoration', $params)) {
-                    $content .= $this->_prepareDecoration('leftDecoration', $id, $params['leftDecoration']);
-                    unset($params['leftDecoration']);
-                }
+            if (array_key_exists('rightDecoration', $params)) {
+                unset($params['rightDecoration']);
+            }
+            break;
+        case 'vertical':
+            if (array_key_exists('leftDecoration', $params)) {
+                $content .= $this->_prepareDecoration('leftDecoration', $id, $params['leftDecoration']);
+                unset($params['leftDecoration']);
+            }
 
-                if (array_key_exists('rightDecoration', $params)) {
-                    $content .= $this->_prepareDecoration('rightDecoration', $id, $params['rightDecoration']);
-                    unset($params['rightDecoration']);
-                }
+            if (array_key_exists('rightDecoration', $params)) {
+                $content .= $this->_prepareDecoration('rightDecoration', $id, $params['rightDecoration']);
+                unset($params['rightDecoration']);
+            }
 
-                if (array_key_exists('topDecoration', $params)) {
-                    unset($params['topDecoration']);
-                }
+            if (array_key_exists('topDecoration', $params)) {
+                unset($params['topDecoration']);
+            }
 
-                if (array_key_exists('bottomDecoration', $params)) {
-                    unset($params['bottomDecoration']);
-                }
-                break;
-            default:
-                // require_once 'Zend/Dojo/View/Exception.php';
-                throw new Zend_Dojo_View_Exception('Invalid slider type; slider must be horizontal or vertical');
+            if (array_key_exists('bottomDecoration', $params)) {
+                unset($params['bottomDecoration']);
+            }
+            break;
+        default:
+            // require_once 'Zend/Dojo/View/Exception.php';
+            throw new Zend_Dojo_View_Exception('Invalid slider type; slider must be horizontal or vertical');
         }
 
         return $hidden . $this->_createLayoutContainer($id, $content, $params, $attribs);
@@ -140,7 +145,7 @@ abstract class Zend_Dojo_View_Helper_Slider extends Zend_Dojo_View_Helper_Dijit
      *
      * @param  string $position
      * @param  string $id
-     * @param  array $decInfo
+     * @param  array  $decInfo
      * @return string
      */
     protected function _prepareDecoration($position, $id, $decInfo)
@@ -222,12 +227,12 @@ abstract class Zend_Dojo_View_Helper_Slider extends Zend_Dojo_View_Helper_Dijit
         $containerHtml = '<div' . $this->_htmlAttribs($containerAttribs) . "></div>\n";
 
         switch ($position) {
-            case 'topDecoration':
-            case 'leftDecoration':
-                return $labelList . $containerHtml;
-            case 'bottomDecoration':
-            case 'rightDecoration':
-                return $containerHtml . $labelList;
+        case 'topDecoration':
+        case 'leftDecoration':
+            return $labelList . $containerHtml;
+        case 'bottomDecoration':
+        case 'rightDecoration':
+            return $containerHtml . $labelList;
         }
     }
 
@@ -235,9 +240,9 @@ abstract class Zend_Dojo_View_Helper_Slider extends Zend_Dojo_View_Helper_Dijit
      * Prepare slider label list
      *
      * @param  string $id
-     * @param  array $params
-     * @param  array $attribs
-     * @param  array $labels
+     * @param  array  $params
+     * @param  array  $attribs
+     * @param  array  $labels
      * @return string
      */
     protected function _prepareLabelsList($id, array $params, array $attribs, array $labels)

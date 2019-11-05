@@ -14,9 +14,9 @@
  *
  * @category  Zend
  * @package   Zend_Navigation
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @version   $Id$
  */
 
 /**
@@ -29,7 +29,7 @@
  *
  * @category  Zend
  * @package   Zend_Navigation
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Navigation_Page extends Zend_Navigation_Container
@@ -194,7 +194,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      * - If $options contains the key 'uri', a Zend_Navigation_Page_Uri page
      *   will be created.
      *
-     * @param  array|Zend_Config $options  options used for creating page
+     * @param  array|Zend_Config $options options used for creating page
      * @return Zend_Navigation_Page        a page instance
      * @throws Zend_Navigation_Exception   if $options is not array/Zend_Config
      * @throws Zend_Exception              if 'type' is specified and
@@ -217,7 +217,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (!is_array($options)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                'Invalid argument: $options must be an array or Zend_Config');
+                'Invalid argument: $options must be an array or Zend_Config'
+            );
         }
 
         if (isset($options['type'])) {
@@ -229,12 +230,12 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if(isset($type)) {
             if (is_string($type) && !empty($type)) {
                 switch (strtolower($type)) {
-                    case 'mvc':
-                        $type = \Zend_Navigation_Page_Mvc::class;
-                        break;
-                    case 'uri':
-                        $type = \Zend_Navigation_Page_Uri::class;
-                        break;
+                case 'mvc':
+                    $type = \Zend_Navigation_Page_Mvc::class;
+                    break;
+                case 'uri':
+                    $type = \Zend_Navigation_Page_Uri::class;
+                    break;
                 }
 
                 if (!class_exists($type)) {
@@ -245,10 +246,13 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
                 $page = new $type($options);
                 if (!$page instanceof Zend_Navigation_Page) {
                     // require_once 'Zend/Navigation/Exception.php';
-                    throw new Zend_Navigation_Exception(sprintf(
+                    throw new Zend_Navigation_Exception(
+                        sprintf(
                             'Invalid argument: Detected type "%s", which ' .
                             'is not an instance of Zend_Navigation_Page',
-                            $type));
+                            $type
+                        )
+                    );
                 }
                 return $page;
             }
@@ -271,17 +275,17 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             $message = 'Invalid argument: Unable to determine class to instantiate';
             if (isset($options['label'])) {
                 $message .= ' (Page label: ' . $options['label'] . ')';
-        }
+            }
             
             throw new Zend_Navigation_Exception($message);
-    }
+        }
     }
 
     /**
      * Page constructor
      *
-     * @param  array|Zend_Config $options   [optional] page options. Default is
-     *                                      null, which should set defaults.
+     * @param  array|Zend_Config $options [optional] page options. Default is
+     *                                    null, which should set defaults.
      * @throws Zend_Navigation_Exception    if invalid options are given
      */
     public function __construct($options = null)
@@ -308,7 +312,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets page properties using a Zend_Config object
      *
-     * @param  Zend_Config $config        config object to get properties from
+     * @param  Zend_Config $config config object to get properties from
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if invalid options are given
      */
@@ -325,7 +329,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      * corresponds to setTarget(), and the option 'reset_params' corresponds to
      * the method setResetParams().
      *
-     * @param  array $options             associative array of options to set
+     * @param  array $options associative array of options to set
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if invalid options are given
      */
@@ -343,7 +347,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets page label
      *
-     * @param  string $label              new page label
+     * @param  string $label new page label
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if empty/no string is given
      */
@@ -352,7 +356,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (null !== $label && !is_string($label)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $label must be a string or null');
+                'Invalid argument: $label must be a string or null'
+            );
         }
 
         $this->_label = $label;
@@ -372,7 +377,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets a fragment identifier
      *
-     * @param  string $fragment   new fragment identifier
+     * @param  string $fragment new fragment identifier
      * @return Zend_Navigation_Page         fluent interface, returns self
      * @throws Zend_Navigation_Exception    if empty/no string is given
      */
@@ -381,7 +386,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (null !== $fragment && !is_string($fragment)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $fragment must be a string or null');
+                'Invalid argument: $fragment must be a string or null'
+            );
         }
  
         $this->_fragment = $fragment;
@@ -389,10 +395,10 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     }
     
      /**
-     * Returns fragment identifier
-     *
-     * @return string|null  fragment identifier
-     */
+      * Returns fragment identifier
+      *
+      * @return string|null  fragment identifier
+      */
     public function getFragment()
     {
         return $this->_fragment;
@@ -401,8 +407,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets page id
      *
-     * @param  string|null $id            [optional] id to set. Default is null,
-     *                                    which sets no id.
+     * @param  string|null $id [optional] id to set. Default is null,
+     *                         which sets no id.
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if not given string or null
      */
@@ -411,7 +417,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (null !== $id && !is_string($id) && !is_numeric($id)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $id must be a string, number or null');
+                'Invalid argument: $id must be a string, number or null'
+            );
         }
 
         $this->_id = null === $id ? $id : (string) $id;
@@ -432,8 +439,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets page CSS class
      *
-     * @param  string|null $class         [optional] CSS class to set. Default
-     *                                    is null, which sets no CSS class.
+     * @param  string|null $class [optional] CSS class to set. Default
+     *                            is null, which sets no CSS class.
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if not given string or null
      */
@@ -442,7 +449,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (null !== $class && !is_string($class)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $class must be a string or null');
+                'Invalid argument: $class must be a string or null'
+            );
         }
 
         $this->_class = $class;
@@ -462,8 +470,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets page title
      *
-     * @param  string $title              [optional] page title. Default is
-     *                                    null, which sets no title.
+     * @param  string $title [optional] page title. Default is
+     *                       null, which sets no title.
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if not given string or null
      */
@@ -472,7 +480,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (null !== $title && !is_string($title)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $title must be a non-empty string');
+                'Invalid argument: $title must be a non-empty string'
+            );
         }
 
         $this->_title = $title;
@@ -492,8 +501,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets page target
      *
-     * @param  string|null $target        [optional] target to set. Default is
-     *                                    null, which sets no target.
+     * @param  string|null $target [optional] target to set. Default is
+     *                             null, which sets no target.
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if target is not string or null
      */
@@ -502,7 +511,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (null !== $target && !is_string($target)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $target must be a string or null');
+                'Invalid argument: $target must be a string or null'
+            );
         }
 
         $this->_target = $target;
@@ -522,8 +532,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets access key for this page
      *
-     * @param  string|null $character     [optional] access key to set. Default
-     *                                    is null, which sets no access key.
+     * @param  string|null $character [optional] access key to set. Default
+     *                                is null, which sets no access key.
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if access key is not string or null or
      *                                    if the string length not equal to one
@@ -531,8 +541,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     public function setAccesskey($character = null)
     {
         if (null !== $character
-            && (!is_string($character) || 1 != strlen($character)))
-        {
+            && (!is_string($character) || 1 != strlen($character))
+        ) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
                 'Invalid argument: $character must be a single character or null'
@@ -544,10 +554,10 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     }
 
      /**
-     * Returns page access key
-     *
-     * @return string|null  page access key or null
-     */
+      * Returns page access key
+      *
+      * @return string|null  page access key or null
+      */
     public function getAccesskey()
     {
         return $this->_accesskey;
@@ -561,8 +571,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      * prev, next, help, etc), and the value is a mixed value that could somehow
      * be considered a page.
      *
-     * @param  array|Zend_Config $relations  [optional] an associative array of
-     *                                       forward links to other pages
+     * @param  array|Zend_Config $relations [optional] an associative array of
+     *                                      forward links to other pages
      * @return Zend_Navigation_Page          fluent interface, returns self
      */
     public function setRel($relations = null)
@@ -577,8 +587,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             if (!is_array($relations)) {
                 // require_once 'Zend/Navigation/Exception.php';
                 throw new Zend_Navigation_Exception(
-                        'Invalid argument: $relations must be an ' .
-                        'array or an instance of Zend_Config');
+                    'Invalid argument: $relations must be an ' .
+                    'array or an instance of Zend_Config'
+                );
             }
 
             foreach ($relations as $name => $relation) {
@@ -599,8 +610,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      * prev, next, help, etc), and the value is a mixed value that could somehow
      * be considered a page.
      *
-     * @param  string $relation  [optional] name of relation to return. If not
-     *                           given, all relations will be returned.
+     * @param  string $relation [optional] name of relation to return. If not
+     *                          given, all relations will be returned.
      * @return array             an array of relations. If $relation is not
      *                           specified, all relations will be returned in
      *                           an associative array.
@@ -622,8 +633,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      * prev, next, help, etc), and the value is a mixed value that could somehow
      * be considered a page.
      *
-     * @param  array|Zend_Config $relations  [optional] an associative array of
-     *                                       reverse links to other pages
+     * @param  array|Zend_Config $relations [optional] an associative array of
+     *                                      reverse links to other pages
      * @return Zend_Navigation_Page          fluent interface, returns self
      */
     public function setRev($relations = null)
@@ -638,8 +649,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             if (!is_array($relations)) {
                 // require_once 'Zend/Navigation/Exception.php';
                 throw new Zend_Navigation_Exception(
-                        'Invalid argument: $relations must be an ' .
-                        'array or an instance of Zend_Config');
+                    'Invalid argument: $relations must be an ' .
+                    'array or an instance of Zend_Config'
+                );
             }
 
             foreach ($relations as $name => $relation) {
@@ -660,8 +672,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      * prev, next, help, etc), and the value is a mixed value that could somehow
      * be considered a page.
      *
-     * @param  string $relation  [optional] name of relation to return. If not
-     *                           given, all relations will be returned.
+     * @param  string $relation [optional] name of relation to return. If not
+     *                          given, all relations will be returned.
      * @return array             an array of relations. If $relation is not
      *                           specified, all relations will be returned in
      *                           an associative array.
@@ -678,8 +690,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets a single custom HTML attribute
      *
-     * @param  string      $name            name of the HTML attribute
-     * @param  string|null $value           value for the HTML attribute
+     * @param  string      $name  name of the HTML attribute
+     * @param  string|null $value value for the HTML attribute
      * @return Zend_Navigation_Page         fluent interface, returns self
      * @throws Zend_Navigation_Exception    if name is not string or value is
      *                                      not null or a string
@@ -712,7 +724,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Returns a single custom HTML attributes by name
      *
-     * @param  string $name                 name of the HTML attribute
+     * @param  string $name name of the HTML attribute
      * @return string|null                  value for the HTML attribute or null
      * @throws Zend_Navigation_Exception    if name is not string
      */
@@ -735,7 +747,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets multiple custom HTML attributes at once
      *
-     * @param array $attribs        an associative array of html attributes
+     * @param  array $attribs an associative array of html attributes
      * @return Zend_Navigation_Page fluent interface, returns self
      */
     public function setCustomHtmlAttribs(array $attribs)
@@ -759,7 +771,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Removes a custom HTML attribute from the page
      *
-     * @param  string $name          name of the custom HTML attribute
+     * @param  string $name name of the custom HTML attribute
      * @return Zend_Navigation_Page  fluent interface, returns self
      */
     public function removeCustomHtmlAttrib($name)
@@ -791,9 +803,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets page order to use in parent container
      *
-     * @param  int $order                 [optional] page order in container.
-     *                                    Default is null, which sets no
-     *                                    specific order.
+     * @param  int $order [optional] page order in container.
+     *                    Default is null, which sets no
+     *                    specific order.
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if order is not integer or null
      */
@@ -809,8 +821,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (null !== $order && !is_int($order)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $order must be an integer or null, ' .
-                    'or a string that casts to an integer');
+                'Invalid argument: $order must be an integer or null, ' .
+                'or a string that casts to an integer'
+            );
         }
 
         $this->_order = $order;
@@ -836,11 +849,11 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets ACL resource assoicated with this page
      *
-     * @param  string|Zend_Acl_Resource_Interface $resource  [optional] resource
-     *                                                       to associate with
-     *                                                       page. Default is
-     *                                                       null, which sets no
-     *                                                       resource.
+     * @param  string|Zend_Acl_Resource_Interface $resource [optional] resource
+     *                                                      to associate with
+     *                                                      page. Default is
+     *                                                      null, which sets no
+     *                                                      resource.
      * @throws Zend_Navigation_Exception                     if $resource if
      *                                                       invalid
      * @return Zend_Navigation_Page                          fluent interface,
@@ -848,14 +861,16 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      */
     public function setResource($resource = null)
     {
-        if (null === $resource || is_string($resource) ||
-            $resource instanceof Zend_Acl_Resource_Interface) {
+        if (null === $resource || is_string($resource) 
+            || $resource instanceof Zend_Acl_Resource_Interface
+        ) {
             $this->_resource = $resource;
         } else {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $resource must be null, a string, ' .
-                    ' or an instance of Zend_Acl_Resource_Interface');
+                'Invalid argument: $resource must be null, a string, ' .
+                ' or an instance of Zend_Acl_Resource_Interface'
+            );
         }
 
         return $this;
@@ -874,9 +889,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets ACL privilege associated with this page
      *
-     * @param  string|null $privilege  [optional] ACL privilege to associate
-     *                                 with this page. Default is null, which
-     *                                 sets no privilege.
+     * @param  string|null $privilege [optional] ACL privilege to associate
+     *                                with this page. Default is null,
+     *                                which sets no privilege.
      * @return Zend_Navigation_Page    fluent interface, returns self
      */
     public function setPrivilege($privilege = null)
@@ -898,8 +913,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets whether page should be considered active or not
      *
-     * @param  bool $active          [optional] whether page should be
-     *                               considered active or not. Default is true.
+     * @param  bool $active [optional] whether page should be
+     *                      considered active or not. Default
+     *                      is true.
      * @return Zend_Navigation_Page  fluent interface, returns self
      */
     public function setActive($active = true)
@@ -911,9 +927,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Returns whether page should be considered active or not
      *
-     * @param  bool $recursive  [optional] whether page should be considered
-     *                          active if any child pages are active. Default is
-     *                          false.
+     * @param  bool $recursive [optional] whether page should be considered
+     *                         active if any child pages are active.
+     *                         Default is false.
      * @return bool             whether page should be considered active
      */
     public function isActive($recursive = false)
@@ -933,9 +949,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Proxy to isActive()
      *
-     * @param  bool $recursive  [optional] whether page should be considered
-     *                          active if any child pages are active. Default
-     *                          is false.
+     * @param  bool $recursive [optional] whether page should be considered
+     *                         active if any child pages are active.
+     *                         Default is false.
      * @return bool             whether page should be considered active
      */
     public function getActive($recursive = false)
@@ -946,8 +962,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets whether the page should be visible or not
      *
-     * @param  bool $visible         [optional] whether page should be
-     *                               considered visible or not. Default is true.
+     * @param  bool $visible [optional] whether page should be
+     *                       considered visible or not.
+     *                       Default is true.
      * @return Zend_Navigation_Page  fluent interface, returns self
      */
     public function setVisible($visible = true)
@@ -962,15 +979,16 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Returns a boolean value indicating whether the page is visible
      *
-     * @param  bool $recursive  [optional] whether page should be considered
-     *                          invisible if parent is invisible. Default is
-     *                          false.
+     * @param  bool $recursive [optional] whether page should be considered
+     *                         invisible if parent is invisible. Default is
+     *                         false.
      * @return bool             whether page should be considered visible
      */
     public function isVisible($recursive = false)
     {
-        if ($recursive && isset($this->_parent) &&
-            $this->_parent instanceof Zend_Navigation_Page) {
+        if ($recursive && isset($this->_parent) 
+            && $this->_parent instanceof Zend_Navigation_Page
+        ) {
             if (!$this->_parent->isVisible(true)) {
                 return false;
             }
@@ -984,9 +1002,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      *
      * Returns a boolean value indicating whether the page is visible
      *
-     * @param  bool $recursive  [optional] whether page should be considered
-     *                          invisible if parent is invisible. Default is
-     *                          false.
+     * @param  bool $recursive [optional] whether page should be considered
+     *                         invisible if parent is invisible. Default is
+     *                         false.
      * @return bool             whether page should be considered visible
      */
     public function getVisible($recursive = false)
@@ -997,9 +1015,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Sets parent container
      *
-     * @param  Zend_Navigation_Container $parent  [optional] new parent to set.
-     *                                            Default is null which will set
-     *                                            no parent.
+     * @param  Zend_Navigation_Container $parent [optional] new parent to set.
+     *                                           Default is null which will
+     *                                           set no parent.
      * @return Zend_Navigation_Page               fluent interface, returns self
      */
     public function setParent(Zend_Navigation_Container $parent = null)
@@ -1007,7 +1025,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if ($parent === $this) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                'A page cannot have itself as a parent');
+                'A page cannot have itself as a parent'
+            );
         }
 
         // return if the given parent already is parent
@@ -1047,8 +1066,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      * If the given property is native (id, class, title, etc), the matching
      * set method will be used. Otherwise, it will be set as a custom property.
      *
-     * @param  string $property           property name
-     * @param  mixed  $value              value to set
+     * @param  string $property property name
+     * @param  mixed  $value    value to set
      * @return Zend_Navigation_Page       fluent interface, returns self
      * @throws Zend_Navigation_Exception  if property name is invalid
      */
@@ -1057,13 +1076,15 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (!is_string($property) || empty($property)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $property must be a non-empty string');
+                'Invalid argument: $property must be a non-empty string'
+            );
         }
 
         $method = 'set' . self::_normalizePropertyName($property);
 
-        if ($method != 'setOptions' && $method != 'setConfig' &&
-            method_exists($this, $method)) {
+        if ($method != 'setOptions' && $method != 'setConfig' 
+            && method_exists($this, $method)
+        ) {
             $this->$method($value);
         } else {
             $this->_properties[$property] = $value;
@@ -1079,7 +1100,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      * get method will be used. Otherwise, it will return the matching custom
      * property, or null if not found.
      *
-     * @param  string $property           property name
+     * @param  string $property property name
      * @return mixed                      the property's value or null
      * @throws Zend_Navigation_Exception  if property name is invalid
      */
@@ -1088,7 +1109,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         if (!is_string($property) || empty($property)) {
             // require_once 'Zend/Navigation/Exception.php';
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $property must be a non-empty string');
+                'Invalid argument: $property must be a non-empty string'
+            );
         }
 
         $method = 'get' . self::_normalizePropertyName($property);
@@ -1109,8 +1131,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      *
      * Magic overload for enabling <code>$page->propname = $value</code>.
      *
-     * @param  string $name               property name
-     * @param  mixed  $value              value to set
+     * @param  string $name  property name
+     * @param  mixed  $value value to set
      * @return void
      * @throws Zend_Navigation_Exception  if property name is invalid
      */
@@ -1124,7 +1146,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      *
      * Magic overload for enabling <code>$page->propname</code>.
      *
-     * @param  string $name               property name
+     * @param  string $name property name
      * @return mixed                      property value or null
      * @throws Zend_Navigation_Exception  if property name is invalid
      */
@@ -1142,7 +1164,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      * true or false if it's a custom property (depending on whether the
      * property actually is set).
      *
-     * @param  string $name  property name
+     * @param  string $name property name
      * @return bool          whether the given property exists
      */
     public function __isset($name)
@@ -1160,7 +1182,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      *
      * Magic overload for enabling <code>unset($page->propname)</code>.
      *
-     * @param  string $name               property name
+     * @param  string $name property name
      * @return void
      * @throws Zend_Navigation_Exception  if the property is native
      */
@@ -1169,9 +1191,12 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         $method = 'set' . self::_normalizePropertyName($name);
         if (method_exists($this, $method)) {
             // require_once 'Zend/Navigation/Exception.php';
-            throw new Zend_Navigation_Exception(sprintf(
+            throw new Zend_Navigation_Exception(
+                sprintf(
                     'Unsetting native property "%s" is not allowed',
-                    $name));
+                    $name
+                )
+            );
         }
 
         if (isset($this->_properties[$name])) {
@@ -1196,9 +1221,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Adds a forward relation to the page
      *
-     * @param  string $relation      relation name (e.g. alternate, glossary,
-     *                               canonical, etc)
-     * @param  mixed  $value         value to set for relation
+     * @param  string $relation relation name (e.g. alternate, glossary,
+     *                          canonical, etc)
+     * @param  mixed  $value    value to set for relation
      * @return Zend_Navigation_Page  fluent interface, returns self
      */
     public function addRel($relation, $value)
@@ -1212,9 +1237,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Adds a reverse relation to the page
      *
-     * @param  string $relation      relation name (e.g. alternate, glossary,
-     *                               canonical, etc)
-     * @param  mixed  $value         value to set for relation
+     * @param  string $relation relation name (e.g. alternate, glossary,
+     *                          canonical, etc)
+     * @param  mixed  $value    value to set for relation
      * @return Zend_Navigation_Page  fluent interface, returns self
      */
     public function addRev($relation, $value)
@@ -1228,7 +1253,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Removes a forward relation from the page
      *
-     * @param  string $relation      name of relation to remove
+     * @param  string $relation name of relation to remove
      * @return Zend_Navigation_Page  fluent interface, returns self
      */
     public function removeRel($relation)
@@ -1243,7 +1268,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Removes a reverse relation from the page
      *
-     * @param  string $relation      name of relation to remove
+     * @param  string $relation name of relation to remove
      * @return Zend_Navigation_Page  fluent interface, returns self
      */
     public function removeRev($relation)
@@ -1331,7 +1356,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     /**
      * Normalizes a property name
      *
-     * @param  string $property  property name to normalize
+     * @param  string $property property name to normalize
      * @return string            normalized property name
      */
     protected static function _normalizePropertyName($property)
@@ -1339,7 +1364,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         return str_replace(' ', '', ucwords(str_replace('_', ' ', $property)));
     }
 
-    public static function setDefaultPageType($type = null) {
+    public static function setDefaultPageType($type = null)
+    {
         if($type !== null && !is_string($type)) {
             throw new Zend_Navigation_Exception(
                 'Cannot set default page type: type is no string but should be'
@@ -1349,7 +1375,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
         self::$_defaultPageType = $type;
     }
 
-    public static function getDefaultPageType() {
+    public static function getDefaultPageType()
+    {
         return self::$_defaultPageType;
     }
 

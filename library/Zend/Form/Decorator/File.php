@@ -19,13 +19,19 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
-/** Zend_Form_Decorator_Marker_File_Interface */
+/**
+ * Zend_Form_Decorator_Marker_File_Interface 
+ */
 // require_once 'Zend/Form/Decorator/Marker/File/Interface.php';
 
-/** Zend_File_Transfer_Adapter_Http */
+/**
+ * Zend_File_Transfer_Adapter_Http 
+ */
 // require_once 'Zend/File/Transfer/Adapter/Http.php';
 
 /**
@@ -46,12 +52,14 @@ class Zend_Form_Decorator_File
 {
     /**
      * Attributes that should not be passed to helper
+     *
      * @var array
      */
     protected $_attribBlacklist = array('helper', 'placement', 'separator', 'value');
 
     /**
      * Default placement: append
+     *
      * @var string
      */
     protected $_placement = 'APPEND';
@@ -133,11 +141,11 @@ class Zend_Form_Decorator_File
         $markup = implode($separator, $markup);
 
         switch ($placement) {
-            case self::PREPEND:
-                return $markup . $separator . $content;
-            case self::APPEND:
-            default:
-                return $content . $separator . $markup;
+        case self::PREPEND:
+            return $markup . $separator . $content;
+        case self::APPEND:
+        default:
+            return $content . $separator . $markup;
         }
     }
 }

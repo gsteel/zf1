@@ -20,13 +20,19 @@
  * @version    $Id$
  */
 
-/** Zend_Log_Writer_Abstract */
+/**
+ * Zend_Log_Writer_Abstract 
+ */
 // require_once 'Zend/Log/Writer/Abstract.php';
 
-/** Zend_Log_Exception */
+/**
+ * Zend_Log_Exception 
+ */
 // require_once 'Zend/Log/Exception.php';
 
-/** Zend_Log_Formatter_Simple*/
+/**
+ * Zend_Log_Formatter_Simple
+ */
 // require_once 'Zend/Log/Formatter/Simple.php';
 
 /**
@@ -119,7 +125,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
      * optional Zend_Layout instance.  If Zend_Layout is being used,
      * $this->_layout->events will be set for use in the layout template.
      *
-     * @param  Zend_Mail $mail Mail instance
+     * @param  Zend_Mail   $mail   Mail instance
      * @param  Zend_Layout $layout Layout instance; optional
      * @return void
      */
@@ -161,7 +167,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
     /**
      * Set the layout
      *
-     * @param Zend_Layout|array $layout
+     * @param  Zend_Layout|array $layout
      * @return Zend_Log_Writer_Mail
      * @throws Zend_Log_Exception
      */
@@ -183,7 +189,7 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
     /**
      * Construct a Zend_Mail instance based on a configuration array
      *
-     * @param array $config
+     * @param  array $config
      * @return Zend_Mail
      * @throws Zend_Log_Exception
      */
@@ -232,16 +238,18 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
     /**
      * Construct a Zend_Layout instance based on a configuration array
      *
-     * @param array $config
+     * @param  array $config
      * @return Zend_Layout
      * @throws Zend_Log_Exception
      */
     protected function _constructLayoutFromConfig(array $config)
     {
-        $config = array_merge(array(
+        $config = array_merge(
+            array(
             'layout' => \Zend_Layout::class,
             'layoutOptions' => null
-        ), $config);
+            ), $config
+        );
 
         $layoutClass = $config['layout'];
         $layout = new $layoutClass($config['layoutOptions']);
@@ -315,7 +323,8 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
         if (!$this->_layout) {
             throw new Zend_Log_Exception(
                 'cannot set formatter for layout; ' .
-                    'a Zend_Layout instance is not in use');
+                'a Zend_Layout instance is not in use'
+            );
         }
 
         $this->_layoutFormatter = $formatter;
@@ -340,7 +349,8 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
         if ($this->_mail->getSubject()) {
             throw new Zend_Log_Exception(
                 'subject already set on mail; ' .
-                    'cannot set subject prepend text');
+                'cannot set subject prepend text'
+            );
         }
 
         $this->_subjectPrependText = (string) $subject;
@@ -366,7 +376,8 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
             // line and set it on the Zend_Mail object.
             $numEntries = $this->_getFormattedNumEntriesPerPriority();
             $this->_mail->setSubject(
-                "{$this->_subjectPrependText} ({$numEntries})");
+                "{$this->_subjectPrependText} ({$numEntries})"
+            );
         }
 
 
@@ -392,7 +403,8 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
                         "message = {$e->getMessage()}; " .
                         "code = {$e->getCode()}; " .
                         "exception class = " . get_class($e),
-                    E_USER_NOTICE);
+                    E_USER_NOTICE
+                );
             }
         }
 
@@ -407,7 +419,8 @@ class Zend_Log_Writer_Mail extends Zend_Log_Writer_Abstract
                     "message = {$e->getMessage()}; " .
                     "code = {$e->getCode()}; " .
                         "exception class = " . get_class($e),
-                E_USER_WARNING);
+                E_USER_WARNING
+            );
         }
     }
 

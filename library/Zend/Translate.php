@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -31,12 +31,13 @@
 
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Translate {
+class Zend_Translate
+{
     /**
      * Adapter names constants
      */
@@ -63,9 +64,9 @@ class Zend_Translate {
     /**
      * Generates the standard translation object
      *
-     * @param  array|Zend_Config|Zend_Translate_Adapter $options Options to use
-     * @param  string|array [$content] Path to content, or content itself
-     * @param  string|Zend_Locale [$locale]
+     * @param  array|Zend_Config|Zend_Translate_Adapter $options  Options to use
+     * @param  string|array [                           $content] Path to content, or content itself
+     * @param  string|Zend_Locale [                     $locale]
      * @throws Zend_Translate_Exception
      */
     public function __construct($options = array())
@@ -98,9 +99,9 @@ class Zend_Translate {
     /**
      * Sets a new adapter
      *
-     * @param  array|Zend_Config|Zend_Translate_Adapter $options Options to use
-     * @param  string|array [$content] Path to content, or content itself
-     * @param  string|Zend_Locale [$locale]
+     * @param  array|Zend_Config|Zend_Translate_Adapter $options  Options to use
+     * @param  string|array [                           $content] Path to content, or content itself
+     * @param  string|Zend_Locale [                     $locale]
      * @throws Zend_Translate_Exception
      */
     public function setAdapter($options = array())
@@ -202,7 +203,7 @@ class Zend_Translate {
     /**
      * Clears all set cache data
      *
-     * @param string $tag Tag to clear when the default tag name is not used
+     * @param  string $tag Tag to clear when the default tag name is not used
      * @return void
      */
     public static function clearCache($tag = null)

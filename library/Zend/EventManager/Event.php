@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 // require_once 'Zend/EventManager/EventDescription.php';
@@ -26,10 +26,10 @@
  * Encapsulates the target context and parameters passed, and provides some 
  * behavior for interacting with the event manager.
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_EventManager_Event implements Zend_EventManager_EventDescription
 {
@@ -58,8 +58,8 @@ class Zend_EventManager_Event implements Zend_EventManager_EventDescription
      *
      * Accept a target and its parameters.
      * 
-     * @param  string $name Event name
-     * @param  string|object $target 
+     * @param  string            $name   Event name
+     * @param  string|object     $target 
      * @param  array|ArrayAccess $params 
      * @return void
      */
@@ -112,10 +112,12 @@ class Zend_EventManager_Event implements Zend_EventManager_EventDescription
     {
         if (!is_array($params) && !is_object($params)) {
             // require_once 'Zend/EventManager/Exception/InvalidArgumentException.php';
-            throw new Zend_EventManager_Exception_InvalidArgumentException(sprintf(
-                'Event parameters must be an array or object; received "%s"',
-                (is_object($params) ? get_class($params) : gettype($params))
-            ));
+            throw new Zend_EventManager_Exception_InvalidArgumentException(
+                sprintf(
+                    'Event parameters must be an array or object; received "%s"',
+                    (is_object($params) ? get_class($params) : gettype($params))
+                )
+            );
         }
 
         $this->params = $params;
@@ -138,7 +140,7 @@ class Zend_EventManager_Event implements Zend_EventManager_EventDescription
      * If the parameter does not exist, the $default value will be returned.
      * 
      * @param  string|int $name 
-     * @param  mixed $default 
+     * @param  mixed      $default 
      * @return mixed
      */
     public function getParam($name, $default = null)
@@ -187,7 +189,7 @@ class Zend_EventManager_Event implements Zend_EventManager_EventDescription
      * Set an individual parameter to a value
      * 
      * @param  string|int $name 
-     * @param  mixed $value 
+     * @param  mixed      $value 
      * @return Zend_EventManager_Event
      */
     public function setParam($name, $value)

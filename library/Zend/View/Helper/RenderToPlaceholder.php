@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_Abstract.php */
+/**
+ * Zend_View_Helper_Abstract.php 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**
@@ -40,8 +42,8 @@ class Zend_View_Helper_RenderToPlaceholder extends Zend_View_Helper_Abstract
      * Renders a template and stores the rendered output as a placeholder
      * variable for later use.
      *
-     * @param string $script The template script to render
-     * @param string $placeholder The placeholder variable name in which to store the rendered output
+     * @param  string $script      The template script to render
+     * @param  string $placeholder The placeholder variable name in which to store the rendered output
      * @return void
      */
     public function renderToPlaceholder($script, $placeholder)

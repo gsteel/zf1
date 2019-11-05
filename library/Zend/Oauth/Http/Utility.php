@@ -12,24 +12,28 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** Zend_Oauth */
+/**
+ * Zend_Oauth 
+ */
 // require_once 'Zend/Oauth.php';
 
-/** Zend_Oauth_Http */
+/**
+ * Zend_Oauth_Http 
+ */
 // require_once 'Zend/Oauth/Http.php';
 
 /**
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Oauth_Http_Utility
 {
@@ -37,9 +41,9 @@ class Zend_Oauth_Http_Utility
      * Assemble all parameters for a generic OAuth request - i.e. no special
      * params other than the defaults expected for any OAuth query.
      *
-     * @param  string $url
+     * @param  string                            $url
      * @param  Zend_Oauth_Config_ConfigInterface $config
-     * @param  null|array $serviceProviderParams
+     * @param  null|array                        $serviceProviderParams
      * @return array
      */
     public function assembleParams(
@@ -81,8 +85,8 @@ class Zend_Oauth_Http_Utility
      * encoded query string. This method expects parameters to have been
      * assembled and signed beforehand.
      *
-     * @param array $params
-     * @param bool $customParamsOnly Ignores OAuth params e.g. for requests using OAuth Header
+     * @param  array $params
+     * @param  bool  $customParamsOnly Ignores OAuth params e.g. for requests using OAuth Header
      * @return string
      */
     public function toEncodedQueryString(array $params, $customParamsOnly = false)
@@ -106,9 +110,9 @@ class Zend_Oauth_Http_Utility
     /**
      * Cast to authorization header
      *
-     * @param  array $params
+     * @param  array       $params
      * @param  null|string $realm
-     * @param  bool $excludeCustomParams
+     * @param  bool        $excludeCustomParams
      * @return void
      */
     public function toAuthorizationHeader(array $params, $realm = null, $excludeCustomParams = true)
@@ -133,9 +137,9 @@ class Zend_Oauth_Http_Utility
     /**
      * Sign request
      *
-     * @param  array $params
-     * @param  string $signatureMethod
-     * @param  string $consumerSecret
+     * @param  array       $params
+     * @param  string      $signatureMethod
+     * @param  string      $consumerSecret
      * @param  null|string $tokenSecret
      * @param  null|string $method
      * @param  null|string $url

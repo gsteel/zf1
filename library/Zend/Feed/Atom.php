@@ -13,11 +13,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -42,10 +42,10 @@
  * Zend_Feed_Atom expects, and as a further pointer for users as to
  * what kind of feed object they have been passed.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Atom extends Zend_Feed_Abstract
 {
@@ -93,12 +93,16 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
                  * @see Zend_Feed_Exception
                  */
                 // require_once 'Zend/Feed/Exception.php';
-                throw new Zend_Feed_Exception('No root <feed> or <' . $this->_entryElementName
-                                              . '> element found, cannot parse feed.');
+                throw new Zend_Feed_Exception(
+                    'No root <feed> or <' . $this->_entryElementName
+                    . '> element found, cannot parse feed.'
+                );
             }
 
-            $doc = new DOMDocument($this->_element->version,
-                                   $this->_element->actualEncoding);
+            $doc = new DOMDocument(
+                $this->_element->version,
+                $this->_element->actualEncoding
+            );
             $feed = $doc->appendChild($doc->createElement('feed'));
             $feed->appendChild($doc->importNode($element, true));
             $element = $feed;
@@ -170,13 +174,13 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
     public function __get($var)
     {
         switch ($var) {
-            case 'entry':
-                // fall through to the next case
-            case 'entries':
-                return $this;
+        case 'entry':
+            // fall through to the next case
+        case 'entries':
+            return $this;
 
-            default:
-                return parent::__get($var);
+        default:
+            return parent::__get($var);
         }
     }
 
@@ -335,15 +339,19 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
             }
 
             if (isset($dataentry->comments)) {
-                $comments = $this->_element->createElementNS('http://wellformedweb.org/CommentAPI/',
-                                                             'wfw:comment',
-                                                             $dataentry->comments);
+                $comments = $this->_element->createElementNS(
+                    'http://wellformedweb.org/CommentAPI/',
+                    'wfw:comment',
+                    $dataentry->comments
+                );
                 $entry->appendChild($comments);
             }
             if (isset($dataentry->commentRss)) {
-                $comments = $this->_element->createElementNS('http://wellformedweb.org/CommentAPI/',
-                                                             'wfw:commentRss',
-                                                             $dataentry->commentRss);
+                $comments = $this->_element->createElementNS(
+                    'http://wellformedweb.org/CommentAPI/',
+                    'wfw:commentRss',
+                    $dataentry->commentRss
+                );
                 $entry->appendChild($comments);
             }
 
@@ -359,8 +367,10 @@ class Zend_Feed_Atom extends Zend_Feed_Abstract
     public function saveXml()
     {
         // Return a complete document including XML prologue.
-        $doc = new DOMDocument($this->_element->ownerDocument->version,
-                               $this->_element->ownerDocument->actualEncoding);
+        $doc = new DOMDocument(
+            $this->_element->ownerDocument->version,
+            $this->_element->ownerDocument->actualEncoding
+        );
         $doc->appendChild($doc->importNode($this->_element, true));
         $doc->formatOutput = true;
 

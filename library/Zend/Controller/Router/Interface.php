@@ -45,7 +45,7 @@ interface Zend_Controller_Router_Interface
     /**
      * Set Front Controller
      *
-     * @param Zend_Controller_Front $controller
+     * @param  Zend_Controller_Front $controller
      * @return Zend_Controller_Router_Interface
      */
     public function setFrontController(Zend_Controller_Front $controller);
@@ -53,8 +53,8 @@ interface Zend_Controller_Router_Interface
     /**
      * Add or modify a parameter with which to instantiate any helper objects
      *
-     * @param string $name
-     * @param mixed  $value
+     * @param  string $name
+     * @param  mixed  $value
      * @return Zend_Controller_Router_Interface
      */
     public function setParam($name, $value);
@@ -62,7 +62,7 @@ interface Zend_Controller_Router_Interface
     /**
      * Set an array of a parameters to pass to helper object constructors
      *
-     * @param array $params
+     * @param  array $params
      * @return Zend_Controller_Router_Interface
      */
     public function setParams(array $params);
@@ -70,7 +70,7 @@ interface Zend_Controller_Router_Interface
     /**
      * Retrieve a single parameter from the controller parameter stack
      *
-     * @param string $name
+     * @param  string $name
      * @return mixed
      */
     public function getParam($name);
@@ -89,7 +89,7 @@ interface Zend_Controller_Router_Interface
      * only that parameter; if an array of parameter names is provided, clears
      * each.
      *
-     * @param null|string|array single key or array of keys for params to clear
+     * @param  null|string|array single key or array of keys for params to clear
      * @return Zend_Controller_Router_Interface
      */
     public function clearParams($name = null);

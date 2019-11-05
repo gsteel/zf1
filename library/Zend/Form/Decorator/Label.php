@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
@@ -55,18 +57,21 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
 
     /**
      * Default placement: prepend
+     *
      * @var string
      */
     protected $_placement = 'PREPEND';
 
     /**
      * HTML tag with which to surround label
+     *
      * @var string
      */
     protected $_tag;
 
     /**
      * Class for the HTML tag with which to surround label
+     *
      * @var string
      */
     protected $_tagClass;
@@ -239,7 +244,7 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
      * - setReq(uired)Suffix()
      *
      * @param  string $method
-     * @param  array $args
+     * @param  array  $args
      * @return mixed
      * @throws Zend_Form_Exception for unsupported methods
      */
@@ -253,36 +258,36 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
             $position = substr($method, -6);
             $type     = strtolower(substr($method, 3, 3));
             switch ($type) {
-                case 'req':
-                    $key = 'required' . $position;
-                    break;
-                case 'opt':
-                    $key = 'optional' . $position;
-                    break;
-                default:
-                    // require_once 'Zend/Form/Exception.php';
-                    throw new Zend_Form_Exception(sprintf('Invalid method "%s" called in Label decorator, and detected as type %s', $method, $type));
+            case 'req':
+                $key = 'required' . $position;
+                break;
+            case 'opt':
+                $key = 'optional' . $position;
+                break;
+            default:
+                // require_once 'Zend/Form/Exception.php';
+                throw new Zend_Form_Exception(sprintf('Invalid method "%s" called in Label decorator, and detected as type %s', $method, $type));
             }
 
             switch ($head) {
-                case 'set':
-                    if (0 === count($args)) {
-                        // require_once 'Zend/Form/Exception.php';
-                        throw new Zend_Form_Exception(sprintf('Method "%s" requires at least one argument; none provided', $method));
-                    }
-                    $value = array_shift($args);
-                    $this->$key = $value;
-                    return $this;
-                case 'get':
-                default:
-                    if (null === ($element = $this->getElement())) {
-                        $this->_loadOptReqKey($key);
-                    } elseif (isset($element->$key)) {
-                        $this->$key = (string) $element->$key;
-                    } else {
-                        $this->_loadOptReqKey($key);
-                    }
-                    return $this->$key;
+            case 'set':
+                if (0 === count($args)) {
+                    // require_once 'Zend/Form/Exception.php';
+                    throw new Zend_Form_Exception(sprintf('Method "%s" requires at least one argument; none provided', $method));
+                }
+                $value = array_shift($args);
+                $this->$key = $value;
+                return $this;
+            case 'get':
+            default:
+                if (null === ($element = $this->getElement())) {
+                    $this->_loadOptReqKey($key);
+                } elseif (isset($element->$key)) {
+                    $this->$key = (string) $element->$key;
+                } else {
+                    $this->_loadOptReqKey($key);
+                }
+                return $this->$key;
             }
         }
 
@@ -336,18 +341,18 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
         if (null !== ($placementOpt = $this->getOption('placement'))) {
             $placementOpt = strtoupper($placementOpt);
             switch ($placementOpt) {
-                case self::APPEND:
-                case self::PREPEND:
-                case self::IMPLICIT:
-                case self::IMPLICIT_PREPEND:
-                case self::IMPLICIT_APPEND:
-                    $placement = $this->_placement = $placementOpt;
-                    break;
-                case false:
-                    $placement = $this->_placement = null;
-                    break;
-                default:
-                    break;
+            case self::APPEND:
+            case self::PREPEND:
+            case self::IMPLICIT:
+            case self::IMPLICIT_PREPEND:
+            case self::IMPLICIT_APPEND:
+                $placement = $this->_placement = $placementOpt;
+                break;
+            case false:
+                $placement = $this->_placement = null;
+                break;
+            default:
+                break;
             }
             $this->removeOption('placement');
         }
@@ -388,44 +393,44 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
             $label            = trim($label);
 
             switch ($placement) {
-                case self::IMPLICIT:
-                    // Break was intentionally omitted
+            case self::IMPLICIT:
+                // Break was intentionally omitted
 
-                case self::IMPLICIT_PREPEND:
-                    $options['escape']     = false;
-                    $options['disableFor'] = true;
+            case self::IMPLICIT_PREPEND:
+                $options['escape']     = false;
+                $options['disableFor'] = true;
 
-                    $label = $view->formLabel(
-                        $element->getFullyQualifiedName(),
-                        $label . $separator . $content,
-                        $options
-                    );
-                    break;
+                $label = $view->formLabel(
+                    $element->getFullyQualifiedName(),
+                    $label . $separator . $content,
+                    $options
+                );
+                break;
 
-                case self::IMPLICIT_APPEND:
-                    $options['escape']     = false;
-                    $options['disableFor'] = true;
+            case self::IMPLICIT_APPEND:
+                $options['escape']     = false;
+                $options['disableFor'] = true;
 
-                    $label = $view->formLabel(
-                        $element->getFullyQualifiedName(),
-                        $content . $separator . $label,
-                        $options
-                    );
-                    break;
+                $label = $view->formLabel(
+                    $element->getFullyQualifiedName(),
+                    $content . $separator . $label,
+                    $options
+                );
+                break;
 
-                case self::APPEND:
-                    // Break was intentionally omitted
+            case self::APPEND:
+                // Break was intentionally omitted
 
-                case self::PREPEND:
-                    // Break was intentionally omitted
+            case self::PREPEND:
+                // Break was intentionally omitted
 
-                default:
-                    $label = $view->formLabel(
-                        $element->getFullyQualifiedName(),
-                        $label,
-                        $options
-                    );
-                    break;
+            default:
+                $label = $view->formLabel(
+                    $element->getFullyQualifiedName(),
+                    $label,
+                    $options
+                );
+                break;
             }
         } else {
             $label = '&#160;';
@@ -435,32 +440,36 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
             // require_once 'Zend/Form/Decorator/HtmlTag.php';
             $decorator = new Zend_Form_Decorator_HtmlTag();
             if (null !== $this->_tagClass) {
-                $decorator->setOptions(array('tag'   => $tag,
+                $decorator->setOptions(
+                    array('tag'   => $tag,
                                              'id'    => $id . '-label',
-                                             'class' => $tagClass));
+                    'class' => $tagClass)
+                );
             } else {
-                $decorator->setOptions(array('tag'   => $tag,
-                                             'id'    => $id . '-label'));
+                $decorator->setOptions(
+                    array('tag'   => $tag,
+                    'id'    => $id . '-label')
+                );
             }
 
             $label = $decorator->render($label);
         }
 
         switch ($placement) {
-            case self::APPEND:
-                return $content . $separator . $label;
+        case self::APPEND:
+            return $content . $separator . $label;
 
-            case self::PREPEND:
-                return $label . $separator . $content;
+        case self::PREPEND:
+            return $label . $separator . $content;
 
-            case self::IMPLICIT:
-                // Break was intentionally omitted
+        case self::IMPLICIT:
+            // Break was intentionally omitted
 
-            case self::IMPLICIT_PREPEND:
-                // Break was intentionally omitted
+        case self::IMPLICIT_PREPEND:
+            // Break was intentionally omitted
 
-            case self::IMPLICIT_APPEND:
-                return $label;
+        case self::IMPLICIT_APPEND:
+            return $label;
         }
     }
 }

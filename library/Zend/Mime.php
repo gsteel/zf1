@@ -12,20 +12,20 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Mime
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Mime
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
  * Support class for MultiPart Mime Messages
  *
- * @category   Zend
- * @package    Zend_Mime
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Mime
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Mime
 {
@@ -404,7 +404,7 @@ class Zend_Mime
      * Checks that a string contains no unprintable characters. If this returns
      * false, encode the string for secure delivery.
      *
-     * @param string $str
+     * @param  string $str
      * @return boolean
      */
     public static function isPrintable($str)
@@ -424,8 +424,7 @@ class Zend_Mime
         $str,
         $lineLength = self::LINELENGTH,
         $lineEnd = self::LINEEND
-    )
-    {
+    ) {
         $out = '';
         $str = self::_encodeQuotedPrintable($str);
 
@@ -487,8 +486,7 @@ class Zend_Mime
      */
     public static function encodeQuotedPrintableHeader(
         $str, $charset, $lineLength = self::LINELENGTH, $lineEnd = self::LINEEND
-    )
-    {
+    ) {
         // Reduce line-length by the length of the required delimiter, charsets and encoding
         $prefix     = sprintf('=?%s?Q?', $charset);
         $lineLength = $lineLength - strlen($prefix) - 3;
@@ -564,8 +562,7 @@ class Zend_Mime
      */
     public static function encodeBase64Header(
         $str, $charset, $lineLength = self::LINELENGTH, $lineEnd = self::LINEEND
-    )
-    {
+    ) {
         $prefix          = '=?' . $charset . '?B?';
         $suffix          = '?=';
         $remainingLength = $lineLength - strlen($prefix) - strlen($suffix);
@@ -590,8 +587,7 @@ class Zend_Mime
      */
     public static function encodeBase64(
         $str, $lineLength = self::LINELENGTH, $lineEnd = self::LINEEND
-    )
-    {
+    ) {
         return rtrim(chunk_split(base64_encode($str), $lineLength, $lineEnd));
     }
 
@@ -613,25 +609,25 @@ class Zend_Mime
     /**
      * Encode the given string with the given encoding.
      *
-     * @param string $str
-     * @param string $encoding
-     * @param string $EOL Line end; defaults to {@link Zend_Mime::LINEEND}
+     * @param  string $str
+     * @param  string $encoding
+     * @param  string $EOL      Line end; defaults to {@link Zend_Mime::LINEEND}
      * @return string
      */
     public static function encode($str, $encoding, $EOL = self::LINEEND)
     {
         switch ($encoding) {
-            case self::ENCODING_BASE64:
-                return self::encodeBase64($str, self::LINELENGTH, $EOL);
+        case self::ENCODING_BASE64:
+            return self::encodeBase64($str, self::LINELENGTH, $EOL);
 
-            case self::ENCODING_QUOTEDPRINTABLE:
-                return self::encodeQuotedPrintable($str, self::LINELENGTH, $EOL);
+        case self::ENCODING_QUOTEDPRINTABLE:
+            return self::encodeQuotedPrintable($str, self::LINELENGTH, $EOL);
 
-            default:
-                /**
-                 * @todo 7Bit and 8Bit is currently handled the same way.
-                 */
-                return $str;
+        default:
+            /**
+             * @todo 7Bit and 8Bit is currently handled the same way.
+             */
+            return $str;
         }
     }
 

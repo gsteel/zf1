@@ -12,33 +12,42 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version   $Id$
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 
-/** Zend_Locale */
+/**
+ * Zend_Locale 
+ */
 // require_once 'Zend/Locale.php';
 
-/** Zend_Translate_Adapter */
+/**
+ * Zend_Translate_Adapter 
+ */
 // require_once 'Zend/Translate/Adapter.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @See Zend_Xml_Exception */
+/**
+ * @See Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Translate_Adapter_Xliff extends Zend_Translate_Adapter {
+class Zend_Translate_Adapter_Xliff extends Zend_Translate_Adapter
+{
     // Internal variables
     private $_file        = false;
     private $_useId       = true;
@@ -56,10 +65,10 @@ class Zend_Translate_Adapter_Xliff extends Zend_Translate_Adapter {
     /**
      * Load translation data (XLIFF file reader)
      *
-     * @param  string  $locale    Locale/Language to add data for, identical with locale identifier,
-     *                            see Zend_Locale for more information
-     * @param  string  $filename  XLIFF file to add, full path must be given for access
-     * @param  array   $option    OPTIONAL Options to use
+     * @param  string $locale   Locale/Language to add data for, identical with locale identifier,
+     *                          see Zend_Locale for more information
+     * @param  string $filename XLIFF file to add, full path must be given for access
+     * @param  array  $option   OPTIONAL Options to use
      * @throws Zend_Translation_Exception
      * @return array
      */
@@ -95,10 +104,12 @@ class Zend_Translate_Adapter_Xliff extends Zend_Translate_Adapter {
         }
 
         if (!xml_parse($this->_file, file_get_contents($filename))) {
-            $ex = sprintf('XML error: %s at line %d of file %s',
-                          xml_error_string(xml_get_error_code($this->_file)),
-                          xml_get_current_line_number($this->_file),
-                          $filename);
+            $ex = sprintf(
+                'XML error: %s at line %d of file %s',
+                xml_error_string(xml_get_error_code($this->_file)),
+                xml_get_current_line_number($this->_file),
+                $filename
+            );
             xml_parser_free($this->_file);
             // require_once 'Zend/Translate/Exception.php';
             throw new Zend_Translate_Exception($ex);
@@ -123,41 +134,41 @@ class Zend_Translate_Adapter_Xliff extends Zend_Translate_Adapter {
             $this->_tcontent .= ">";
         } else {
             switch(strtolower($name)) {
-                case 'file':
-                    $this->_source = $attrib['source-language'];
-                    if (isset($attrib['target-language'])) {
-                        $this->_target = $attrib['target-language'];
-                    }
+            case 'file':
+                $this->_source = $attrib['source-language'];
+                if (isset($attrib['target-language'])) {
+                    $this->_target = $attrib['target-language'];
+                }
 
-                    if (!isset($this->_data[$this->_source])) {
-                        $this->_data[$this->_source] = array();
-                    }
+                if (!isset($this->_data[$this->_source])) {
+                    $this->_data[$this->_source] = array();
+                }
 
-                    if (!isset($this->_data[$this->_target])) {
-                        $this->_data[$this->_target] = array();
-                    }
+                if (!isset($this->_data[$this->_target])) {
+                    $this->_data[$this->_target] = array();
+                }
 
-                    break;
-                case 'trans-unit':
-                    $this->_transunit = true;
-                    $this->_langId = $attrib['id'];
-                    break;
-                case 'source':
-                    if ($this->_transunit === true) {
-                        $this->_scontent = null;
-                        $this->_stag = true;
-                        $this->_ttag = false;
-                    }
-                    break;
-                case 'target':
-                    if ($this->_transunit === true) {
-                        $this->_tcontent = null;
-                        $this->_ttag = true;
-                        $this->_stag = false;
-                    }
-                    break;
-                default:
-                    break;
+                break;
+            case 'trans-unit':
+                $this->_transunit = true;
+                $this->_langId = $attrib['id'];
+                break;
+            case 'source':
+                if ($this->_transunit === true) {
+                    $this->_scontent = null;
+                    $this->_stag = true;
+                    $this->_ttag = false;
+                }
+                break;
+            case 'target':
+                if ($this->_transunit === true) {
+                    $this->_tcontent = null;
+                    $this->_ttag = true;
+                    $this->_stag = false;
+                }
+                break;
+            default:
+                break;
             }
         }
     }
@@ -170,42 +181,46 @@ class Zend_Translate_Adapter_Xliff extends Zend_Translate_Adapter {
             $this->_tcontent .= "</".$name.">";
         } else {
             switch (strtolower($name)) {
-                case 'trans-unit':
-                    $this->_transunit = null;
-                    $this->_langId    = null;
-                    $this->_scontent  = null;
-                    $this->_tcontent  = null;
-                    break;
-                case 'source':
-                    if ($this->_useId) {
-                        if (!empty($this->_scontent) && !empty($this->_langId) &&
-                            !isset($this->_data[$this->_source][$this->_langId])) {
-                            $this->_data[$this->_source][$this->_langId] = $this->_scontent;
-                        }
-                    } else {
-                        if (!empty($this->_scontent) &&
-                            !isset($this->_data[$this->_source][$this->_scontent])) {
-                            $this->_data[$this->_source][$this->_scontent] = $this->_scontent;
-                        }
+            case 'trans-unit':
+                $this->_transunit = null;
+                $this->_langId    = null;
+                $this->_scontent  = null;
+                $this->_tcontent  = null;
+                break;
+            case 'source':
+                if ($this->_useId) {
+                    if (!empty($this->_scontent) && !empty($this->_langId) 
+                        && !isset($this->_data[$this->_source][$this->_langId])
+                    ) {
+                        $this->_data[$this->_source][$this->_langId] = $this->_scontent;
                     }
-                    $this->_stag = false;
-                    break;
-                case 'target':
-                    if ($this->_useId) {
-                        if (!empty($this->_tcontent) && !empty($this->_langId) &&
-                            !isset($this->_data[$this->_target][$this->_langId])) {
-                            $this->_data[$this->_target][$this->_langId] = $this->_tcontent;
-                        }
-                    } else {
-                        if (!empty($this->_tcontent) && !empty($this->_scontent) &&
-                            !isset($this->_data[$this->_target][$this->_scontent])) {
-                            $this->_data[$this->_target][$this->_scontent] = $this->_tcontent;
-                        }
+                } else {
+                    if (!empty($this->_scontent) 
+                        && !isset($this->_data[$this->_source][$this->_scontent])
+                    ) {
+                        $this->_data[$this->_source][$this->_scontent] = $this->_scontent;
                     }
-                    $this->_ttag = false;
-                    break;
-                default:
-                    break;
+                }
+                $this->_stag = false;
+                break;
+            case 'target':
+                if ($this->_useId) {
+                    if (!empty($this->_tcontent) && !empty($this->_langId) 
+                        && !isset($this->_data[$this->_target][$this->_langId])
+                    ) {
+                        $this->_data[$this->_target][$this->_langId] = $this->_tcontent;
+                    }
+                } else {
+                    if (!empty($this->_tcontent) && !empty($this->_scontent) 
+                        && !isset($this->_data[$this->_target][$this->_scontent])
+                    ) {
+                        $this->_data[$this->_target][$this->_scontent] = $this->_tcontent;
+                    }
+                }
+                $this->_ttag = false;
+                break;
+            default:
+                break;
             }
         }
     }

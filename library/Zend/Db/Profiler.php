@@ -48,7 +48,6 @@ class Zend_Db_Profiler
 
     /**
      * Updating existing information in the database, such as SQL's UPDATE.
-     *
      */
     const UPDATE = 8;
 
@@ -246,8 +245,8 @@ class Zend_Db_Profiler
      * record the time.  If the profiler is not enabled, this takes no
      * action and immediately returns null.
      *
-     * @param  string  $queryText   SQL statement
-     * @param  integer $queryType   OPTIONAL Type of query, one of the Zend_Db_Profiler::* constants
+     * @param  string  $queryText SQL statement
+     * @param  integer $queryType OPTIONAL Type of query, one of the Zend_Db_Profiler::* constants
      * @return integer|null
      */
     public function queryStart($queryText, $queryType = null)
@@ -259,21 +258,21 @@ class Zend_Db_Profiler
         // make sure we have a query type
         if (null === $queryType) {
             switch (strtolower(substr(ltrim($queryText), 0, 6))) {
-                case 'insert':
-                    $queryType = self::INSERT;
-                    break;
-                case 'update':
-                    $queryType = self::UPDATE;
-                    break;
-                case 'delete':
-                    $queryType = self::DELETE;
-                    break;
-                case 'select':
-                    $queryType = self::SELECT;
-                    break;
-                default:
-                    $queryType = self::QUERY;
-                    break;
+            case 'insert':
+                $queryType = self::INSERT;
+                break;
+            case 'update':
+                $queryType = self::UPDATE;
+                break;
+            case 'delete':
+                $queryType = self::DELETE;
+                break;
+            case 'select':
+                $queryType = self::SELECT;
+                break;
+            default:
+                $queryType = self::QUERY;
+                break;
             }
         }
 

@@ -12,33 +12,43 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Writer
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Writer
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** @see Zend_Feed_Writer_Feed */
+/**
+ * @see Zend_Feed_Writer_Feed 
+ */
 // require_once 'Zend/Feed/Writer/Feed.php';
 
-/** @see Zend_Version */
+/**
+ * @see Zend_Version 
+ */
 // require_once 'Zend/Version.php';
 
-/** @see Zend_Feed_Writer_Renderer_RendererInterface */
+/**
+ * @see Zend_Feed_Writer_Renderer_RendererInterface 
+ */
 // require_once 'Zend/Feed/Writer/Renderer/RendererInterface.php';
 
-/** @see Zend_Feed_Writer_Renderer_Entry_Rss */
+/**
+ * @see Zend_Feed_Writer_Renderer_Entry_Rss 
+ */
 // require_once 'Zend/Feed/Writer/Renderer/Entry/Rss.php';
 
-/** @see Zend_Feed_Writer_Renderer_RendererAbstract */
+/**
+ * @see Zend_Feed_Writer_Renderer_RendererAbstract 
+ */
 // require_once 'Zend/Feed/Writer/Renderer/RendererAbstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Writer
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Writer
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Writer_Renderer_Feed_Rss
     extends Zend_Feed_Writer_Renderer_RendererAbstract
@@ -50,7 +60,7 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
      * @param  Zend_Feed_Writer_Feed $container
      * @return void
      */
-    public function __construct (Zend_Feed_Writer_Feed $container)
+    public function __construct(Zend_Feed_Writer_Feed $container)
     {
         parent::__construct($container);
     }
@@ -121,8 +131,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set feed language
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setLanguage(DOMDocument $dom, DOMElement $root)
@@ -139,8 +149,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set feed title
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setTitle(DOMDocument $dom, DOMElement $root)
@@ -167,8 +177,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set feed description
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setDescription(DOMDocument $dom, DOMElement $root)
@@ -194,8 +204,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set date feed was last modified
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setDateModified(DOMDocument $dom, DOMElement $root)
@@ -215,15 +225,17 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set feed generator string
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setGenerator(DOMDocument $dom, DOMElement $root)
     {
         if(!$this->getDataContainer()->getGenerator()) {
-            $this->getDataContainer()->setGenerator(\Zend_Feed_Writer::class,
-                Zend_Version::VERSION, 'http://framework.zend.com');
+            $this->getDataContainer()->setGenerator(
+                \Zend_Feed_Writer::class,
+                Zend_Version::VERSION, 'http://framework.zend.com'
+            );
         }
 
         $gdata = $this->getDataContainer()->getGenerator();
@@ -243,8 +255,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set link to feed
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setLink(DOMDocument $dom, DOMElement $root)
@@ -274,8 +286,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set feed authors
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setAuthors(DOMDocument $dom, DOMElement $root)
@@ -299,8 +311,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set feed copyright
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setCopyright(DOMDocument $dom, DOMElement $root)
@@ -318,8 +330,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set feed channel image
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setImage(DOMDocument $dom, DOMElement $root)
@@ -329,7 +341,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
             return;
         }
         if (!isset($image['title']) || empty($image['title'])
-        || !is_string($image['title'])) {
+            || !is_string($image['title'])
+        ) {
             // require_once 'Zend/Feed/Exception.php';
             $message = 'RSS 2.0 feed images must include a title';
             $exception = new Zend_Feed_Exception($message);
@@ -341,7 +354,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
             }
         }
         if (empty($image['link']) || !is_string($image['link'])
-        || !Zend_Uri::check($image['link'])) {
+            || !Zend_Uri::check($image['link'])
+        ) {
             // require_once 'Zend/Feed/Exception.php';
             $message = 'Invalid parameter: parameter \'link\''
             . ' must be a non-empty string and valid URI/IRI';
@@ -426,8 +440,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set date feed was created
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setDateCreated(DOMDocument $dom, DOMElement $root)
@@ -445,8 +459,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set date feed last build date
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setLastBuildDate(DOMDocument $dom, DOMElement $root)
@@ -466,8 +480,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set base URL to feed links
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setBaseUrl(DOMDocument $dom, DOMElement $root)
@@ -482,8 +496,8 @@ class Zend_Feed_Writer_Renderer_Feed_Rss
     /**
      * Set feed categories
      *
-     * @param DOMDocument $dom
-     * @param DOMElement $root
+     * @param  DOMDocument $dom
+     * @param  DOMElement  $root
      * @return void
      */
     protected function _setCategories(DOMDocument $dom, DOMElement $root)

@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_Slider */
+/**
+ * Zend_Dojo_Form_Element_Slider 
+ */
 // require_once 'Zend/Dojo/Form/Element/Slider.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Dojo_Form_Element_VerticalSlider extends Zend_Dojo_Form_Element_Slide
 {
     /**
      * Use VerticalSlider dijit view helper
+     *
      * @var string
      */
     public $helper = 'VerticalSlider';
@@ -56,7 +59,7 @@ class Zend_Dojo_Form_Element_VerticalSlider extends Zend_Dojo_Form_Element_Slide
     /**
      * Set dijit to use with left decoration
      *
-     * @param mixed $dijit
+     * @param  mixed $dijit
      * @return Zend_Dojo_Form_Element_HorizontalSlider
      */
     public function setLeftDecorationDijit($dijit)
@@ -70,7 +73,7 @@ class Zend_Dojo_Form_Element_VerticalSlider extends Zend_Dojo_Form_Element_Slide
     /**
      * Set container to use with left decoration
      *
-     * @param mixed $container
+     * @param  mixed $container
      * @return Zend_Dojo_Form_Element_HorizontalSlider
      */
     public function setLeftDecorationContainer($container)
@@ -139,7 +142,7 @@ class Zend_Dojo_Form_Element_VerticalSlider extends Zend_Dojo_Form_Element_Slide
     /**
      * Set dijit to use with right decoration
      *
-     * @param mixed $dijit
+     * @param  mixed $dijit
      * @return Zend_Dojo_Form_Element_HorizontalSlider
      */
     public function setRightDecorationDijit($dijit)
@@ -153,7 +156,7 @@ class Zend_Dojo_Form_Element_VerticalSlider extends Zend_Dojo_Form_Element_Slide
     /**
      * Set container to use with right decoration
      *
-     * @param mixed $container
+     * @param  mixed $container
      * @return Zend_Dojo_Form_Element_HorizontalSlider
      */
     public function setRightDecorationContainer($container)

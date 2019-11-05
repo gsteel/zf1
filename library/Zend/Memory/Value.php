@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -26,13 +26,14 @@
  * It's an OO string wrapper.
  * Used to intercept string updates.
  *
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @todo       also implement Countable for PHP 5.1 but not yet to stay 5.0 compatible
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @todo      also implement Countable for PHP 5.1 but not yet to stay 5.0 compatible
  */
-class Zend_Memory_Value implements ArrayAccess {
+class Zend_Memory_Value implements ArrayAccess
+{
     /**
      * Value
      *
@@ -58,7 +59,7 @@ class Zend_Memory_Value implements ArrayAccess {
     /**
      * Object constructor
      *
-     * @param string $value
+     * @param string                        $value
      * @param Zend_Memory_Container_Movable $container
      */
     public function __construct($value, Zend_Memory_Container_Movable $container)
@@ -83,7 +84,7 @@ class Zend_Memory_Value implements ArrayAccess {
      * ArrayAccess interface method
      * returns true if string offset exists
      *
-     * @param integer $offset
+     * @param  integer $offset
      * @return boolean
      */
     public function offsetExists($offset)
@@ -95,7 +96,7 @@ class Zend_Memory_Value implements ArrayAccess {
      * ArrayAccess interface method
      * Get character at $offset position
      *
-     * @param integer $offset
+     * @param  integer $offset
      * @return string
      */
     public function offsetGet($offset)
@@ -108,7 +109,7 @@ class Zend_Memory_Value implements ArrayAccess {
      * Set character at $offset position
      *
      * @param integer $offset
-     * @param string $char
+     * @param string  $char
      */
     public function offsetSet($offset, $char)
     {
@@ -155,7 +156,7 @@ class Zend_Memory_Value implements ArrayAccess {
      * or _may_ be used for performance considerations
      *
      * @internal
-     * @return string
+     * @return   string
      */
     public function &getRef()
     {

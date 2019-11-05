@@ -3,6 +3,7 @@ class Zend_Controller_Action_Helper_AjaxContext extends Zend_Controller_Action_H
 {
     /**
      * Controller property to utilize for context switching
+     *
      * @var string
      */
     protected $_contextKey = 'ajaxable';
@@ -33,9 +34,9 @@ class Zend_Controller_Action_Helper_AjaxContext extends Zend_Controller_Action_H
         $this->_currentContext = null;
 
         $request = $this->getRequest();
-        if (!method_exists($request, 'isXmlHttpRequest') ||
-            !$this->getRequest()->isXmlHttpRequest())
-        {
+        if (!method_exists($request, 'isXmlHttpRequest') 
+            || !$this->getRequest()->isXmlHttpRequest()
+        ) {
             return;
         }
 

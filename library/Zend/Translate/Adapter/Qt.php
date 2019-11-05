@@ -12,33 +12,42 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version   $Id$
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 
-/** Zend_Locale */
+/**
+ * Zend_Locale 
+ */
 // require_once 'Zend/Locale.php';
 
-/** Zend_Translate_Adapter */
+/**
+ * Zend_Translate_Adapter 
+ */
 // require_once 'Zend/Translate/Adapter.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @See Zend_Xml_Exception */
+/**
+ * @See Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Translate_Adapter_Qt extends Zend_Translate_Adapter {
+class Zend_Translate_Adapter_Qt extends Zend_Translate_Adapter
+{
     // Internal variables
     private $_file        = false;
     private $_cleared     = array();
@@ -54,10 +63,10 @@ class Zend_Translate_Adapter_Qt extends Zend_Translate_Adapter {
     /**
      * Load translation data (QT file reader)
      *
-     * @param  string  $locale    Locale/Language to add data for, identical with locale identifier,
-     *                            see Zend_Locale for more information
-     * @param  string  $filename  QT file to add, full path must be given for access
-     * @param  array   $option    OPTIONAL Options to use
+     * @param  string $locale   Locale/Language to add data for, identical with locale identifier,
+     *                          see Zend_Locale for more information
+     * @param  string $filename QT file to add, full path must be given for access
+     * @param  array  $option   OPTIONAL Options to use
      * @throws Zend_Translation_Exception
      * @return array
      */
@@ -88,10 +97,12 @@ class Zend_Translate_Adapter_Qt extends Zend_Translate_Adapter {
         }
 
         if (!xml_parse($this->_file, file_get_contents($filename))) {
-            $ex = sprintf('XML error: %s at line %d of file %s',
-                          xml_error_string(xml_get_error_code($this->_file)),
-                          xml_get_current_line_number($this->_file),
-                          $filename);
+            $ex = sprintf(
+                'XML error: %s at line %d of file %s',
+                xml_error_string(xml_get_error_code($this->_file)),
+                xml_get_current_line_number($this->_file),
+                $filename
+            );
             xml_parser_free($this->_file);
             // require_once 'Zend/Translate/Exception.php';
             throw new Zend_Translate_Exception($ex);
@@ -103,41 +114,42 @@ class Zend_Translate_Adapter_Qt extends Zend_Translate_Adapter {
     private function _startElement($file, $name, $attrib)
     {
         switch(strtolower($name)) {
-            case 'message':
-                $this->_source = null;
-                $this->_stag = false;
-                $this->_ttag = false;
-                $this->_scontent = null;
-                $this->_tcontent = null;
-                break;
-            case 'source':
-                $this->_stag = true;
-                break;
-            case 'translation':
-                $this->_ttag = true;
-                break;
-            default:
-                break;
+        case 'message':
+            $this->_source = null;
+            $this->_stag = false;
+            $this->_ttag = false;
+            $this->_scontent = null;
+            $this->_tcontent = null;
+            break;
+        case 'source':
+            $this->_stag = true;
+            break;
+        case 'translation':
+            $this->_ttag = true;
+            break;
+        default:
+            break;
         }
     }
 
     private function _endElement($file, $name)
     {
         switch (strtolower($name)) {
-            case 'source':
-                $this->_stag = false;
-                break;
+        case 'source':
+            $this->_stag = false;
+            break;
 
-            case 'translation':
-                if (!empty($this->_scontent) and !empty($this->_tcontent) or
-                    (isset($this->_data[$this->_target][$this->_scontent]) === false)) {
-                    $this->_data[$this->_target][$this->_scontent] = $this->_tcontent;
-                }
-                $this->_ttag = false;
-                break;
+        case 'translation':
+            if (!empty($this->_scontent) and !empty($this->_tcontent) 
+                or (isset($this->_data[$this->_target][$this->_scontent]) === false)
+            ) {
+                $this->_data[$this->_target][$this->_scontent] = $this->_tcontent;
+            }
+            $this->_ttag = false;
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
     }
 

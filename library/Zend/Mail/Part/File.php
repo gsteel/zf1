@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Mail
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Mail
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -32,10 +32,10 @@
 
 
 /**
- * @category   Zend
- * @package    Zend_Mail
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Mail
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Mail_Part_File extends Zend_Mail_Part
 {
@@ -51,8 +51,8 @@ class Zend_Mail_Part_File extends Zend_Mail_Part
      * - startPos start position of message or part in file (default: current position)
      * - endPos   end position of message or part in file (default: end of file)
      *
-     * @param   array $params  full message with or without headers
-     * @throws  Zend_Mail_Exception
+     * @param  array $params full message with or without headers
+     * @throws Zend_Mail_Exception
      */
     public function __construct(array $params)
     {
@@ -170,7 +170,8 @@ class Zend_Mail_Part_File extends Zend_Mail_Part
      *
      * @return int size
      */
-    public function getSize() {
+    public function getSize()
+    {
         return $this->_contentPos[1] - $this->_contentPos[0];
     }
 
@@ -192,7 +193,9 @@ class Zend_Mail_Part_File extends Zend_Mail_Part
             throw new Zend_Mail_Exception('part not found');
         }
 
-        return new self(array('file' => $this->_fh, 'startPos' => $this->_partPos[$num][0],
-                              'endPos' => $this->_partPos[$num][1]));
+        return new self(
+            array('file' => $this->_fh, 'startPos' => $this->_partPos[$num][0],
+            'endPos' => $this->_partPos[$num][1])
+        );
     }
 }

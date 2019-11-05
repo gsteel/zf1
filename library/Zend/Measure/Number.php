@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Measure
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -196,72 +196,72 @@ class Zend_Measure_Number extends Zend_Measure_Abstract
         }
 
         switch($type) {
-            case 'BINARY':
-                preg_match('/[01]+/', $value, $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'BINARY':
+            preg_match('/[01]+/', $value, $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'TERNARY':
-                preg_match('/[012]+/', $value, $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'TERNARY':
+            preg_match('/[012]+/', $value, $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'QUATERNARY':
-                preg_match('/[0123]+/', $value, $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'QUATERNARY':
+            preg_match('/[0123]+/', $value, $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'QUINARY':
-                preg_match('/[01234]+/', $value, $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'QUINARY':
+            preg_match('/[01234]+/', $value, $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'SENARY':
-                preg_match('/[012345]+/', $value, $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'SENARY':
+            preg_match('/[012345]+/', $value, $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'SEPTENARY':
-                preg_match('/[0123456]+/', $value, $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'SEPTENARY':
+            preg_match('/[0123456]+/', $value, $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'OCTAL':
-                preg_match('/[01234567]+/', $value, $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'OCTAL':
+            preg_match('/[01234567]+/', $value, $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'NONARY':
-                preg_match('/[012345678]+/', $value, $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'NONARY':
+            preg_match('/[012345678]+/', $value, $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'DUODECIMAL':
-                preg_match('/[0123456789AB]+/', strtoupper($value), $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'DUODECIMAL':
+            preg_match('/[0123456789AB]+/', strtoupper($value), $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'HEXADECIMAL':
-                preg_match('/[0123456789ABCDEF]+/', strtoupper($value), $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'HEXADECIMAL':
+            preg_match('/[0123456789ABCDEF]+/', strtoupper($value), $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            case 'ROMAN':
-                preg_match('/[IVXLCDM_]+/', strtoupper($value), $ergebnis);
-                $value = $ergebnis[0];
-                break;
+        case 'ROMAN':
+            preg_match('/[IVXLCDM_]+/', strtoupper($value), $ergebnis);
+            $value = $ergebnis[0];
+            break;
 
-            default:
-                try {
-                    $value = Zend_Locale_Format::getInteger($value, array('locale' => $locale));
-                } catch (Exception $e) {
-                    // require_once 'Zend/Measure/Exception.php';
-                    throw new Zend_Measure_Exception($e->getMessage(), $e->getCode(), $e);
-                }
-                if (call_user_func(Zend_Locale_Math::$comp, $value, 0) < 0) {
-                    $value = call_user_func(Zend_Locale_Math::$sqrt, call_user_func(Zend_Locale_Math::$pow, $value, 2));
-                }
-                break;
+        default:
+            try {
+                $value = Zend_Locale_Format::getInteger($value, array('locale' => $locale));
+            } catch (Exception $e) {
+                // require_once 'Zend/Measure/Exception.php';
+                throw new Zend_Measure_Exception($e->getMessage(), $e->getCode(), $e);
+            }
+            if (call_user_func(Zend_Locale_Math::$comp, $value, 0) < 0) {
+                $value = call_user_func(Zend_Locale_Math::$sqrt, call_user_func(Zend_Locale_Math::$pow, $value, 2));
+            }
+            break;
         }
 
         $this->_value = $value;
@@ -284,9 +284,13 @@ class Zend_Measure_Number extends Zend_Measure_Abstract
             $length = strlen($input);
             for ($x = 0; $x < $length; ++$x) {
                 $split[$x] = hexdec($split[$x]);
-                $value     = call_user_func(Zend_Locale_Math::$add, $value,
-                            call_user_func(Zend_Locale_Math::$mul, $split[$x],
-                            call_user_func(Zend_Locale_Math::$pow, $this->_units[$type][0], ($length - $x - 1))));
+                $value     = call_user_func(
+                    Zend_Locale_Math::$add, $value,
+                    call_user_func(
+                        Zend_Locale_Math::$mul, $split[$x],
+                        call_user_func(Zend_Locale_Math::$pow, $this->_units[$type][0], ($length - $x - 1))
+                    )
+                );
             }
         }
 

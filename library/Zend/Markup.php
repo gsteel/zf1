@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Markup
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Markup
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Loader/PluginLoader.php';
 
 /**
- * @category   Zend
- * @package    Zend_Markup
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Markup
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Markup
 {
@@ -54,7 +54,9 @@ class Zend_Markup
     /**
      * Disable instantiation of Zend_Markup
      */
-    private function __construct() { }
+    private function __construct()
+    { 
+    }
 
     /**
      * Get the parser loader
@@ -64,9 +66,11 @@ class Zend_Markup
     public static function getParserLoader()
     {
         if (!(self::$_parserLoader instanceof Zend_Loader_PluginLoader)) {
-            self::$_parserLoader = new Zend_Loader_PluginLoader(array(
+            self::$_parserLoader = new Zend_Loader_PluginLoader(
+                array(
                 'Zend_Markup_Parser' => 'Zend/Markup/Parser/',
-            ));
+                )
+            );
         }
 
         return self::$_parserLoader;
@@ -80,9 +84,11 @@ class Zend_Markup
     public static function getRendererLoader()
     {
         if (!(self::$_rendererLoader instanceof Zend_Loader_PluginLoader)) {
-            self::$_rendererLoader = new Zend_Loader_PluginLoader(array(
+            self::$_rendererLoader = new Zend_Loader_PluginLoader(
+                array(
                 'Zend_Markup_Renderer' => 'Zend/Markup/Renderer/',
-            ));
+                )
+            );
         }
 
         return self::$_rendererLoader;
@@ -117,7 +123,7 @@ class Zend_Markup
      *
      * @param  string $parser
      * @param  string $renderer
-     * @param  array $options
+     * @param  array  $options
      * @return Zend_Markup_Renderer_RendererAbstract
      */
     public static function factory($parser, $renderer = 'Html', array $options = array())

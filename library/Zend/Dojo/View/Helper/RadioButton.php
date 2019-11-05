@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Dojo_View_Helper_Dijit */
+/**
+ * Zend_Dojo_View_Helper_Dijit 
+ */
 // require_once 'Zend/Dojo/View/Helper/Dijit.php';
 
 /**
@@ -31,17 +33,19 @@
  * @subpackage View
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
-  */
+ */
 class Zend_Dojo_View_Helper_RadioButton extends Zend_Dojo_View_Helper_Dijit
 {
     /**
      * Dijit being used
+     *
      * @var string
      */
     protected $_dijit  = 'dijit.form.RadioButton';
 
     /**
      * Dojo module to use
+     *
      * @var string
      */
     protected $_module = 'dijit.form.CheckBox';
@@ -51,9 +55,9 @@ class Zend_Dojo_View_Helper_RadioButton extends Zend_Dojo_View_Helper_Dijit
      *
      * @param  string $id
      * @param  string $value
-     * @param  array $params  Parameters to use for dijit creation
-     * @param  array $attribs HTML attributes
-     * @param  array $options Array of radio options
+     * @param  array  $params  Parameters to use for dijit creation
+     * @param  array  $attribs HTML attributes
+     * @param  array  $options Array of radio options
      * @param  string $listsep String with which to separate options
      * @return string
      */

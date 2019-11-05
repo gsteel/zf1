@@ -98,17 +98,17 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         foreach ($options as $name => $value) {
             $name = strtolower($name);
             switch ($name) {
-                case 'regexps':
-                    $this->_setRegexps($value);
-                    break;
-                case 'default_options':
-                    $this->_setDefaultOptions($value);
-                    break;
-                case 'content_type_memorization':
-                    $this->_setContentTypeMemorization($value);
-                    break;
-                default:
-                    $this->setOption($name, $value);
+            case 'regexps':
+                $this->_setRegexps($value);
+                break;
+            case 'default_options':
+                $this->_setDefaultOptions($value);
+                break;
+            case 'content_type_memorization':
+                $this->_setContentTypeMemorization($value);
+                break;
+            default:
+                $this->setOption($name, $value);
             }
         }
         if (isset($this->_specificOptions['http_conditional'])) {
@@ -145,8 +145,8 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
     /**
      * Set the deprecated contentTypeMemorization option
      *
-     * @param boolean $value value
-     * @return void
+     * @param      boolean $value value
+     * @return     void
      * @deprecated
      */
     protected function _setContentTypeMemorization($value)

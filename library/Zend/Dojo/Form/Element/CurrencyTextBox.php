@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_NumberTextBox */
+/**
+ * Zend_Dojo_Form_Element_NumberTextBox 
+ */
 // require_once 'Zend/Dojo/Form/Element/NumberTextBox.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Dojo_Form_Element_CurrencyTextBox extends Zend_Dojo_Form_Element_Numb
 {
     /**
      * Use CurrencyTextBox dijit view helper
+     *
      * @var string
      */
     public $helper = 'CurrencyTextBox';

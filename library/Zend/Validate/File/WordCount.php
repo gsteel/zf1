@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -29,18 +29,22 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_File_WordCount extends Zend_Validate_File_Count
 {
-    /**#@+
+    /**
+* #@+
+     *
      * @const string Error constants
      */
     const TOO_MUCH  = 'fileWordCountTooMuch';
     const TOO_LESS  = 'fileWordCountTooLess';
     const NOT_FOUND = 'fileWordCountNotFound';
-    /**#@-*/
+    /**
+     * #@-
+     */
 
     /**
      * @var array Error message templates

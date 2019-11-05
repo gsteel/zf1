@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_DisplayGroup */
+/**
+ * Zend_Form_DisplayGroup 
+ */
 // require_once 'Zend/Form/DisplayGroup.php';
 
 /**
@@ -37,9 +39,9 @@ class Zend_Dojo_Form_DisplayGroup extends Zend_Form_DisplayGroup
     /**
      * Constructor
      *
-     * @param  string $name
+     * @param  string                   $name
      * @param  Zend_Loader_PluginLoader $loader
-     * @param  array|Zend_Config|null $options
+     * @param  array|Zend_Config|null   $options
      * @return void
      */
     public function __construct($name, Zend_Loader_PluginLoader $loader, $options = null)

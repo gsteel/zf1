@@ -21,10 +21,14 @@
  */
 
 
-/** @see Zend_Db_Adapter_Pdo_Ibm */
+/**
+ * @see Zend_Db_Adapter_Pdo_Ibm 
+ */
 // require_once 'Zend/Db/Adapter/Pdo/Ibm.php';
 
-/** @see Zend_Db_Statement_Pdo_Ibm */
+/**
+ * @see Zend_Db_Statement_Pdo_Ibm 
+ */
 // require_once 'Zend/Db/Statement/Pdo/Ibm.php';
 
 
@@ -70,8 +74,8 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
     /**
      * DB2 catalog lookup for describe table
      *
-     * @param string $tableName
-     * @param string $schemaName OPTIONAL
+     * @param  string $tableName
+     * @param  string $schemaName OPTIONAL
      * @return array
      */
     public function describeTable($tableName, $schemaName = null)
@@ -157,9 +161,9 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
     /**
      * Adds a DB2-specific LIMIT clause to the SELECT statement.
      *
-     * @param string $sql
-     * @param integer $count
-     * @param integer $offset OPTIONAL
+     * @param  string  $sql
+     * @param  integer $count
+     * @param  integer $offset OPTIONAL
      * @throws Zend_Db_Adapter_Exception
      * @return string
      */
@@ -167,13 +171,17 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
     {
         $count = intval($count);
         if ($count < 0) {
-            /** @see Zend_Db_Adapter_Exception */
+            /**
+ * @see Zend_Db_Adapter_Exception 
+*/
             // require_once 'Zend/Db/Adapter/Exception.php';
             throw new Zend_Db_Adapter_Exception("LIMIT argument count=$count is not valid");
         } else {
             $offset = intval($offset);
             if ($offset < 0) {
-                /** @see Zend_Db_Adapter_Exception */
+                /**
+ * @see Zend_Db_Adapter_Exception 
+*/
                 // require_once 'Zend/Db/Adapter/Exception.php';
                 throw new Zend_Db_Adapter_Exception("LIMIT argument offset=$offset is not valid");
             }
@@ -203,7 +211,7 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
     /**
      * DB2-specific last sequence id
      *
-     * @param string $sequenceName
+     * @param  string $sequenceName
      * @return integer
      */
     public function lastSequenceId($sequenceName)
@@ -216,8 +224,8 @@ class Zend_Db_Adapter_Pdo_Ibm_Db2
     /**
      * DB2-specific sequence id value
      *
-     *  @param string $sequenceName
-     *  @return integer
+     * @param  string $sequenceName
+     * @return integer
      */
     public function nextSequenceId($sequenceName)
     {

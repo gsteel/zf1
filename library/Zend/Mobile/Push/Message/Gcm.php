@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Mobile_Push_Message_Abstract **/
+/**
+ * Zend_Mobile_Push_Message_Abstract 
+ **/
 // require_once 'Zend/Mobile/Push/Message/Abstract.php';
 
 /**
@@ -78,7 +80,7 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
             throw new Zend_Mobile_Push_Message_Exception('$token must be a string');
         }
         if (!in_array($token, $this->_token)) {
-           $this->_token[] = $token;
+            $this->_token[] = $token;
         }
         return $this;
     }
@@ -138,7 +140,7 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
     /**
      * Set Data
      *
-     * @param array $data
+     * @param  array $data
      * @return Zend_Mobile_Push_Message_Gcm
      * @throws Zend_Mobile_Push_Message_Exception
      */
@@ -175,7 +177,7 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
     /**
      * Set Delay While Idle
      *
-     * @param boolean $delay
+     * @param  boolean $delay
      * @return Zend_Mobile_Push_Message_Gcm
      * @throws Zend_Mobile_Push_Message_Exception
      */
@@ -235,9 +237,10 @@ class Zend_Mobile_Push_Message_Gcm extends Zend_Mobile_Push_Message_Abstract
         if (!is_array($this->_token) || empty($this->_token)) {
             return false;
         }
-        if ($this->_ttl !== 2419200 &&
-            (!is_scalar($this->_id) ||
-            strlen($this->_id) === 0)) {
+        if ($this->_ttl !== 2419200 
+            && (!is_scalar($this->_id) 
+            || strlen($this->_id) === 0)
+        ) {
             return false;
         }
         return true;

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -30,10 +30,10 @@
 // require_once 'Zend/Validate/Hostname.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
 {
@@ -67,6 +67,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
      *   - 128.0.0.0/16
      *   - 191.255.0.0/16
      *   - 223.255.255.0/24
+     *
      * @see http://tools.ietf.org/html/rfc5735#page-6
      *
      * As of RFC6598 (APR 2012), the following blocks are now reserved:
@@ -170,7 +171,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
     /**
      * Set options for the email validator
      *
-     * @param array $options
+     * @param  array $options
      * @return Zend_Validate_EmailAddress Provides a fluent inteface
      */
     public function setOptions(array $options = array())
@@ -209,7 +210,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
      * Adds the ability to set messages to the attached hostname validator
      *
      * @param  string $messageString
-     * @param  string $messageKey     OPTIONAL
+     * @param  string $messageKey    OPTIONAL
      * @return Zend_Validate_Abstract Provides a fluent interface
      * @throws Zend_Validate_Exception
      */
@@ -240,8 +241,8 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
     }
 
     /**
-     * @param Zend_Validate_Hostname $hostnameValidator OPTIONAL
-     * @param int                    $allow             OPTIONAL
+     * @param  Zend_Validate_Hostname $hostnameValidator OPTIONAL
+     * @param  int                    $allow             OPTIONAL
      * @return $this
      */
     public function setHostnameValidator(Zend_Validate_Hostname $hostnameValidator = null, $allow = Zend_Validate_Hostname::ALLOW_DNS)
@@ -282,7 +283,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
      *
      * This only applies when DNS hostnames are validated
      *
-     * @param boolean $mx Set allowed to true to validate for MX records, and false to not validate them
+     * @param  boolean $mx Set allowed to true to validate for MX records, and false to not validate them
      * @throws Zend_Validate_Exception
      * @return Zend_Validate_EmailAddress Provides a fluent inteface
      */
@@ -310,7 +311,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
     /**
      * Set whether we check MX record should be a deep validation
      *
-     * @param boolean $deep Set deep to true to perform a deep validation process for MX records
+     * @param  boolean $deep Set deep to true to perform a deep validation process for MX records
      * @return Zend_Validate_EmailAddress Provides a fluent inteface
      */
     public function setDeepMxCheck($deep)
@@ -333,7 +334,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
      * Sets if the domain should also be checked
      * or only the local part of the email address
      *
-     * @param boolean $domain
+     * @param  boolean $domain
      * @return Zend_Validate_EmailAddress Provides a fluent inteface
      */
     public function setDomainCheck($domain = true)
@@ -345,15 +346,16 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
     /**
      * Returns if the given host is reserved
      *
-     * @param string $host
+     * @param  string $host
      * @return boolean
      */
-    private function _isReserved($host){
+    private function _isReserved($host)
+    {
         if (!preg_match('/^([0-9]{1,3}\.){3}[0-9]{1,3}$/', $host)) {
             $host = gethostbyname($host);
         }
 
-        $octet = explode('.',$host);
+        $octet = explode('.', $host);
         if ((int)$octet[0] >= 224) {
             return true;
         } else if (array_key_exists($octet[0], $this->_invalidIp)) {
@@ -378,8 +380,9 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
                 );
 
                 for ($j = $i; $j < 4; $j++) {
-                    if ((int)$octet[$j] < $segmentData['network'][$j] ||
-                        (int)$octet[$j] > $segmentData['broadcast'][$j]) {
+                    if ((int)$octet[$j] < $segmentData['network'][$j] 
+                        || (int)$octet[$j] > $segmentData['broadcast'][$j]
+                    ) {
                         return false;
                     }
                 }
@@ -394,7 +397,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
     /**
      * Converts a binary string to an IP address
      *
-     * @param string $binary
+     * @param  string $binary
      * @return mixed
      */
     private function _toIp($binary)
@@ -472,7 +475,8 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
                 if (!$res
                     && (checkdnsrr($hostname, "A")
                     || checkdnsrr($hostname, "AAAA")
-                    || checkdnsrr($hostname, "A6"))) {
+                    || checkdnsrr($hostname, "A6"))
+                ) {
                     $validAddress = true;
                     break;
                 }
@@ -499,7 +503,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
     private function _validateHostnamePart()
     {
         $hostname = $this->_options['hostname']->setTranslator($this->getTranslator())
-                         ->isValid($this->_hostname);
+            ->isValid($this->_hostname);
         if (!$hostname) {
             $this->_error(self::INVALID_HOSTNAME);
 
@@ -543,8 +547,9 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
         $this->_setValue($value);
 
         // Split email address up and disallow '..'
-        if ((strpos($value, '..') !== false) or
-            (!preg_match('/^(.+)@([^@]+)$/', $value, $matches))) {
+        if ((strpos($value, '..') !== false) 
+            or (!preg_match('/^(.+)@([^@]+)$/', $value, $matches))
+        ) {
             $this->_error(self::INVALID_FORMAT);
             return false;
         }

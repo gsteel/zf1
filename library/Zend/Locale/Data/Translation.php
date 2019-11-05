@@ -23,6 +23,7 @@
  * Definition class for all Windows locales
  *
  * Based on this two lists:
+ *
  * @link http://msdn.microsoft.com/en-us/library/39cwe7zf.aspx
  * @link http://msdn.microsoft.com/en-us/library/cdax410z.aspx
  * @link http://msdn.microsoft.com/en-us/goglobal/bb964664.aspx

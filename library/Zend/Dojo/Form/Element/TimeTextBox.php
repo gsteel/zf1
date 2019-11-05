@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_DateTextBox */
+/**
+ * Zend_Dojo_Form_Element_DateTextBox 
+ */
 // require_once 'Zend/Dojo/Form/Element/DateTextBox.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Dojo_Form_Element_TimeTextBox extends Zend_Dojo_Form_Element_DateText
 {
     /**
      * Use TimeTextBox dijit view helper
+     *
      * @var string
      */
     public $helper = 'TimeTextBox';

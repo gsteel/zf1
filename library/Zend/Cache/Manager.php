@@ -83,7 +83,7 @@ class Zend_Cache_Manager
     /**
      * Set a new cache for the Cache Manager to contain
      *
-     * @param  string $name
+     * @param  string          $name
      * @param  Zend_Cache_Core $cache
      * @return Zend_Cache_Manager
      */
@@ -97,7 +97,7 @@ class Zend_Cache_Manager
      * Check if the Cache Manager contains the named cache object, or a named
      * configuration template to lazy load the cache object
      *
-     * @param string $name
+     * @param  string $name
      * @return bool
      */
     public function hasCache($name)
@@ -175,8 +175,10 @@ class Zend_Cache_Manager
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (!is_array($options)) {
-            throw new Zend_Cache_Exception('Options passed must be in'
-                . ' an associative array or instance of Zend_Config');
+            throw new Zend_Cache_Exception(
+                'Options passed must be in'
+                . ' an associative array or instance of Zend_Config'
+            );
         }
         $this->_optionTemplates[$name] = $options;
         return $this;
@@ -215,7 +217,7 @@ class Zend_Cache_Manager
      * template
      *
      * @param  string $name
-     * @param  array $options
+     * @param  array  $options
      * @return Zend_Cache_Manager
      * @throws Zend_Cache_Exception for invalid options format or if option templates do not have $name
      */
@@ -224,12 +226,16 @@ class Zend_Cache_Manager
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (!is_array($options)) {
-            throw new Zend_Cache_Exception('Options passed must be in'
-                . ' an associative array or instance of Zend_Config');
+            throw new Zend_Cache_Exception(
+                'Options passed must be in'
+                . ' an associative array or instance of Zend_Config'
+            );
         }
         if (!isset($this->_optionTemplates[$name])) {
-            throw new Zend_Cache_Exception('A cache configuration template'
-                . 'does not exist with the name "' . $name . '"');
+            throw new Zend_Cache_Exception(
+                'A cache configuration template'
+                . 'does not exist with the name "' . $name . '"'
+            );
         }
         $this->_optionTemplates[$name]
             = $this->_mergeOptions($this->_optionTemplates[$name], $options);

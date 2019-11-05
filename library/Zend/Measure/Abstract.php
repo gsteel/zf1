@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Measure
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -112,8 +112,8 @@ abstract class Zend_Measure_Abstract
     /**
      * Sets a new locale for the value representation
      *
-     * @param string|Zend_Locale $locale (Optional) New locale to set
-     * @param boolean            $check  False, check but don't set; True, set the new locale
+     * @param  string|Zend_Locale $locale (Optional) New locale to set
+     * @param  boolean            $check  False, check but don't set; True, set the new locale
      * @return Zend_Measure_Abstract
      */
     public function setLocale($locale = null, $check = false)
@@ -147,9 +147,9 @@ abstract class Zend_Measure_Abstract
     /**
      * Returns the internal value
      *
-     * @param integer            $round  (Optional) Rounds the value to an given precision,
-     *                                              Default is -1 which returns without rounding
-     * @param string|Zend_Locale $locale (Optional) Locale for number representation
+     * @param  integer            $round  (Optional) Rounds the value to an given precision,
+     *                                    Default is -1 which returns without rounding
+     * @param  string|Zend_Locale $locale (Optional) Locale for number representation
      * @return integer|string
      */
     public function getValue($round = -1, $locale = null)
@@ -171,9 +171,9 @@ abstract class Zend_Measure_Abstract
     /**
      * Set a new value
      *
-     * @param  integer|string      $value   Value as string, integer, real or float
-     * @param  string              $type    OPTIONAL A measure type f.e. Zend_Measure_Length::METER
-     * @param  string|Zend_Locale  $locale  OPTIONAL Locale for parsing numbers
+     * @param  integer|string     $value  Value as string, integer, real or float
+     * @param  string             $type   OPTIONAL A measure type f.e. Zend_Measure_Length::METER
+     * @param  string|Zend_Locale $locale OPTIONAL Locale for parsing numbers
      * @throws Zend_Measure_Exception
      * @return Zend_Measure_Abstract
      */
@@ -242,20 +242,20 @@ abstract class Zend_Measure_Abstract
             if (is_array($this->_units[$this->getType()][0])) {
                 foreach ($this->_units[$this->getType()][0] as $key => $found) {
                     switch ($key) {
-                        case "/":
-                            if ($found != 0) {
-                                $value = call_user_func(Zend_Locale_Math::$div, $value, $found, 25);
-                            }
-                            break;
-                        case "+":
-                            $value = call_user_func(Zend_Locale_Math::$add, $value, $found, 25);
-                            break;
-                        case "-":
-                            $value = call_user_func(Zend_Locale_Math::$sub, $value, $found, 25);
-                            break;
-                        default:
-                            $value = call_user_func(Zend_Locale_Math::$mul, $value, $found, 25);
-                            break;
+                    case "/":
+                        if ($found != 0) {
+                            $value = call_user_func(Zend_Locale_Math::$div, $value, $found, 25);
+                        }
+                        break;
+                    case "+":
+                        $value = call_user_func(Zend_Locale_Math::$add, $value, $found, 25);
+                        break;
+                    case "-":
+                        $value = call_user_func(Zend_Locale_Math::$sub, $value, $found, 25);
+                        break;
+                    default:
+                        $value = call_user_func(Zend_Locale_Math::$mul, $value, $found, 25);
+                        break;
                     }
                 }
             } else {
@@ -266,20 +266,20 @@ abstract class Zend_Measure_Abstract
             if (is_array($this->_units[$type][0])) {
                 foreach (array_reverse($this->_units[$type][0]) as $key => $found) {
                     switch ($key) {
-                        case "/":
-                            $value = call_user_func(Zend_Locale_Math::$mul, $value, $found, 25);
-                            break;
-                        case "+":
-                            $value = call_user_func(Zend_Locale_Math::$sub, $value, $found, 25);
-                            break;
-                        case "-":
-                            $value = call_user_func(Zend_Locale_Math::$add, $value, $found, 25);
-                            break;
-                        default:
-                            if ($found != 0) {
-                                $value = call_user_func(Zend_Locale_Math::$div, $value, $found, 25);
-                            }
-                            break;
+                    case "/":
+                        $value = call_user_func(Zend_Locale_Math::$mul, $value, $found, 25);
+                        break;
+                    case "+":
+                        $value = call_user_func(Zend_Locale_Math::$sub, $value, $found, 25);
+                        break;
+                    case "-":
+                        $value = call_user_func(Zend_Locale_Math::$add, $value, $found, 25);
+                        break;
+                    default:
+                        if ($found != 0) {
+                            $value = call_user_func(Zend_Locale_Math::$div, $value, $found, 25);
+                        }
+                        break;
                     }
                 }
             } else {

@@ -12,38 +12,46 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** Zend_Memory_Exception */
+/**
+ * Zend_Memory_Exception 
+ */
 // require_once 'Zend/Memory/Manager.php';
 
-/** Zend_Memory_Value */
+/**
+ * Zend_Memory_Value 
+ */
 // require_once 'Zend/Memory/Value.php';
 
-/** Zend_Memory_Container */
+/**
+ * Zend_Memory_Container 
+ */
 // require_once 'Zend/Memory/Container.php';
 
-/** Zend_Memory_Exception */
+/**
+ * Zend_Memory_Exception 
+ */
 // require_once 'Zend/Cache.php';
 
 /**
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Memory
 {
     /**
      * Factory
      *
-     * @param string $backend backend name
-     * @param array $backendOptions associative array of options for the corresponding backend constructor
+     * @param  string $backend        backend name
+     * @param  array  $backendOptions associative array of options for the corresponding backend constructor
      * @return Zend_Memory_Manager
      * @throws Zend_Memory_Exception
      */

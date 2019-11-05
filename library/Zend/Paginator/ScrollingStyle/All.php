@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Paginator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Paginator
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -29,10 +29,10 @@
  * Useful when it is necessary to make every page available at
  * once--for example, when using a dropdown menu pagination control.
  *
- * @category   Zend
- * @package    Zend_Paginator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Paginator
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Paginator_ScrollingStyle_All implements Zend_Paginator_ScrollingStyle_Interface
 {
@@ -40,7 +40,7 @@ class Zend_Paginator_ScrollingStyle_All implements Zend_Paginator_ScrollingStyle
      * Returns an array of all pages given a page number and range.
      *
      * @param  Zend_Paginator $paginator
-     * @param  integer $pageRange Unused
+     * @param  integer        $pageRange Unused
      * @return array
      */
     public function getPages(Zend_Paginator $paginator, $pageRange = null)

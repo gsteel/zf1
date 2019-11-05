@@ -12,12 +12,12 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Session
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
- * @since      Preview Release 0.2
+ * @category  Zend
+ * @package   Zend_Session
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
+ * @since     Preview Release 0.2
  */
 
 /**
@@ -45,7 +45,7 @@ class Zend_Session_Validator_HttpUserAgent extends Zend_Session_Validator_Abstra
      */
     public function setup()
     {
-        $this->setValidData( ($_SERVER['HTTP_USER_AGENT'] ?? null) );
+        $this->setValidData(($_SERVER['HTTP_USER_AGENT'] ?? null));
     }
 
     /**

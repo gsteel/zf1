@@ -202,8 +202,7 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
         $name,
         Zend_Controller_Router_Route_Interface $route,
         Zend_Config $childRoutesInfo
-    )
-    {
+    ) {
         foreach ($childRoutesInfo as $childRouteName => $childRouteInfo) {
             if (is_string($childRouteInfo)) {
                 $childRouteName = $childRouteInfo;
@@ -273,7 +272,7 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
     /**
      * Retrieve a named route
      *
-     * @param string $name Name of the route
+     * @param  string $name Name of the route
      * @throws Zend_Controller_Router_Exception
      * @return Zend_Controller_Router_Route_Interface Route object
      */
@@ -330,7 +329,7 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
      * Find a matching route to the current PATH_INFO and inject
      * returning values to the Request object.
      *
-     * @param Zend_Controller_Request_Abstract $request
+     * @param  Zend_Controller_Request_Abstract $request
      * @throws Zend_Controller_Router_Exception
      * @return Zend_Controller_Request_Abstract Request object
      */
@@ -464,7 +463,7 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
     /**
      * Set the separator to use with chain names
      *
-     * @param string $separator The separator to use
+     * @param  string $separator The separator to use
      * @return Zend_Controller_Router_Rewrite
      */
     public function setChainNameSeparator($separator)
@@ -487,13 +486,12 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
     /**
      * Determines/returns whether to use the request parameters as global parameters.
      *
-     * @param boolean|null $use
+     * @param  boolean|null $use
      *              Null/unset when you want to retrieve the current state.
      *              True when request parameters should be global, false otherwise
      * @return boolean|Zend_Controller_Router_Rewrite
      *              Returns a boolean if first param isn't set, returns an
      *              instance of Zend_Controller_Router_Rewrite otherwise.
-     *
      */
     public function useRequestParametersAsGlobal($use = null)
     {

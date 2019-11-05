@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -29,18 +29,22 @@
  *
  * @category  Zend
  * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_File_Size extends Zend_Validate_Abstract
 {
-    /**#@+
+    /**
+* #@+
+     *
      * @const string Error constants
      */
     const TOO_BIG   = 'fileSizeTooBig';
     const TOO_SMALL = 'fileSizeTooSmall';
     const NOT_FOUND = 'fileSizeNotFound';
-    /**#@-*/
+    /**
+     * #@-
+     */
 
     /**
      * @var array Error message templates
@@ -62,6 +66,7 @@ class Zend_Validate_File_Size extends Zend_Validate_Abstract
 
     /**
      * Minimum filesize
+     *
      * @var integer
      */
     protected $_min;
@@ -109,7 +114,7 @@ class Zend_Validate_File_Size extends Zend_Validate_Abstract
             $options = array('max' => $options);
         } elseif (!is_array($options)) {
             // require_once 'Zend/Validate/Exception.php';
-            throw new Zend_Validate_Exception ('Invalid options to validator provided');
+            throw new Zend_Validate_Exception('Invalid options to validator provided');
         }
 
         if (1 < func_num_args()) {
@@ -183,15 +188,17 @@ class Zend_Validate_File_Size extends Zend_Validate_Abstract
     {
         if (!is_string($min) and !is_numeric($min)) {
             // require_once 'Zend/Validate/Exception.php';
-            throw new Zend_Validate_Exception ('Invalid options to validator provided');
+            throw new Zend_Validate_Exception('Invalid options to validator provided');
         }
 
         $min = (integer) $this->_fromByteString($min);
         $max = $this->getMax(true);
         if (($max !== null) && ($min > $max)) {
             // require_once 'Zend/Validate/Exception.php';
-            throw new Zend_Validate_Exception("The minimum must be less than or equal to the maximum filesize, but $min >"
-                                            . " $max");
+            throw new Zend_Validate_Exception(
+                "The minimum must be less than or equal to the maximum filesize, but $min >"
+                . " $max"
+            );
         }
 
         $this->_min = $min;
@@ -225,15 +232,17 @@ class Zend_Validate_File_Size extends Zend_Validate_Abstract
     {
         if (!is_string($max) && !is_numeric($max)) {
             // require_once 'Zend/Validate/Exception.php';
-            throw new Zend_Validate_Exception ('Invalid options to validator provided');
+            throw new Zend_Validate_Exception('Invalid options to validator provided');
         }
 
         $max = (integer) $this->_fromByteString($max);
         $min = $this->getMin(true);
         if (($min !== null) && ($max < $min)) {
             // require_once 'Zend/Validate/Exception.php';
-            throw new Zend_Validate_Exception("The maximum must be greater than or equal to the minimum filesize, but "
-                                            . "$max < $min");
+            throw new Zend_Validate_Exception(
+                "The maximum must be greater than or equal to the minimum filesize, but "
+                . "$max < $min"
+            );
         }
 
         $this->_max = $max;
@@ -355,32 +364,32 @@ class Zend_Validate_File_Size extends Zend_Validate_Abstract
         }
 
         switch (strtoupper($type)) {
-            case 'Y':
-                $value *= (1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024);
-                break;
-            case 'Z':
-                $value *= (1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024);
-                break;
-            case 'E':
-                $value *= (1024 * 1024 * 1024 * 1024 * 1024 * 1024);
-                break;
-            case 'P':
-                $value *= (1024 * 1024 * 1024 * 1024 * 1024);
-                break;
-            case 'T':
-                $value *= (1024 * 1024 * 1024 * 1024);
-                break;
-            case 'G':
-                $value *= (1024 * 1024 * 1024);
-                break;
-            case 'M':
-                $value *= (1024 * 1024);
-                break;
-            case 'K':
-                $value *= 1024;
-                break;
-            default:
-                break;
+        case 'Y':
+            $value *= (1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024);
+            break;
+        case 'Z':
+            $value *= (1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024);
+            break;
+        case 'E':
+            $value *= (1024 * 1024 * 1024 * 1024 * 1024 * 1024);
+            break;
+        case 'P':
+            $value *= (1024 * 1024 * 1024 * 1024 * 1024);
+            break;
+        case 'T':
+            $value *= (1024 * 1024 * 1024 * 1024);
+            break;
+        case 'G':
+            $value *= (1024 * 1024 * 1024);
+            break;
+        case 'M':
+            $value *= (1024 * 1024);
+            break;
+        case 'K':
+            $value *= 1024;
+            break;
+        default:
+            break;
         }
 
         return $value;

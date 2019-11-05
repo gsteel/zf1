@@ -12,33 +12,42 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version   $Id$
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 
-/** Zend_Locale */
+/**
+ * Zend_Locale 
+ */
 // require_once 'Zend/Locale.php';
 
-/** Zend_Translate_Adapter */
+/**
+ * Zend_Translate_Adapter 
+ */
 // require_once 'Zend/Translate/Adapter.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @See Zend_Xml_Exception */
+/**
+ * @See Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Translate_Adapter_Tmx extends Zend_Translate_Adapter {
+class Zend_Translate_Adapter_Tmx extends Zend_Translate_Adapter
+{
     // Internal variables
     private $_file    = false;
     private $_useId   = true;
@@ -52,10 +61,10 @@ class Zend_Translate_Adapter_Tmx extends Zend_Translate_Adapter {
     /**
      * Load translation data (TMX file reader)
      *
-     * @param  string  $filename  TMX file to add, full path must be given for access
-     * @param  string  $locale    Locale has no effect for TMX because TMX defines all languages within
-     *                            the source file
-     * @param  array   $option    OPTIONAL Options to use
+     * @param  string $filename TMX file to add, full path must be given for access
+     * @param  string $locale   Locale has no effect for TMX because TMX defines all languages within
+     *                          the source file
+     * @param  array  $option   OPTIONAL Options to use
      * @throws Zend_Translation_Exception
      * @return array
      */
@@ -88,10 +97,12 @@ class Zend_Translate_Adapter_Tmx extends Zend_Translate_Adapter {
         }
  
         if (!xml_parse($this->_file, file_get_contents($filename))) {
-            $ex = sprintf('XML error: %s at line %d of file %s',
-                          xml_error_string(xml_get_error_code($this->_file)),
-                          xml_get_current_line_number($this->_file),
-                          $filename);
+            $ex = sprintf(
+                'XML error: %s at line %d of file %s',
+                xml_error_string(xml_get_error_code($this->_file)),
+                xml_get_current_line_number($this->_file),
+                $filename
+            );
             xml_parser_free($this->_file);
             // require_once 'Zend/Translate/Exception.php';
             throw new Zend_Translate_Exception($ex);
@@ -117,55 +128,55 @@ class Zend_Translate_Adapter_Tmx extends Zend_Translate_Adapter {
             $this->_content .= ">";
         } else {
             switch(strtolower($name)) {
-                case 'header':
-                    if (empty($this->_useId) && isset($attrib['srclang'])) {
-                        if (Zend_Locale::isLocale($attrib['srclang'])) {
-                            $this->_srclang = Zend_Locale::findLocale($attrib['srclang']);
-                        } else {
-                            if (!$this->_options['disableNotices']) {
-                                if ($this->_options['log']) {
-                                    $this->_options['log']->notice("The language '{$attrib['srclang']}' can not be set because it does not exist.");
-                                } else {
-                                    trigger_error("The language '{$attrib['srclang']}' can not be set because it does not exist.", E_USER_NOTICE);
-                                }
+            case 'header':
+                if (empty($this->_useId) && isset($attrib['srclang'])) {
+                    if (Zend_Locale::isLocale($attrib['srclang'])) {
+                        $this->_srclang = Zend_Locale::findLocale($attrib['srclang']);
+                    } else {
+                        if (!$this->_options['disableNotices']) {
+                            if ($this->_options['log']) {
+                                $this->_options['log']->notice("The language '{$attrib['srclang']}' can not be set because it does not exist.");
+                            } else {
+                                trigger_error("The language '{$attrib['srclang']}' can not be set because it does not exist.", E_USER_NOTICE);
                             }
-
-                            $this->_srclang = $attrib['srclang'];
                         }
+
+                        $this->_srclang = $attrib['srclang'];
                     }
-                    break;
-                case 'tu':
-                    if (isset($attrib['tuid'])) {
-                        $this->_tu = $attrib['tuid'];
-                    }
-                    break;
-                case 'tuv':
-                    if (isset($attrib['xml:lang'])) {
-                        if (Zend_Locale::isLocale($attrib['xml:lang'])) {
-                            $this->_tuv = Zend_Locale::findLocale($attrib['xml:lang']);
-                        } else {
-                            if (!$this->_options['disableNotices']) {
-                                if ($this->_options['log']) {
-                                    $this->_options['log']->notice("The language '{$attrib['xml:lang']}' can not be set because it does not exist.");
-                                } else {
-                                    trigger_error("The language '{$attrib['xml:lang']}' can not be set because it does not exist.", E_USER_NOTICE);
-                                }
+                }
+                break;
+            case 'tu':
+                if (isset($attrib['tuid'])) {
+                    $this->_tu = $attrib['tuid'];
+                }
+                break;
+            case 'tuv':
+                if (isset($attrib['xml:lang'])) {
+                    if (Zend_Locale::isLocale($attrib['xml:lang'])) {
+                        $this->_tuv = Zend_Locale::findLocale($attrib['xml:lang']);
+                    } else {
+                        if (!$this->_options['disableNotices']) {
+                            if ($this->_options['log']) {
+                                $this->_options['log']->notice("The language '{$attrib['xml:lang']}' can not be set because it does not exist.");
+                            } else {
+                                trigger_error("The language '{$attrib['xml:lang']}' can not be set because it does not exist.", E_USER_NOTICE);
                             }
-
-                            $this->_tuv = $attrib['xml:lang'];
                         }
 
-                        if (!isset($this->_data[$this->_tuv])) {
-                            $this->_data[$this->_tuv] = array();
-                        }
+                        $this->_tuv = $attrib['xml:lang'];
                     }
-                    break;
-                case 'seg':
-                    $this->_seg     = true;
-                    $this->_content = null;
-                    break;
-                default:
-                    break;
+
+                    if (!isset($this->_data[$this->_tuv])) {
+                        $this->_data[$this->_tuv] = array();
+                    }
+                }
+                break;
+            case 'seg':
+                $this->_seg     = true;
+                $this->_content = null;
+                break;
+            default:
+                break;
             }
         }
     }
@@ -174,8 +185,8 @@ class Zend_Translate_Adapter_Tmx extends Zend_Translate_Adapter {
     /**
      * Internal method, called by xml element handler at end
      *
-     * @param resource $file   File handler
-     * @param string   $name   Elements name
+     * @param resource $file File handler
+     * @param string   $name Elements name
      */
     protected function _endElement($file, $name)
     {
@@ -183,24 +194,24 @@ class Zend_Translate_Adapter_Tmx extends Zend_Translate_Adapter {
             $this->_content .= "</".$name.">";
         } else {
             switch (strtolower($name)) {
-                case 'tu':
-                    $this->_tu = null;
-                    break;
-                case 'tuv':
-                    $this->_tuv = null;
-                    break;
-                case 'seg':
-                    $this->_seg = null;
-                    if (!empty($this->_srclang) && ($this->_srclang == $this->_tuv)) {
-                        $this->_tu = $this->_content;
-                    }
+            case 'tu':
+                $this->_tu = null;
+                break;
+            case 'tuv':
+                $this->_tuv = null;
+                break;
+            case 'seg':
+                $this->_seg = null;
+                if (!empty($this->_srclang) && ($this->_srclang == $this->_tuv)) {
+                    $this->_tu = $this->_content;
+                }
 
-                    if (!empty($this->_content) or (!isset($this->_data[$this->_tuv][$this->_tu]))) {
-                        $this->_data[$this->_tuv][$this->_tu] = $this->_content;
-                    }
-                    break;
-                default:
-                    break;
+                if (!empty($this->_content) or (!isset($this->_data[$this->_tuv][$this->_tu]))) {
+                    $this->_data[$this->_tuv][$this->_tu] = $this->_content;
+                }
+                break;
+            default:
+                break;
             }
         }
     }
@@ -222,7 +233,7 @@ class Zend_Translate_Adapter_Tmx extends Zend_Translate_Adapter {
     /**
      * Internal method, detects the encoding of the xml file
      *
-     * @param string $name Filename
+     * @param  string $name Filename
      * @return string Encoding
      */
     protected function _findEncoding($filename)

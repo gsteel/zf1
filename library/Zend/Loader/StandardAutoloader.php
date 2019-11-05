@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Loader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 // Grab SplAutoloader interface
@@ -28,9 +28,9 @@ require_once __DIR__ . '/SplAutoloader.php';
  * lookups are performed on the filesystem. If a class file for the referenced
  * class is not found, a PHP warning will be raised by include().
  *
- * @package    Zend_Loader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    New BSD {@link http://framework.zend.com/license/new-bsd}
+ * @package   Zend_Loader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   New BSD {@link http://framework.zend.com/license/new-bsd}
  */
 class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
 {
@@ -104,26 +104,26 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
 
         foreach ($options as $type => $pairs) {
             switch ($type) {
-                case self::AUTOREGISTER_ZF:
-                    if ($pairs) {
-                        $this->registerPrefix('Zend', dirname(__DIR__));
-                    }
-                    break;
-                case self::LOAD_NS:
-                    if (is_iterable($pairs)) {
-                        $this->registerNamespaces($pairs);
-                    }
-                    break;
-                case self::LOAD_PREFIX:
-                    if (is_iterable($pairs)) {
-                        $this->registerPrefixes($pairs);
-                    }
-                    break;
-                case self::ACT_AS_FALLBACK:
-                    $this->setFallbackAutoloader($pairs);
-                    break;
-                default:
-                    // ignore
+            case self::AUTOREGISTER_ZF:
+                if ($pairs) {
+                    $this->registerPrefix('Zend', dirname(__DIR__));
+                }
+                break;
+            case self::LOAD_NS:
+                if (is_iterable($pairs)) {
+                    $this->registerNamespaces($pairs);
+                }
+                break;
+            case self::LOAD_PREFIX:
+                if (is_iterable($pairs)) {
+                    $this->registerPrefixes($pairs);
+                }
+                break;
+            case self::ACT_AS_FALLBACK:
+                $this->setFallbackAutoloader($pairs);
+                break;
+            default:
+                // ignore
             }
         }
         return $this;
@@ -264,8 +264,8 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
      * Used by {@link loadClass} during fallback autoloading in PHP versions
      * prior to 5.3.0.
      * 
-     * @param mixed $errno 
-     * @param mixed $errstr 
+     * @param  mixed $errno 
+     * @param  mixed $errstr 
      * @return void
      */
     public function handleError($errno, $errstr)

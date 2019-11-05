@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Mobile_Push_Exception */
+/**
+ * Zend_Mobile_Push_Exception 
+ */
 // require_once 'Zend/Mobile/Push/Exception.php';
 
 /**
@@ -32,4 +34,6 @@
  * @version    $Id$
  */
 class Zend_Mobile_Push_Exception_DeviceQuotaExceeded extends Zend_Mobile_Push_Exception
-{}
+{
+
+}

@@ -10,11 +10,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_ProgressBar
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_ProgressBar
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -34,7 +34,7 @@
  * @category  Zend
  * @package   Zend_ProgressBar
  * @uses      Zend_ProgressBar_Adapter_Interface
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_ProgressBar_Adapter_Console extends Zend_ProgressBar_Adapter
@@ -187,18 +187,18 @@ class Zend_ProgressBar_Adapter_Console extends Zend_ProgressBar_Adapter
      */
     public function setOutputStream($resource)
     {
-       $stream = @fopen($resource, 'w');
+        $stream = @fopen($resource, 'w');
 
-       if ($stream === false) {
+        if ($stream === false) {
             // require_once 'Zend/ProgressBar/Adapter/Exception.php';
             throw new Zend_ProgressBar_Adapter_Exception('Unable to open stream');
-       }
+        }
 
-       if ($this->_outputStream !== null) {
-           fclose($this->_outputStream);
-       }
+        if ($this->_outputStream !== null) {
+            fclose($this->_outputStream);
+        }
 
-       $this->_outputStream = $stream;
+        $this->_outputStream = $stream;
     }
 
     /**
@@ -405,58 +405,58 @@ class Zend_ProgressBar_Adapter_Console extends Zend_ProgressBar_Adapter
 
         foreach ($this->_elements as $element) {
             switch ($element) {
-                case self::ELEMENT_BAR:
-                    $visualWidth = $this->_barWidth - 2;
-                    $bar         = '[';
+            case self::ELEMENT_BAR:
+                $visualWidth = $this->_barWidth - 2;
+                $bar         = '[';
 
-                    $indicatorWidth = strlen($this->_barIndicatorChar);
+                $indicatorWidth = strlen($this->_barIndicatorChar);
 
-                    $doneWidth = min($visualWidth - $indicatorWidth, round($visualWidth * $percent));
-                    if ($doneWidth > 0) {
-                        $bar .= substr(str_repeat($this->_barLeftChar, ceil($doneWidth / strlen($this->_barLeftChar))), 0, $doneWidth);
-                    }
+                $doneWidth = min($visualWidth - $indicatorWidth, round($visualWidth * $percent));
+                if ($doneWidth > 0) {
+                    $bar .= substr(str_repeat($this->_barLeftChar, ceil($doneWidth / strlen($this->_barLeftChar))), 0, $doneWidth);
+                }
 
-                    $bar .= $this->_barIndicatorChar;
+                $bar .= $this->_barIndicatorChar;
 
-                    $leftWidth = $visualWidth - $doneWidth - $indicatorWidth;
-                    if ($leftWidth > 0) {
-                        $bar .= substr(str_repeat($this->_barRightChar, ceil($leftWidth / strlen($this->_barRightChar))), 0, $leftWidth);
-                    }
+                $leftWidth = $visualWidth - $doneWidth - $indicatorWidth;
+                if ($leftWidth > 0) {
+                    $bar .= substr(str_repeat($this->_barRightChar, ceil($leftWidth / strlen($this->_barRightChar))), 0, $leftWidth);
+                }
 
-                    $bar .= ']';
+                $bar .= ']';
 
-                    $renderedElements[] = $bar;
+                $renderedElements[] = $bar;
+                break;
+
+            case self::ELEMENT_PERCENT:
+                $renderedElements[] = str_pad(round($percent * 100), 3, ' ', STR_PAD_LEFT) . '%';
+                break;
+
+            case self::ELEMENT_ETA:
+                // In the first 5 seconds we don't get accurate results,
+                // this skipping technique is found in many progressbar
+                // implementations.
+                if ($timeTaken < 5) {
+                    $renderedElements[] = str_repeat(' ', 12);
                     break;
+                }
 
-                case self::ELEMENT_PERCENT:
-                    $renderedElements[] = str_pad(round($percent * 100), 3, ' ', STR_PAD_LEFT) . '%';
-                    break;
+                if ($timeRemaining === null || $timeRemaining > 86400) {
+                    $etaFormatted = '??:??:??';
+                } else {
+                    $hours   = floor($timeRemaining / 3600);
+                    $minutes = floor(($timeRemaining % 3600) / 60);
+                    $seconds = ($timeRemaining % 3600 % 60);
 
-                case self::ELEMENT_ETA:
-                    // In the first 5 seconds we don't get accurate results,
-                    // this skipping technique is found in many progressbar
-                    // implementations.
-                    if ($timeTaken < 5) {
-                        $renderedElements[] = str_repeat(' ', 12);
-                        break;
-                    }
+                    $etaFormatted = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+                }
 
-                    if ($timeRemaining === null || $timeRemaining > 86400) {
-                        $etaFormatted = '??:??:??';
-                    } else {
-                        $hours   = floor($timeRemaining / 3600);
-                        $minutes = floor(($timeRemaining % 3600) / 60);
-                        $seconds = ($timeRemaining % 3600 % 60);
+                $renderedElements[] = 'ETA ' . $etaFormatted;
+                break;
 
-                        $etaFormatted = sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
-                    }
-
-                    $renderedElements[] = 'ETA ' . $etaFormatted;
-                    break;
-
-                case self::ELEMENT_TEXT:
-                    $renderedElements[] = Zend_Text_MultiByte::strPad(substr($text, 0, $this->_textWidth), $this->_textWidth, ' ', STR_PAD_RIGHT, $this->_charset);
-                    break;
+            case self::ELEMENT_TEXT:
+                $renderedElements[] = Zend_Text_MultiByte::strPad(substr($text, 0, $this->_textWidth), $this->_textWidth, ' ', STR_PAD_RIGHT, $this->_charset);
+                break;
             }
         }
 
@@ -474,22 +474,22 @@ class Zend_ProgressBar_Adapter_Console extends Zend_ProgressBar_Adapter
     public function finish()
     {
         switch ($this->_finishAction) {
-            case self::FINISH_ACTION_EOL:
-                $this->_outputData(PHP_EOL);
-                break;
+        case self::FINISH_ACTION_EOL:
+            $this->_outputData(PHP_EOL);
+            break;
 
-            case self::FINISH_ACTION_CLEAR_LINE:
-                if ($this->_outputStarted) {
-                    $data = str_repeat("\x08", $this->_width)
-                          . str_repeat(' ', $this->_width)
-                          . str_repeat("\x08", $this->_width);
+        case self::FINISH_ACTION_CLEAR_LINE:
+            if ($this->_outputStarted) {
+                $data = str_repeat("\x08", $this->_width)
+                      . str_repeat(' ', $this->_width)
+                      . str_repeat("\x08", $this->_width);
 
-                    $this->_outputData($data);
-                }
-                break;
+                $this->_outputData($data);
+            }
+            break;
 
-            case self::FINISH_ACTION_NONE:
-                break;
+        case self::FINISH_ACTION_NONE:
+            break;
         }
     }
 

@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_Abstract.php */
+/**
+ * Zend_View_Helper_Abstract.php 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**
@@ -101,7 +103,7 @@ class Zend_View_Helper_Action extends Zend_View_Helper_Abstract
 
         $this->response->clearBody();
         $this->response->clearHeaders()
-                       ->clearRawHeaders();
+            ->clearRawHeaders();
     }
 
     /**
@@ -111,8 +113,8 @@ class Zend_View_Helper_Action extends Zend_View_Helper_Abstract
      *
      * @param  string $action
      * @param  string $controller
-     * @param  string $module Defaults to default module
-     * @param  array $params
+     * @param  string $module     Defaults to default module
+     * @param  array  $params
      * @return string
      */
     public function action($action, $controller, $module = null, array $params = array())
@@ -127,10 +129,10 @@ class Zend_View_Helper_Action extends Zend_View_Helper_Abstract
         Zend_Controller_Action_HelperBroker::addHelper(clone $viewRendererObj);
 
         $this->request->setParams($params)
-                      ->setModuleName($module)
-                      ->setControllerName($controller)
-                      ->setActionName($action)
-                      ->setDispatched(true);
+            ->setModuleName($module)
+            ->setControllerName($controller)
+            ->setActionName($action)
+            ->setDispatched(true);
 
         $this->dispatcher->dispatch($this->request, $this->response);
 
@@ -139,8 +141,8 @@ class Zend_View_Helper_Action extends Zend_View_Helper_Abstract
 
 
         if (!$this->request->isDispatched()
-            || $this->response->isRedirect())
-        {
+            || $this->response->isRedirect()
+        ) {
             // forwards and redirects render nothing
             return '';
         }

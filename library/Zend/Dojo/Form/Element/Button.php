@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_Dijit */
+/**
+ * Zend_Dojo_Form_Element_Dijit 
+ */
 // require_once 'Zend/Dojo/Form/Element/Dijit.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Dojo_Form_Element_Button extends Zend_Dojo_Form_Element_Dijit
 {
     /**
      * Use Button dijit view helper
+     *
      * @var string
      */
     public $helper = 'Button';
@@ -43,7 +46,7 @@ class Zend_Dojo_Form_Element_Button extends Zend_Dojo_Form_Element_Dijit
     /**
      * Constructor
      *
-     * @param  string|array|Zend_Config $spec Element name or configuration
+     * @param  string|array|Zend_Config $spec    Element name or configuration
      * @param  string|array|Zend_Config $options Element value or configuration
      * @return void
      */
@@ -115,7 +118,7 @@ class Zend_Dojo_Form_Element_Button extends Zend_Dojo_Form_Element_Dijit
         $decorators = $this->getDecorators();
         if (empty($decorators)) {
             $this->addDecorator('DijitElement')
-                 ->addDecorator('DtDdWrapper');
+                ->addDecorator('DtDdWrapper');
         }
     }
 }

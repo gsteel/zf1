@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_Abstract.php */
+/**
+ * Zend_View_Helper_Abstract.php 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**
@@ -39,8 +41,8 @@ class Zend_View_Helper_Url extends Zend_View_Helper_Abstract
      * @access public
      *
      * @param  array $urlOptions Options passed to the assemble method of the Route object.
-     * @param  mixed $name The name of a Route to use. If null it will use the current Route
-     * @param  bool $reset Whether or not to reset the route defaults with those provided
+     * @param  mixed $name       The name of a Route to use. If null it will use the current Route
+     * @param  bool  $reset      Whether or not to reset the route defaults with those provided
      * @return string Url for the link href attribute.
      */
     public function url(array $urlOptions = array(), $name = null, $reset = false, $encode = true)

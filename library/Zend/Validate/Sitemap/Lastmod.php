@@ -28,7 +28,7 @@
 /**
  * Validates whether a given value is valid as a sitemap <lastmod> value
  *
- * @link       http://www.sitemaps.org/protocol.php Sitemaps XML format
+ * @link http://www.sitemaps.org/protocol.php Sitemaps XML format
  *
  * @category   Zend
  * @package    Zend_Validate
@@ -40,13 +40,11 @@ class Zend_Validate_Sitemap_Lastmod extends Zend_Validate_Abstract
 {
     /**
      * Regular expression to use when validating
-     *
      */
     const LASTMOD_REGEX = '/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])(T([0-1][0-9]|2[0-3])(:[0-5][0-9])(:[0-5][0-9])?(\\+|-)([0-1][0-9]|2[0-3]):[0-5][0-9])?$/';
 
     /**
      * Validation key for not valid
-     *
      */
     const NOT_VALID = 'sitemapLastmodNotValid';
     const INVALID   = 'sitemapLastmodInvalid';
@@ -66,7 +64,7 @@ class Zend_Validate_Sitemap_Lastmod extends Zend_Validate_Abstract
      *
      * @link http://www.sitemaps.org/protocol.php#lastmoddef <lastmod>
      *
-     * @param  string  $value  value to validate
+     * @param  string $value value to validate
      * @return boolean
      */
     public function isValid($value)

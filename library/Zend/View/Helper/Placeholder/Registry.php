@@ -20,13 +20,19 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Registry */
+/**
+ * Zend_Registry 
+ */
 // require_once 'Zend/Registry.php';
 
-/** Zend_View_Helper_Placeholder_Container_Abstract */
+/**
+ * Zend_View_Helper_Placeholder_Container_Abstract 
+ */
 // require_once 'Zend/View/Helper/Placeholder/Container/Abstract.php';
 
-/** Zend_View_Helper_Placeholder_Container */
+/**
+ * Zend_View_Helper_Placeholder_Container 
+ */
 // require_once 'Zend/View/Helper/Placeholder/Container.php';
 
 /**
@@ -41,18 +47,21 @@ class Zend_View_Helper_Placeholder_Registry
 {
     /**
      * Zend_Registry key under which placeholder registry exists
+     *
      * @const string
      */
     const REGISTRY_KEY = \Zend_View_Helper_Placeholder_Registry::class;
 
     /**
      * Default container class
+     *
      * @var string
      */
     protected $_containerClass = \Zend_View_Helper_Placeholder_Container::class;
 
     /**
      * Placeholder containers
+     *
      * @var array
      */
     protected $_items = array();
@@ -78,7 +87,7 @@ class Zend_View_Helper_Placeholder_Registry
      * createContainer
      *
      * @param  string $key
-     * @param  array $value
+     * @param  array  $value
      * @return Zend_View_Helper_Placeholder_Container_Abstract
      */
     public function createContainer($key, array $value = array())
@@ -123,7 +132,7 @@ class Zend_View_Helper_Placeholder_Registry
     /**
      * Set the container for an item in the registry
      *
-     * @param  string $key
+     * @param  string                                   $key
      * @param  Zend_View_Placeholder_Container_Abstract $container
      * @return Zend_View_Placeholder_Registry
      */

@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 // require_once 'Zend/Stdlib/CallbackHandler.php';
@@ -23,10 +23,10 @@
 /**
  * Interface for messengers
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 interface Zend_EventManager_EventCollection
 {
@@ -41,9 +41,9 @@ interface Zend_EventManager_EventCollection
      *
      * Can emulate triggerUntil() if the last argument provided is a callback.
      * 
-     * @param  string $event 
+     * @param  string        $event 
      * @param  object|string $target 
-     * @param  array|object $argv 
+     * @param  array|object  $argv 
      * @param  null|callback $callback 
      * @return Zend_EventManager_ResponseCollection
      */
@@ -58,10 +58,10 @@ interface Zend_EventManager_EventCollection
      * - Passing event name, target, Event object, and callback
      * - Passing event name, target, array|ArrayAccess of arguments, and callback
      * 
-     * @param  string $event 
+     * @param  string        $event 
      * @param  object|string $target 
-     * @param  array|object $argv 
-     * @param  callback $callback 
+     * @param  array|object  $argv 
+     * @param  callback      $callback 
      * @return Zend_EventManager_ResponseCollection
      */
     public function triggerUntil($event, $target, $argv = null, $callback = null);
@@ -69,9 +69,9 @@ interface Zend_EventManager_EventCollection
     /**
      * Attach a listener to an event
      * 
-     * @param  string $event 
+     * @param  string   $event 
      * @param  callback $callback
-     * @param  int $priority Priority at which to register listener
+     * @param  int      $priority Priority at which to register listener
      * @return Zend_Stdlib_CallbackHandler
      */
     public function attach($event, $callback = null, $priority = 1);

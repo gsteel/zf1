@@ -12,33 +12,42 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version   $Id$
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 
-/** Zend_Locale */
+/**
+ * Zend_Locale 
+ */
 // require_once 'Zend/Locale.php';
 
-/** Zend_Translate_Adapter */
+/**
+ * Zend_Translate_Adapter 
+ */
 // require_once 'Zend/Translate/Adapter.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @see Zend_Xml_Exception */
+/**
+ * @see Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter {
+class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter
+{
     // Internal variables
     private $_file        = false;
     private $_cleared     = array();
@@ -51,10 +60,10 @@ class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter {
     /**
      * Load translation data (TBX file reader)
      *
-     * @param  string  $filename  TBX file to add, full path must be given for access
-     * @param  string  $locale    Locale has no effect for TBX because TBX defines all languages within
-     *                            the source file
-     * @param  array   $option    OPTIONAL Options to use
+     * @param  string $filename TBX file to add, full path must be given for access
+     * @param  string $locale   Locale has no effect for TBX because TBX defines all languages within
+     *                          the source file
+     * @param  array  $option   OPTIONAL Options to use
      * @throws Zend_Translation_Exception
      * @return array
      */
@@ -83,10 +92,12 @@ class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter {
         }
 
         if (!xml_parse($this->_file, file_get_contents($filename))) {
-            $ex = sprintf('XML error: %s at line %d of file %s',
-                          xml_error_string(xml_get_error_code($this->_file)),
-                          xml_get_current_line_number($this->_file),
-                          $filename);
+            $ex = sprintf(
+                'XML error: %s at line %d of file %s',
+                xml_error_string(xml_get_error_code($this->_file)),
+                xml_get_current_line_number($this->_file),
+                $filename
+            );
             xml_parser_free($this->_file);
             // require_once 'Zend/Translate/Exception.php';
             throw new Zend_Translate_Exception($ex);
@@ -105,23 +116,23 @@ class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter {
             $this->_content .= ">";
         } else {
             switch(strtolower($name)) {
-                case 'termentry':
-                    $this->_termentry = null;
-                    break;
-                case 'langset':
-                    if (isset($attrib['xml:lang']) === true) {
-                        $this->_langset = $attrib['xml:lang'];
-                        if (isset($this->_data[$this->_langset]) === false) {
-                            $this->_data[$this->_langset] = array();
-                        }
+            case 'termentry':
+                $this->_termentry = null;
+                break;
+            case 'langset':
+                if (isset($attrib['xml:lang']) === true) {
+                    $this->_langset = $attrib['xml:lang'];
+                    if (isset($this->_data[$this->_langset]) === false) {
+                        $this->_data[$this->_langset] = array();
                     }
-                    break;
-                case 'term':
-                    $this->_term    = true;
-                    $this->_content = null;
-                    break;
-                default:
-                    break;
+                }
+                break;
+            case 'term':
+                $this->_term    = true;
+                $this->_content = null;
+                break;
+            default:
+                break;
             }
         }
     }
@@ -132,20 +143,20 @@ class Zend_Translate_Adapter_Tbx extends Zend_Translate_Adapter {
             $this->_content .= "</".$name.">";
         } else {
             switch (strtolower($name)) {
-                case 'langset':
-                    $this->_langset = null;
-                    break;
-                case 'term':
-                    $this->_term = null;
-                    if (empty($this->_termentry)) {
-                        $this->_termentry = $this->_content;
-                    }
-                    if (!empty($this->_content) or (isset($this->_data[$this->_langset][$this->_termentry]) === false)) {
-                        $this->_data[$this->_langset][$this->_termentry] = $this->_content;
-                    }
-                    break;
-                default:
-                    break;
+            case 'langset':
+                $this->_langset = null;
+                break;
+            case 'term':
+                $this->_term = null;
+                if (empty($this->_termentry)) {
+                    $this->_termentry = $this->_content;
+                }
+                if (!empty($this->_content) or (isset($this->_data[$this->_langset][$this->_termentry]) === false)) {
+                    $this->_data[$this->_langset][$this->_termentry] = $this->_content;
+                }
+                break;
+            default:
+                break;
             }
         }
     }

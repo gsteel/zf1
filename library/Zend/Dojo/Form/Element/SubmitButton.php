@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_Button */
+/**
+ * Zend_Dojo_Form_Element_Button 
+ */
 // require_once 'Zend/Dojo/Form/Element/Button.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Dojo_Form_Element_SubmitButton extends Zend_Dojo_Form_Element_Button
 {
     /**
      * Use SubmitButton dijit view helper
+     *
      * @var string
      */
     public $helper = 'SubmitButton';

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -29,17 +29,17 @@
 // require_once 'Zend/Locale.php';
 
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_Alnum implements Zend_Filter_Interface
 {
     /**
      * Whether to allow white space characters; off by default
      *
-     * @var boolean
+     * @var        boolean
      * @deprecated
      */
     public $allowWhiteSpace;
@@ -90,9 +90,10 @@ class Zend_Filter_Alnum implements Zend_Filter_Interface
 
         if (null === self::$_meansEnglishAlphabet) {
             $this->_locale = new Zend_Locale('auto');
-            self::$_meansEnglishAlphabet = in_array($this->_locale->getLanguage(),
-                                                    array('ja', 'ko', 'zh')
-                                                    );
+            self::$_meansEnglishAlphabet = in_array(
+                $this->_locale->getLanguage(),
+                array('ja', 'ko', 'zh')
+            );
         }
 
     }
@@ -110,7 +111,7 @@ class Zend_Filter_Alnum implements Zend_Filter_Interface
     /**
      * Sets the allowWhiteSpace option
      *
-     * @param boolean $allowWhiteSpace
+     * @param  boolean $allowWhiteSpace
      * @return Zend_Filter_Alnum Provides a fluent interface
      */
     public function setAllowWhiteSpace($allowWhiteSpace)

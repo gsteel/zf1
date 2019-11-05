@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Locale
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Locale
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -26,10 +26,10 @@
  * Sampling of PHP environments and platforms suggests that at least 80% to 90% support bcmath.
  * This file should only be loaded for the 10% to 20% lacking access to the bcmath extension.
  *
- * @category   Zend
- * @package    Zend_Locale
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Locale
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
 {
@@ -178,7 +178,7 @@ class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
         $op1 = self::normalize($op1);
         $result = sqrt($op1);
         if (is_nan($result)) {
-            return NULL;
+            return null;
         }
 
         return self::round(self::normalize($result), $scale);
@@ -190,12 +190,12 @@ class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
             $op1 = 0;
         }
         if (empty($op2)) {
-            return NULL;
+            return null;
         }
         $op1 = self::normalize($op1);
         $op2 = self::normalize($op2);
         if ((int)$op2 == 0) {
-            return NULL;
+            return null;
         }
         $result = $op1 % $op2;
         if (is_nan($result)  or  (($op1 - $result) % $op2 != 0)) {

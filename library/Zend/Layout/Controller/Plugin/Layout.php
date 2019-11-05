@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Controller_Plugin_Abstract */
+/**
+ * Zend_Controller_Plugin_Abstract 
+ */
 // require_once 'Zend/Controller/Plugin/Abstract.php';
 
 /**
@@ -114,8 +116,8 @@ class Zend_Layout_Controller_Plugin_Layout extends Zend_Controller_Plugin_Abstra
         if (!$request->isDispatched()
             || $this->getResponse()->isRedirect()
             || ($layout->getMvcSuccessfulActionOnly()
-                && (!empty($helper) && !$helper->isActionControllerSuccessful())))
-        {
+            && (!empty($helper) && !$helper->isActionControllerSuccessful()))
+        ) {
             return;
         }
 

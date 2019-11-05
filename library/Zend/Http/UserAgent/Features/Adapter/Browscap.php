@@ -50,10 +50,12 @@ class Zend_Http_UserAgent_Features_Adapter_Browscap
         $browscap = ini_get('browscap');
         if (empty($browscap) || !file_exists($browscap)) {
             // require_once 'Zend/Http/UserAgent/Features/Exception.php';
-            throw new Zend_Http_UserAgent_Features_Exception(sprintf(
-                '%s requires a browscap entry in php.ini pointing to a valid browscap.ini; none present',
-                __CLASS__
-            ));
+            throw new Zend_Http_UserAgent_Features_Exception(
+                sprintf(
+                    '%s requires a browscap entry in php.ini pointing to a valid browscap.ini; none present',
+                    __CLASS__
+                )
+            );
         }
     }
 
@@ -73,21 +75,21 @@ class Zend_Http_UserAgent_Features_Adapter_Browscap
             foreach ($browscap as $key => $value) {
                 // For a few keys, we need to munge a bit for the device object
                 switch ($key) {
-                    case 'browser':
-                        $features['mobile_browser'] = $value;
-                        break;
+                case 'browser':
+                    $features['mobile_browser'] = $value;
+                    break;
 
-                    case 'version':
-                        $features['mobile_browser_version'] = $value;
-                        break;
+                case 'version':
+                    $features['mobile_browser_version'] = $value;
+                    break;
 
-                    case 'platform':
-                        $features['device_os'] = $value;
-                        break;
+                case 'platform':
+                    $features['device_os'] = $value;
+                    break;
 
-                    default:
-                        $features[$key] = $value;
-                        break;
+                default:
+                    $features[$key] = $value;
+                    break;
                 }
             }
         }

@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Currency
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -31,7 +31,7 @@
  *
  * @category  Zend
  * @package   Zend_Currency
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Currency
@@ -85,7 +85,7 @@ class Zend_Currency
      * Creates a currency instance. Every supressed parameter is used from the actual or the given locale.
      *
      * @param  string|array       $options OPTIONAL Options array or currency short name
-     *                                              when string is given
+     *                                     when string is given
      * @param  string|Zend_Locale $locale  OPTIONAL locale name
      * @throws Zend_Currency_Exception When currency is invalid
      */
@@ -126,7 +126,8 @@ class Zend_Currency
 
         // Get the format
         if ((is_array($calloptions) && !isset($calloptions['display']))
-                || (!is_array($calloptions) && $this->_options['display'] == self::NO_SYMBOL)) {
+            || (!is_array($calloptions) && $this->_options['display'] == self::NO_SYMBOL)
+        ) {
             if (!empty($this->_options['symbol'])) {
                 $this->_options['display'] = self::USE_SYMBOL;
             } else if (!empty($this->_options['currency'])) {
@@ -189,9 +190,11 @@ class Zend_Currency
         }
 
         $original = $value;
-        $value    = Zend_Locale_Format::toNumber($value, array('locale'        => $locale,
+        $value    = Zend_Locale_Format::toNumber(
+            $value, array('locale'        => $locale,
                                                                'number_format' => $format,
-                                                               'precision'     => $options['precision']));
+            'precision'     => $options['precision'])
+        );
 
         if ($options['position'] !== self::STANDARD) {
             $value = str_replace('¤', '', $value);
@@ -218,22 +221,22 @@ class Zend_Currency
             $sign = $options['display'];
         } else {
             switch($options['display']) {
-                case self::USE_SYMBOL:
-                    $sign = $this->_extractPattern($options['symbol'], $original);
-                    break;
+            case self::USE_SYMBOL:
+                $sign = $this->_extractPattern($options['symbol'], $original);
+                break;
 
-                case self::USE_SHORTNAME:
-                    $sign = $options['currency'];
-                    break;
+            case self::USE_SHORTNAME:
+                $sign = $options['currency'];
+                break;
 
-                case self::USE_NAME:
-                    $sign = $options['name'];
-                    break;
+            case self::USE_NAME:
+                $sign = $options['name'];
+                break;
 
-                default:
-                    $sign = '';
-                    $value = str_replace(' ', '', $value);
-                    break;
+            default:
+                $sign = '';
+                $value = str_replace(' ', '', $value);
+                break;
             }
         }
 
@@ -245,7 +248,7 @@ class Zend_Currency
      * Internal method to extract the currency pattern
      * when a choice is given based on the given value
      *
-     * @param  string $pattern
+     * @param  string        $pattern
      * @param  float|integer $value
      * @return string
      */
@@ -304,8 +307,9 @@ class Zend_Currency
     private function _checkParams($currency = null, $locale = null)
     {
         // Manage the params
-        if ((empty($locale)) and (!empty($currency)) and
-            (Zend_Locale::isLocale($currency, true, false))) {
+        if ((empty($locale)) and (!empty($currency)) 
+            and (Zend_Locale::isLocale($currency, true, false))
+        ) {
             $locale   = $currency;
             $currency = null;
         }
@@ -532,7 +536,7 @@ class Zend_Currency
     /**
      * Clears all set cache data
      *
-     * @param string $tag Tag to clear when the default tag name is not used
+     * @param  string $tag Tag to clear when the default tag name is not used
      * @return void
      */
     public static function clearCache($tag = null)
@@ -596,8 +600,8 @@ class Zend_Currency
     /**
      * Adds a currency
      *
-     * @param float|integer|Zend_Currency $value    Add this value to currency
-     * @param string|Zend_Currency        $currency The currency to add
+     * @param  float|integer|Zend_Currency $value    Add this value to currency
+     * @param  string|Zend_Currency        $currency The currency to add
      * @return Zend_Currency
      */
     public function setValue($value, $currency = null)
@@ -609,8 +613,8 @@ class Zend_Currency
     /**
      * Adds a currency
      *
-     * @param float|integer|Zend_Currency $value    Add this value to currency
-     * @param string|Zend_Currency        $currency The currency to add
+     * @param  float|integer|Zend_Currency $value    Add this value to currency
+     * @param  string|Zend_Currency        $currency The currency to add
      * @return Zend_Currency
      */
     public function add($value, $currency = null)
@@ -623,8 +627,8 @@ class Zend_Currency
     /**
      * Substracts a currency
      *
-     * @param float|integer|Zend_Currency $value    Substracts this value from currency
-     * @param string|Zend_Currency        $currency The currency to substract
+     * @param  float|integer|Zend_Currency $value    Substracts this value from currency
+     * @param  string|Zend_Currency        $currency The currency to substract
      * @return Zend_Currency
      */
     public function sub($value, $currency = null)
@@ -637,8 +641,8 @@ class Zend_Currency
     /**
      * Divides a currency
      *
-     * @param float|integer|Zend_Currency $value    Divides this value from currency
-     * @param string|Zend_Currency        $currency The currency to divide
+     * @param  float|integer|Zend_Currency $value    Divides this value from currency
+     * @param  string|Zend_Currency        $currency The currency to divide
      * @return Zend_Currency
      */
     public function div($value, $currency = null)
@@ -651,8 +655,8 @@ class Zend_Currency
     /**
      * Multiplies a currency
      *
-     * @param float|integer|Zend_Currency $value    Multiplies this value from currency
-     * @param string|Zend_Currency        $currency The currency to multiply
+     * @param  float|integer|Zend_Currency $value    Multiplies this value from currency
+     * @param  string|Zend_Currency        $currency The currency to multiply
      * @return Zend_Currency
      */
     public function mul($value, $currency = null)
@@ -665,8 +669,8 @@ class Zend_Currency
     /**
      * Calculates the modulo from a currency
      *
-     * @param float|integer|Zend_Currency $value    Calculate modulo from this value
-     * @param string|Zend_Currency        $currency The currency to calculate the modulo
+     * @param  float|integer|Zend_Currency $value    Calculate modulo from this value
+     * @param  string|Zend_Currency        $currency The currency to calculate the modulo
      * @return Zend_Currency
      */
     public function mod($value, $currency = null)
@@ -679,8 +683,8 @@ class Zend_Currency
     /**
      * Compares two currencies
      *
-     * @param float|integer|Zend_Currency $value    Compares the currency with this value
-     * @param string|Zend_Currency        $currency The currency to compare this value from
+     * @param  float|integer|Zend_Currency $value    Compares the currency with this value
+     * @param  string|Zend_Currency        $currency The currency to compare this value from
      * @return Zend_Currency
      */
     public function compare($value, $currency = null)
@@ -699,8 +703,8 @@ class Zend_Currency
     /**
      * Returns true when the two currencies are equal
      *
-     * @param float|integer|Zend_Currency $value    Compares the currency with this value
-     * @param string|Zend_Currency        $currency The currency to compare this value from
+     * @param  float|integer|Zend_Currency $value    Compares the currency with this value
+     * @param  string|Zend_Currency        $currency The currency to compare this value from
      * @return boolean
      */
     public function equals($value, $currency = null)
@@ -716,8 +720,8 @@ class Zend_Currency
     /**
      * Returns true when the currency is more than the given value
      *
-     * @param float|integer|Zend_Currency $value    Compares the currency with this value
-     * @param string|Zend_Currency        $currency The currency to compare this value from
+     * @param  float|integer|Zend_Currency $value    Compares the currency with this value
+     * @param  string|Zend_Currency        $currency The currency to compare this value from
      * @return boolean
      */
     public function isMore($value, $currency = null)
@@ -733,8 +737,8 @@ class Zend_Currency
     /**
      * Returns true when the currency is less than the given value
      *
-     * @param float|integer|Zend_Currency $value    Compares the currency with this value
-     * @param string|Zend_Currency        $currency The currency to compare this value from
+     * @param  float|integer|Zend_Currency $value    Compares the currency with this value
+     * @param  string|Zend_Currency        $currency The currency to compare this value from
      * @return boolean
      */
     public function isLess($value, $currency = null)
@@ -751,8 +755,8 @@ class Zend_Currency
     /**
      * Internal method which calculates the exchanges currency
      *
-     * @param float|integer|Zend_Currency $value    Compares the currency with this value
-     * @param string|Zend_Currency        $currency The currency to compare this value from
+     * @param  float|integer|Zend_Currency $value    Compares the currency with this value
+     * @param  string|Zend_Currency        $currency The currency to compare this value from
      * @return unknown
      */
     protected function _exchangeCurrency($value, $currency)
@@ -792,7 +796,7 @@ class Zend_Currency
     /**
      * Sets a new exchange service
      *
-     * @param string|Zend_Currency_CurrencyInterface $service Service class
+     * @param  string|Zend_Currency_CurrencyInterface $service Service class
      * @return Zend_Currency
      */
     public function setService($service)
@@ -845,55 +849,58 @@ class Zend_Currency
             }
 
             switch($name) {
-                case 'position':
-                    if (($value !== self::STANDARD) and ($value !== self::RIGHT) and ($value !== self::LEFT)) {
+            case 'position':
+                if (($value !== self::STANDARD) and ($value !== self::RIGHT) and ($value !== self::LEFT)) {
+                    // require_once 'Zend/Currency/Exception.php';
+                    throw new Zend_Currency_Exception("Unknown position '" . $value . "'");
+                }
+
+                break;
+
+            case 'format':
+                if ((empty($value) === false) and (Zend_Locale::isLocale($value, null, false) === false)) {
+                    if (!is_string($value) || (strpos($value, '0') === false)) {
                         // require_once 'Zend/Currency/Exception.php';
-                        throw new Zend_Currency_Exception("Unknown position '" . $value . "'");
+                        throw new Zend_Currency_Exception(
+                            "'" .
+                            ((gettype($value) === 'object') ? get_class($value) : $value)
+                            . "' is no format token"
+                        );
                     }
+                }
+                break;
 
-                    break;
+            case 'display':
+                if (is_numeric($value) and ($value !== self::NO_SYMBOL) and ($value !== self::USE_SYMBOL) 
+                    and ($value !== self::USE_SHORTNAME) and ($value !== self::USE_NAME)
+                ) {
+                    // require_once 'Zend/Currency/Exception.php';
+                    throw new Zend_Currency_Exception("Unknown display '$value'");
+                }
+                break;
 
-                case 'format':
-                    if ((empty($value) === false) and (Zend_Locale::isLocale($value, null, false) === false)) {
-                        if (!is_string($value) || (strpos($value, '0') === false)) {
-                            // require_once 'Zend/Currency/Exception.php';
-                            throw new Zend_Currency_Exception("'" .
-                                ((gettype($value) === 'object') ? get_class($value) : $value)
-                                . "' is no format token");
-                        }
-                    }
-                    break;
+            case 'precision':
+                if ($value === null) {
+                    $value = -1;
+                }
 
-                case 'display':
-                    if (is_numeric($value) and ($value !== self::NO_SYMBOL) and ($value !== self::USE_SYMBOL) and
-                        ($value !== self::USE_SHORTNAME) and ($value !== self::USE_NAME)) {
-                        // require_once 'Zend/Currency/Exception.php';
-                        throw new Zend_Currency_Exception("Unknown display '$value'");
-                    }
-                    break;
+                if (($value < -1) or ($value > 30)) {
+                    // require_once 'Zend/Currency/Exception.php';
+                    throw new Zend_Currency_Exception("'$value' precision has to be between -1 and 30.");
+                }
+                break;
 
-                case 'precision':
-                    if ($value === null) {
-                        $value = -1;
-                    }
+            case 'script':
+                try {
+                    Zend_Locale_Format::convertNumerals(0, $options['script']);
+                } catch (Zend_Locale_Exception $e) {
+                    // require_once 'Zend/Currency/Exception.php';
+                    throw new Zend_Currency_Exception($e->getMessage());
+                }
+                break;
 
-                    if (($value < -1) or ($value > 30)) {
-                        // require_once 'Zend/Currency/Exception.php';
-                        throw new Zend_Currency_Exception("'$value' precision has to be between -1 and 30.");
-                    }
-                    break;
-
-                case 'script':
-                    try {
-                        Zend_Locale_Format::convertNumerals(0, $options['script']);
-                    } catch (Zend_Locale_Exception $e) {
-                        // require_once 'Zend/Currency/Exception.php';
-                        throw new Zend_Currency_Exception($e->getMessage());
-                    }
-                    break;
-
-                default:
-                    break;
+            default:
+                break;
             }
         }
 

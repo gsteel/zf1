@@ -34,8 +34,8 @@ abstract class Zend_Controller_Router_Abstract implements Zend_Controller_Router
     /**
      * Add or modify a parameter to use when instantiating an action controller
      *
-     * @param string $name
-     * @param mixed  $value
+     * @param  string $name
+     * @param  mixed  $value
      * @return Zend_Controller_Router_Abstract
      */
     public function setParam($name, $value)
@@ -49,7 +49,7 @@ abstract class Zend_Controller_Router_Abstract implements Zend_Controller_Router
     /**
      * Set parameters to pass to action controller constructors
      *
-     * @param array $params
+     * @param  array $params
      * @return Zend_Controller_Router_Abstract
      */
     public function setParams(array $params)
@@ -62,7 +62,7 @@ abstract class Zend_Controller_Router_Abstract implements Zend_Controller_Router
     /**
      * Retrieve a single parameter from the controller parameter stack
      *
-     * @param string $name
+     * @param  string $name
      * @return mixed
      */
     public function getParam($name)
@@ -91,7 +91,7 @@ abstract class Zend_Controller_Router_Abstract implements Zend_Controller_Router
      * only that parameter; if an array of parameter names is provided, clears
      * each.
      *
-     * @param null|string|array single key or array of keys for params to clear
+     * @param  null|string|array single key or array of keys for params to clear
      * @return Zend_Controller_Router_Abstract
      */
     public function clearParams($name = null)
@@ -130,7 +130,7 @@ abstract class Zend_Controller_Router_Abstract implements Zend_Controller_Router
     /**
      * Set Front Controller
      *
-     * @param Zend_Controller_Front $controller
+     * @param  Zend_Controller_Front $controller
      * @return Zend_Controller_Router_Interface
      */
     public function setFrontController(Zend_Controller_Front $controller)

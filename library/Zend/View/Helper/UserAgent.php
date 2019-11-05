@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_Abstract */
+/**
+ * Zend_View_Helper_Abstract 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**

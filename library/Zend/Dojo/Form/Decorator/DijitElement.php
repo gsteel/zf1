@@ -12,13 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Form
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_ViewHelper */
+/**
+ * Zend_Form_Decorator_ViewHelper 
+ */
 // require_once 'Zend/Form/Decorator/ViewHelper.php';
 
 /**
@@ -44,12 +46,14 @@ class Zend_Dojo_Form_Decorator_DijitElement extends Zend_Form_Decorator_ViewHelp
 {
     /**
      * Element attributes
+     *
      * @var array
      */
     protected $_attribs;
 
     /**
      * Element types that represent buttons
+     *
      * @var array
      */
     protected $_buttonTypes = array(
@@ -61,6 +65,7 @@ class Zend_Dojo_Form_Decorator_DijitElement extends Zend_Form_Decorator_ViewHelp
 
     /**
      * Dijit option parameters
+     *
      * @var array
      */
     protected $_dijitParams = array();
@@ -87,7 +92,7 @@ class Zend_Dojo_Form_Decorator_DijitElement extends Zend_Form_Decorator_ViewHelp
      * Set a single dijit option parameter
      *
      * @param  string $key
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return Zend_Dojo_Form_Decorator_DijitContainer
      */
     public function setDijitParam($key, $value)
@@ -182,12 +187,12 @@ class Zend_Dojo_Form_Decorator_DijitElement extends Zend_Form_Decorator_ViewHelp
 
         $elementContent = $view->$helper($name, $value, $dijitParams, $attribs, $options);
         switch ($this->getPlacement()) {
-            case self::APPEND:
-                return $content . $separator . $elementContent;
-            case self::PREPEND:
-                return $elementContent . $separator . $content;
-            default:
-                return $elementContent;
+        case self::APPEND:
+            return $content . $separator . $elementContent;
+        case self::PREPEND:
+            return $elementContent . $separator . $content;
+        default:
+            return $elementContent;
         }
     }
 }

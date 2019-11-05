@@ -12,25 +12,26 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Dojo
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Dojo
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
  * Dojo module layer and custom build profile generation support
  *
- * @package    Zend_Dojo
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @package   Zend_Dojo
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Dojo_BuildLayer
 {
     /**
      * Flag: whether or not to consume JS aggregated in the dojo() view
      * helper when generate the module layer contents
+     *
      * @var bool
      */
     protected $_consumeJavascript = false;
@@ -39,18 +40,21 @@ class Zend_Dojo_BuildLayer
      * Flag: whether or not to consume dojo.addOnLoad events registered
      * with the dojo() view helper when generating the module layer file
      * contents
+     *
      * @var bool
      */
     protected $_consumeOnLoad = false;
 
     /**
      * Dojo view helper reference
+     *
      * @var Zend_Dojo_View_Helper_Dojo_Container
      */
     protected $_dojo;
 
     /**
      * Name of the custom layer to generate
+     *
      * @var string
      */
     protected $_layerName;
@@ -58,12 +62,14 @@ class Zend_Dojo_BuildLayer
     /**
      * Path to the custom layer script relative to dojo.js (used when
      * creating the build profile)
+     *
      * @var string
      */
     protected $_layerScriptPath;
 
     /**
      * Build profile options
+     *
      * @var array
      */
     protected $_profileOptions = array(
@@ -77,12 +83,14 @@ class Zend_Dojo_BuildLayer
 
     /**
      * Associative array of module/path pairs for the build profile
+     *
      * @var array
      */
     protected $_profilePrefixes = array();
 
     /**
      * Zend_View reference
+     *
      * @var Zend_View_Interface
      */
     protected $_view;
@@ -307,7 +315,7 @@ class Zend_Dojo_BuildLayer
      * Add a single build profile option
      *
      * @param  string $key
-     * @param  value $value
+     * @param  value  $value
      * @return Zend_Dojo_BuildLayer
      */
     public function addProfileOption($key, $value)
@@ -383,7 +391,7 @@ class Zend_Dojo_BuildLayer
      *
      * If just the prefix is passed, sets path to "../$prefix".
      *
-     * @param  string $prefix
+     * @param  string      $prefix
      * @param  null|string $path
      * @return Zend_Dojo_BuildLayer
      */

@@ -116,18 +116,17 @@ class Zend_Http_Client_Adapter_Proxy extends Zend_Http_Client_Adapter_Socket
     /**
      * Send request to the proxy server
      *
-     * @param string        $method
-     * @param Zend_Uri_Http $uri
-     * @param string        $http_ver
-     * @param array         $headers
-     * @param string        $body
+     * @param  string        $method
+     * @param  Zend_Uri_Http $uri
+     * @param  string        $http_ver
+     * @param  array         $headers
+     * @param  string        $body
      * @return string Request as string
      * @throws Zend_Http_Client_Adapter_Exception
      */
     public function write(
         $method, $uri, $http_ver = '1.1', $headers = array(), $body = ''
-    )
-    {
+    ) {
         // If no proxy is set, fall back to default Socket adapter
         if (!$this->config['proxy_host']) {
             return parent::write($method, $uri, $http_ver, $headers, $body);
@@ -198,7 +197,8 @@ class Zend_Http_Client_Adapter_Proxy extends Zend_Http_Client_Adapter_Socket
 
         // Add all headers to the request string
         foreach ($headers as $k => $v) {
-            if (is_string($k)) $v = "$k: $v";
+            if (is_string($k)) { $v = "$k: $v";
+            }
             $request .= "$v\r\n";
         }
 
@@ -232,32 +232,31 @@ class Zend_Http_Client_Adapter_Proxy extends Zend_Http_Client_Adapter_Socket
     /**
      * Preform handshaking with HTTPS proxy using CONNECT method
      *
-     * @param string  $host
-     * @param integer $port
-     * @param string  $http_ver
-     * @param array   $headers
+     * @param  string  $host
+     * @param  integer $port
+     * @param  string  $http_ver
+     * @param  array   $headers
      * @return void
      * @throws Zend_Http_Client_Adapter_Exception
      */
     protected function connectHandshake(
         $host, $port = 443, $http_ver = '1.1', array &$headers = array()
-    )
-    {
+    ) {
         $request = "CONNECT $host:$port HTTP/$http_ver\r\n" .
                    "Host: " . $host . "\r\n";
 
         // Process provided headers, including important ones to CONNECT request
         foreach ($headers as $k => $v) {
-            switch (strtolower(substr($v,0,strpos($v,':')))) {
-                case 'proxy-authorization':
-                    // break intentionally omitted
+            switch (strtolower(substr($v, 0, strpos($v, ':')))) {
+            case 'proxy-authorization':
+                // break intentionally omitted
 
-                case 'user-agent':
-                    $request .= $v . "\r\n";
-                    break;
+            case 'user-agent':
+                $request .= $v . "\r\n";
+                break;
 
-                default:
-                    break;
+            default:
+                break;
             }
         }
         $request .= "\r\n";
@@ -322,7 +321,6 @@ class Zend_Http_Client_Adapter_Proxy extends Zend_Http_Client_Adapter_Socket
 
     /**
      * Close the connection to the server
-     *
      */
     public function close()
     {
@@ -332,7 +330,6 @@ class Zend_Http_Client_Adapter_Proxy extends Zend_Http_Client_Adapter_Socket
 
     /**
      * Destructor: make sure the socket is disconnected
-     *
      */
     public function __destruct()
     {

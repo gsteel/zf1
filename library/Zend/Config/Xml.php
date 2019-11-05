@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Config
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -24,10 +24,14 @@
  */
 // require_once 'Zend/Config.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @see Zend_Xml_Exception */
+/**
+ * @see Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
@@ -35,7 +39,7 @@
  *
  * @category  Zend
  * @package   Zend_Config
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Config_Xml extends Zend_Config
@@ -250,27 +254,27 @@ class Zend_Config_Xml extends Zend_Config
 
             foreach ($namespaceChildNodes as $node) {
                 switch ($node->localName) {
-                    case 'const':
-                        if (!$node->hasAttributeNS(self::XML_NAMESPACE, 'name')) {
-                            // require_once 'Zend/Config/Exception.php';
-                            throw new Zend_Config_Exception("Misssing 'name' attribute in 'const' node");
-                        }
-
-                        $constantName = $node->getAttributeNS(self::XML_NAMESPACE, 'name');
-
-                        if (!defined($constantName)) {
-                            // require_once 'Zend/Config/Exception.php';
-                            throw new Zend_Config_Exception("Constant with name '$constantName' was not defined");
-                        }
-
-                        $constantValue = constant($constantName);
-
-                        $dom->replaceChild($dom->ownerDocument->createTextNode($constantValue), $node);
-                        break;
-
-                    default:
+                case 'const':
+                    if (!$node->hasAttributeNS(self::XML_NAMESPACE, 'name')) {
                         // require_once 'Zend/Config/Exception.php';
-                        throw new Zend_Config_Exception("Unknown node with name '$node->localName' found");
+                        throw new Zend_Config_Exception("Misssing 'name' attribute in 'const' node");
+                    }
+
+                    $constantName = $node->getAttributeNS(self::XML_NAMESPACE, 'name');
+
+                    if (!defined($constantName)) {
+                        // require_once 'Zend/Config/Exception.php';
+                        throw new Zend_Config_Exception("Constant with name '$constantName' was not defined");
+                    }
+
+                    $constantValue = constant($constantName);
+
+                    $dom->replaceChild($dom->ownerDocument->createTextNode($constantValue), $node);
+                    break;
+
+                default:
+                    // require_once 'Zend/Config/Exception.php';
+                    throw new Zend_Config_Exception("Unknown node with name '$node->localName' found");
                 }
             }
 

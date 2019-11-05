@@ -39,21 +39,25 @@
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Translate_Adapter {
+abstract class Zend_Translate_Adapter
+{
     /**
      * Shows if locale detection is in automatic level
+     *
      * @var boolean
      */
     private $_automatic = true;
 
     /**
      * Internal value to see already routed languages
+     *
      * @var array()
      */
     private $_routed = array();
 
     /**
      * Internal cache for all adapters
+     *
      * @var Zend_Cache_Core
      */
     protected static $_cache     = null;
@@ -67,12 +71,14 @@ abstract class Zend_Translate_Adapter {
 
     /**
      * Scans for the locale within the name of the directory
+     *
      * @constant integer
      */
     const LOCALE_DIRECTORY = 'directory';
 
     /**
      * Scans for the locale within the name of the file
+     *
      * @constant integer
      */
     const LOCALE_FILENAME  = 'filename';
@@ -112,6 +118,7 @@ abstract class Zend_Translate_Adapter {
 
     /**
      * Translation table
+     *
      * @var array
      */
     protected $_translate = array();
@@ -119,9 +126,9 @@ abstract class Zend_Translate_Adapter {
     /**
      * Generates the adapter
      *
-     * @param  string|array|Zend_Config $options Translation options for this adapter
-     * @param  string|array [$content]
-     * @param  string|Zend_Locale [$locale]
+     * @param  string|array|Zend_Config $options  Translation options for this adapter
+     * @param  string|array [           $content]
+     * @param  string|Zend_Locale [     $locale]
      * @throws Zend_Translate_Exception
      * @return void
      */
@@ -350,8 +357,9 @@ abstract class Zend_Translate_Adapter {
         foreach ($options as $key => $option) {
             if ($key == 'locale') {
                 $locale = $option;
-            } else if ((isset($this->_options[$key]) and ($this->_options[$key] != $option)) or
-                    !isset($this->_options[$key])) {
+            } else if ((isset($this->_options[$key]) and ($this->_options[$key] != $option)) 
+                or !isset($this->_options[$key])
+            ) {
                 if (($key == 'log') && !($option instanceof Zend_Log)) {
                     // require_once 'Zend/Translate/Exception.php';
                     throw new Zend_Translate_Exception('Instance of Zend_Log expected for option log');
@@ -498,7 +506,7 @@ abstract class Zend_Translate_Adapter {
      * If no locale is given, the actual language will be used
      *
      * @param  string             $message Message to get the key for
-     * @param  string|Zend_Locale $locale (optional) Language to return the message ids from
+     * @param  string|Zend_Locale $locale  (optional) Language to return the message ids from
      * @return string|array|false
      */
     public function getMessageId($message, $locale = null)
@@ -552,7 +560,7 @@ abstract class Zend_Translate_Adapter {
      *
      * @see    Zend_Locale
      * @param  string|Zend_Locale $locale Language to search for, identical with locale identifier,
-     *                                    @see Zend_Locale for more information
+     * @see    Zend_Locale for more information
      * @return boolean
      */
     public function isAvailable($locale)
@@ -693,7 +701,7 @@ abstract class Zend_Translate_Adapter {
      * Translates the given string
      * returns the translation
      *
-     * @see Zend_Locale
+     * @see    Zend_Locale
      * @param  string|array       $messageId Translation string, or Array for plural translations
      * @param  string|Zend_Locale $locale    (optional) Locale/Language to use, identical with
      *                                       locale identifier, @see Zend_Locale for more information
@@ -731,8 +739,9 @@ abstract class Zend_Translate_Adapter {
                 $this->_log($messageId, $locale);
                 // use rerouting when enabled
                 if (!empty($this->_options['route'])) {
-                    if (array_key_exists($locale, $this->_options['route']) &&
-                        !array_key_exists($locale, $this->_routed)) {
+                    if (array_key_exists($locale, $this->_options['route']) 
+                        && !array_key_exists($locale, $this->_routed)
+                    ) {
                         $this->_routed[$locale] = true;
                         return $this->translate($messageId, $this->_options['route'][$locale]);
                     }
@@ -789,8 +798,9 @@ abstract class Zend_Translate_Adapter {
         $this->_log($messageId, $locale);
         // use rerouting when enabled
         if (!empty($this->_options['route'])) {
-            if (array_key_exists($locale, $this->_options['route']) &&
-                !array_key_exists($locale, $this->_routed)) {
+            if (array_key_exists($locale, $this->_options['route']) 
+                && !array_key_exists($locale, $this->_routed)
+            ) {
                 $this->_routed[$locale] = true;
                 return $this->translate($messageId, $this->_options['route'][$locale]);
             }
@@ -813,7 +823,7 @@ abstract class Zend_Translate_Adapter {
      * Translates the given string using plural notations
      * Returns the translated string
      *
-     * @see Zend_Locale
+     * @see    Zend_Locale
      * @param  string             $singular Singular translation string
      * @param  string             $plural   Plural translation string
      * @param  integer            $number   Number for detecting the correct plural
@@ -832,7 +842,8 @@ abstract class Zend_Translate_Adapter {
      * @param string $message Message to log
      * @param String $locale  Locale to log
      */
-    protected function _log($message, $locale) {
+    protected function _log($message, $locale)
+    {
         if ($this->_options['logUntranslated']) {
             $message = str_replace('%message%', $message, $this->_options['logMessage']);
             $message = str_replace('%locale%', $locale, $message);
@@ -956,7 +967,7 @@ abstract class Zend_Translate_Adapter {
     /**
      * Clears all set cache data
      *
-     * @param string $tag Tag to clear when the default tag name is not used
+     * @param  string $tag Tag to clear when the default tag name is not used
      * @return void
      */
     public static function clearCache($tag = null)

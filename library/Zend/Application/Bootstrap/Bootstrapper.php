@@ -4,7 +4,7 @@ interface Zend_Application_Bootstrap_Bootstrapper
     /**
      * Constructor
      *
-     * @param  Zend_Application $application
+     * @param Zend_Application $application
      */
     public function __construct($application);
 

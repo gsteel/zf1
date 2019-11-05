@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Validate/Abstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Isbn extends Zend_Validate_Abstract
 {
@@ -162,44 +162,44 @@ class Zend_Validate_Isbn extends Zend_Validate_Abstract
         $this->_setValue($value);
 
         switch ($this->_detectFormat()) {
-            case self::ISBN10:
-                // sum
-                $isbn10 = str_replace($this->_separator, '', $value);
-                $sum    = 0;
-                for ($i = 0; $i < 9; $i++) {
-                    $sum += (10 - $i) * $isbn10{$i};
-                }
+        case self::ISBN10:
+            // sum
+            $isbn10 = str_replace($this->_separator, '', $value);
+            $sum    = 0;
+            for ($i = 0; $i < 9; $i++) {
+                $sum += (10 - $i) * $isbn10{$i};
+            }
 
-                // checksum
-                $checksum = 11 - ($sum % 11);
-                if ($checksum == 11) {
-                    $checksum = '0';
-                } elseif ($checksum == 10) {
-                    $checksum = 'X';
-                }
-                break;
+            // checksum
+            $checksum = 11 - ($sum % 11);
+            if ($checksum == 11) {
+                $checksum = '0';
+            } elseif ($checksum == 10) {
+                $checksum = 'X';
+            }
+            break;
 
-            case self::ISBN13:
-                // sum
-                $isbn13 = str_replace($this->_separator, '', $value);
-                $sum    = 0;
-                for ($i = 0; $i < 12; $i++) {
-                    if ($i % 2 == 0) {
-                        $sum += $isbn13{$i};
-                    } else {
-                        $sum += 3 * $isbn13{$i};
-                    }
+        case self::ISBN13:
+            // sum
+            $isbn13 = str_replace($this->_separator, '', $value);
+            $sum    = 0;
+            for ($i = 0; $i < 12; $i++) {
+                if ($i % 2 == 0) {
+                    $sum += $isbn13{$i};
+                } else {
+                    $sum += 3 * $isbn13{$i};
                 }
-                // checksum
-                $checksum = 10 - ($sum % 10);
-                if ($checksum == 10) {
-                    $checksum = '0';
-                }
-                break;
+            }
+            // checksum
+            $checksum = 10 - ($sum % 10);
+            if ($checksum == 10) {
+                $checksum = '0';
+            }
+            break;
 
-            default:
-                $this->_error(self::NO_ISBN);
-                return false;
+        default:
+            $this->_error(self::NO_ISBN);
+            return false;
         }
 
         // validate

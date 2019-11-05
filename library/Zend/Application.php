@@ -43,8 +43,8 @@ class Zend_Application
      * settings, and bootstrap class.
      *
      * @param  string                   $environment
-     * @param  string|array|Zend_Config $options String path to configuration file, or array/Zend_Config of configuration options
-     * @param bool $suppressNotFoundWarnings Should warnings be suppressed when a file is not found during autoloading?
+     * @param  string|array|Zend_Config $options                  String path to configuration file, or array/Zend_Config of configuration options
+     * @param  bool                     $suppressNotFoundWarnings Should warnings be suppressed when a file is not found during autoloading?
      * @throws Zend_Application_Exception When invalid options are provided
      * @return void
      */
@@ -239,8 +239,8 @@ class Zend_Application
     /**
      * Set PHP configuration settings
      *
-     * @param  array $settings
-     * @param  string $prefix Key prefix to prepend to array values (used to map . separated INI values)
+     * @param  array  $settings
+     * @param  string $prefix   Key prefix to prepend to array values (used to map . separated INI values)
      * @return Zend_Application
      */
     public function setPhpSettings(array $settings, $prefix = '')
@@ -303,7 +303,7 @@ class Zend_Application
         }
 
         if (!class_exists($class, false)) {
-            require_once $path;
+            include_once $path;
             if (!class_exists($class, false)) {
                 throw new Zend_Application_Exception(
                     'Bootstrap class not found'
@@ -373,39 +373,39 @@ class Zend_Application
                      : $suffix;
 
         switch (strtolower($suffix)) {
-            case 'ini':
-                $config = new Zend_Config_Ini($file, $environment);
-                break;
+        case 'ini':
+            $config = new Zend_Config_Ini($file, $environment);
+            break;
 
-            case 'xml':
-                $config = new Zend_Config_Xml($file, $environment);
-                break;
+        case 'xml':
+            $config = new Zend_Config_Xml($file, $environment);
+            break;
 
-            case 'json':
-                $config = new Zend_Config_Json($file, $environment);
-                break;
+        case 'json':
+            $config = new Zend_Config_Json($file, $environment);
+            break;
 
-            case 'yaml':
-            case 'yml':
-                $config = new Zend_Config_Yaml($file, $environment);
-                break;
+        case 'yaml':
+        case 'yml':
+            $config = new Zend_Config_Yaml($file, $environment);
+            break;
 
-            case 'php':
-            case 'inc':
-                $config = include $file;
-                if (!is_array($config)) {
-                    throw new Zend_Application_Exception(
-                        'Invalid configuration file provided; PHP file does not'
-                        . ' return array value'
-                    );
-                }
-                return $config;
-                break;
-
-            default:
+        case 'php':
+        case 'inc':
+            $config = include $file;
+            if (!is_array($config)) {
                 throw new Zend_Application_Exception(
-                    'Invalid configuration file provided; unknown config type'
+                    'Invalid configuration file provided; PHP file does not'
+                    . ' return array value'
                 );
+            }
+            return $config;
+                break;
+
+        default:
+            throw new Zend_Application_Exception(
+                'Invalid configuration file provided; unknown config type'
+            );
         }
 
         return $config->toArray();

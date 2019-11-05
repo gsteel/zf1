@@ -12,33 +12,42 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @version    $Id$
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version   $Id$
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 
-/** Zend_Locale */
+/**
+ * Zend_Locale 
+ */
 // require_once 'Zend/Locale.php';
 
-/** Zend_Translate_Adapter */
+/**
+ * Zend_Translate_Adapter 
+ */
 // require_once 'Zend/Translate/Adapter.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @See Zend_Xml_Exception */
+/**
+ * @See Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Translate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Translate_Adapter_XmlTm extends Zend_Translate_Adapter {
+class Zend_Translate_Adapter_XmlTm extends Zend_Translate_Adapter
+{
     // Internal variables
     private $_file        = false;
     private $_cleared     = array();
@@ -50,10 +59,10 @@ class Zend_Translate_Adapter_XmlTm extends Zend_Translate_Adapter {
     /**
      * Load translation data (XMLTM file reader)
      *
-     * @param  string  $locale    Locale/Language to add data for, identical with locale identifier,
-     *                            see Zend_Locale for more information
-     * @param  string  $filename  XMLTM file to add, full path must be given for access
-     * @param  array   $option    OPTIONAL Options to use
+     * @param  string $locale   Locale/Language to add data for, identical with locale identifier,
+     *                          see Zend_Locale for more information
+     * @param  string $filename XMLTM file to add, full path must be given for access
+     * @param  array  $option   OPTIONAL Options to use
      * @throws Zend_Translation_Exception
      * @return array
      */
@@ -83,10 +92,12 @@ class Zend_Translate_Adapter_XmlTm extends Zend_Translate_Adapter {
         }
 
         if (!xml_parse($this->_file, file_get_contents($filename))) {
-            $ex = sprintf('XML error: %s at line %d of file %s',
-                          xml_error_string(xml_get_error_code($this->_file)),
-                          xml_get_current_line_number($this->_file),
-                          $filename);
+            $ex = sprintf(
+                'XML error: %s at line %d of file %s',
+                xml_error_string(xml_get_error_code($this->_file)),
+                xml_get_current_line_number($this->_file),
+                $filename
+            );
             xml_parser_free($this->_file);
             // require_once 'Zend/Translate/Exception.php';
             throw new Zend_Translate_Exception($ex);
@@ -98,29 +109,30 @@ class Zend_Translate_Adapter_XmlTm extends Zend_Translate_Adapter {
     private function _startElement($file, $name, $attrib)
     {
         switch(strtolower($name)) {
-            case 'tm:tu':
-                $this->_tag     = $attrib['id'];
-                $this->_content = null;
-                break;
-            default:
-                break;
+        case 'tm:tu':
+            $this->_tag     = $attrib['id'];
+            $this->_content = null;
+            break;
+        default:
+            break;
         }
     }
 
     private function _endElement($file, $name)
     {
         switch (strtolower($name)) {
-            case 'tm:tu':
-                if (!empty($this->_tag) and !empty($this->_content) or
-                    (isset($this->_data[$this->_lang][$this->_tag]) === false)) {
-                    $this->_data[$this->_lang][$this->_tag] = $this->_content;
-                }
-                $this->_tag     = null;
-                $this->_content = null;
-                break;
+        case 'tm:tu':
+            if (!empty($this->_tag) and !empty($this->_content) 
+                or (isset($this->_data[$this->_lang][$this->_tag]) === false)
+            ) {
+                $this->_data[$this->_lang][$this->_tag] = $this->_content;
+            }
+            $this->_tag     = null;
+            $this->_content = null;
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
     }
 

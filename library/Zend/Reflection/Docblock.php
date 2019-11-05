@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Reflection
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Reflection
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Reflection/Docblock/Tag.php';
 
 /**
- * @category   Zend
- * @package    Zend_Reflection
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Reflection
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Reflection_Docblock implements Reflector
 {
@@ -37,12 +37,16 @@ class Zend_Reflection_Docblock implements Reflector
      */
     protected $_reflector = null;
 
-    /**#@+
+    /**
+     * #@+
+     *
      * @var int
      */
     protected $_startLine = null;
     protected $_endLine   = null;
-    /**#@-*/
+    /**
+     * #@-
+     */
 
     /**
      * @var string
@@ -227,7 +231,7 @@ class Zend_Reflection_Docblock implements Reflector
     /**
      * Get all docblock annotation tags
      *
-     * @param string $filter
+     * @param  string $filter
      * @return array Array of Zend_Reflection_Docblock_Tag
      */
     public function getTags($filter = null)

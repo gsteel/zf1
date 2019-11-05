@@ -12,20 +12,20 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Version
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Version
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
  * Class to store and retrieve the version of Zend Framework.
  *
- * @category   Zend
- * @package    Zend_Version
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Version
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 final class Zend_Version
 {
@@ -45,11 +45,10 @@ final class Zend_Version
      * Compare the specified Zend Framework version string $version
      * with the current Zend_Version::VERSION of Zend Framework.
      *
-     * @param  string  $version  A version string (e.g. "0.7.1").
+     * @param  string $version A version string (e.g. "0.7.1").
      * @return int           -1 if the $version is older,
      *                           0 if they are the same,
      *                           and +1 if $version is newer.
-     *
      */
     public static function compareVersion($version)
     {
@@ -61,7 +60,7 @@ final class Zend_Version
     /**
      * Fetches the version of the latest stable release
      *
-     * @link http://framework.zend.com/download/latest
+     * @link   http://framework.zend.com/download/latest
      * @return string
      */
     public static function getLatest()

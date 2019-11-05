@@ -48,6 +48,7 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
 {
     /**
      * protocol handler
+     *
      * @var null|Zend_Mail_Protocol_Pop3
      */
     protected $_protocol;
@@ -71,7 +72,7 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
     /**
      * get a list of messages with number and size
      *
-     * @param int $id number of message
+     * @param  int $id number of message
      * @return int|array size of given message of list with all messages as array(num => size)
      * @throws Zend_Mail_Protocol_Exception
      */
@@ -84,7 +85,7 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
     /**
      * Fetch a message
      *
-     * @param int $id number of message
+     * @param  int $id number of message
      * @return Zend_Mail_Message
      * @throws Zend_Mail_Protocol_Exception
      */
@@ -93,8 +94,10 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
         $bodyLines = 0;
         $message = $this->_protocol->top($id, $bodyLines, true);
 
-        return new $this->_messageClass(array('handler' => $this, 'id' => $id, 'headers' => $message,
-                                              'noToplines' => $bodyLines < 1));
+        return new $this->_messageClass(
+            array('handler' => $this, 'id' => $id, 'headers' => $message,
+            'noToplines' => $bodyLines < 1)
+        );
     }
 
     /*
@@ -156,7 +159,7 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
      *   - port port for POP3 server [optional, default = 110]
      *   - ssl 'SSL' or 'TLS' for secure sockets
      *
-     * @param array $params mail reader specific parameters
+     * @param  array $params mail reader specific parameters
      * @throws Zend_Mail_Storage_Exception
      * @throws Zend_Mail_Protocol_Exception
      */
@@ -234,7 +237,7 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
      *
      * if storage does not support unique ids it's the same as the message number
      *
-     * @param int|null $id message number
+     * @param  int|null $id message number
      * @return array|string message number for given message or all messages as array
      * @throws Zend_Mail_Storage_Exception
      */
@@ -261,7 +264,7 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
      * I.e. if you have a webmailer that supports deleting messages you should use unique ids
      * as parameter and use this method to translate it to message number right before calling removeMessage()
      *
-     * @param string $id unique id
+     * @param  string $id unique id
      * @return int message number
      * @throws Zend_Mail_Storage_Exception
      */
@@ -289,7 +292,7 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
      * Special handling for hasTop and hasUniqueid. The headers of the first message is
      * retrieved if Top wasn't needed/tried yet.
      *
-     * @see Zend_Mail_Storage_Abstract:__get()
+     * @see    Zend_Mail_Storage_Abstract:__get()
      * @param  string $var
      * @return string
      * @throws Zend_Mail_Storage_Exception

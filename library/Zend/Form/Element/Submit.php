@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Element_Xhtml */
+/**
+ * Zend_Form_Element_Xhtml 
+ */
 // require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
 {
     /**
      * Default view helper to use
+     *
      * @var string
      */
     public $helper = 'formSubmit';
@@ -43,7 +46,7 @@ class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
     /**
      * Constructor
      *
-     * @param  string|array|Zend_Config $spec Element name or configuration
+     * @param  string|array|Zend_Config $spec    Element name or configuration
      * @param  string|array|Zend_Config $options Element value or configuration
      * @return void
      */
@@ -119,8 +122,8 @@ class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
         $decorators = $this->getDecorators();
         if (empty($decorators)) {
             $this->addDecorator('Tooltip')
-                 ->addDecorator('ViewHelper')
-                 ->addDecorator('DtDdWrapper');
+                ->addDecorator('ViewHelper')
+                ->addDecorator('DtDdWrapper');
         }
         return $this;
     }

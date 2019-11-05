@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Validate/Abstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Date extends Zend_Validate_Abstract
 {
@@ -161,16 +161,18 @@ class Zend_Validate_Date extends Zend_Validate_Abstract
      */
     public function isValid($value)
     {
-        if (!is_string($value) && !is_int($value) && !is_float($value) &&
-            !is_array($value) && !($value instanceof Zend_Date)) {
+        if (!is_string($value) && !is_int($value) && !is_float($value) 
+            && !is_array($value) && !($value instanceof Zend_Date)
+        ) {
             $this->_error(self::INVALID);
             return false;
         }
 
         $this->_setValue($value);
 
-        if (($this->_format !== null) || ($this->_locale !== null) || is_array($value) ||
-             $value instanceof Zend_Date) {
+        if (($this->_format !== null) || ($this->_locale !== null) || is_array($value) 
+            || $value instanceof Zend_Date
+        ) {
             // require_once 'Zend/Date.php';
             if (!Zend_Date::isDate($value, $this->_format, $this->_locale)) {
                 if ($this->_checkFormat($value) === false) {
@@ -202,18 +204,21 @@ class Zend_Validate_Date extends Zend_Validate_Abstract
     /**
      * Check if the given date fits the given format
      *
-     * @param  string $value  Date to check
+     * @param  string $value Date to check
      * @return boolean False when date does not fit the format
      */
     private function _checkFormat($value)
     {
         try {
             // require_once 'Zend/Locale/Format.php';
-            $parsed = Zend_Locale_Format::getDate($value, array(
+            $parsed = Zend_Locale_Format::getDate(
+                $value, array(
                                                   'date_format' => $this->_format, 'format_type' => 'iso',
-                                                  'fix_date' => false));
-            if (isset($parsed['year']) and ((strpos(strtoupper($this->_format), 'YY') !== false) and
-                (strpos(strtoupper($this->_format), 'YYYY') === false))) {
+                'fix_date' => false)
+            );
+            if (isset($parsed['year']) and ((strpos(strtoupper($this->_format), 'YY') !== false) 
+                and (strpos(strtoupper($this->_format), 'YYYY') === false))
+            ) {
                 $parsed['year'] = Zend_Date::getFullYear($parsed['year']);
             }
         } catch (Exception $e) {
@@ -221,8 +226,9 @@ class Zend_Validate_Date extends Zend_Validate_Abstract
             return false;
         }
 
-        if (((strpos($this->_format, 'Y') !== false) or (strpos($this->_format, 'y') !== false)) and
-            (!isset($parsed['year']))) {
+        if (((strpos($this->_format, 'Y') !== false) or (strpos($this->_format, 'y') !== false)) 
+            and (!isset($parsed['year']))
+        ) {
             // Year expected but not found
             return false;
         }
@@ -237,8 +243,9 @@ class Zend_Validate_Date extends Zend_Validate_Abstract
             return false;
         }
 
-        if (((strpos($this->_format, 'H') !== false) or (strpos($this->_format, 'h') !== false)) and
-            (!isset($parsed['hour']))) {
+        if (((strpos($this->_format, 'H') !== false) or (strpos($this->_format, 'h') !== false)) 
+            and (!isset($parsed['hour']))
+        ) {
             // Hour expected but not found
             return false;
         }

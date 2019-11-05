@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Controller
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -29,32 +29,36 @@
  *
  * HTTP request object for use with Zend_Controller family.
  *
- * @uses Zend_Controller_Request_Http
- * @package Zend_Controller
+ * @uses       Zend_Controller_Request_Http
+ * @package    Zend_Controller
  * @subpackage Request
  */
 class Zend_Controller_Request_HttpTestCase extends Zend_Controller_Request_Http
 {
     /**
      * Request headers
+     *
      * @var array
      */
     protected $_headers = array();
 
     /**
      * Request method
+     *
      * @var string
      */
     protected $_method = 'GET';
 
     /**
      * Raw POST body
+     *
      * @var string|null
      */
     protected $_rawBody;
 
     /**
      * Valid request method types
+     *
      * @var array
      */
     protected $_validMethodTypes = array(
@@ -126,7 +130,7 @@ class Zend_Controller_Request_HttpTestCase extends Zend_Controller_Request_Http
      * Set a cookie
      *
      * @param  string $key
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return Zend_Controller_Request_HttpTestCase
      */
     public function setCookie($key, $value)
@@ -138,7 +142,7 @@ class Zend_Controller_Request_HttpTestCase extends Zend_Controller_Request_Http
     /**
      * Set multiple cookies at once
      *
-     * @param array $cookies
+     * @param  array $cookies
      * @return void
      */
     public function setCookies(array $cookies)
@@ -219,7 +223,7 @@ class Zend_Controller_Request_HttpTestCase extends Zend_Controller_Request_Http
      * Get request header
      *
      * @param  string $header
-     * @param  mixed $default
+     * @param  mixed  $default
      * @return string|null
      */
     public function getHeader($header, $default = null)

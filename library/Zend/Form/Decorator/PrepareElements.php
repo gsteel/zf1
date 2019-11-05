@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_FormElements */
+/**
+ * Zend_Form_Decorator_FormElements 
+ */
 // require_once 'Zend/Form/Decorator/FormElements.php';
 
 /**
@@ -69,7 +71,7 @@ class Zend_Form_Decorator_PrepareElements extends Zend_Form_Decorator_FormElemen
 
         foreach ($form as $item) {
             $item->setView($view)
-                 ->setTranslator($translator);
+                ->setTranslator($translator);
             if ($item instanceof Zend_Form_Element) {
                 $item->setBelongsTo($belongsTo);
             } elseif (!empty($belongsTo) && ($item instanceof Zend_Form)) {

@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Registry */
+/**
+ * Zend_Registry 
+ */
 // require_once 'Zend/Registry.php';
 
 /**
@@ -36,12 +38,15 @@
  */
 class Zend_Dojo_View_Helper_Dojo
 {
-    /**#@+
+    /**
+* #@+
      * Programmatic dijit creation style constants
      */
     const PROGRAMMATIC_SCRIPT = 1;
     const PROGRAMMATIC_NOSCRIPT = -1;
-    /**#@-*/
+    /**
+     * #@-
+     */
 
     /**
      * @var Zend_View_Interface
@@ -103,7 +108,7 @@ class Zend_Dojo_View_Helper_Dojo
      * Proxy to container methods
      *
      * @param  string $method
-     * @param  array $args
+     * @param  array  $args
      * @return mixed
      * @throws Zend_Dojo_View_Exception For invalid method calls
      */

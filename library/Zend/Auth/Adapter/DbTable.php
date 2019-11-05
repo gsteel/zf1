@@ -82,15 +82,15 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
     /**
      * __construct() - Sets configuration options
      *
-     * @param  Zend_Db_Adapter_Abstract $zendDb If null, default database adapter assumed
-     * @param  string                   $tableName
-     * @param  string                   $identityColumn
-     * @param  string                   $credentialColumn
-     * @param  string                   $credentialTreatment
+     * @param Zend_Db_Adapter_Abstract $zendDb              If null, default database adapter assumed
+     * @param string                   $tableName
+     * @param string                   $identityColumn
+     * @param string                   $credentialColumn
+     * @param string                   $credentialTreatment
      */
     public function __construct(Zend_Db_Adapter_Abstract $zendDb = null, $tableName = null, $identityColumn = null,
-                                $credentialColumn = null, $credentialTreatment = null)
-    {
+        $credentialColumn = null, $credentialTreatment = null
+    ) {
         $this->_setDbAdapter($zendDb);
 
         if (null !== $tableName) {
@@ -113,7 +113,7 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
     /**
      * _setDbAdapter() - set the database adapter to be used for quering
      *
-     * @param Zend_Db_Adapter_Abstract
+     * @param  Zend_Db_Adapter_Abstract
      * @throws Zend_Auth_Adapter_Exception
      * @return Zend_Auth_Adapter_DbTable
      */
@@ -320,7 +320,7 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
         $dbSelect = $this->_authenticateCreateSelect();
         $resultIdentities = $this->_authenticateQuerySelect($dbSelect);
 
-        if ( ($authResult = $this->_authenticateValidateResultSet($resultIdentities)) instanceof Zend_Auth_Result) {
+        if (($authResult = $this->_authenticateValidateResultSet($resultIdentities)) instanceof Zend_Auth_Result) {
             return $authResult;
         }
 
@@ -394,17 +394,17 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
             $this->_zendDb->quoteInto(
                 $this->_zendDb->quoteIdentifier($this->_credentialColumn, true)
                 . ' = ' . $this->_credentialTreatment, $this->_credential
-                )
+            )
             . ' THEN 1 ELSE 0 END) AS '
             . $this->_zendDb->quoteIdentifier(
                 $this->_zendDb->foldCase('zend_auth_credential_match')
-                )
-            );
+            )
+        );
 
         // get select
         $dbSelect = clone $this->getDbSelect();
         $dbSelect->from($this->_tableName, array('*', $credentialExpression))
-                 ->where($this->_zendDb->quoteIdentifier($this->_identityColumn, true) . ' = ?', $this->_identity);
+            ->where($this->_zendDb->quoteIdentifier($this->_identityColumn, true) . ' = ?', $this->_identity);
 
         return $dbSelect;
     }
@@ -413,7 +413,7 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
      * _authenticateQuerySelect() - This method accepts a Zend_Db_Select object and
      * performs a query against the database with that object.
      *
-     * @param Zend_Db_Select $dbSelect
+     * @param  Zend_Db_Select $dbSelect
      * @throws Zend_Auth_Adapter_Exception - when an invalid select
      *                                       object is encountered
      * @return array
@@ -432,9 +432,11 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
                 unset($origDbFetchMode);
             }
         } catch (Exception $e) {
-            throw new Zend_Auth_Adapter_Exception('The supplied parameters to Zend_Auth_Adapter_DbTable failed to '
+            throw new Zend_Auth_Adapter_Exception(
+                'The supplied parameters to Zend_Auth_Adapter_DbTable failed to '
                                                 . 'produce a valid sql statement, please check table and column names '
-                                                . 'for validity.', 0, $e);
+                . 'for validity.', 0, $e
+            );
         }
         return $resultIdentities;
     }
@@ -443,7 +445,7 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
      * _authenticateValidateResultSet() - This method attempts to make
      * certain that only one record was returned in the resultset
      *
-     * @param array $resultIdentities
+     * @param  array $resultIdentities
      * @return true|Zend_Auth_Result
      */
     protected function _authenticateValidateResultSet(array $resultIdentities)
@@ -467,7 +469,7 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
      * the record in the resultset is indeed a record that matched the
      * identity provided to this adapter.
      *
-     * @param array $resultIdentity
+     * @param  array $resultIdentity
      * @return Zend_Auth_Result
      */
     protected function _authenticateValidateResult($resultIdentity)
@@ -500,7 +502,7 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
             $this->_authenticateResultInfo['code'],
             $this->_authenticateResultInfo['identity'],
             $this->_authenticateResultInfo['messages']
-            );
+        );
     }
 
 }

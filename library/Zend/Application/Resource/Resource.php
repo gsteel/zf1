@@ -6,7 +6,7 @@ interface Zend_Application_Resource_Resource
      *
      * Must take an optional single argument, $options.
      *
-     * @param  mixed $options
+     * @param mixed $options
      */
     public function __construct($options = null);
 

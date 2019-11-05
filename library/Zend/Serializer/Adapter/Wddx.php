@@ -20,13 +20,19 @@
  * @version    $Id$
  */
 
-/** @see Zend_Serializer_Adapter_AdapterAbstract */
+/**
+ * @see Zend_Serializer_Adapter_AdapterAbstract 
+ */
 // require_once 'Zend/Serializer/Adapter/AdapterAbstract.php';
 
-/** @see Zend_Xml_Security */
+/**
+ * @see Zend_Xml_Security 
+ */
 // require_once 'Zend/Xml/Security.php';
 
-/** @see Zend_Xml_Exception */
+/**
+ * @see Zend_Xml_Exception 
+ */
 // require_once 'Zend/Xml/Exception.php';
 
 /**
@@ -94,7 +100,7 @@ class Zend_Serializer_Adapter_Wddx extends Zend_Serializer_Adapter_AdapterAbstra
      * Unserialize from WDDX to PHP
      *
      * @param  string $wddx
-     * @param  array $opts
+     * @param  array  $opts
      * @return mixed
      * @throws Zend_Serializer_Exception on wddx error
      */

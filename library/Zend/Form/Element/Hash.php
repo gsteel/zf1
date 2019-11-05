@@ -19,10 +19,14 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Element_Xhtml */
+/**
+ * Zend_Form_Element_Xhtml 
+ */
 // require_once 'Zend/Form/Element/Xhtml.php';
 
-/** @see Zend_Crypt_Math */
+/**
+ * @see Zend_Crypt_Math 
+ */
 // require_once 'Zend/Crypt/Math.php';
 
 /**
@@ -39,6 +43,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
 {
     /**
      * Use formHidden view helper by default
+     *
      * @var string
      */
     public $helper = 'formHidden';
@@ -52,6 +57,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
 
     /**
      * Salt for CSRF token
+     *
      * @var string
      */
     protected $_salt = 'salt';
@@ -63,6 +69,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
 
     /**
      * TTL for CSRF token
+     *
      * @var int
      */
     protected $_timeout = 300;
@@ -74,7 +81,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
      * token.
      *
      * @param  string|array|Zend_Config $spec
-     * @param  array|Zend_Config $options
+     * @param  array|Zend_Config        $options
      * @return void
      */
     public function __construct($spec, $options = null)
@@ -82,8 +89,8 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
         parent::__construct($spec, $options);
 
         $this->setAllowEmpty(false)
-             ->setRequired(true)
-             ->initCsrfValidator();
+            ->setRequired(true)
+            ->initCsrfValidator();
     }
 
     /**

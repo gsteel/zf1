@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Reflection
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Reflection
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -35,10 +35,10 @@
 // require_once 'Zend/Reflection/Parameter.php';
 
 /**
- * @category   Zend
- * @package    Zend_Reflection
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Reflection
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Reflection_Method extends ReflectionMethod
 {
@@ -153,15 +153,17 @@ class Zend_Reflection_Method extends ReflectionMethod
 
         // Strip off lines until we come to a closing bracket
         do {
-            if ((is_array($lines) || $lines instanceof \Countable ? count($lines) : 0) == 0) break;
+            if ((is_array($lines) || $lines instanceof \Countable ? count($lines) : 0) == 0) { break;
+            }
             $firstLine = array_shift($lines);
         } while (strpos($firstLine, ')') === false);
 
         // If the opening brace isn't on the same line as method 
         // signature, then we should pop off more lines until we find it
-        if (strpos($firstLine,'{') === false) {
+        if (strpos($firstLine, '{') === false) {
             do {
-                if ((is_array($lines) || $lines instanceof \Countable ? count($lines) : 0) == 0) break;
+                if ((is_array($lines) || $lines instanceof \Countable ? count($lines) : 0) == 0) { break;
+                }
                 $firstLine = array_shift($lines);
             } while (strpos($firstLine, '{') === false);
         }

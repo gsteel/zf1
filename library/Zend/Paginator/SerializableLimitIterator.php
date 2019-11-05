@@ -12,18 +12,18 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Paginator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Paginator
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
- * @category   Zend
- * @package    Zend_Paginator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Paginator
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements Serializable, ArrayAccess
 {
@@ -45,12 +45,12 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
     /**
      * Construct a Zend_Paginator_SerializableLimitIterator
      *
-     * @param Iterator $it Iterator to limit (must be serializable by un-/serialize)
-     * @param int $offset Offset to first element
-     * @param int $count Maximum number of elements to show or -1 for all
-     * @see LimitIterator::__construct
+     * @param Iterator $it     Iterator to limit (must be serializable by un-/serialize)
+     * @param int      $offset Offset to first element
+     * @param int      $count  Maximum number of elements to show or -1 for all
+     * @see   LimitIterator::__construct
      */
-    public function __construct (Iterator $it, $offset=0, $count=-1)
+    public function __construct(Iterator $it, $offset=0, $count=-1)
     {
         parent::__construct($it, $offset, $count);
         $this->_offset = $offset;
@@ -62,12 +62,14 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
      */
     public function serialize()
     {
-        return serialize(array(
+        return serialize(
+            array(
             'it'     => $this->getInnerIterator(),
             'offset' => $this->_offset,
             'count'  => $this->_count,
             'pos'    => $this->getPosition(),
-        ));
+            )
+        );
     }
 
     /**
@@ -83,7 +85,7 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
     /**
      * Returns value of the Iterator
      *
-     * @param int $offset
+     * @param  int $offset
      * @return mixed
      */
     public function offsetGet($offset)
@@ -99,7 +101,7 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
      * Does nothing
      * Required by the ArrayAccess implementation
      *
-     * @param int $offset
+     * @param int   $offset
      * @param mixed $value
      */
     public function offsetSet($offset, $value)

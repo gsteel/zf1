@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
@@ -117,9 +119,9 @@ class Zend_Form_Decorator_FormElements extends Zend_Form_Decorator_Abstract
 
             if (($item instanceof Zend_Form_Element_File)
                 || (($item instanceof Zend_Form)
-                    && (Zend_Form::ENCTYPE_MULTIPART == $item->getEnctype()))
+                && (Zend_Form::ENCTYPE_MULTIPART == $item->getEnctype()))
                 || (($item instanceof Zend_Form_DisplayGroup)
-                    && (Zend_Form::ENCTYPE_MULTIPART == $item->getAttrib('enctype')))
+                && (Zend_Form::ENCTYPE_MULTIPART == $item->getAttrib('enctype')))
             ) {
                 if ($form instanceof Zend_Form) {
                     $form->setEnctype(Zend_Form::ENCTYPE_MULTIPART);
@@ -131,11 +133,11 @@ class Zend_Form_Decorator_FormElements extends Zend_Form_Decorator_Abstract
         $elementContent = implode($separator, $items);
 
         switch ($this->getPlacement()) {
-            case self::PREPEND:
-                return $elementContent . $separator . $content;
-            case self::APPEND:
-            default:
-                return $content . $separator . $elementContent;
+        case self::PREPEND:
+            return $elementContent . $separator . $content;
+        case self::APPEND:
+        default:
+            return $content . $separator . $elementContent;
         }
     }
 }

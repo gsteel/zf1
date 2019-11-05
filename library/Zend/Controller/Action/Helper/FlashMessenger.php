@@ -265,7 +265,7 @@ class Zend_Controller_Action_Helper_FlashMessenger extends Zend_Controller_Actio
      * @param  string $message
      * @return void
      */
-    public function direct($message, $namespace=NULL)
+    public function direct($message, $namespace=null)
     {
         return $this->addMessage($message, $namespace);
     }

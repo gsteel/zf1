@@ -21,10 +21,14 @@
  */
 
 
-/** @see Zend_Cache_Backend_Interface */
+/**
+ * @see Zend_Cache_Backend_Interface 
+ */
 // require_once 'Zend/Cache/Backend/Interface.php';
 
-/** @see Zend_Cache_Backend_ZendServer */
+/**
+ * @see Zend_Cache_Backend_ZendServer 
+ */
 // require_once 'Zend/Cache/Backend/ZendServer.php';
 
 
@@ -53,16 +57,19 @@ class Zend_Cache_Backend_ZendServer_Disk extends Zend_Cache_Backend_ZendServer i
     /**
      * Store data
      *
-     * @param mixed  $data        Object to store
-     * @param string $id          Cache id
-     * @param int    $timeToLive  Time to live in seconds
+     * @param  mixed  $data       Object to store
+     * @param  string $id         Cache id
+     * @param  int    $timeToLive Time to live in seconds
      * @return boolean true if no problem
      */
     protected function _store($data, $id, $timeToLive)
     {
-        if (zend_disk_cache_store($this->_options['namespace'] . '::' . $id,
-                                  $data,
-                                  $timeToLive) === false) {
+        if (zend_disk_cache_store(
+            $this->_options['namespace'] . '::' . $id,
+            $data,
+            $timeToLive
+        ) === false
+        ) {
             $this->_log('Store operation failed.');
             return false;
         }
@@ -72,7 +79,7 @@ class Zend_Cache_Backend_ZendServer_Disk extends Zend_Cache_Backend_ZendServer i
     /**
      * Fetch data
      *
-     * @param string $id Cache id
+     * @param  string $id Cache id
      * @return mixed|null
      */
     protected function _fetch($id)
@@ -83,7 +90,7 @@ class Zend_Cache_Backend_ZendServer_Disk extends Zend_Cache_Backend_ZendServer i
     /**
      * Unset data
      *
-     * @param string $id          Cache id
+     * @param  string $id Cache id
      * @return boolean true if no problem
      */
     protected function _unset($id)

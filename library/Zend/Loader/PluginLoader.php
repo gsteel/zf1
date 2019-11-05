@@ -20,10 +20,14 @@
  * @version    $Id$
  */
 
-/** Zend_Loader_PluginLoader_Interface */
+/**
+ * Zend_Loader_PluginLoader_Interface 
+ */
 // require_once 'Zend/Loader/PluginLoader/Interface.php';
 
-/** Zend_Loader */
+/**
+ * Zend_Loader 
+ */
 // require_once 'Zend/Loader.php';
 
 /**
@@ -39,12 +43,14 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
 {
     /**
      * Class map cache file
+     *
      * @var string
      */
     protected static $_includeFileCache;
 
     /**
      * Class map cache file handler
+     *
      * @var resource
      */
     protected static $_includeFileCacheHandler;
@@ -101,7 +107,7 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
     /**
      * Constructor
      *
-     * @param array $prefixToPaths
+     * @param array  $prefixToPaths
      * @param string $staticRegistryName OPTIONAL
      */
     public function __construct(Array $prefixToPaths = array(), $staticRegistryName = null)
@@ -137,7 +143,7 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
         $prefix = rtrim($prefix, $nsSeparator) . $nsSeparator;
         //if $nsSeprator == "\" and the prefix ends in "_\" remove trailing \
         //https://github.com/zendframework/zf1/issues/152
-        if(($nsSeparator == "\\") && (substr($prefix,-2) == "_\\")) {
+        if(($nsSeparator == "\\") && (substr($prefix, -2) == "_\\")) {
             $prefix = substr($prefix, 0, -1);
         }
         return $prefix;
@@ -146,8 +152,8 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
     /**
      * Add prefixed paths to the registry of paths
      *
-     * @param string $prefix
-     * @param string $path
+     * @param  string $prefix
+     * @param  string $path
      * @return Zend_Loader_PluginLoader
      */
     public function addPrefixPath($prefix, $path)
@@ -244,8 +250,8 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
     /**
      * Remove a prefix (or prefixed-path) from the registry
      *
-     * @param string $prefix
-     * @param string $path OPTIONAL
+     * @param  string $prefix
+     * @param  string $path   OPTIONAL
      * @return Zend_Loader_PluginLoader
      */
     public function removePrefixPath($prefix, $path = null)
@@ -290,7 +296,7 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
     /**
      * Whether or not a Plugin by a specific name is loaded
      *
-     * @param string $name
+     * @param  string $name
      * @return Zend_Loader_PluginLoader
      */
     public function isLoaded($name)
@@ -306,7 +312,7 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
     /**
      * Return full class name for a named plugin
      *
-     * @param string $name
+     * @param  string $name
      * @return string|false False if class not found, class name otherwise
      */
     public function getClassName($name)
@@ -359,8 +365,8 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
      * Load a plugin via the name provided
      *
      * @param  string $name
-     * @param  bool $throwExceptions Whether or not to throw exceptions if the
-     * class is not resolved
+     * @param  bool   $throwExceptions Whether or not to throw exceptions if the
+     *                                 class is not resolved
      * @return string|false Class name of loaded class; false if $throwExceptions
      * if false and no class found
      * @throws Zend_Loader_Exception if class not found
@@ -422,7 +428,7 @@ class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
             }
             // require_once 'Zend/Loader/PluginLoader/Exception.php';
             throw new Zend_Loader_PluginLoader_Exception($message);
-       }
+        }
 
         if ($this->_useStaticRegistry) {
             self::$_staticLoadedPlugins[$this->_useStaticRegistry][$name]     = $className;

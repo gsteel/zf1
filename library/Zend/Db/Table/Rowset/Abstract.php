@@ -189,7 +189,7 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
      * Set the table object, to re-establish a live connection
      * to the database for a Rowset that has been de-serialized.
      *
-     * @param Zend_Db_Table_Abstract $table
+     * @param  Zend_Db_Table_Abstract $table
      * @return boolean
      * @throws Zend_Db_Table_Row_Exception
      */
@@ -302,7 +302,7 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
      * Take the Iterator to position $position
      * Required by interface SeekableIterator.
      *
-     * @param int $position the position to seek to
+     * @param  int $position the position to seek to
      * @return Zend_Db_Table_Rowset_Abstract
      * @throws Zend_Db_Table_Rowset_Exception
      */
@@ -321,7 +321,7 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
      * Check if an offset exists
      * Required by the ArrayAccess implementation
      *
-     * @param string $offset
+     * @param  string $offset
      * @return boolean
      */
     public function offsetExists($offset)
@@ -333,7 +333,7 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
      * Get the row for the given offset
      * Required by the ArrayAccess implementation
      *
-     * @param string $offset
+     * @param  string $offset
      * @return Zend_Db_Table_Row_Abstract
      */
     public function offsetGet($offset)
@@ -353,7 +353,7 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
      * Required by the ArrayAccess implementation
      *
      * @param string $offset
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function offsetSet($offset, $value)
     {
@@ -372,8 +372,8 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
     /**
      * Returns a Zend_Db_Table_Row from a known position into the Iterator
      *
-     * @param int $position the position of the row expected
-     * @param bool $seek wether or not seek the iterator to that position after
+     * @param  int  $position the position of the row expected
+     * @param  bool $seek     wether or not seek the iterator to that position after
      * @return Zend_Db_Table_Row
      * @throws Zend_Db_Table_Rowset_Exception
      */
@@ -428,10 +428,10 @@ abstract class Zend_Db_Table_Rowset_Abstract implements SeekableIterator, Counta
                 )
             );
 
-            if ( $this->_table instanceof Zend_Db_Table_Abstract ) {
+            if ($this->_table instanceof Zend_Db_Table_Abstract ) {
                 $info = $this->_table->info();
 
-                if ( $this->_rows[$position] instanceof Zend_Db_Table_Row_Abstract ) {
+                if ($this->_rows[$position] instanceof Zend_Db_Table_Row_Abstract ) {
                     if ($info['cols'] == array_keys($this->_data[$position])) {
                         $this->_rows[$position]->setTable($this->getTable());
                     }

@@ -23,30 +23,35 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
 
     /**
      * Module to use for errors; defaults to default module in dispatcher
+     *
      * @var string
      */
     protected $_errorModule;
 
     /**
      * Controller to use for errors; defaults to 'error'
+     *
      * @var string
      */
     protected $_errorController = 'error';
 
     /**
      * Action to use for errors; defaults to 'error'
+     *
      * @var string
      */
     protected $_errorAction = 'error';
 
     /**
      * Flag; are we already inside the error handler loop?
+     *
      * @var bool
      */
     protected $_isInsideErrorHandlerLoop = false;
 
     /**
      * Exception count logged at first invocation of plugin
+     *
      * @var int
      */
     protected $_exceptionCountAtFirstEncounter = 0;
@@ -176,7 +181,7 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
     {
         $this->_handleError($request);
     }
-	
+    
     /**
      * Post dispatch hook -- check for exceptions and dispatch error handler if
      * necessary
@@ -226,26 +231,26 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
             $exceptionType    = get_class($exception);
             $error->exception = $exception;
             switch ($exceptionType) {
-                case \Zend_Controller_Router_Exception::class:
-                    if (404 == $exception->getCode()) {
-                        $error->type = self::EXCEPTION_NO_ROUTE;
-                    } else {
-                        $error->type = self::EXCEPTION_OTHER;
-                    }
-                    break;
-                case \Zend_Controller_Dispatcher_Exception::class:
-                    $error->type = self::EXCEPTION_NO_CONTROLLER;
-                    break;
-                case \Zend_Controller_Action_Exception::class:
-                    if (404 == $exception->getCode()) {
-                        $error->type = self::EXCEPTION_NO_ACTION;
-                    } else {
-                        $error->type = self::EXCEPTION_OTHER;
-                    }
-                    break;
-                default:
+            case \Zend_Controller_Router_Exception::class:
+                if (404 == $exception->getCode()) {
+                    $error->type = self::EXCEPTION_NO_ROUTE;
+                } else {
                     $error->type = self::EXCEPTION_OTHER;
-                    break;
+                }
+                break;
+            case \Zend_Controller_Dispatcher_Exception::class:
+                $error->type = self::EXCEPTION_NO_CONTROLLER;
+                break;
+            case \Zend_Controller_Action_Exception::class:
+                if (404 == $exception->getCode()) {
+                    $error->type = self::EXCEPTION_NO_ACTION;
+                } else {
+                    $error->type = self::EXCEPTION_OTHER;
+                }
+                break;
+            default:
+                $error->type = self::EXCEPTION_OTHER;
+                break;
             }
 
             // Keep a copy of the original request
@@ -256,10 +261,10 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
 
             // Forward to the error handler
             $request->setParam('error_handler', $error)
-                    ->setModuleName($this->getErrorHandlerModule())
-                    ->setControllerName($this->getErrorHandlerController())
-                    ->setActionName($this->getErrorHandlerAction())
-                    ->setDispatched(false);
+                ->setModuleName($this->getErrorHandlerModule())
+                ->setControllerName($this->getErrorHandlerController())
+                ->setActionName($this->getErrorHandlerAction())
+                ->setDispatched(false);
         }
     }
 }

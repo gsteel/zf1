@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Log_Filter_Abstract */
+/**
+ * Zend_Log_Filter_Abstract 
+ */
 // require_once 'Zend/Log/Filter/Abstract.php';
 
 /**
@@ -41,7 +43,7 @@ class Zend_Log_Filter_Message extends Zend_Log_Filter_Abstract
     /**
      * Filter out any log messages not matching $regexp.
      *
-     * @param  string  $regexp     Regular expression to test the log message
+     * @param  string $regexp Regular expression to test the log message
      * @return void
      * @throws Zend_Log_Exception
      */
@@ -63,9 +65,11 @@ class Zend_Log_Filter_Message extends Zend_Log_Filter_Abstract
     static public function factory($config)
     {
         $config = self::_parseConfig($config);
-        $config = array_merge(array(
+        $config = array_merge(
+            array(
             'regexp' => null
-        ), $config);
+            ), $config
+        );
 
         return new self(
             $config['regexp']
@@ -75,7 +79,7 @@ class Zend_Log_Filter_Message extends Zend_Log_Filter_Abstract
     /**
      * Returns TRUE to accept the message, FALSE to block it.
      *
-     * @param  array    $event    event data
+     * @param  array $event event data
      * @return boolean            accepted?
      */
     public function accept($event)

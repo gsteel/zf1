@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Element_Xhtml */
+/**
+ * Zend_Form_Element_Xhtml 
+ */
 // require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
@@ -53,7 +55,7 @@ class Zend_Form_Element_Note extends Zend_Form_Element_Xhtml
      *
      * There is no need to reset the value
      *
-     * @param  mixed $value Is always ignored
+     * @param  mixed $value   Is always ignored
      * @param  mixed $context Is always ignored
      * @return boolean Returns always TRUE
      */

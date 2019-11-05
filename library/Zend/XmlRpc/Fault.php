@@ -34,33 +34,37 @@
  * To allow method chaining, you may only use the {@link getInstance()} factory
  * to instantiate a Zend_XmlRpc_Server_Fault.
  *
- * @category   Zend
- * @package    Zend_XmlRpc
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_XmlRpc
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_XmlRpc_Fault
 {
     /**
      * Fault code
+     *
      * @var int
      */
     protected $_code;
 
     /**
      * Fault character encoding
+     *
      * @var string
      */
     protected $_encoding = 'UTF-8';
 
     /**
      * Fault message
+     *
      * @var string
      */
     protected $_message;
 
     /**
      * Internal fault codes => messages
+     *
      * @var array
      */
     protected $_internal = array(
@@ -118,7 +122,7 @@ class Zend_XmlRpc_Fault
     /**
      * Set the fault code
      *
-     * @param int $code
+     * @param  int $code
      * @return Zend_XmlRpc_Fault
      */
     public function setCode($code)
@@ -140,7 +144,7 @@ class Zend_XmlRpc_Fault
     /**
      * Retrieve fault message
      *
-     * @param string
+     * @param  string
      * @return Zend_XmlRpc_Fault
      */
     public function setMessage($message)
@@ -162,7 +166,7 @@ class Zend_XmlRpc_Fault
     /**
      * Set encoding to use in fault response
      *
-     * @param string $encoding
+     * @param  string $encoding
      * @return Zend_XmlRpc_Fault
      */
     public function setEncoding($encoding)
@@ -185,7 +189,7 @@ class Zend_XmlRpc_Fault
     /**
      * Load an XMLRPC fault from XML
      *
-     * @param string $fault
+     * @param  string $fault
      * @return boolean Returns true if successfully loaded fault response, false
      * if response was not a fault response
      * @throws Zend_XmlRpc_Exception if no or faulty XML provided, or if fault
@@ -257,7 +261,7 @@ class Zend_XmlRpc_Fault
     /**
      * Determine if an XML response is an XMLRPC fault
      *
-     * @param string $xml
+     * @param  string $xml
      * @return boolean
      */
     public static function isFault($xml)
@@ -289,10 +293,10 @@ class Zend_XmlRpc_Fault
 
         $generator = Zend_XmlRpc_Value::getGenerator();
         $generator->openElement('methodResponse')
-                  ->openElement('fault');
+            ->openElement('fault');
         $value->generateXml();
         $generator->closeElement('fault')
-                  ->closeElement('methodResponse');
+            ->closeElement('methodResponse');
 
         return $generator->flush();
     }

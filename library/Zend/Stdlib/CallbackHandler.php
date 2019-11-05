@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Stdlib
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Stdlib
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /**
@@ -25,10 +25,10 @@
  * primarily to allow for lazy-loading and ensuring availability of default
  * arguments (currying).
  *
- * @category   Zend
- * @package    Zend_Stdlib
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Stdlib
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Stdlib_CallbackHandler
 {
@@ -39,12 +39,14 @@ class Zend_Stdlib_CallbackHandler
 
     /**
      * Did an error occur when testing the validity of the callback?
+     *
      * @var bool
      */
     protected $error = false;
 
     /**
      * Callback metadata, if any
+     *
      * @var array
      */
     protected $metadata;
@@ -52,9 +54,9 @@ class Zend_Stdlib_CallbackHandler
     /**
      * Constructor
      * 
-     * @param  string $event Event to which slot is subscribed
+     * @param  string              $event    Event to which slot is subscribed
      * @param  string|array|object $callback PHP callback 
-     * @param  array $options Options used by the callback handler (e.g., priority)
+     * @param  array               $options  Options used by the callback handler (e.g., priority)
      * @return void
      */
     public function __construct($callback, array $metadata = array())
@@ -68,7 +70,7 @@ class Zend_Stdlib_CallbackHandler
      *
      * Used by registerCallback() when calling is_callable() to capture engine warnings.
      * 
-     * @param  int $errno 
+     * @param  int    $errno 
      * @param  string $errstr 
      * @return void
      */
@@ -193,33 +195,33 @@ class Zend_Stdlib_CallbackHandler
         // Minor performance tweak; use call_user_func() until > 3 arguments 
         // reached
         switch (count($args)) {
-            case 0:
-                if ($isPhp54) {
-                    return $callback();
-                }
-                return call_user_func($callback);
-            case 1:
-                if ($isPhp54) {
-                    return $callback(array_shift($args));
-                }
-                return call_user_func($callback, array_shift($args));
-            case 2:
-                $arg1 = array_shift($args);
-                $arg2 = array_shift($args);
-                if ($isPhp54) {
-                    return $callback($arg1, $arg2);
-                }
-                return call_user_func($callback, $arg1, $arg2);
-            case 3:
-                $arg1 = array_shift($args);
-                $arg2 = array_shift($args);
-                $arg3 = array_shift($args);
-                if ($isPhp54) {
-                    return $callback($arg1, $arg2, $arg3);
-                }
-                return call_user_func($callback, $arg1, $arg2, $arg3);
-            default:
-                return call_user_func_array($callback, $args);
+        case 0:
+            if ($isPhp54) {
+                return $callback();
+            }
+            return call_user_func($callback);
+        case 1:
+            if ($isPhp54) {
+                return $callback(array_shift($args));
+            }
+            return call_user_func($callback, array_shift($args));
+        case 2:
+            $arg1 = array_shift($args);
+            $arg2 = array_shift($args);
+            if ($isPhp54) {
+                return $callback($arg1, $arg2);
+            }
+            return call_user_func($callback, $arg1, $arg2);
+        case 3:
+            $arg1 = array_shift($args);
+            $arg2 = array_shift($args);
+            $arg3 = array_shift($args);
+            if ($isPhp54) {
+                return $callback($arg1, $arg2, $arg3);
+            }
+            return call_user_func($callback, $arg1, $arg2, $arg3);
+        default:
+            return call_user_func_array($callback, $args);
         }
     }
 
@@ -276,27 +278,33 @@ class Zend_Stdlib_CallbackHandler
 
         if (!class_exists($class)) {
             // require_once 'Zend/Stdlib/Exception/InvalidCallbackException.php';
-            throw new Zend_Stdlib_Exception_InvalidCallbackException(sprintf(
-                'Static method call "%s" refers to a class that does not exist',
-                $callback
-            ));
+            throw new Zend_Stdlib_Exception_InvalidCallbackException(
+                sprintf(
+                    'Static method call "%s" refers to a class that does not exist',
+                    $callback
+                )
+            );
         }
 
         $r = new ReflectionClass($class);
         if (!$r->hasMethod($method)) {
             // require_once 'Zend/Stdlib/Exception/InvalidCallbackException.php';
-            throw new Zend_Stdlib_Exception_InvalidCallbackException(sprintf(
-                'Static method call "%s" refers to a method that does not exist',
-                $callback
-            ));
+            throw new Zend_Stdlib_Exception_InvalidCallbackException(
+                sprintf(
+                    'Static method call "%s" refers to a method that does not exist',
+                    $callback
+                )
+            );
         }
         $m = $r->getMethod($method);
         if (!$m->isStatic()) {
             // require_once 'Zend/Stdlib/Exception/InvalidCallbackException.php';
-            throw new Zend_Stdlib_Exception_InvalidCallbackException(sprintf(
-                'Static method call "%s" refers to a method that is not static',
-                $callback
-            ));
+            throw new Zend_Stdlib_Exception_InvalidCallbackException(
+                sprintf(
+                    'Static method call "%s" refers to a method that is not static',
+                    $callback
+                )
+            );
         }
 
         return true;

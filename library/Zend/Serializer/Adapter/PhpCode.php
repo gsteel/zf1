@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** @see Zend_Serializer_Adapter_AdapterAbstract */
+/**
+ * @see Zend_Serializer_Adapter_AdapterAbstract 
+ */
 // require_once 'Zend/Serializer/Adapter/AdapterAbstract.php';
 
 /**
@@ -50,7 +52,7 @@ class Zend_Serializer_Adapter_PhpCode extends Zend_Serializer_Adapter_AdapterAbs
      * Warning: this uses eval(), and should likely be avoided.
      *
      * @param  string $code
-     * @param  array $opts
+     * @param  array  $opts
      * @return mixed
      * @throws Zend_Serializer_Exception on eval error
      */

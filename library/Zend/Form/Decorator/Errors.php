@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
@@ -68,10 +70,10 @@ class Zend_Form_Decorator_Errors extends Zend_Form_Decorator_Abstract
         $errors    = $view->formErrors($errors, $this->getOptions());
 
         switch ($placement) {
-            case self::APPEND:
-                return $content . $separator . $errors;
-            case self::PREPEND:
-                return $errors . $separator . $content;
+        case self::APPEND:
+            return $content . $separator . $errors;
+        case self::PREPEND:
+            return $errors . $separator . $content;
         }
     }
 }

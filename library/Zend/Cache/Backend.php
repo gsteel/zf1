@@ -57,7 +57,7 @@ class Zend_Cache_Backend
     /**
      * Constructor
      *
-     * @param  array $options Associative array of options
+     * @param array $options Associative array of options
      */
     public function __construct(array $options = array())
     {
@@ -75,7 +75,8 @@ class Zend_Cache_Backend
      */
     public function setDirectives($directives)
     {
-        if (!is_array($directives)) Zend_Cache::throwException('Directives parameter must be an array');
+        if (!is_array($directives)) { Zend_Cache::throwException('Directives parameter must be an array');
+        }
         foreach ($directives as $name => $value) {
             if (!is_string($name)) {
                 Zend_Cache::throwException("Incorrect option name : $name");
@@ -112,7 +113,7 @@ class Zend_Cache_Backend
     /**
      * Returns an option
      *
-     * @param string $name Optional, the options name to return
+     * @param  string $name Optional, the options name to return
      * @throws Zend_Cache_Exceptions
      * @return mixed
      */
@@ -154,7 +155,7 @@ class Zend_Cache_Backend
      * DEPRECATED : use getCapabilities() instead
      *
      * @deprecated
-     * @return boolean
+     * @return     boolean
      */
     public function isAutomaticCleaningAvailable()
     {
@@ -200,7 +201,7 @@ class Zend_Cache_Backend
             }
         }
         // Attemp to detect by creating a temporary file
-        $tempFile = tempnam(md5(uniqid(random_int(0, mt_getrandmax()), TRUE)), '');
+        $tempFile = tempnam(md5(uniqid(random_int(0, mt_getrandmax()), true)), '');
         if ($tempFile) {
             $dir = realpath(dirname($tempFile));
             unlink($tempFile);
@@ -220,7 +221,7 @@ class Zend_Cache_Backend
     /**
      * Verify if the given temporary directory is readable and writable
      *
-     * @param string $dir temporary directory
+     * @param  string $dir temporary directory
      * @return boolean true if the directory is ok
      */
     protected function _isGoodTmpDir($dir)

@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Log_Writer_Abstract */
+/**
+ * Zend_Log_Writer_Abstract 
+ */
 // require_once 'Zend/Log/Writer/Abstract.php';
 
 /**
@@ -57,9 +59,9 @@ class Zend_Log_Writer_Db extends Zend_Log_Writer_Abstract
     /**
      * Class constructor
      *
-     * @param Zend_Db_Adapter $db   Database adapter instance
-     * @param string $table         Log table in database
-     * @param array $columnMap
+     * @param  Zend_Db_Adapter $db        Database adapter instance
+     * @param  string          $table     Log table in database
+     * @param  array           $columnMap
      * @return void
      */
     public function __construct($db, $table, $columnMap = null)
@@ -78,11 +80,13 @@ class Zend_Log_Writer_Db extends Zend_Log_Writer_Abstract
     static public function factory($config)
     {
         $config = self::_parseConfig($config);
-        $config = array_merge(array(
+        $config = array_merge(
+            array(
             'db'        => null,
             'table'     => null,
             'columnMap' => null,
-        ), $config);
+            ), $config
+        );
 
         if (isset($config['columnmap'])) {
             $config['columnMap'] = $config['columnmap'];
@@ -120,7 +124,7 @@ class Zend_Log_Writer_Db extends Zend_Log_Writer_Abstract
     /**
      * Write a message to the log.
      *
-     * @param  array  $event  event data
+     * @param  array $event event data
      * @return void
      * @throws Zend_Log_Exception
      */

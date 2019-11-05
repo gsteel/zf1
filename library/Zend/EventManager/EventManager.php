@@ -12,10 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 // require_once 'Zend/EventManager/Event.php';
@@ -32,15 +32,16 @@
  * Use the EventManager when you want to create a per-instance notification
  * system for your objects.
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_EventManager_EventManager implements Zend_EventManager_EventCollection, Zend_EventManager_SharedEventCollectionAware
 {
     /**
      * Subscribed events and their listeners
+     *
      * @var array Array of Zend_Stdlib_PriorityQueue objects
      */
     protected $events = array();
@@ -52,12 +53,14 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
 
     /**
      * Identifiers, used to pull static signals from StaticEventManager
+     *
      * @var array
      */
     protected $identifiers = array();
 
     /**
      * Static collections
+     *
      * @var false|null|Zend_EventManager_StaticEventCollection
      */
     protected $sharedCollections = null;
@@ -139,7 +142,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
     /**
      * Set the identifiers (overrides any currently set identifiers)
      *
-     * @param string|int|array|Traversable $identifiers
+     * @param  string|int|array|Traversable $identifiers
      * @return Zend_EventManager_EventManager
      */
     public function setIdentifiers($identifiers)
@@ -155,7 +158,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
     /**
      * Add some identifier(s) (appends to any currently set identifiers)
      *
-     * @param string|int|array|Traversable $identifiers
+     * @param  string|int|array|Traversable $identifiers
      * @return Zend_EventManager_EventManager
      */
     public function addIdentifiers($identifiers)
@@ -173,10 +176,10 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      *
      * Can emulate triggerUntil() if the last argument provided is a callback.
      *
-     * @param  string $event
-     * @param  string|object $target Object calling emit, or symbol describing target (such as static method name)
-     * @param  array|ArrayAccess $argv Array of arguments; typically, should be associative
-     * @param  null|callback $callback
+     * @param  string            $event
+     * @param  string|object     $target   Object calling emit, or symbol describing target (such as static method name)
+     * @param  array|ArrayAccess $argv     Array of arguments; typically, should be associative
+     * @param  null|callback     $callback
      * @return Zend_EventManager_ResponseCollection All listener return values
      */
     public function trigger($event, $target = null, $argv = array(), $callback = null)
@@ -215,10 +218,10 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * Triggers listeners until the provided callback evaluates the return
      * value of one as true, or until all listeners have been executed.
      *
-     * @param  string $event
-     * @param  string|object $target Object calling emit, or symbol describing target (such as static method name)
-     * @param  array|ArrayAccess $argv Array of arguments; typically, should be associative
-     * @param  Callable $callback
+     * @param  string            $event
+     * @param  string|object     $target   Object calling emit, or symbol describing target (such as static method name)
+     * @param  array|ArrayAccess $argv     Array of arguments; typically, should be associative
+     * @param  Callable          $callback
      * @throws Zend_Stdlib_Exception_InvalidCallbackException if invalid callback provided
      */
     public function triggerUntil($event, $target, $argv = null, $callback = null)
@@ -264,9 +267,9 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * You can specify "*" for the event name. In such cases, the listener will 
      * be triggered for every event.
      *
-     * @param  string|array|Zend_EventManager_ListenerAggregate $event An event or array of event names. If a ListenerAggregate, proxies to {@link attachAggregate()}.
-     * @param  callback|int $callback If string $event provided, expects PHP callback; for a ListenerAggregate $event, this will be the priority
-     * @param  int $priority If provided, the priority at which to register the callback
+     * @param  string|array|Zend_EventManager_ListenerAggregate $event    An event or array of event names. If a ListenerAggregate, proxies to {@link attachAggregate()}.
+     * @param  callback|int                                     $callback If string $event provided, expects PHP callback; for a ListenerAggregate $event, this will be the priority
+     * @param  int                                              $priority If provided, the priority at which to register the callback
      * @return Zend_Stdlib_CallbackHandler|mixed CallbackHandler if attaching callback (to allow later unsubscribe); mixed if attaching aggregate
      */
     public function attach($event, $callback = null, $priority = 1)
@@ -279,10 +282,12 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
         // Null callback is invalid
         if (null === $callback) {
             // require_once 'Zend/EventManager/Exception/InvalidArgumentException.php';
-            throw new Zend_EventManager_Exception_InvalidArgumentException(sprintf(
-                '%s: expects a callback; none provided',
-                __METHOD__
-            ));
+            throw new Zend_EventManager_Exception_InvalidArgumentException(
+                sprintf(
+                    '%s: expects a callback; none provided',
+                    __METHOD__
+                )
+            );
         }
 
         // Array of events should be registered individually, and return an array of all listeners
@@ -315,7 +320,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * methods.
      *
      * @param  Zend_EventManager_ListenerAggregate $aggregate
-     * @param  int $priority If provided, a suggested priority for the aggregate to use
+     * @param  int                                 $priority  If provided, a suggested priority for the aggregate to use
      * @return mixed return value of {@link Zend_EventManager_ListenerAggregate::attach()}
      */
     public function attachAggregate(Zend_EventManager_ListenerAggregate $aggregate, $priority = 1)
@@ -338,11 +343,13 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
 
         if (!$listener instanceof Zend_Stdlib_CallbackHandler) {
             // require_once 'Zend/EventManager/Exception/InvalidArgumentException.php';
-            throw new Zend_EventManager_Exception_InvalidArgumentException(sprintf(
-                '%s: expected a Zend_EventManager_ListenerAggregate or Zend_Stdlib_CallbackHandler; received "%s"',
-                __METHOD__,
-                (is_object($listener) ? get_class($listener) : gettype($listener))
-            ));
+            throw new Zend_EventManager_Exception_InvalidArgumentException(
+                sprintf(
+                    '%s: expected a Zend_EventManager_ListenerAggregate or Zend_Stdlib_CallbackHandler; received "%s"',
+                    __METHOD__,
+                    (is_object($listener) ? get_class($listener) : gettype($listener))
+                )
+            );
         }
 
         $event = $listener->getMetadatum('event');
@@ -431,7 +438,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      * Actual functionality for triggering listeners, to which both trigger() and triggerUntil()
      * delegate.
      *
-     * @param  string           $event Event name
+     * @param  string           $event    Event name
      * @param  EventDescription $e
      * @param  null|callback    $callback
      * @return ResponseCollection

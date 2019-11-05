@@ -103,7 +103,7 @@ abstract class Zend_View_Helper_HtmlElement extends Zend_View_Helper_Abstract
      * @access public
      *
      * @param array $attribs From this array, each key-value pair is
-     * converted to an attribute name and value.
+     *                       converted to an attribute name and value.
      *
      * @return string The XHTML for the attributes.
      */

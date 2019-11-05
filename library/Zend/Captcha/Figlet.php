@@ -19,10 +19,14 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** @see Zend_Captcha_Word */
+/**
+ * @see Zend_Captcha_Word 
+ */
 // require_once 'Zend/Captcha/Word.php';
 
-/** @see Zend_Text_Figlet */
+/**
+ * @see Zend_Text_Figlet 
+ */
 // require_once 'Zend/Text/Figlet.php';
 
 /**
@@ -71,8 +75,8 @@ class Zend_Captcha_Figlet extends Zend_Captcha_Word
     /**
      * Display the captcha
      *
-     * @param Zend_View_Interface $view
-     * @param mixed $element
+     * @param  Zend_View_Interface $view
+     * @param  mixed               $element
      * @return string
      */
     public function render(Zend_View_Interface $view = null, $element = null)

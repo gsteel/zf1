@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Log_Filter_Abstract */
+/**
+ * Zend_Log_Filter_Abstract 
+ */
 // require_once 'Zend/Log/Filter/Abstract.php';
 
 /**
@@ -47,8 +49,8 @@ class Zend_Log_Filter_Priority extends Zend_Log_Filter_Abstract
      * Filter logging by $priority.  By default, it will accept any log
      * event whose priority value is less than or equal to $priority.
      *
-     * @param  integer  $priority  Priority
-     * @param  string   $operator  Comparison operator
+     * @param  integer $priority Priority
+     * @param  string  $operator Comparison operator
      * @return void
      * @throws Zend_Log_Exception
      */
@@ -72,10 +74,12 @@ class Zend_Log_Filter_Priority extends Zend_Log_Filter_Abstract
     static public function factory($config)
     {
         $config = self::_parseConfig($config);
-        $config = array_merge(array(
+        $config = array_merge(
+            array(
             'priority' => null,
             'operator' => null,
-        ), $config);
+            ), $config
+        );
 
         // Add support for constants
         if (!is_numeric($config['priority']) && isset($config['priority']) && defined($config['priority'])) {
@@ -91,7 +95,7 @@ class Zend_Log_Filter_Priority extends Zend_Log_Filter_Abstract
     /**
      * Returns TRUE to accept the message, FALSE to block it.
      *
-     * @param  array    $event    event data
+     * @param  array $event event data
      * @return boolean            accepted?
      */
     public function accept($event)

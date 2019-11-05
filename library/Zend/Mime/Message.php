@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Mime
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Mime
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -30,10 +30,10 @@
 // require_once 'Zend/Mime/Part.php';
 
 /**
- * @category   Zend
- * @package    Zend_Mime
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Mime
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Mime_Message
 {
@@ -137,7 +137,7 @@ class Zend_Mime_Message
      * object set by this call will be used. Otherwise, a new Zend_Mime object
      * is generated and used.
      *
-     * @param string $EOL EOL string; defaults to {@link Zend_Mime::LINEEND}
+     * @param  string $EOL EOL string; defaults to {@link Zend_Mime::LINEEND}
      * @return string
      */
     public function generateMessage($EOL = Zend_Mime::LINEEND)
@@ -168,7 +168,7 @@ class Zend_Mime_Message
     /**
      * Get the headers of a given part as an array
      *
-     * @param int $partnum
+     * @param  int $partnum
      * @return array
      */
     public function getPartHeadersArray($partnum)
@@ -250,14 +250,13 @@ class Zend_Mime_Message
      *
      * @param  string $message
      * @param  string $boundary
-     * @param  string $EOL EOL string; defaults to {@link Zend_Mime::LINEEND}
+     * @param  string $EOL      EOL string; defaults to {@link Zend_Mime::LINEEND}
      * @throws Zend_Exception
      * @return Zend_Mime_Message
      */
     public static function createFromMessage(
         $message, $boundary, $EOL = Zend_Mime::LINEEND
-    )
-    {
+    ) {
         // require_once 'Zend/Mime/Decode.php';
         $parts = Zend_Mime_Decode::splitMessageStruct($message, $boundary, $EOL);
 
@@ -270,31 +269,31 @@ class Zend_Mime_Message
                  * @todo check for characterset and filename
                  */
                 switch (strtolower($key)) {
-                    case 'content-type':
-                        $newPart->type = $value;
-                        break;
-                    case 'content-transfer-encoding':
-                        $newPart->encoding = $value;
-                        break;
-                    case 'content-id':
-                        $newPart->id = trim($value, '<>');
-                        break;
-                    case 'content-disposition':
-                        $newPart->disposition = $value;
-                        break;
-                    case 'content-description':
-                        $newPart->description = $value;
-                        break;
-                    case 'content-location':
-                        $newPart->location = $value;
-                        break;
-                    case 'content-language':
-                        $newPart->language = $value;
-                        break;
-                    default:
-                        throw new Zend_Exception(
-                            'Unknown header ignored for MimePart:' . $key
-                        );
+                case 'content-type':
+                    $newPart->type = $value;
+                    break;
+                case 'content-transfer-encoding':
+                    $newPart->encoding = $value;
+                    break;
+                case 'content-id':
+                    $newPart->id = trim($value, '<>');
+                    break;
+                case 'content-disposition':
+                    $newPart->disposition = $value;
+                    break;
+                case 'content-description':
+                    $newPart->description = $value;
+                    break;
+                case 'content-location':
+                    $newPart->location = $value;
+                    break;
+                case 'content-language':
+                    $newPart->language = $value;
+                    break;
+                default:
+                    throw new Zend_Exception(
+                        'Unknown header ignored for MimePart:' . $key
+                    );
                 }
             }
             $res->addPart($newPart);

@@ -12,19 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /**
  * Representation of an event
  *
- * @category   Zend
- * @package    Zend_EventManager
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_EventManager
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 interface Zend_EventManager_EventDescription
 {
@@ -53,7 +53,7 @@ interface Zend_EventManager_EventDescription
      * Get a single parameter by name
      * 
      * @param  string $name 
-     * @param  mixed $default Default value to return if parameter does not exist
+     * @param  mixed  $default Default value to return if parameter does not exist
      * @return mixed
      */
     public function getParam($name, $default = null);
@@ -86,7 +86,7 @@ interface Zend_EventManager_EventDescription
      * Set a single parameter by key
      * 
      * @param  string $name 
-     * @param  mixed $value 
+     * @param  mixed  $value 
      * @return void
      */
     public function setParam($name, $value);

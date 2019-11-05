@@ -12,13 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Form
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Element_Xhtml */
+/**
+ * Zend_Form_Element_Xhtml 
+ */
 // require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
@@ -99,7 +101,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
      * Set plugin loader
      *
      * @param  Zend_Loader_PluginLoader_Interface $loader
-     * @param  string $type
+     * @param  string                             $type
      * @return Zend_Form_Element_File
      */
     public function setPluginLoader(Zend_Loader_PluginLoader_Interface $loader, $type)
@@ -130,9 +132,11 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
 
         if (!array_key_exists($type, $this->_loaders)) {
             // require_once 'Zend/Loader/PluginLoader.php';
-            $loader = new Zend_Loader_PluginLoader(array(
+            $loader = new Zend_Loader_PluginLoader(
+                array(
                 'Zend_File_Transfer_Adapter' => 'Zend/File/Transfer/Adapter/',
-            ));
+                )
+            );
             $this->setPluginLoader($loader, self::TRANSFER_ADAPTER);
         }
 
@@ -215,8 +219,8 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
      * Add Validator; proxy to adapter
      *
      * @param  string|Zend_Validate_Interface $validator
-     * @param  bool $breakChainOnFailure
-     * @param  mixed $options
+     * @param  bool                           $breakChainOnFailure
+     * @param  mixed                          $options
      * @return Zend_Form_Element_File
      */
     public function addValidator($validator, $breakChainOnFailure = false, $options = array())
@@ -557,7 +561,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
     /**
      * Set a multifile element
      *
-     * @param integer $count Number of file elements
+     * @param  integer $count Number of file elements
      * @return Zend_Form_Element_File Provides fluent interface
      */
     public function setMultiFile($count)
@@ -646,20 +650,20 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
             $setting = (integer) substr($setting, 0, -1);
 
             switch ($type) {
-                case 'K' :
-                    $setting *= 1024;
-                    break;
+            case 'K' :
+                $setting *= 1024;
+                break;
 
-                case 'M' :
-                    $setting *= 1024 * 1024;
-                    break;
+            case 'M' :
+                $setting *= 1024 * 1024;
+                break;
 
-                case 'G' :
-                    $setting *= 1024 * 1024 * 1024;
-                    break;
+            case 'G' :
+                $setting *= 1024 * 1024 * 1024;
+                break;
 
-                default :
-                    break;
+            default :
+                break;
             }
         }
 
@@ -670,7 +674,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
      * Set if the file will be uploaded when getting the value
      * This defaults to false which will force receive() when calling getValues()
      *
-     * @param boolean $flag Sets if the file is handled as the elements value
+     * @param  boolean $flag Sets if the file is handled as the elements value
      * @return Zend_Form_Element_File
      */
     public function setValueDisabled($flag)
@@ -825,7 +829,7 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
     /**
      * Returns the hash for this file element
      *
-     * @param string $hash (Optional) Hash algorithm to use
+     * @param  string $hash (Optional) Hash algorithm to use
      * @return string|array Hashstring
      */
     public function getHash($hash = 'crc32')

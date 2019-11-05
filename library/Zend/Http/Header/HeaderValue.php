@@ -46,8 +46,8 @@ final class Zend_Http_Header_HeaderValue
      * tabs are allowed in values; only one whitespace character is allowed
      * between visible characters.
      *
-     * @see http://en.wikipedia.org/wiki/HTTP_response_splitting
-     * @param string $value
+     * @see    http://en.wikipedia.org/wiki/HTTP_response_splitting
+     * @param  string $value
      * @return string
      */
     public static function filter($value)
@@ -83,8 +83,8 @@ final class Zend_Http_Header_HeaderValue
      * tabs are allowed in values; only one whitespace character is allowed
      * between visible characters.
      *
-     * @see http://en.wikipedia.org/wiki/HTTP_response_splitting
-     * @param string $value
+     * @see    http://en.wikipedia.org/wiki/HTTP_response_splitting
+     * @param  string $value
      * @return bool
      */
     public static function isValid($value)
@@ -113,7 +113,7 @@ final class Zend_Http_Header_HeaderValue
     /**
      * Assert a header value is valid.
      *
-     * @param string $value
+     * @param  string $value
      * @throws Exception\RuntimeException for invalid values
      * @return void
      */

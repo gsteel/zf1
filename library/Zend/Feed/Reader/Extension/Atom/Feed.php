@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -40,10 +40,10 @@
 // require_once 'Zend/Feed/Reader/Collection/Author.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Reader_Extension_Atom_Feed
     extends Zend_Feed_Reader_Extension_FeedAbstract
@@ -421,8 +421,10 @@ class Zend_Feed_Reader_Extension_Atom_Feed
         }
         $hubs = array();
 
-        $list = $this->_xpath->query($this->getXpathPrefix()
-            . '//atom:link[@rel="hub"]/@href');
+        $list = $this->_xpath->query(
+            $this->getXpathPrefix()
+            . '//atom:link[@rel="hub"]/@href'
+        );
 
         if ($list->length) {
             foreach ($list as $uri) {
@@ -561,12 +563,12 @@ class Zend_Feed_Reader_Extension_Atom_Feed
         }
         $atomDetected = $this->_getAtomType();
         switch ($atomDetected) {
-            case Zend_Feed_Reader::TYPE_ATOM_03:
-                $this->_xpath->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_03);
-                break;
-            default:
-                $this->_xpath->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_10);
-                break;
+        case Zend_Feed_Reader::TYPE_ATOM_03:
+            $this->_xpath->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_03);
+            break;
+        default:
+            $this->_xpath->registerNamespace('atom', Zend_Feed_Reader::NAMESPACE_ATOM_10);
+            break;
         }
     }
 
@@ -579,11 +581,13 @@ class Zend_Feed_Reader_Extension_Atom_Feed
         $prefixAtom03 = $dom->lookupPrefix(Zend_Feed_Reader::NAMESPACE_ATOM_03);
         $prefixAtom10 = $dom->lookupPrefix(Zend_Feed_Reader::NAMESPACE_ATOM_10);
         if ($dom->isDefaultNamespace(Zend_Feed_Reader::NAMESPACE_ATOM_10)
-        || !empty($prefixAtom10)) {
+            || !empty($prefixAtom10)
+        ) {
             return Zend_Feed_Reader::TYPE_ATOM_10;
         }
         if ($dom->isDefaultNamespace(Zend_Feed_Reader::NAMESPACE_ATOM_03)
-        || !empty($prefixAtom03)) {
+            || !empty($prefixAtom03)
+        ) {
             return Zend_Feed_Reader::TYPE_ATOM_03;
         }
     }

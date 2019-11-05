@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** Zend_Log_Filter_Interface */
+/**
+ * Zend_Log_Filter_Interface 
+ */
 // require_once 'Zend/Log/Filter/Abstract.php';
 
 /**
@@ -44,8 +46,8 @@ class Zend_Log_Filter_Suppress extends Zend_Log_Filter_Abstract
      * Call suppress(true) to suppress all log events.
      * Call suppress(false) to accept all log events.
      *
-     * @param  boolean  $suppress  Should all log events be suppressed?
-     * @return  void
+     * @param  boolean $suppress Should all log events be suppressed?
+     * @return void
      */
     public function suppress($suppress)
     {
@@ -55,7 +57,7 @@ class Zend_Log_Filter_Suppress extends Zend_Log_Filter_Abstract
     /**
      * Returns TRUE to accept the message, FALSE to block it.
      *
-     * @param  array    $event    event data
+     * @param  array $event event data
      * @return boolean            accepted?
      */
     public function accept($event)

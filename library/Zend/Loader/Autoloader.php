@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Loader */
+/**
+ * Zend_Loader 
+ */
 require_once 'Zend/Loader.php';
 
 /**
@@ -265,10 +267,14 @@ class Zend_Loader_Autoloader
         }
 
         $this->_zfPath = $this->_getVersionPath($path, $version);
-        set_include_path(implode(PATH_SEPARATOR, array(
-            $this->_zfPath,
-            get_include_path(),
-        )));
+        set_include_path(
+            implode(
+                PATH_SEPARATOR, array(
+                $this->_zfPath,
+                get_include_path(),
+                )
+            )
+        );
         return $this;
     }
 
@@ -371,8 +377,8 @@ class Zend_Loader_Autoloader
     /**
      * Add an autoloader to the beginning of the stack
      *
-     * @param  object|array|string $callback PHP callback or Zend_Loader_Autoloader_Interface implementation
-     * @param  string|array $namespace Specific namespace(s) under which to register callback
+     * @param  object|array|string $callback  PHP callback or Zend_Loader_Autoloader_Interface implementation
+     * @param  string|array        $namespace Specific namespace(s) under which to register callback
      * @return Zend_Loader_Autoloader
      */
     public function unshiftAutoloader($callback, $namespace = '')
@@ -394,8 +400,8 @@ class Zend_Loader_Autoloader
     /**
      * Append an autoloader to the autoloader stack
      *
-     * @param  object|array|string $callback PHP callback or Zend_Loader_Autoloader_Interface implementation
-     * @param  string|array $namespace Specific namespace(s) under which to register callback
+     * @param  object|array|string $callback  PHP callback or Zend_Loader_Autoloader_Interface implementation
+     * @param  string|array        $namespace Specific namespace(s) under which to register callback
      * @return Zend_Loader_Autoloader
      */
     public function pushAutoloader($callback, $namespace = '')
@@ -417,8 +423,8 @@ class Zend_Loader_Autoloader
     /**
      * Remove an autoloader from the autoloader stack
      *
-     * @param  object|array|string $callback PHP callback or Zend_Loader_Autoloader_Interface implementation
-     * @param  null|string|array $namespace Specific namespace(s) from which to remove autoloader
+     * @param  object|array|string $callback  PHP callback or Zend_Loader_Autoloader_Interface implementation
+     * @param  null|string|array   $namespace Specific namespace(s) from which to remove autoloader
      * @return Zend_Loader_Autoloader
      */
     public function removeAutoloader($callback, $namespace = null)
@@ -487,7 +493,7 @@ class Zend_Loader_Autoloader
     /**
      * Set autoloaders for a specific namespace
      *
-     * @param  array $autoloaders
+     * @param  array  $autoloaders
      * @param  string $namespace
      * @return Zend_Loader_Autoloader
      */
@@ -577,7 +583,7 @@ class Zend_Loader_Autoloader
 
             if (('latest' == $version)
                 || ((strlen($matchedVersion) >= $versionLen)
-                    && (0 === strpos($matchedVersion, $version)))
+                && (0 === strpos($matchedVersion, $version)))
             ) {
                 $versions[$matchedVersion] = $dir . '/library';
             }

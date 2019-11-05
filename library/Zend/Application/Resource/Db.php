@@ -52,7 +52,7 @@ class Zend_Application_Resource_Db extends Zend_Application_Resource_ResourceAbs
     /**
      * Set the adapter params
      *
-     * @param array $params
+     * @param  array $params
      * @return Zend_Application_Resource_Db
      */
     public function setParams(array $params)
@@ -74,7 +74,7 @@ class Zend_Application_Resource_Db extends Zend_Application_Resource_ResourceAbs
     /**
      * Set whether to use this as default table adapter
      *
-     * @param bool $isDefaultTableAdapter
+     * @param  bool $isDefaultTableAdapter
      * @return Zend_Application_Resource_Db
      */
     public function setIsDefaultTableAdapter($isDefaultTableAdapter)
@@ -131,7 +131,7 @@ class Zend_Application_Resource_Db extends Zend_Application_Resource_ResourceAbs
     /**
      * Set the default metadata cache
      *
-     * @param string|Zend_Cache_Core $cache
+     * @param  string|Zend_Cache_Core $cache
      * @return Zend_Application_Resource_Db
      */
     public function setDefaultMetadataCache($cache)

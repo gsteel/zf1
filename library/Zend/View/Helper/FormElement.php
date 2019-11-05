@@ -131,7 +131,7 @@ abstract class Zend_View_Helper_FormElement extends Zend_View_Helper_HtmlElement
 
         // Disable attribute
         if (array_key_exists('disable', $attribs)) {
-           if (is_scalar($attribs['disable'])) {
+            if (is_scalar($attribs['disable'])) {
                 // disable the element
                 $info['disable'] = (bool)$attribs['disable'];
             } else if (is_array($attribs['disable'])) {
@@ -143,13 +143,17 @@ abstract class Zend_View_Helper_FormElement extends Zend_View_Helper_HtmlElement
         if (array_key_exists('id', $attribs)) {
             $info['id'] = (string)$attribs['id'];
         } else if ('' !== $info['name']) {
-            $info['id'] = trim(strtr($info['name'],
-                                     array('[' => '-', ']' => '')), '-');
+            $info['id'] = trim(
+                strtr(
+                    $info['name'],
+                    array('[' => '-', ']' => '')
+                ), '-'
+            );
         }
         
         // Remove NULL name attribute override
         if (array_key_exists('name', $attribs) && is_null($attribs['name'])) {
-        	unset($attribs['name']);
+            unset($attribs['name']);
         }
         
         // Override name in info if specified in attribs
@@ -188,8 +192,8 @@ abstract class Zend_View_Helper_FormElement extends Zend_View_Helper_HtmlElement
      *
      * @access protected
      *
-     * @param string $name The element name.
-     * @param string $value The element value.
+     * @param string $name    The element name.
+     * @param string $value   The element value.
      * @param array  $attribs Attributes for the element.
      *
      * @return string A hidden element.

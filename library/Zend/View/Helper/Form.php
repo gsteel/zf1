@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_FormElement */
+/**
+ * Zend_View_Helper_FormElement 
+ */
 // require_once 'Zend/View/Helper/FormElement.php';
 
 /**
@@ -36,8 +38,8 @@ class Zend_View_Helper_Form extends Zend_View_Helper_FormElement
     /**
      * Render HTML form
      *
-     * @param  string $name Form name
-     * @param  null|array $attribs HTML form attributes
+     * @param  string       $name    Form name
+     * @param  null|array   $attribs HTML form attributes
      * @param  false|string $content Form content
      * @return string
      */
@@ -67,7 +69,7 @@ class Zend_View_Helper_Form extends Zend_View_Helper_FormElement
             unset($attribs['action']);
         }
 
-        if ( array_key_exists('name', $attribs) && empty($attribs['id'])) {
+        if (array_key_exists('name', $attribs) && empty($attribs['id'])) {
             unset($attribs['id']);
         }
 

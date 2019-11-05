@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -27,16 +27,17 @@
 // require_once 'Zend/Date.php';
 
 /**
- * @category   Zend
- * @package    Zend_Feed_Reader
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed_Reader
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Reader_Extension_Syndication_Feed
     extends Zend_Feed_Reader_Extension_FeedAbstract
 {
     /**
      * Get update period
+     *
      * @return string
      */
     public function getUpdatePeriod()
@@ -51,20 +52,22 @@ class Zend_Feed_Reader_Extension_Syndication_Feed
 
         switch ($period)
         {
-            case 'hourly':
-            case 'daily':
-            case 'weekly':
-            case 'yearly':
-                return $period;
-            default:
-                throw new Zend_Feed_Exception("Feed specified invalid update period: '$period'."
+        case 'hourly':
+        case 'daily':
+        case 'weekly':
+        case 'yearly':
+            return $period;
+        default:
+            throw new Zend_Feed_Exception(
+                "Feed specified invalid update period: '$period'."
                     .  " Must be one of hourly, daily, weekly or yearly"
-                );
+            );
         }
     }
 
     /**
      * Get update frequency
+     *
      * @return int
      */
     public function getUpdateFrequency()
@@ -82,6 +85,7 @@ class Zend_Feed_Reader_Extension_Syndication_Feed
 
     /**
      * Get update frequency as ticks
+     *
      * @return int
      */
     public function getUpdateFrequencyAsTicks()
@@ -100,17 +104,17 @@ class Zend_Feed_Reader_Extension_Syndication_Feed
         switch ($period)
         {
             //intentional fall through
-            case 'yearly':
-                $ticks *= 52; //TODO: fix generalisation, how?
-            case 'weekly':
-                $ticks *= 7;
-            case 'daily':
-                $ticks *= 24;
-            case 'hourly':
-                $ticks *= 3600;
-                break;
-            default: //Never arrive here, exception thrown in getPeriod()
-                break;
+        case 'yearly':
+            $ticks *= 52; //TODO: fix generalisation, how?
+        case 'weekly':
+            $ticks *= 7;
+        case 'daily':
+            $ticks *= 24;
+        case 'hourly':
+            $ticks *= 3600;
+            break;
+        default: //Never arrive here, exception thrown in getPeriod()
+            break;
         }
 
         return $ticks / $freq;
@@ -135,8 +139,8 @@ class Zend_Feed_Reader_Extension_Syndication_Feed
     /**
      * Get the entry data specified by name
      *
-     * @param string $name
-     * @param string $type
+     * @param  string $name
+     * @param  string $type
      * @return mixed|null
      */
     private function _getData($name, $type = 'string')

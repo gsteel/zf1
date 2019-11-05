@@ -21,7 +21,9 @@
  */
 
 
-/** Zend_XmlRpc_Client_Exception */
+/**
+ * Zend_XmlRpc_Client_Exception 
+ */
 // require_once 'Zend/XmlRpc/Client/Exception.php';
 
 
@@ -35,4 +37,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_XmlRpc_Client_FaultException extends Zend_XmlRpc_Client_Exception
-{}
+{
+
+}

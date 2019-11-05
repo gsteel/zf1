@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Reflection
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Reflection
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -35,10 +35,10 @@
 // require_once 'Zend/Reflection/Docblock.php';
 
 /**
- * @category   Zend
- * @package    Zend_Reflection
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Reflection
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Reflection_Class extends ReflectionClass
 {
@@ -82,7 +82,7 @@ class Zend_Reflection_Class extends ReflectionClass
     /**
      * Return the start line of the class
      *
-     * @param bool $includeDocComment
+     * @param  bool $includeDocComment
      * @return int
      */
     public function getStartLine($includeDocComment = false)
@@ -99,7 +99,7 @@ class Zend_Reflection_Class extends ReflectionClass
     /**
      * Return the contents of the class
      *
-     * @param bool $includeDocblock
+     * @param  bool $includeDocblock
      * @return string
      */
     public function getContents($includeDocblock = true)
@@ -224,7 +224,7 @@ class Zend_Reflection_Class extends ReflectionClass
     /**
      * Return reflection properties of this class
      *
-     * @param  int $filter
+     * @param  int    $filter
      * @param  string $reflectionClass Name of reflection class to use
      * @return array Array of Zend_Reflection_Property
      */

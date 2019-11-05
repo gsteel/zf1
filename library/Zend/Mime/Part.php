@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Mime
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Mime
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -27,10 +27,10 @@
 /**
  * Class representing a MIME part.
  *
- * @category   Zend
- * @package    Zend_Mime
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Mime
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Mime_Part
 {
@@ -169,43 +169,43 @@ class Zend_Mime_Part
 
         //stream_filter_remove(); // ??? is that right?
         switch ($this->encoding) {
-            case Zend_Mime::ENCODING_QUOTEDPRINTABLE:
-                $filter = stream_filter_append(
-                    $this->_content,
-                    'convert.quoted-printable-encode',
-                    STREAM_FILTER_READ,
-                    array(
-                        'line-length'      => 76,
-                        'line-break-chars' => Zend_Mime::LINEEND
-                    )
+        case Zend_Mime::ENCODING_QUOTEDPRINTABLE:
+            $filter = stream_filter_append(
+                $this->_content,
+                'convert.quoted-printable-encode',
+                STREAM_FILTER_READ,
+                array(
+                    'line-length'      => 76,
+                    'line-break-chars' => Zend_Mime::LINEEND
+                )
+            );
+            if (!is_resource($filter)) {
+                // require_once 'Zend/Mime/Exception.php';
+                throw new Zend_Mime_Exception(
+                    'Failed to append quoted-printable filter'
                 );
-                if (!is_resource($filter)) {
-                    // require_once 'Zend/Mime/Exception.php';
-                    throw new Zend_Mime_Exception(
-                        'Failed to append quoted-printable filter'
-                    );
-                }
-                break;
+            }
+            break;
 
-            case Zend_Mime::ENCODING_BASE64:
-                $filter = stream_filter_append(
-                    $this->_content,
-                    'convert.base64-encode',
-                    STREAM_FILTER_READ,
-                    array(
-                        'line-length'      => 76,
-                        'line-break-chars' => Zend_Mime::LINEEND
-                    )
+        case Zend_Mime::ENCODING_BASE64:
+            $filter = stream_filter_append(
+                $this->_content,
+                'convert.base64-encode',
+                STREAM_FILTER_READ,
+                array(
+                    'line-length'      => 76,
+                    'line-break-chars' => Zend_Mime::LINEEND
+                )
+            );
+            if (!is_resource($filter)) {
+                // require_once 'Zend/Mime/Exception.php';
+                throw new Zend_Mime_Exception(
+                    'Failed to append base64 filter'
                 );
-                if (!is_resource($filter)) {
-                    // require_once 'Zend/Mime/Exception.php';
-                    throw new Zend_Mime_Exception(
-                        'Failed to append base64 filter'
-                    );
-                }
-                break;
+            }
+            break;
 
-            default:
+        default:
         }
 
         return $this->_content;

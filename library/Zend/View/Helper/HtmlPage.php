@@ -36,13 +36,11 @@ class Zend_View_Helper_HtmlPage extends Zend_View_Helper_HtmlObject
 {
     /**
      * Default file type for html
-     *
      */
     const TYPE = 'text/html';
 
     /**
      * Object classid
-     *
      */
     const ATTRIB_CLASSID  = 'clsid:25336920-03F9-11CF-8FD0-00AA00686F13';
 
@@ -56,10 +54,10 @@ class Zend_View_Helper_HtmlPage extends Zend_View_Helper_HtmlObject
     /**
      * Output a html object tag
      *
-     * @param string $data The html url
-     * @param array  $attribs Attribs for the object tag
-     * @param array  $params Params for in the object tag
-     * @param string $content Alternative content
+     * @param  string $data    The html url
+     * @param  array  $attribs Attribs for the object tag
+     * @param  array  $params  Params for in the object tag
+     * @param  string $content Alternative content
      * @return string
      */
     public function htmlPage($data, array $attribs = array(), array $params = array(), $content = null)

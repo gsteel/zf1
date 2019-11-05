@@ -13,11 +13,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_OpenId
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_OpenId
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,7 +25,9 @@
  */
 // require_once "Zend/Controller/Response/Abstract.php";
 
-/** @see Zend_Crypt_Math */
+/**
+ * @see Zend_Crypt_Math 
+ */
 // require_once 'Zend/Crypt/Math.php';
 
 /**
@@ -36,10 +38,10 @@
  * Consumer and Provider. They include functions for Diffie-Hellman keys
  * generation and exchange, URL normalization, HTTP redirection and some others.
  *
- * @category   Zend
- * @package    Zend_OpenId
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_OpenId
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_OpenId
 {
@@ -74,7 +76,7 @@ class Zend_OpenId
      * Sets alternative request URL that can be used to override the default
      * selfUrl() response
      *
-     * @param string $selfUrl the URL to be set
+     * @param  string $selfUrl the URL to be set
      * @return string the old value of overriding URL
      */
     static public function setSelfUrl($selfUrl = null)
@@ -158,7 +160,7 @@ class Zend_OpenId
     /**
      * Returns an absolute URL for the given one
      *
-     * @param string $url absilute or relative URL
+     * @param  string $url absilute or relative URL
      * @return string
      */
     static public function absoluteUrl($url)
@@ -199,7 +201,7 @@ class Zend_OpenId
     /**
      * Converts variable/value pairs into URL encoded query string
      *
-     * @param array $params variable/value pairs
+     * @param  array $params variable/value pairs
      * @return string URL encoded query string
      */
     static public function paramsToQuery($params)
@@ -219,7 +221,7 @@ class Zend_OpenId
      * The function gets URL argument by reference and modifies it.
      * It returns true on success and false of failure.
      *
-     * @param string &$id url to be normalized
+     * @param  string &$id url to be normalized
      * @return bool
      */
     static public function normalizeUrl(&$id)
@@ -257,12 +259,13 @@ class Zend_OpenId
                 }
                 ++$i;
                 $ch = chr($c);
-                if (($ch >= 'A' && $ch <= 'Z') ||
-                    ($ch >= 'a' && $ch <= 'z') ||
-                    $ch == '-' ||
-                    $ch == '.' ||
-                    $ch == '_' ||
-                    $ch == '~') {
+                if (($ch >= 'A' && $ch <= 'Z') 
+                    || ($ch >= 'a' && $ch <= 'z') 
+                    || $ch == '-' 
+                    || $ch == '.' 
+                    || $ch == '_' 
+                    || $ch == '~'
+                ) {
                     $res .= $ch;
                 } else {
                     $res .= '%';
@@ -380,7 +383,8 @@ class Zend_OpenId
      * 4. URL identifiers MUST then be further normalized by both following
      *    redirects when retrieving their content and finally applying the
      *    rules in Section 6 of [RFC3986] to the final destination URL.
-     * @param string &$id identifier to be normalized
+     *
+     * @param  string &$id identifier to be normalized
      * @return bool
      */
     static public function normalize(&$id)
@@ -400,11 +404,12 @@ class Zend_OpenId
         }
 
         // 7.2.2
-        if ($id[0] == '=' ||
-            $id[0] == '@' ||
-            $id[0] == '+' ||
-            $id[0] == '$' ||
-            $id[0] == '!') {
+        if ($id[0] == '=' 
+            || $id[0] == '@' 
+            || $id[0] == '+' 
+            || $id[0] == '$' 
+            || $id[0] == '!'
+        ) {
             return true;
         }
 
@@ -422,14 +427,14 @@ class Zend_OpenId
      * It may generate redirected request using GET or POST HTTP method.
      * The function never returns.
      *
-     * @param string $url URL to redirect to
-     * @param array $params additional variable/value pairs to send
+     * @param string                            $url      URL to redirect to
+     * @param array                             $params   additional variable/value pairs to send
      * @param Zend_Controller_Response_Abstract $response
-     * @param string $method redirection method ('GET' or 'POST')
+     * @param string                            $method   redirection method ('GET' or 'POST')
      */
     static public function redirect($url, $params = null,
-        Zend_Controller_Response_Abstract $response = null, $method = 'GET')
-    {
+        Zend_Controller_Response_Abstract $response = null, $method = 'GET'
+    ) {
         $url = Zend_OpenId::absoluteUrl($url);
         $body = "";
         if (null === $response) {
@@ -457,9 +462,11 @@ class Zend_OpenId
         if (!empty($body)) {
             $response->setBody($body);
         } else if (!$response->canSendHeaders()) {
-            $response->setBody("<script language=\"JavaScript\"" .
+            $response->setBody(
+                "<script language=\"JavaScript\"" .
                  " type=\"text/javascript\">window.location='$url';" .
-                 "</script>");
+                "</script>"
+            );
         } else {
             $response->setRedirect($url);
         }
@@ -472,7 +479,7 @@ class Zend_OpenId
     /**
      * Produces string of random byte of given length.
      *
-     * @param integer $len length of requested string
+     * @param  integer $len length of requested string
      * @return string RAW random binary string
      */
     static public function randomBytes($len)
@@ -488,8 +495,8 @@ class Zend_OpenId
      * dependent on given PHP configuration. It may use various functions from
      *  ext/openssl, ext/hash, ext/mhash or ext/standard.
      *
-     * @param string $func digest algorithm
-     * @param string $data data to sign
+     * @param  string $func digest algorithm
+     * @param  string $data data to sign
      * @return string RAW digital signature
      * @throws Zend_OpenId_Exception
      */
@@ -503,13 +510,14 @@ class Zend_OpenId
             return sha1($data, true);
         } else if ($func === 'sha256') {
             if (function_exists('mhash')) {
-                return mhash(MHASH_SHA256 , $data);
+                return mhash(MHASH_SHA256, $data);
             }
         }
         // require_once "Zend/OpenId/Exception.php";
         throw new Zend_OpenId_Exception(
             'Unsupported digest algorithm "' . $func . '".',
-            Zend_OpenId_Exception::UNSUPPORTED_DIGEST);
+            Zend_OpenId_Exception::UNSUPPORTED_DIGEST
+        );
     }
 
     /**
@@ -517,16 +525,16 @@ class Zend_OpenId
      * if available or user-level PHP implementation, that is not significantly
      * slower.
      *
-     * @param string $macFunc name of selected hashing algorithm (sha1, sha256)
-     * @param string $data data to sign
-     * @param string $secret shared secret key used for generating the HMAC
-     *  variant of the message digest
+     * @param  string $macFunc name of selected hashing algorithm (sha1, sha256)
+     * @param  string $data    data to sign
+     * @param  string $secret  shared secret key used for generating the HMAC
+     *                         variant of the message digest
      * @return string RAW HMAC value
      */
     static public function hashHmac($macFunc, $data, $secret)
     {
-//        // require_once "Zend/Crypt/Hmac.php";
-//        return Zend_Crypt_Hmac::compute($secret, $macFunc, $data, Zend_Crypt_Hmac::BINARY);
+        //        // require_once "Zend/Crypt/Hmac.php";
+        //        return Zend_Crypt_Hmac::compute($secret, $macFunc, $data, Zend_Crypt_Hmac::BINARY);
         if (function_exists('hash_hmac')) {
             return hash_hmac($macFunc, $data, $secret, true);
         } else {
@@ -545,7 +553,7 @@ class Zend_OpenId
      * Converts binary representation into ext/gmp or ext/bcmath big integer
      * representation.
      *
-     * @param string $bin binary representation of big number
+     * @param  string $bin binary representation of big number
      * @return mixed
      * @throws Zend_OpenId_Exception
      */
@@ -565,14 +573,15 @@ class Zend_OpenId
         // require_once "Zend/OpenId/Exception.php";
         throw new Zend_OpenId_Exception(
             'The system doesn\'t have proper big integer extension',
-            Zend_OpenId_Exception::UNSUPPORTED_LONG_MATH);
+            Zend_OpenId_Exception::UNSUPPORTED_LONG_MATH
+        );
     }
 
     /**
      * Converts internal ext/gmp or ext/bcmath big integer representation into
      * binary string.
      *
-     * @param mixed $bn big number
+     * @param  mixed $bn big number
      * @return string
      * @throws Zend_OpenId_Exception
      */
@@ -594,7 +603,8 @@ class Zend_OpenId
                 // require_once "Zend/OpenId/Exception.php";
                 throw new Zend_OpenId_Exception(
                     'Big integer arithmetic error',
-                    Zend_OpenId_Exception::ERROR_LONG_MATH);
+                    Zend_OpenId_Exception::ERROR_LONG_MATH
+                );
             }
             $bin = "";
             while (bccomp($bn, 0) > 0) {
@@ -609,7 +619,8 @@ class Zend_OpenId
         // require_once "Zend/OpenId/Exception.php";
         throw new Zend_OpenId_Exception(
             'The system doesn\'t have proper big integer extension',
-            Zend_OpenId_Exception::UNSUPPORTED_LONG_MATH);
+            Zend_OpenId_Exception::UNSUPPORTED_LONG_MATH
+        );
     }
 
     /**
@@ -619,9 +630,9 @@ class Zend_OpenId
      * and generator. In this case they will able to create a random shared
      * secret that is never send from one to the other.
      *
-     * @param string $p prime number in binary representation
-     * @param string $g generator in binary representation
-     * @param string $priv_key private key in binary representation
+     * @param  string $p        prime number in binary representation
+     * @param  string $g        generator in binary representation
+     * @param  string $priv_key private key in binary representation
      * @return mixed
      */
     static public function createDhKey($p, $g, $priv_key = null)
@@ -669,7 +680,7 @@ class Zend_OpenId
      * generator 'g', random private key 'priv_key' and corresponding public
      * key 'pub_key'.
      *
-     * @param mixed $dh Diffie-Hellman key
+     * @param  mixed $dh Diffie-Hellman key
      * @return array
      */
     static public function getDhKeyDetails($dh)
@@ -688,8 +699,8 @@ class Zend_OpenId
      * Computes the shared secret from the private DH value $dh and the other
      * party's public value in $pub_key
      *
-     * @param string $pub_key other party's public value
-     * @param mixed $dh Diffie-Hellman key
+     * @param  string $pub_key other party's public value
+     * @param  mixed  $dh      Diffie-Hellman key
      * @return string
      * @throws Zend_OpenId_Exception
      */
@@ -713,7 +724,8 @@ class Zend_OpenId
         // require_once "Zend/OpenId/Exception.php";
         throw new Zend_OpenId_Exception(
             'The system doesn\'t have proper big integer extension',
-            Zend_OpenId_Exception::UNSUPPORTED_LONG_MATH);
+            Zend_OpenId_Exception::UNSUPPORTED_LONG_MATH
+        );
     }
 
     /**
@@ -728,7 +740,7 @@ class Zend_OpenId
      * bit of the two's complement representation MUST be zero. If it is not,
      * implementations MUST add a zero byte at the front of the string.
      *
-     * @param string $str binary representation of arbitrary precision integer
+     * @param  string $str binary representation of arbitrary precision integer
      * @return string big-endian signed representation
      */
     static public function btwoc($str)
@@ -742,13 +754,14 @@ class Zend_OpenId
     /**
      * Returns lenght of binary string in bytes
      *
-     * @param string $str
+     * @param  string $str
      * @return int the string lenght
      */
     static public function strlen($str)
     {
-        if (extension_loaded('mbstring') &&
-            (((int)ini_get('mbstring.func_overload')) & 2)) {
+        if (extension_loaded('mbstring') 
+            && (((int)ini_get('mbstring.func_overload')) & 2)
+        ) {
             return mb_strlen($str, 'latin1');
         } else {
             return strlen($str);

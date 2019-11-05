@@ -39,7 +39,6 @@ class Zend_XmlRpc_Value_Nil extends Zend_XmlRpc_Value_Scalar
 
     /**
      * Set the value of a nil native type
-     *
      */
     public function __construct()
     {

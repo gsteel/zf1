@@ -12,24 +12,28 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** Zend_Oauth_Http_Utility */
+/**
+ * Zend_Oauth_Http_Utility 
+ */
 // require_once 'Zend/Oauth/Http/Utility.php';
 
-/** Zend_Uri_Http */
+/**
+ * Zend_Uri_Http 
+ */
 // require_once 'Zend/Uri/Http.php';
 
 /**
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Oauth_Http
 {
@@ -74,8 +78,8 @@ class Zend_Oauth_Http
     /**
      * Constructor
      *
-     * @param  Zend_Oauth_Consumer $consumer
-     * @param  null|array $parameters
+     * @param  Zend_Oauth_Consumer          $consumer
+     * @param  null|array                   $parameters
      * @param  null|Zend_Oauth_Http_Utility $utility
      * @return void
      */
@@ -197,8 +201,8 @@ class Zend_Oauth_Http
      * Return an instance of Zend_Http_Client configured to use the Query
      * String scheme for an OAuth driven HTTP request.
      *
-     * @param array $params
-     * @param string $url
+     * @param  array  $params
+     * @param  string $url
      * @return Zend_Http_Client
      */
     public function getRequestSchemeQueryStringClient(array $params, $url)
@@ -223,20 +227,20 @@ class Zend_Oauth_Http
     protected function _assessRequestAttempt(Zend_Http_Response $response = null)
     {
         switch ($this->_preferredRequestScheme) {
-            case Zend_Oauth::REQUEST_SCHEME_HEADER:
-                $this->_preferredRequestScheme = Zend_Oauth::REQUEST_SCHEME_POSTBODY;
-                break;
-            case Zend_Oauth::REQUEST_SCHEME_POSTBODY:
-                $this->_preferredRequestScheme = Zend_Oauth::REQUEST_SCHEME_QUERYSTRING;
-                break;
-            default:
-                // require_once 'Zend/Oauth/Exception.php';
-                throw new Zend_Oauth_Exception(
-                    'Could not retrieve a valid Token response from Token URL:'
+        case Zend_Oauth::REQUEST_SCHEME_HEADER:
+            $this->_preferredRequestScheme = Zend_Oauth::REQUEST_SCHEME_POSTBODY;
+            break;
+        case Zend_Oauth::REQUEST_SCHEME_POSTBODY:
+            $this->_preferredRequestScheme = Zend_Oauth::REQUEST_SCHEME_QUERYSTRING;
+            break;
+        default:
+            // require_once 'Zend/Oauth/Exception.php';
+            throw new Zend_Oauth_Exception(
+                'Could not retrieve a valid Token response from Token URL:'
                     . ($response !== null
                         ? PHP_EOL . $response->getBody()
                         : ' No body - check for headers')
-                );
+            );
         }
     }
 
@@ -244,7 +248,7 @@ class Zend_Oauth_Http
      * Generates a valid OAuth Authorization header based on the provided
      * parameters and realm.
      *
-     * @param  array $params
+     * @param  array  $params
      * @param  string $realm
      * @return string
      */

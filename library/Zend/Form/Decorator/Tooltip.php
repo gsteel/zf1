@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
@@ -40,7 +42,7 @@ class Zend_Form_Decorator_Tooltip extends Zend_Form_Decorator_Abstract
      * Translates the title attribute if it is available, if the translator is available
      * and if the translator is not disable on the element being rendered.
      *
-     * @param string $content
+     * @param  string $content
      * @return string
      */
     public function render($content)

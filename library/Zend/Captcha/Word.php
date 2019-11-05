@@ -19,10 +19,14 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** @see Zend_Captcha_Base */
+/**
+ * @see Zend_Captcha_Base 
+ */
 // require_once 'Zend/Captcha/Base.php';
 
-/** @see Zend_Crypt_Math */
+/**
+ * @see Zend_Crypt_Math 
+ */
 // require_once 'Zend/Crypt/Math.php';
 
 /**
@@ -39,14 +43,18 @@
  */
 abstract class Zend_Captcha_Word extends Zend_Captcha_Base
 {
-    /**#@+
+    /**
+     * #@+
+     *
      * @var array Character sets
      */
     static public $V  = array("a", "e", "i", "o", "u", "y");
     static public $VN = array("a", "e", "i", "o", "u", "y","2","3","4","5","6","7","8","9");
     static public $C  = array("b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z");
     static public $CN = array("b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z","2","3","4","5","6","7","8","9");
-    /**#@-*/
+    /**
+     * #@-
+     */
 
     /**
      * Random session ID
@@ -104,16 +112,20 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
      */
     protected $_keepSession = false;
 
-    /**#@+
+    /**
+* #@+
      * Error codes
      */
     const MISSING_VALUE = 'missingValue';
     const MISSING_ID    = 'missingID';
     const BAD_CAPTCHA   = 'badCaptcha';
-    /**#@-*/
+    /**
+     * #@-
+     */
 
     /**
      * Error messages
+     *
      * @var array
      */
     protected $_messageTemplates = array(
@@ -164,7 +176,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
     /**
      * Set word length of captcha
      *
-     * @param integer $wordlen
+     * @param  integer $wordlen
      * @return Zend_Captcha_Word
      */
     public function setWordlen($wordlen)
@@ -189,7 +201,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
     /**
      * Set captcha identifier
      *
-     * @param string $id
+     * @param  string $id
      * @return Zend_Captcha_Word
      */
     protected function _setId($id)
@@ -223,7 +235,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
     /**
      * Sets if session should be preserved on generate()
      *
-     * @param bool $keepSession Should session be kept on generate()?
+     * @param  bool $keepSession Should session be kept on generate()?
      * @return Zend_Captcha_Word
      */
     public function setKeepSession($keepSession)
@@ -245,7 +257,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
     /**
      * Set if numbers should be included in the pattern
      *
-     * @param bool $_useNumbers numbers should be included in the pattern?
+     * @param  bool $_useNumbers numbers should be included in the pattern?
      * @return Zend_Captcha_Word
      */
     public function setUseNumbers($_useNumbers)

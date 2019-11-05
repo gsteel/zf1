@@ -107,10 +107,12 @@ class Zend_Mail_Transport_File extends Zend_Mail_Transport_Abstract
 
         if (!is_writable(dirname($file))) {
             // require_once 'Zend/Mail/Transport/Exception.php';
-            throw new Zend_Mail_Transport_Exception(sprintf(
-                'Target directory "%s" does not exist or is not writable',
-                dirname($file)
-            ));
+            throw new Zend_Mail_Transport_Exception(
+                sprintf(
+                    'Target directory "%s" does not exist or is not writable',
+                    dirname($file)
+                )
+            );
         }
 
         $email = $this->header . $this->EOL . $this->body;
@@ -124,7 +126,7 @@ class Zend_Mail_Transport_File extends Zend_Mail_Transport_Abstract
     /**
      * Default callback for generating filenames
      *
-     * @param Zend_Mail_Transport_File File transport instance
+     * @param  Zend_Mail_Transport_File File transport instance
      * @return string
      */
     public function defaultCallback($transport)

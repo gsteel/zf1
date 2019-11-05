@@ -14,7 +14,7 @@
  *
  * @category  Zend
  * @package   Zend_Uri
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  * @version   $Id$
  */
@@ -35,7 +35,7 @@
  * @category  Zend
  * @package   Zend_Uri
  * @uses      Zend_Uri
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Uri_Http extends Zend_Uri
@@ -312,8 +312,10 @@ class Zend_Uri_Http extends Zend_Uri
         }
 
         // Check the username against the allowed values
-        $status = @preg_match('/^(?:' . $this->_regex['escaped'] . '|[' .
-            self::CHAR_ALNUM . self::CHAR_MARK . ';:&=+$,' . '])+$/', $username);
+        $status = @preg_match(
+            '/^(?:' . $this->_regex['escaped'] . '|[' .
+            self::CHAR_ALNUM . self::CHAR_MARK . ';:&=+$,' . '])+$/', $username
+        );
 
         if ($status === false) {
             // require_once 'Zend/Uri/Exception.php';
@@ -379,8 +381,10 @@ class Zend_Uri_Http extends Zend_Uri
         }
 
         // Check the password against the allowed values
-        $status = @preg_match('/^(?:' . $this->_regex['escaped'] . '|[' .
-            self::CHAR_ALNUM . self::CHAR_MARK . ';:&=+$,' . '])+$/', $password);
+        $status = @preg_match(
+            '/^(?:' . $this->_regex['escaped'] . '|[' .
+            self::CHAR_ALNUM . self::CHAR_MARK . ';:&=+$,' . '])+$/', $password
+        );
 
         if ($status === false) {
             // require_once 'Zend/Uri/Exception.php';

@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_TextBox */
+/**
+ * Zend_Dojo_Form_Element_TextBox 
+ */
 // require_once 'Zend/Dojo/Form/Element/TextBox.php';
 
 /**
@@ -36,6 +38,7 @@ class Zend_Dojo_Form_Element_ValidationTextBox extends Zend_Dojo_Form_Element_Te
 {
     /**
      * Use ValidationTextBox dijit view helper
+     *
      * @var string
      */
     public $helper = 'ValidationTextBox';
@@ -110,7 +113,7 @@ class Zend_Dojo_Form_Element_ValidationTextBox extends Zend_Dojo_Form_Element_Te
      * Set an individual constraint
      *
      * @param  string $key
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return Zend_Dojo_Form_Element_ValidationTextBox
      */
     public function setConstraint($key, $value)
@@ -207,7 +210,7 @@ class Zend_Dojo_Form_Element_ValidationTextBox extends Zend_Dojo_Form_Element_Te
     /**
      * Cast a boolean value to a string
      *
-     * @param  mixed $item
+     * @param  mixed  $item
      * @param  string $key
      * @return void
      */

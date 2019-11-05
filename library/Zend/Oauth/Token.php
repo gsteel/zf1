@@ -12,31 +12,36 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** Zend_Oauth_Http_Utility */
+/**
+ * Zend_Oauth_Http_Utility 
+ */
 // require_once 'Zend/Oauth/Http/Utility.php';
 
 /**
- * @category   Zend
- * @package    Zend_Oauth
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Oauth
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Oauth_Token
 {
-    /**@+
+    /**
+* @+
      * Token constants
      */
     const TOKEN_PARAM_KEY                = 'oauth_token';
     const TOKEN_SECRET_PARAM_KEY         = 'oauth_token_secret';
     const TOKEN_PARAM_CALLBACK_CONFIRMED = 'oauth_callback_confirmed';
-    /**@-*/
+    /**
+     * @-
+     */
 
     /**
      * Token parameters
@@ -60,7 +65,7 @@ abstract class Zend_Oauth_Token
     /**
      * Constructor; basic setup for any Token subclass.
      *
-     * @param  null|Zend_Http_Response $response
+     * @param  null|Zend_Http_Response      $response
      * @param  null|Zend_Oauth_Http_Utility $utility
      * @return void
      */

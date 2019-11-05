@@ -32,7 +32,7 @@ class Zend_Application_Resource_Locale
             if (!isset($options['default'])) {
                 $this->_locale = new Zend_Locale();
             } elseif (!isset($options['force'])
-                      || (bool)$options['force'] == false
+                || (bool)$options['force'] == false
             ) {
                 // Don't force any locale, just go for auto detection
                 Zend_Locale::setDefault($options['default']);
@@ -53,7 +53,7 @@ class Zend_Application_Resource_Locale
     /**
      * Set the cache
      *
-     * @param string|Zend_Cache_Core $cache
+     * @param  string|Zend_Cache_Core $cache
      * @return Zend_Application_Resource_Locale
      */
     public function setCache($cache)

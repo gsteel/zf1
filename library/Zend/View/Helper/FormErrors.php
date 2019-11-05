@@ -42,19 +42,23 @@ class Zend_View_Helper_FormErrors extends Zend_View_Helper_FormElement
      */
     protected $_element;
 
-    /**#@+
+    /**
+     * #@+
+     *
      * @var string Element block start/end tags and separator
      */
     protected $_htmlElementEnd       = '</li></ul>';
     protected $_htmlElementStart     = '<ul%s><li>';
     protected $_htmlElementSeparator = '</li><li>';
-    /**#@-*/
+    /**
+     * #@-
+     */
 
     /**
      * Render form errors
      *
-     * @param  string|array $errors Error(s) to render
-     * @param  array $options
+     * @param  string|array $errors  Error(s) to render
+     * @param  array        $options
      * @return string
      */
     public function formErrors($errors, array $options = null)

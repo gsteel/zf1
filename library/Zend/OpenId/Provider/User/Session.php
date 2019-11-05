@@ -68,7 +68,7 @@ class Zend_OpenId_Provider_User_Session extends Zend_OpenId_Provider_User
     /**
      * Stores information about logged in user in session data
      *
-     * @param string $id user identity URL
+     * @param  string $id user identity URL
      * @return bool
      */
     public function setLoggedInUser($id)

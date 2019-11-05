@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
@@ -45,18 +47,21 @@ class Zend_Form_Decorator_Description extends Zend_Form_Decorator_Abstract
 {
     /**
      * Whether or not to escape the description
+     *
      * @var bool
      */
     protected $_escape;
 
     /**
      * Default placement: append
+     *
      * @var string
      */
     protected $_placement = 'APPEND';
 
     /**
      * HTML tag with which to surround description
+     *
      * @var string
      */
     protected $_tag;
@@ -189,11 +194,11 @@ class Zend_Form_Decorator_Description extends Zend_Form_Decorator_Abstract
         }
 
         switch ($placement) {
-            case self::PREPEND:
-                return $description . $separator . $content;
-            case self::APPEND:
-            default:
-                return $content . $separator . $description;
+        case self::PREPEND:
+            return $description . $separator . $content;
+        case self::APPEND:
+        default:
+            return $content . $separator . $description;
         }
     }
 }

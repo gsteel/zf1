@@ -20,10 +20,14 @@
  * @version    $Id$
  */
 
-/** Zend_Dojo_View_Helper_Dijit */
+/**
+ * Zend_Dojo_View_Helper_Dijit 
+ */
 // require_once 'Zend/Dojo/View/Helper/Dijit.php';
 
-/** Zend_Json */
+/**
+ * Zend_Json 
+ */
 // require_once 'Zend/Json.php';
 
 /**
@@ -69,6 +73,7 @@ class Zend_Dojo_View_Helper_Editor extends Zend_Dojo_View_Helper_Dijit
 
     /**
      * JSON-encoded parameters
+     *
      * @var array
      */
     protected $_jsonParams = array('captureEvents', 'events', 'plugins', 'extraPlugins');
@@ -78,8 +83,8 @@ class Zend_Dojo_View_Helper_Editor extends Zend_Dojo_View_Helper_Dijit
      *
      * @param  string $id
      * @param  string $value
-     * @param  array $params
-     * @param  array $attribs
+     * @param  array  $params
+     * @param  array  $attribs
      * @return string
      */
     public function editor($id, $value = null, $params = array(), $attribs = array())
@@ -139,7 +144,7 @@ class Zend_Dojo_View_Helper_Editor extends Zend_Dojo_View_Helper_Dijit
     /**
      * Generates the list of required modules to include, if any is needed.
      *
-     * @param array $plugins plugins to include
+     * @param  array $plugins plugins to include
      * @return array
      */
     protected function _getRequiredModules(array $plugins)

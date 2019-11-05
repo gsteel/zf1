@@ -12,20 +12,26 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
-/** Zend_Memory_Container_Movable */
+/**
+ * Zend_Memory_Container_Movable 
+ */
 // require_once 'Zend/Memory/Container/Movable.php';
 
-/** Zend_Memory_Container_Locked */
+/**
+ * Zend_Memory_Container_Locked 
+ */
 // require_once 'Zend/Memory/Container/Locked.php';
 
-/** Zend_Memory_AccessController */
+/**
+ * Zend_Memory_AccessController 
+ */
 // require_once 'Zend/Memory/AccessController.php';
 
 
@@ -35,11 +41,10 @@
  * This class encapsulates memory menagement operations, when PHP works
  * in limited memory mode.
  *
- *
- * @category   Zend
- * @package    Zend_Memory
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Memory
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Memory_Manager
 {
@@ -156,7 +161,7 @@ class Zend_Memory_Manager
      * If backend is not specified, then memory objects are never swapped
      *
      * @param Zend_Cache_Backend $backend
-     * @param array $backendOptions associative array of options for the corresponding backend constructor
+     * @param array              $backendOptions associative array of options for the corresponding backend constructor
      */
     public function __construct($backend = null)
     {
@@ -171,18 +176,18 @@ class Zend_Memory_Manager
         if ($memoryLimitStr != ''  &&  $memoryLimitStr != -1) {
             $this->_memoryLimit = (integer)$memoryLimitStr;
             switch (strtolower($memoryLimitStr[strlen($memoryLimitStr)-1])) {
-                case 'g':
-                    $this->_memoryLimit *= 1024;
-                    // Break intentionally omitted
-                case 'm':
-                    $this->_memoryLimit *= 1024;
-                    // Break intentionally omitted
-                case 'k':
-                    $this->_memoryLimit *= 1024;
-                    break;
+            case 'g':
+                $this->_memoryLimit *= 1024;
+                // Break intentionally omitted
+            case 'm':
+                $this->_memoryLimit *= 1024;
+                // Break intentionally omitted
+            case 'k':
+                $this->_memoryLimit *= 1024;
+                break;
 
-                default:
-                    break;
+            default:
+                break;
             }
 
             $this->_memoryLimit = (int)($this->_memoryLimit*2/3);
@@ -204,7 +209,7 @@ class Zend_Memory_Manager
     /**
      * Set memory grow limit
      *
-     * @param integer $newLimit
+     * @param  integer $newLimit
      * @throws Zend_Exception
      */
     public function setMemoryLimit($newLimit)
@@ -247,7 +252,7 @@ class Zend_Memory_Manager
     /**
      * Create new Zend_Memory value container
      *
-     * @param string $value
+     * @param  string $value
      * @return Zend_Memory_Container_Interface
      * @throws Zend_Memory_Exception
      */
@@ -260,7 +265,7 @@ class Zend_Memory_Manager
      * Create new Zend_Memory value container, which has value always
      * locked in memory
      *
-     * @param string $value
+     * @param  string $value
      * @return Zend_Memory_Container_Interface
      * @throws Zend_Memory_Exception
      */
@@ -272,8 +277,8 @@ class Zend_Memory_Manager
     /**
      * Create new Zend_Memory object
      *
-     * @param string $value
-     * @param boolean $locked
+     * @param  string  $value
+     * @param  boolean $locked
      * @return Zend_Memory_Container_Interface
      * @throws Zend_Memory_Exception
      */
@@ -304,8 +309,8 @@ class Zend_Memory_Manager
      * Used by Memory container destroy() method
      *
      * @internal
-     * @param integer $id
-     * @return Zend_Memory_Container
+     * @param    integer $id
+     * @return   Zend_Memory_Container
      */
     public function unlink(Zend_Memory_Container_Movable $container, $id)
     {
@@ -328,8 +333,8 @@ class Zend_Memory_Manager
      * Process value update
      *
      * @internal
-     * @param Zend_Memory_Container_Movable $container
-     * @param integer $id
+     * @param    Zend_Memory_Container_Movable $container
+     * @param    integer                       $id
      */
     public function processUpdate(Zend_Memory_Container_Movable $container, $id)
     {
@@ -344,7 +349,7 @@ class Zend_Memory_Manager
         }
 
         // Remove just updated object from list of candidates to unload
-        if( isset($this->_unloadCandidates[$id])) {
+        if(isset($this->_unloadCandidates[$id])) {
             unset($this->_unloadCandidates[$id]);
         }
 
@@ -418,7 +423,7 @@ class Zend_Memory_Manager
      * if object is not changed since last swap
      *
      * @param Zend_Memory_Container_Movable $container
-     * @param integer $id
+     * @param integer                       $id
      */
     private function _swap(Zend_Memory_Container_Movable $container, $id)
     {
@@ -440,8 +445,8 @@ class Zend_Memory_Manager
      * Load value from swap file.
      *
      * @internal
-     * @param Zend_Memory_Container_Movable $container
-     * @param integer $id
+     * @param    Zend_Memory_Container_Movable $container
+     * @param    integer                       $id
      */
     public function load(Zend_Memory_Container_Movable $container, $id)
     {

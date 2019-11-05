@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Filter/Interface.php';
 
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_Callback implements Zend_Filter_Interface
 {
@@ -91,7 +91,7 @@ class Zend_Filter_Callback implements Zend_Filter_Interface
     /**
      * Sets a new callback for this filter
      *
-     * @param unknown_type $callback
+     * @param  unknown_type $callback
      * @return unknown
      */
     public function setCallback($callback, $options = null)
@@ -119,7 +119,7 @@ class Zend_Filter_Callback implements Zend_Filter_Interface
     /**
      * Sets new default options to the callback filter
      *
-     * @param mixed $options Default options to set
+     * @param  mixed $options Default options to set
      * @return Zend_Filter_Callback
      */
     public function setOptions($options)
@@ -131,7 +131,7 @@ class Zend_Filter_Callback implements Zend_Filter_Interface
     /**
      * Calls the filter per callback
      *
-     * @param mixed $value Options for the set callback
+     * @param  mixed $value Options for the set callback
      * @return mixed       Result from the filter which was callbacked
      */
     public function filter($value)

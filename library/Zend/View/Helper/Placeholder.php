@@ -20,10 +20,14 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_Placeholder_Registry */
+/**
+ * Zend_View_Helper_Placeholder_Registry 
+ */
 // require_once 'Zend/View/Helper/Placeholder/Registry.php';
 
-/** Zend_View_Helper_Abstract.php */
+/**
+ * Zend_View_Helper_Abstract.php 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**
@@ -41,6 +45,7 @@ class Zend_View_Helper_Placeholder extends Zend_View_Helper_Abstract
 {
     /**
      * Placeholder items
+     *
      * @var array
      */
     protected $_items = array();

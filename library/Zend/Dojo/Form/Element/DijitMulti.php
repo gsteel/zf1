@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Dojo_Form_Element_Dijit */
+/**
+ * Zend_Dojo_Form_Element_Dijit 
+ */
 // require_once 'Zend/Dojo/Form/Element/Dijit.php';
 
 /**
@@ -38,24 +40,28 @@ abstract class Zend_Dojo_Form_Element_DijitMulti extends Zend_Dojo_Form_Element_
 {
     /**
      * Array of options for multi-item
+     *
      * @var array
      */
     public $options = array();
 
     /**
      * Flag: autoregister inArray validator?
+     *
      * @var bool
      */
     protected $_registerInArrayValidator = true;
 
     /**
      * Separator to use between options; defaults to '<br />'.
+     *
      * @var string
      */
     protected $_separator = '<br />';
 
     /**
      * Which values are translated already?
+     *
      * @var array
      */
     protected $_translated = array();
@@ -73,7 +79,7 @@ abstract class Zend_Dojo_Form_Element_DijitMulti extends Zend_Dojo_Form_Element_
     /**
      * Set separator
      *
-     * @param mixed $separator
+     * @param  mixed $separator
      * @return self
      */
     public function setSeparator($separator)
@@ -240,7 +246,7 @@ abstract class Zend_Dojo_Form_Element_DijitMulti extends Zend_Dojo_Form_Element_
      * Autoregisters InArray validator if necessary.
      *
      * @param  string $value
-     * @param  mixed $context
+     * @param  mixed  $context
      * @return bool
      */
     public function isValid($value, $context = null)

@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Mime
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Mime
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -25,10 +25,10 @@
 // require_once 'Zend/Mime.php';
 
 /**
- * @category   Zend
- * @package    Zend_Mime
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Mime
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Mime_Decode
 {
@@ -90,8 +90,7 @@ class Zend_Mime_Decode
      */
     public static function splitMessageStruct(
         $message, $boundary, $EOL = Zend_Mime::LINEEND
-    )
-    {
+    ) {
         $parts = self::splitMime($message, $boundary);
         if (count($parts) <= 0) {
             return null;
@@ -122,8 +121,7 @@ class Zend_Mime_Decode
      */
     public static function splitMessage(
         $message, &$headers, &$body, $EOL = Zend_Mime::LINEEND
-    )
-    {
+    ) {
         // check for valid header at first line
         $firstline = strtok($message, "\n");
         if (!preg_match('%^[^\s]+[^:]*:%', $firstline)) {
@@ -216,8 +214,7 @@ class Zend_Mime_Decode
      */
     public static function splitHeaderField(
         $field, $wantedPart = null, $firstName = 0
-    )
-    {
+    ) {
         $wantedPart = strtolower($wantedPart);
         $firstName  = strtolower($firstName);
 

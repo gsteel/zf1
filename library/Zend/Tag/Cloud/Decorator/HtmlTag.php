@@ -31,7 +31,7 @@
  * @category  Zend
  * @package   Zend_Tag
  * @uses      Zend_Tag_Cloud_Decorator_Tag
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Tag_Cloud_Decorator_HtmlTag extends Zend_Tag_Cloud_Decorator_Tag
@@ -177,11 +177,11 @@ class Zend_Tag_Cloud_Decorator_HtmlTag extends Zend_Tag_Cloud_Decorator_Tag
         return $this->_fontSizeUnit;
     }
      /**
-     * Set the HTML tags surrounding the <a> element
-     *
-     * @param  array $htmlTags
-     * @return Zend_Tag_Cloud_Decorator_HtmlTag
-     */
+      * Set the HTML tags surrounding the <a> element
+      *
+      * @param  array $htmlTags
+      * @return Zend_Tag_Cloud_Decorator_HtmlTag
+      */
     public function setHtmlTags(array $htmlTags)
     {
         $this->_htmlTags = $htmlTags;

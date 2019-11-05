@@ -13,11 +13,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -41,10 +41,10 @@
  * against with the instanceof operator, and expects to be handling
  * RSS-formatted data instead of Atom.
  *
- * @category   Zend
- * @package    Zend_Feed
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Feed
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Feed_Rss extends Zend_Feed_Abstract
 {
@@ -114,13 +114,13 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
     public function __get($var)
     {
         switch ($var) {
-            case 'item':
-                // fall through to the next case
-            case 'items':
-                return $this;
+        case 'item':
+            // fall through to the next case
+        case 'items':
+            return $this;
 
-            default:
-                return parent::__get($var);
+        default:
+            return parent::__get($var);
         }
     }
 
@@ -261,7 +261,7 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
      * Adds the iTunes extensions to a root node
      *
      * @param  DOMElement $root
-     * @param  array $array
+     * @param  array      $array
      * @return void
      */
     private function _buildiTunes(DOMElement $root, $array)
@@ -386,8 +386,8 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
      *    <content:encoded>long version, can contain html</content:encoded>
      * </item>
      *
-     * @param  DOMElement $root the root node to use
-     * @param  array $array the data to use
+     * @param  DOMElement $root  the root node to use
+     * @param  array      $array the data to use
      * @return void
      */
     protected function _mapFeedEntries(DOMElement $root, $array)
@@ -453,9 +453,11 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
                 $item->appendChild($comments);
             }
             if (isset($dataentry->commentRss)) {
-                $comments = $this->_element->createElementNS('http://wellformedweb.org/CommentAPI/',
-                                                             'wfw:commentRss',
-                                                             $dataentry->commentRss);
+                $comments = $this->_element->createElementNS(
+                    'http://wellformedweb.org/CommentAPI/',
+                    'wfw:commentRss',
+                    $dataentry->commentRss
+                );
                 $item->appendChild($comments);
             }
 
@@ -486,8 +488,10 @@ class Zend_Feed_Rss extends Zend_Feed_Abstract
     public function saveXml()
     {
         // Return a complete document including XML prologue.
-        $doc = new DOMDocument($this->_element->ownerDocument->version,
-                               $this->_element->ownerDocument->actualEncoding);
+        $doc = new DOMDocument(
+            $this->_element->ownerDocument->version,
+            $this->_element->ownerDocument->actualEncoding
+        );
         $root = $doc->createElement('rss');
 
         // Use rss version 2.0

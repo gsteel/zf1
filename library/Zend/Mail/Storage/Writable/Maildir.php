@@ -46,6 +46,7 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
 
     /**
      * use quota and size of quota if given
+     *
      * @var bool|int
      */
     protected $_quota;
@@ -55,7 +56,7 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      *
      * If the given dir is already a valid maildir this will not fail.
      *
-     * @param string $dir directory for the new maildir (may already exist)
+     * @param  string $dir directory for the new maildir (may already exist)
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */
@@ -105,10 +106,11 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      * Additional parameters are (see parent for more):
      *   - create if true a new maildir is create if none exists
      *
-     * @param array $params mail reader specific parameters
+     * @param  array $params mail reader specific parameters
      * @throws Zend_Mail_Storage_Exception
      */
-    public function __construct($params) {
+    public function __construct($params)
+    {
         if (is_array($params)) {
             $params = (object)$params;
         }
@@ -126,10 +128,10 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      * This method also creates parent folders if necessary. Some mail storages may restrict, which folder
      * may be used as parent or which chars may be used in the folder name
      *
-     * @param   string                          $name         global name of folder, local name if $parentFolder is set
-     * @param   string|Zend_Mail_Storage_Folder $parentFolder parent folder for new folder, else root folder is parent
-     * @return  string only used internally (new created maildir)
-     * @throws  Zend_Mail_Storage_Exception
+     * @param  string                          $name         global name of folder, local name if $parentFolder is set
+     * @param  string|Zend_Mail_Storage_Folder $parentFolder parent folder for new folder, else root folder is parent
+     * @return string only used internally (new created maildir)
+     * @throws Zend_Mail_Storage_Exception
      */
     public function createFolder($name, $parentFolder = null)
     {
@@ -174,7 +176,8 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
 
         // check if we got tricked and would create a dir outside of the rootdir or not as direct child
         if (strpos($folder, DIRECTORY_SEPARATOR) !== false || strpos($folder, '/') !== false
-            || dirname($fulldir) . DIRECTORY_SEPARATOR != $this->_rootdir) {
+            || dirname($fulldir) . DIRECTORY_SEPARATOR != $this->_rootdir
+        ) {
             /**
              * @see Zend_Mail_Storage_Exception
              */
@@ -215,9 +218,9 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
     /**
      * remove a folder
      *
-     * @param   string|Zend_Mail_Storage_Folder $name      name or instance of folder
-     * @return  null
-     * @throws  Zend_Mail_Storage_Exception
+     * @param  string|Zend_Mail_Storage_Folder $name name or instance of folder
+     * @return null
+     * @throws Zend_Mail_Storage_Exception
      */
     public function removeFolder($name)
     {
@@ -318,10 +321,10 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      *
      * The new name has the same restrictions as in createFolder()
      *
-     * @param   string|Zend_Mail_Storage_Folder $oldName name or instance of folder
-     * @param   string                          $newName new global name of folder
-     * @return  null
-     * @throws  Zend_Mail_Storage_Exception
+     * @param  string|Zend_Mail_Storage_Folder $oldName name or instance of folder
+     * @param  string                          $newName new global name of folder
+     * @return null
+     * @throws Zend_Mail_Storage_Exception
      */
     public function renameFolder($oldName, $newName)
     {
@@ -425,10 +428,10 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      * makes sure tmp/ exists and create a file with a unique name
      * you should close the returned filehandle!
      *
-     * @param   string $folder name of current folder without leading .
-     * @return  array array('dirname' => dir of maildir folder, 'uniq' => unique id, 'filename' => name of create file
+     * @param  string $folder name of current folder without leading .
+     * @return array array('dirname' => dir of maildir folder, 'uniq' => unique id, 'filename' => name of create file
      *                     'handle'  => file opened for writing)
-     * @throws  Zend_Mail_Storage_Exception
+     * @throws Zend_Mail_Storage_Exception
      */
     protected function _createTmpFile($folder = 'INBOX')
     {
@@ -479,8 +482,10 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
              * @see Zend_Mail_Storage_Exception
              */
             // require_once 'Zend/Mail/Storage/Exception.php';
-            throw new Zend_Mail_Storage_Exception("tried $max_tries unique ids for a temp file, but all were taken"
-                                                . ' - giving up');
+            throw new Zend_Mail_Storage_Exception(
+                "tried $max_tries unique ids for a temp file, but all were taken"
+                . ' - giving up'
+            );
         }
 
         return array('dirname' => $this->_rootdir . '.' . $folder, 'uniq' => $uniq, 'filename' => $tmpdir . $uniq,
@@ -490,9 +495,9 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
     /**
      * create an info string for filenames with given flags
      *
-     * @param   array $flags wanted flags, with the reference you'll get the set flags with correct key (= char for flag)
-     * @return  string info string for version 2 filenames including the leading colon
-     * @throws  Zend_Mail_Storage_Exception
+     * @param  array $flags wanted flags, with the reference you'll get the set flags with correct key (= char for flag)
+     * @return string info string for version 2 filenames including the leading colon
+     * @throws Zend_Mail_Storage_Exception
      */
     protected function _getInfoString(&$flags)
     {
@@ -532,12 +537,12 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
     /**
      * append a new message to mail storage
      *
-     * @param   string|stream                              $message message as string or stream resource
-     * @param   null|string|Zend_Mail_Storage_Folder       $folder  folder for new message, else current folder is taken
-     * @param   null|array                                 $flags   set flags for new message, else a default set is used
-     * @param   bool                                       $recent  handle this mail as if recent flag has been set,
+     * @param  string|stream                              $message message as string or stream resource
+     * @param  null|string|Zend_Mail_Storage_Folder       $folder  folder for new message, else current folder is taken
+     * @param  null|array                                 $flags   set flags for new message, else a default set is used
+     * @param  bool                                       $recent  handle this mail as if recent flag has been set,
      *                                                              should only be used in delivery
-     * @throws  Zend_Mail_Storage_Exception
+     * @throws Zend_Mail_Storage_Exception
      */
      // not yet * @param string|Zend_Mail_Message|Zend_Mime_Message $message message as string or instance of message class
 
@@ -609,10 +614,10 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
     /**
      * copy an existing message
      *
-     * @param   int                             $id     number of message
-     * @param   string|Zend_Mail_Storage_Folder $folder name or instance of targer folder
-     * @return  null
-     * @throws  Zend_Mail_Storage_Exception
+     * @param  int                             $id     number of message
+     * @param  string|Zend_Mail_Storage_Folder $folder name or instance of targer folder
+     * @return null
+     * @throws Zend_Mail_Storage_Exception
      */
     public function copyMessage($id, $folder)
     {
@@ -674,7 +679,8 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
         }
 
         if ($folder->getGlobalName() == $this->_currentFolder
-            || ($this->_currentFolder == 'INBOX' && $folder->getGlobalName() == '/')) {
+            || ($this->_currentFolder == 'INBOX' && $folder->getGlobalName() == '/')
+        ) {
             $this->_files[] = array('uniq'     => $temp_file['uniq'],
                                     'flags'    => $flags,
                                     'filename' => $new_file);
@@ -693,13 +699,15 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */
-    public function moveMessage($id, $folder) {
+    public function moveMessage($id, $folder)
+    {
         if (!($folder instanceof Zend_Mail_Storage_Folder)) {
             $folder = $this->getFolders($folder);
         }
 
         if ($folder->getGlobalName() == $this->_currentFolder
-            || ($this->_currentFolder == 'INBOX' && $folder->getGlobalName() == '/')) {
+            || ($this->_currentFolder == 'INBOX' && $folder->getGlobalName() == '/')
+        ) {
             /**
              * @see Zend_Mail_Storage_Exception
              */
@@ -756,9 +764,9 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      *
      * NOTE: this method can't set the recent flag.
      *
-     * @param   int   $id    number of message
-     * @param   array $flags new flags for message
-     * @throws  Zend_Mail_Storage_Exception
+     * @param  int   $id    number of message
+     * @param  array $flags new flags for message
+     * @throws Zend_Mail_Storage_Exception
      */
     public function setFlags($id, $flags)
     {
@@ -786,8 +794,8 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
     /**
      * stub for not supported message deletion
      *
-     * @return  null
-     * @throws  Zend_Mail_Storage_Exception
+     * @return null
+     * @throws Zend_Mail_Storage_Exception
      */
     public function removeMessage($id)
     {
@@ -821,10 +829,11 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      * here. Use array('size' => SIZE_QUOTA, 'count' => MAX_MESSAGE) do
      * define your quota. Order of these fields does matter!
      *
-     * @param bool|array $value new quota value
+     * @param  bool|array $value new quota value
      * @return null
      */
-    public function setQuota($value) {
+    public function setQuota($value)
+    {
         $this->_quota = $value;
     }
 
@@ -835,7 +844,8 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      *
      * @return bool|array
      */
-    public function getQuota($fromStorage = false) {
+    public function getQuota($fromStorage = false)
+    {
         if ($fromStorage) {
             $fh = @fopen($this->_rootdir . 'maildirsize', 'r');
             if (!$fh) {
@@ -865,7 +875,8 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
     /**
      * @see http://www.inter7.com/courierimap/README.maildirquota.html "Calculating maildirsize"
      */
-    protected function _calculateMaildirsize() {
+    protected function _calculateMaildirsize()
+    {
         $timestamps = array();
         $messages = 0;
         $total_size = 0;
@@ -961,7 +972,8 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
     /**
      * @see http://www.inter7.com/courierimap/README.maildirquota.html "Calculating the quota for a Maildir++"
      */
-    protected function _calculateQuota($forceRecalc = false) {
+    protected function _calculateQuota($forceRecalc = false)
+    {
         $fh = null;
         $total_size = 0;
         $messages   = 0;
@@ -1030,7 +1042,8 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
         return array('size' => $total_size, 'count' => $messages, 'quota' => $quota, 'over_quota' => $over_quota);
     }
 
-    protected function _addQuotaEntry($size, $count = 1) {
+    protected function _addQuotaEntry($size, $count = 1)
+    {
         if (!file_exists($this->_rootdir . 'maildirsize')) {
             // TODO: should get file handler from _calculateQuota
         }
@@ -1042,10 +1055,11 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
     /**
      * check if storage is currently over quota
      *
-     * @param bool $detailedResponse return known data of quota and current size and message count @see _calculateQuota()
+     * @param  bool $detailedResponse return known data of quota and current size and message count @see _calculateQuota()
      * @return bool|array over quota state or detailed response
      */
-    public function checkQuota($detailedResponse = false, $forceRecalc = false) {
+    public function checkQuota($detailedResponse = false, $forceRecalc = false)
+    {
         $result = $this->_calculateQuota($forceRecalc);
         return $detailedResponse ? $result : $result['over_quota'];
     }

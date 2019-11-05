@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Form_Decorator_Abstract */
+/**
+ * Zend_Form_Decorator_Abstract 
+ */
 // require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
@@ -52,6 +54,7 @@ class Zend_Form_Decorator_Callback extends Zend_Form_Decorator_Abstract
 {
     /**
      * Callback
+     *
      * @var string|array
      */
     protected $_callback;
@@ -116,13 +119,13 @@ class Zend_Form_Decorator_Callback extends Zend_Form_Decorator_Abstract
         $response = call_user_func($callback, $content, $this->getElement(), $this->getOptions());
 
         switch ($placement) {
-            case self::APPEND:
-                return $content . $separator . $response;
-            case self::PREPEND:
-                return $response . $separator . $content;
-            default:
-                // replace content
-                return $response;
+        case self::APPEND:
+            return $content . $separator . $response;
+        case self::PREPEND:
+            return $response . $separator . $content;
+        default:
+            // replace content
+            return $response;
         }
     }
 }

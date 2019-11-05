@@ -31,10 +31,10 @@
  * Zend_Crypt_Math_BigInteger_Bcmath is a wrapper across the PHP BCMath
  * extension.
  *
- * @category   Zend
- * @package    Zend_Crypt
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Crypt
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_Interface
 {
@@ -43,8 +43,8 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
      * Initialise a big integer into an extension specific type. This is not
      * applicable to BCMath.
      *
-     * @param string $operand
-     * @param int $base
+     * @param  string $operand
+     * @param  int    $base
      * @return string
      */
     public function init($operand, $base = 10)
@@ -55,8 +55,8 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
     /**
      * Adds two arbitrary precision numbers
      *
-     * @param string $left_operand
-     * @param string $right_operand
+     * @param  string $left_operand
+     * @param  string $right_operand
      * @return string
      */
     public function add($left_operand, $right_operand)
@@ -67,8 +67,8 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
     /**
      * Subtract one arbitrary precision number from another
      *
-     * @param string $left_operand
-     * @param string $right_operand
+     * @param  string $left_operand
+     * @param  string $right_operand
      * @return string
      */
     public function subtract($left_operand, $right_operand)
@@ -81,8 +81,8 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
      * both are identical, 1 that left_operand is larger, or -1 that
      * right_operand is larger.
      *
-     * @param string $left_operand
-     * @param string $right_operand
+     * @param  string $left_operand
+     * @param  string $right_operand
      * @return int
      */
     public function compare($left_operand, $right_operand)
@@ -94,8 +94,8 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
      * Divide two big integers and return result or NULL if the denominator
      * is zero.
      *
-     * @param string $left_operand
-     * @param string $right_operand
+     * @param  string $left_operand
+     * @param  string $right_operand
      * @return string|null
      */
     public function divide($left_operand, $right_operand)
@@ -106,8 +106,8 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
     /**
      * Get modulus of an arbitrary precision number
      *
-     * @param string $left_operand
-     * @param string $modulus
+     * @param  string $left_operand
+     * @param  string $modulus
      * @return string
      */
     public function modulus($left_operand, $modulus)
@@ -118,8 +118,8 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
     /**
      * Multiply two arbitrary precision numbers
      *
-     * @param string $left_operand
-     * @param string $right_operand
+     * @param  string $left_operand
+     * @param  string $right_operand
      * @return string
      */
     public function multiply($left_operand, $right_operand)
@@ -130,8 +130,8 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
     /**
      * Raise an arbitrary precision number to another
      *
-     * @param string $left_operand
-     * @param string $right_operand
+     * @param  string $left_operand
+     * @param  string $right_operand
      * @return string
      */
     public function pow($left_operand, $right_operand)
@@ -143,9 +143,9 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
      * Raise an arbitrary precision number to another, reduced by a specified
      * modulus
      *
-     * @param string $left_operand
-     * @param string $right_operand
-     * @param string $modulus
+     * @param  string $left_operand
+     * @param  string $right_operand
+     * @param  string $modulus
      * @return string
      */
     public function powmod($left_operand, $right_operand, $modulus)
@@ -156,7 +156,7 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
     /**
      * Get the square root of an arbitrary precision number
      *
-     * @param string $operand
+     * @param  string $operand
      * @return string
      */
     public function sqrt($operand)
@@ -165,7 +165,7 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
     }
 
     /**
-     * @param string $operand
+     * @param  string $operand
      * @return string
      */
     public function binaryToInteger($operand)
@@ -180,7 +180,7 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
     }
 
     /**
-     * @param string $operand
+     * @param  string $operand
      * @return string
      */
     public function integerToBinary($operand)
@@ -200,7 +200,8 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
         return $return;
     }
 
-    /**public function integerToBinary($operand)
+    /**
+     * public function integerToBinary($operand)
     {
         $return = '';
         while(bccomp($operand, '0')) {
@@ -208,10 +209,11 @@ class Zend_Crypt_Math_BigInteger_Bcmath implements Zend_Crypt_Math_BigInteger_In
             $operand = bcdiv($operand, '256');
         }
         return $return;
-    }**/ // Prior version for referenced offset
+    }
+     **/ // Prior version for referenced offset
 
     /**
-     * @param string $operand
+     * @param  string $operand
      * @return string
      */
     public function hexToDecimal($operand)

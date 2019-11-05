@@ -43,7 +43,7 @@ class Zend_Cache_Backend_BlackHole
     /**
      * Test if a cache is available for the given id and (if yes) return it (false else)
      *
-     * @param  string $id cache id
+     * @param  string  $id                     cache id
      * @param  boolean $doNotTestCacheValidity if set to true, the cache validity won't be tested
      * @return string|false cached datas
      */
@@ -104,7 +104,7 @@ class Zend_Cache_Backend_BlackHole
      * 'matchingAnyTag' => remove cache entries matching any given tags
      *                     ($tags can be an array of strings or a single string)
      *
-     * @param  string $mode clean mode
+     * @param  string     $mode clean mode
      * @param  tags array $tags array of tags
      * @return boolean true if no problem
      */
@@ -138,7 +138,7 @@ class Zend_Cache_Backend_BlackHole
      *
      * In case of multiple tags, a logical AND is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of matching cache ids (string)
      */
     public function getIdsMatchingTags($tags = array())
@@ -151,7 +151,7 @@ class Zend_Cache_Backend_BlackHole
      *
      * In case of multiple tags, a logical OR is made between tags
      *
-     * @param array $tags array of tags
+     * @param  array $tags array of tags
      * @return array array of not matching cache ids (string)
      */
     public function getIdsNotMatchingTags($tags = array())
@@ -202,8 +202,8 @@ class Zend_Cache_Backend_BlackHole
     /**
      * Give (if possible) an extra lifetime to the given cache id
      *
-     * @param  string $id cache id
-     * @param  int $extraLifetime
+     * @param  string $id            cache id
+     * @param  int    $extraLifetime
      * @return boolean true if ok
      */
     public function touch($id, $extraLifetime)

@@ -29,7 +29,7 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
     /**
      * Instantiates route based on passed Zend_Config structure
      *
-     * @param Zend_Config $config Configuration object
+     * @param  Zend_Config $config Configuration object
      * @return Zend_Controller_Router_Route_Static
      */
     public static function getInstance(Zend_Config $config)
@@ -55,7 +55,7 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
      * Matches a user submitted path with a previously defined route.
      * Assigns and returns an array of defaults on a successful match.
      *
-     * @param string $path Path used to match against this routing map
+     * @param  string $path Path used to match against this routing map
      * @return array|false An array of assigned values or a false on a mismatch
      */
     public function match($path, $partial = false)
@@ -80,7 +80,7 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
     /**
      * Assembles a URL path defined by this route
      *
-     * @param array $data An array of variable and value pairs used as parameters
+     * @param  array $data An array of variable and value pairs used as parameters
      * @return string Route path with user submitted parameters
      */
     public function assemble($data = array(), $reset = false, $encode = false, $partial = false)
@@ -91,7 +91,7 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
     /**
      * Return a single parameter of route's defaults
      *
-     * @param string $name Array key of the parameter
+     * @param  string $name Array key of the parameter
      * @return string Previously set default
      */
     public function getDefault($name)

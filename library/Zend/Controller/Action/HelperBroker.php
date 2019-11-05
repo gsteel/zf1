@@ -42,9 +42,11 @@ class Zend_Controller_Action_HelperBroker
     public static function getPluginLoader()
     {
         if (null === self::$_pluginLoader) {
-            self::$_pluginLoader = new Zend_Loader_PluginLoader(array(
+            self::$_pluginLoader = new Zend_Loader_PluginLoader(
+                array(
                 'Zend_Controller_Action_Helper' => 'Zend/Controller/Action/Helper/',
-            ));
+                )
+            );
         }
         return self::$_pluginLoader;
     }
@@ -64,8 +66,8 @@ class Zend_Controller_Action_HelperBroker
     /**
      * addPath() - Add path to repositories where Action_Helpers could be found.
      *
-     * @param string $path
-     * @param string $prefix Optional; defaults to 'Zend_Controller_Action_Helper'
+     * @param  string $path
+     * @param  string $prefix Optional; defaults to 'Zend_Controller_Action_Helper'
      * @return void
      */
     static public function addPath($path, $prefix = 'Zend_Controller_Action_Helper')
@@ -76,7 +78,7 @@ class Zend_Controller_Action_HelperBroker
     /**
      * addHelper() - Add helper objects
      *
-     * @param Zend_Controller_Action_Helper_Abstract $helper
+     * @param  Zend_Controller_Action_Helper_Abstract $helper
      * @return void
      */
     static public function addHelper(Zend_Controller_Action_Helper_Abstract $helper)
@@ -201,7 +203,7 @@ class Zend_Controller_Action_HelperBroker
     /**
      * Constructor
      *
-     * @param Zend_Controller_Action $actionController
+     * @param  Zend_Controller_Action $actionController
      * @return void
      */
     public function __construct(Zend_Controller_Action $actionController)
@@ -263,7 +265,7 @@ class Zend_Controller_Action_HelperBroker
 
         if ($initialize) {
             $helper->setActionController($this->_actionController)
-                   ->init();
+                ->init();
         }
 
         return $helper;
@@ -273,7 +275,7 @@ class Zend_Controller_Action_HelperBroker
      * Method overloading
      *
      * @param  string $method
-     * @param  array $args
+     * @param  array  $args
      * @return mixed
      * @throws Zend_Controller_Action_Exception if helper does not have a direct() method
      */

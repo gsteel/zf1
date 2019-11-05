@@ -20,10 +20,14 @@
  * @version    $Id$
  */
 
-/** Zend_Log_Writer_Abstract */
+/**
+ * Zend_Log_Writer_Abstract 
+ */
 // require_once 'Zend/Log/Writer/Abstract.php';
 
-/** Zend_Log_Formatter_Simple */
+/**
+ * Zend_Log_Formatter_Simple 
+ */
 // require_once 'Zend/Log/Formatter/Simple.php';
 
 /**
@@ -46,8 +50,8 @@ class Zend_Log_Writer_Stream extends Zend_Log_Writer_Abstract
     /**
      * Class Constructor
      *
-     * @param array|string|resource $streamOrUrl Stream or URL to open as a stream
-     * @param string|null $mode Mode, only applicable if a URL is given
+     * @param  array|string|resource $streamOrUrl Stream or URL to open as a stream
+     * @param  string|null           $mode        Mode, only applicable if a URL is given
      * @return void
      * @throws Zend_Log_Exception
      */
@@ -94,10 +98,12 @@ class Zend_Log_Writer_Stream extends Zend_Log_Writer_Abstract
     static public function factory($config)
     {
         $config = self::_parseConfig($config);
-        $config = array_merge(array(
+        $config = array_merge(
+            array(
             'stream' => null,
             'mode'   => null,
-        ), $config);
+            ), $config
+        );
 
         $streamOrUrl = $config['url'] ?? $config['stream'];
 
@@ -122,7 +128,7 @@ class Zend_Log_Writer_Stream extends Zend_Log_Writer_Abstract
     /**
      * Write a message to the log.
      *
-     * @param  array  $event  event data
+     * @param  array $event event data
      * @return void
      * @throws Zend_Log_Exception
      */

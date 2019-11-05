@@ -19,7 +19,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** @see Zend_Validate_Interface */
+/**
+ * @see Zend_Validate_Interface 
+ */
 // require_once 'Zend/Validate/Interface.php';
 
 /**
@@ -47,7 +49,7 @@ interface Zend_Captcha_Adapter extends Zend_Validate_Interface
      * Display the captcha
      *
      * @param  Zend_View_Interface $view
-     * @param  mixed $element
+     * @param  mixed               $element
      * @return string
      */
     public function render(Zend_View_Interface $view = null, $element = null);

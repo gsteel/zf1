@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -27,10 +27,10 @@
 /**
  * Encryption adapter for openssl
  *
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Filter
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
 {
@@ -138,31 +138,31 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
             }
 
             switch ($type) {
-                case 'public':
-                    $test = openssl_pkey_get_public($cert);
-                    if ($test === false) {
-                        // require_once 'Zend/Filter/Exception.php';
-                        throw new Zend_Filter_Exception("Public key '{$cert}' not valid");
-                    }
+            case 'public':
+                $test = openssl_pkey_get_public($cert);
+                if ($test === false) {
+                    // require_once 'Zend/Filter/Exception.php';
+                    throw new Zend_Filter_Exception("Public key '{$cert}' not valid");
+                }
 
-                    openssl_free_key($test);
-                    $this->_keys['public'][$key] = $cert;
-                    break;
-                case 'private':
-                    $test = openssl_pkey_get_private($cert, $this->_passphrase);
-                    if ($test === false) {
-                        // require_once 'Zend/Filter/Exception.php';
-                        throw new Zend_Filter_Exception("Private key '{$cert}' not valid");
-                    }
+                openssl_free_key($test);
+                $this->_keys['public'][$key] = $cert;
+                break;
+            case 'private':
+                $test = openssl_pkey_get_private($cert, $this->_passphrase);
+                if ($test === false) {
+                    // require_once 'Zend/Filter/Exception.php';
+                    throw new Zend_Filter_Exception("Private key '{$cert}' not valid");
+                }
 
-                    openssl_free_key($test);
-                    $this->_keys['private'][$key] = $cert;
-                    break;
-                case 'envelope':
-                    $this->_keys['envelope'][$key] = $cert;
-                    break;
-                default:
-                    break;
+                openssl_free_key($test);
+                $this->_keys['private'][$key] = $cert;
+                break;
+            case 'envelope':
+                $this->_keys['envelope'][$key] = $cert;
+                break;
+            default:
+                break;
             }
         }
 
@@ -216,7 +216,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
     /**
      * Sets private keys
      *
-     * @param  string $key Private key
+     * @param  string $key        Private key
      * @param  string $passphrase
      * @return Zend_Filter_Encrypt_Openssl
      */
@@ -286,7 +286,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
     /**
      * Sets a new passphrase
      *
-     * @param string $passphrase
+     * @param  string $passphrase
      * @return Zend_Filter_Encrypt_Openssl
      */
     public function setPassphrase($passphrase)
@@ -308,7 +308,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
     /**
      * Sets a internal compression for values to encrypt
      *
-     * @param string|array $compression
+     * @param  string|array $compression
      * @return Zend_Filter_Encrypt_Openssl
      */
     public function setCompression($compression)
@@ -334,7 +334,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
     /**
      * Sets if the envelope keys should be included in the encrypted value
      *
-     * @param boolean $package
+     * @param  boolean $package
      * @return Zend_Filter_Encrypt_Openssl
      */
     public function setPackage($package)

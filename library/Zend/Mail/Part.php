@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Mail
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Mail
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 
@@ -42,63 +42,72 @@
 
 
 /**
- * @category   Zend
- * @package    Zend_Mail
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Mail
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
 {
     /**
      * headers of part as array
+     *
      * @var null|array
      */
     protected $_headers;
 
     /**
      * raw part body
+     *
      * @var null|string
      */
     protected $_content;
 
     /**
      * toplines as fetched with headers
+     *
      * @var string
      */
     protected $_topLines = '';
 
     /**
      * parts of multipart message
+     *
      * @var array
      */
     protected $_parts = array();
 
     /**
      * count of parts of a multipart message
+     *
      * @var null|int
      */
     protected $_countParts;
 
     /**
      * current position of iterator
+     *
      * @var int
      */
     protected $_iterationPos = 1;
 
     /**
      * mail handler, if late fetch is active
+     *
      * @var null|Zend_Mail_Storage_Abstract
      */
     protected $_mail;
 
     /**
      * message number for mail handler
+     *
      * @var int
      */
     protected $_messageNum = 0;
     
     /**
      * Class to use when creating message parts
+     *
      * @var string 
      */
     protected $_partClass;
@@ -114,8 +123,8 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      * - noToplines ignore content found after headers in param 'headers'
      * - content    content as string
      *
-     * @param   array $params  full message with or without headers
-     * @throws  Zend_Mail_Exception
+     * @param  array $params full message with or without headers
+     * @throws Zend_Mail_Exception
      */
     public function __construct(array $params)
     {
@@ -165,19 +174,20 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
     
     /**
      * Set name pf class used to encapsulate message parts
-     * @param string $class
+     *
+     * @param  string $class
      * @return Zend_Mail_Part
      */
     public function setPartClass($class)
     {
-        if ( !class_exists($class) ) {
+        if (!class_exists($class) ) {
             /**
              * @see Zend_Mail_Exception
              */
             // require_once 'Zend/Mail/Exception.php';
             throw new Zend_Mail_Exception("Class '{$class}' does not exist");
         }
-        if ( !is_subclass_of($class, \Zend_Mail_Part_Interface::class) ) {
+        if (!is_subclass_of($class, \Zend_Mail_Part_Interface::class) ) {
             /**
              * @see Zend_Mail_Exception
              */
@@ -191,11 +201,12 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
     
     /**
      * Retrieve the class name used to encapsulate message parts
+     *
      * @return string 
      */
     public function getPartClass()
     {
-        if ( !$this->_partClass ) {
+        if (!$this->_partClass ) {
             $this->_partClass = __CLASS__;
         }
         return $this->_partClass;
@@ -248,7 +259,8 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      *
      * @return int size
      */
-    public function getSize() {
+    public function getSize()
+    {
         return strlen($this->getContent());
     }
 
@@ -413,15 +425,15 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
         $header = $this->_headers[$name];
 
         switch ($format) {
-            case 'string':
-                if (is_array($header)) {
-                    $header = implode(Zend_Mime::LINEEND, $header);
-                }
-                break;
-            case 'array':
-                $header = (array)$header;
-            default:
-                // do nothing
+        case 'string':
+            if (is_array($header)) {
+                $header = implode(Zend_Mime::LINEEND, $header);
+            }
+            break;
+        case 'array':
+            $header = (array)$header;
+        default:
+            // do nothing
         }
 
         return $header;
@@ -458,7 +470,8 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      * @return string|array wanted part or all parts as array($firstName => firstPart, partname => value)
      * @throws Zend_Exception, Zend_Mail_Exception
      */
-    public function getHeaderField($name, $wantedPart = 0, $firstName = 0) {
+    public function getHeaderField($name, $wantedPart = 0, $firstName = 0)
+    {
         return Zend_Mime_Decode::splitHeaderField(current($this->getHeader($name, 'array')), $wantedPart, $firstName);
     }
 
@@ -583,7 +596,7 @@ class Zend_Mail_Part implements RecursiveIterator, Zend_Mail_Part_Interface
      * Ensure headers do not contain invalid characters
      *
      * @param array $headers
-     * @param bool $assertNames
+     * @param bool  $assertNames
      */
     protected function _validateHeaders(array $headers, $assertNames = true)
     {

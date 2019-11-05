@@ -12,11 +12,11 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ * @version   $Id$
  */
 
 /**
@@ -39,10 +39,10 @@
  * The second is tests/Zend/Validate/HostnameTestForm.php which is designed to be run via HTML
  * to allow users to test entering UTF-8 characters in a form.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @category  Zend
+ * @package   Zend_Validate
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Hostname extends Zend_Validate_Abstract
 {
@@ -1306,6 +1306,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
 
     /**
      * Array for valid Idns
+     *
      * @see http://www.iana.org/domains/idn-tables/ Official list of supported IDN Chars
      * (.AC) Ascension Island http://www.nic.ac/pdf/AC-IDN-Policy.pdf
      * (.AR) Argentinia http://www.nic.ar/faqidn.html
@@ -1514,7 +1515,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
     /**
      * Sets validator options
      *
-     * @see http://www.iana.org/cctld/specifications-policies-cctlds-01apr02.htm  Technical Specifications for ccTLDs
+     * @see   http://www.iana.org/cctld/specifications-policies-cctlds-01apr02.htm  Technical Specifications for ccTLDs
      * @param array $options Validator options
      */
     public function __construct($options = array())
@@ -1557,7 +1558,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
     /**
      * Sets the options for this validator
      *
-     * @param array $options
+     * @param  array $options
      * @return Zend_Validate_Hostname
      */
     public function setOptions($options)
@@ -1592,7 +1593,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
     }
 
     /**
-     * @param Zend_Validate_Ip $ipValidator OPTIONAL
+     * @param  Zend_Validate_Ip $ipValidator OPTIONAL
      * @return Zend_Validate_Hostname
      */
     public function setIpValidator(Zend_Validate_Ip $ipValidator = null)
@@ -1642,10 +1643,10 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
      *
      * This only applies when DNS hostnames are validated
      *
-     * @param boolean $allowed Set allowed to true to validate IDNs, and false to not validate them
+     * @param  boolean $allowed Set allowed to true to validate IDNs, and false to not validate them
      * @return $this
      */
-    public function setValidateIdn ($allowed)
+    public function setValidateIdn($allowed)
     {
         $this->_options['idn'] = (bool) $allowed;
         return $this;
@@ -1666,10 +1667,10 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
      *
      * This only applies when DNS hostnames are validated
      *
-     * @param boolean $allowed Set allowed to true to validate TLDs, and false to not validate them
+     * @param  boolean $allowed Set allowed to true to validate TLDs, and false to not validate them
      * @return $this
      */
-    public function setValidateTld ($allowed)
+    public function setValidateTld($allowed)
     {
         $this->_options['tld'] = (bool) $allowed;
         return $this;
@@ -1693,8 +1694,9 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
 
         $this->_setValue($value);
         // Check input against IP address schema
-        if (preg_match('/^[0-9a-f:.]*$/i', $value) &&
-            $this->_options['ip']->setTranslator($this->getTranslator())->isValid($value)) {
+        if (preg_match('/^[0-9a-f:.]*$/i', $value) 
+            && $this->_options['ip']->setTranslator($this->getTranslator())->isValid($value)
+        ) {
             if (!($this->_options['allow'] & self::ALLOW_IP)) {
                 $this->_error(self::IP_ADDRESS_NOT_ALLOWED);
                 return false;
@@ -1727,8 +1729,9 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
         $domainParts = explode('.', $value);
 
         // Prevent partitial IP V4 adresses (ending '.')
-        if ((count($domainParts) == 4) && preg_match('/^[0-9.a-e:.]*$/i', $value) &&
-            $this->_options['ip']->setTranslator($this->getTranslator())->isValid($value)) {
+        if ((count($domainParts) == 4) && preg_match('/^[0-9.a-e:.]*$/i', $value) 
+            && $this->_options['ip']->setTranslator($this->getTranslator())->isValid($value)
+        ) {
             $this->_error(self::INVALID_LOCAL_NAME);
         }
 
@@ -1748,7 +1751,8 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
                 // First check TLD
                 $matches = array();
                 if (preg_match('/([^.]{2,63})$/iu', end($domainParts), $matches)
-                    || (array_key_exists(end($domainParts), $this->_validIdns))) {
+                    || (array_key_exists(end($domainParts), $this->_validIdns))
+                ) {
                     reset($domainParts);
 
                     // Hostname characters are: *(label dot)(label dot label); max 254 chars
@@ -1760,7 +1764,8 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
                     $this->_tld = $matches[1];
                     if ($this->_options['tld']) {
                         if (!in_array(strtolower($this->_tld), $this->_validTlds)
-                            && !in_array($this->_tld, $this->_validTlds)) {
+                            && !in_array($this->_tld, $this->_validTlds)
+                        ) {
                             $this->_error(self::UNKNOWN_TLD);
                             $status = false;
                             break;
@@ -1773,12 +1778,13 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
                     /**
                      * Match against IDN hostnames
                      * Note: Keep label regex short to avoid issues with long patterns when matching IDN hostnames
+                     *
                      * @see Zend_Validate_Hostname_Interface
                      */
                     $regexChars = array(0 => '/^[a-z0-9\x2d]{1,63}$/i');
                     if ($this->_options['idn'] &&  isset($this->_validIdns[strtoupper($this->_tld)])) {
                         if (is_string($this->_validIdns[strtoupper($this->_tld)])) {
-                            $regexChars += include($this->_validIdns[strtoupper($this->_tld)]);
+                            $regexChars += include $this->_validIdns[strtoupper($this->_tld)];
                         } else {
                             $regexChars += $this->_validIdns[strtoupper($this->_tld)];
                         }
@@ -1804,7 +1810,8 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
                         // Check dash (-) does not start, end or appear in 3rd and 4th positions
                         if ((strpos($domainPart, '-') === 0)
                             || ((strlen($domainPart) > 2) && (strpos($domainPart, '-', 2) == 2) && (strpos($domainPart, '-', 3) == 3))
-                            || (strpos($domainPart, '-') === (strlen($domainPart) - 1))) {
+                            || (strpos($domainPart, '-') === (strlen($domainPart) - 1))
+                        ) {
                                 $this->_error(self::INVALID_DASH);
                             $status = false;
                             break 2;
@@ -1817,7 +1824,8 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
                             if ($status > 0) {
                                 $length = 63;
                                 if (array_key_exists(strtoupper($this->_tld), $this->_idnLength)
-                                    && (array_key_exists($regexKey, $this->_idnLength[strtoupper($this->_tld)]))) {
+                                    && (array_key_exists($regexKey, $this->_idnLength[strtoupper($this->_tld)]))
+                                ) {
                                     $length = $this->_idnLength[strtoupper($this->_tld)];
                                 }
 

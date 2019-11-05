@@ -19,10 +19,14 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_Mobile_Push_Message_Abstract **/
+/**
+ * Zend_Mobile_Push_Message_Abstract 
+ **/
 // require_once 'Zend/Mobile/Push/Message/Abstract.php';
 
-/** Zend_Uri **/
+/**
+ * Zend_Uri 
+ **/
 // require_once 'Zend/Uri.php';
 
 /**
@@ -62,7 +66,7 @@ abstract class Zend_Mobile_Push_Message_Mpns extends Zend_Mobile_Push_Message_Ab
     /**
      * Set Delay
      *
-     * @param int $delay one of const DELAY_* of implementing classes
+     * @param  int $delay one of const DELAY_* of implementing classes
      * @return Zend_Mobile_Push_Message_Mpns
      */
     abstract public function setDelay($delay);
@@ -80,7 +84,7 @@ abstract class Zend_Mobile_Push_Message_Mpns extends Zend_Mobile_Push_Message_Ab
     /**
      * Set Token
      *
-     * @param string $token
+     * @param  string $token
      * @return Zend_Mobile_Push_Message_Mpns
      * @throws Zend_Mobile_Push_Message_Exception
      */

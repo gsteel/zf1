@@ -20,7 +20,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_Abstract.php */
+/**
+ * Zend_View_Helper_Abstract.php 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**
@@ -35,6 +37,7 @@ class Zend_View_Helper_DeclareVars extends Zend_View_Helper_Abstract
 {
     /**
      * The view object that created this helper object.
+     *
      * @var Zend_View
      */
     public $view;
@@ -60,7 +63,7 @@ class Zend_View_Helper_DeclareVars extends Zend_View_Helper_Abstract
      * );
      * </code>
      *
-     * @param string|array variable number of arguments, all string names of variables to test
+     * @param  string|array variable number of arguments, all string names of variables to test
      * @return void
      */
     public function declareVars()

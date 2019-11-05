@@ -48,18 +48,21 @@ class Zend_Mail_Storage_Folder_Mbox extends Zend_Mail_Storage_Mbox implements Ze
 {
     /**
      * Zend_Mail_Storage_Folder root folder for folder structure
+     *
      * @var Zend_Mail_Storage_Folder
      */
     protected $_rootFolder;
 
     /**
      * rootdir of folder structure
+     *
      * @var string
      */
     protected $_rootdir;
 
     /**
      * name of current folder
+     *
      * @var string
      */
     protected $_currentFolder;
@@ -73,7 +76,7 @@ class Zend_Mail_Storage_Folder_Mbox extends Zend_Mail_Storage_Mbox implements Ze
      *   - dirname rootdir of mbox structure
      *   - folder intial selected folder, default is 'INBOX'
      *
-     * @param array $params mail reader specific parameters
+     * @param  array $params mail reader specific parameters
      * @throws Zend_Mail_Storage_Exception
      */
     public function __construct($params)
@@ -112,9 +115,9 @@ class Zend_Mail_Storage_Folder_Mbox extends Zend_Mail_Storage_Mbox implements Ze
      * Result is save in Zend_Mail_Storage_Folder instances with the root in $this->_rootFolder.
      * $parentFolder and $parentGlobalName are only used internally for recursion.
      *
-     * @param string $currentDir call with root dir, also used for recursion.
-     * @param Zend_Mail_Storage_Folder|null $parentFolder used for recursion
-     * @param string $parentGlobalName used for rescursion
+     * @param  string                        $currentDir       call with root dir, also used for recursion.
+     * @param  Zend_Mail_Storage_Folder|null $parentFolder     used for recursion
+     * @param  string                        $parentGlobalName used for rescursion
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */
@@ -158,7 +161,7 @@ class Zend_Mail_Storage_Folder_Mbox extends Zend_Mail_Storage_Mbox implements Ze
     /**
      * get root folder or given folder
      *
-     * @param string $rootFolder get folder structure for given folder, else root
+     * @param  string $rootFolder get folder structure for given folder, else root
      * @return Zend_Mail_Storage_Folder root or wanted folder
      * @throws Zend_Mail_Storage_Exception
      */
@@ -193,7 +196,7 @@ class Zend_Mail_Storage_Folder_Mbox extends Zend_Mail_Storage_Mbox implements Ze
      *
      * folder must be selectable!
      *
-     * @param Zend_Mail_Storage_Folder|string $globalName global name of folder or instance for subfolder
+     * @param  Zend_Mail_Storage_Folder|string $globalName global name of folder or instance for subfolder
      * @return null
      * @throws Zend_Mail_Storage_Exception
      */
@@ -221,8 +224,10 @@ class Zend_Mail_Storage_Folder_Mbox extends Zend_Mail_Storage_Mbox implements Ze
              * @see Zend_Mail_Storage_Exception
              */
             // require_once 'Zend/Mail/Storage/Exception.php';
-            throw new Zend_Mail_Storage_Exception('seems like the mbox file has vanished, I\'ve rebuild the ' .
-                                                         'folder tree, search for an other folder and try again', 0, $e);
+            throw new Zend_Mail_Storage_Exception(
+                'seems like the mbox file has vanished, I\'ve rebuild the ' .
+                'folder tree, search for an other folder and try again', 0, $e
+            );
         }
     }
 

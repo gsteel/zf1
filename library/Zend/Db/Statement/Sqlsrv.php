@@ -55,7 +55,7 @@ class Zend_Db_Statement_Sqlsrv extends Zend_Db_Statement
     /**
      * Prepares statement handle
      *
-     * @param string $sql
+     * @param  string $sql
      * @return void
      * @throws Zend_Db_Statement_Sqlsrv_Exception
      */
@@ -76,11 +76,11 @@ class Zend_Db_Statement_Sqlsrv extends Zend_Db_Statement
     /**
      * Binds a parameter to the specified variable name.
      *
-     * @param mixed $parameter Name the parameter, either integer or string.
-     * @param mixed $variable  Reference to PHP variable containing the value.
-     * @param mixed $type      OPTIONAL Datatype of SQL parameter.
-     * @param mixed $length    OPTIONAL Length of SQL parameter.
-     * @param mixed $options   OPTIONAL Other options.
+     * @param  mixed $parameter Name the parameter, either integer or string.
+     * @param  mixed $variable  Reference to PHP variable containing the value.
+     * @param  mixed $type      OPTIONAL Datatype of SQL parameter.
+     * @param  mixed $length    OPTIONAL Length of SQL parameter.
+     * @param  mixed $options   OPTIONAL Other options.
      * @return bool
      * @throws Zend_Db_Statement_Exception
      */
@@ -170,7 +170,7 @@ class Zend_Db_Statement_Sqlsrv extends Zend_Db_Statement
     /**
      * Executes a prepared statement.
      *
-     * @param array $params OPTIONAL Values to bind to parameter placeholders.
+     * @param  array $params OPTIONAL Values to bind to parameter placeholders.
      * @return bool
      * @throws Zend_Db_Statement_Exception
      */
@@ -251,27 +251,27 @@ class Zend_Db_Statement_Sqlsrv extends Zend_Db_Statement
 
         $row = false;
         switch ($style) {
-            case Zend_Db::FETCH_NUM:
-                $row = $values;
-                break;
-            case Zend_Db::FETCH_ASSOC:
-                $row = array_combine($this->_keys, $values);
-                break;
-            case Zend_Db::FETCH_BOTH:
-                $assoc = array_combine($this->_keys, $values);
-                $row   = array_merge($values, $assoc);
-                break;
-            case Zend_Db::FETCH_OBJ:
-                $row = (object) array_combine($this->_keys, $values);
-                break;
-            case Zend_Db::FETCH_BOUND:
-                $assoc = array_combine($this->_keys, $values);
-                $row   = array_merge($values, $assoc);
-                $row   = $this->_fetchBound($row);
-                break;
-            default:
-                // require_once 'Zend/Db/Statement/Sqlsrv/Exception.php';
-                throw new Zend_Db_Statement_Sqlsrv_Exception("Invalid fetch mode '$style' specified");
+        case Zend_Db::FETCH_NUM:
+            $row = $values;
+            break;
+        case Zend_Db::FETCH_ASSOC:
+            $row = array_combine($this->_keys, $values);
+            break;
+        case Zend_Db::FETCH_BOTH:
+            $assoc = array_combine($this->_keys, $values);
+            $row   = array_merge($values, $assoc);
+            break;
+        case Zend_Db::FETCH_OBJ:
+            $row = (object) array_combine($this->_keys, $values);
+            break;
+        case Zend_Db::FETCH_BOUND:
+            $assoc = array_combine($this->_keys, $values);
+            $row   = array_merge($values, $assoc);
+            $row   = $this->_fetchBound($row);
+            break;
+        default:
+            // require_once 'Zend/Db/Statement/Sqlsrv/Exception.php';
+            throw new Zend_Db_Statement_Sqlsrv_Exception("Invalid fetch mode '$style' specified");
                 break;
         }
 
@@ -281,7 +281,7 @@ class Zend_Db_Statement_Sqlsrv extends Zend_Db_Statement
     /**
      * Returns a single column from the next row of a result set.
      *
-     * @param int $col OPTIONAL Position of the column to fetch.
+     * @param  int $col OPTIONAL Position of the column to fetch.
      * @return string
      * @throws Zend_Db_Statement_Exception
      */
@@ -313,8 +313,8 @@ class Zend_Db_Statement_Sqlsrv extends Zend_Db_Statement
     /**
      * Fetches the next row and returns it as an object.
      *
-     * @param string $class  OPTIONAL Name of the class to create.
-     * @param array  $config OPTIONAL Constructor arguments for the class.
+     * @param  string $class  OPTIONAL Name of the class to create.
+     * @param  array  $config OPTIONAL Constructor arguments for the class.
      * @return mixed One object instance of the specified class.
      * @throws Zend_Db_Statement_Exception
      */
@@ -343,7 +343,7 @@ class Zend_Db_Statement_Sqlsrv extends Zend_Db_Statement
     /**
      * Returns metadata for a column in a result set.
      *
-     * @param int $column
+     * @param  int $column
      * @return mixed
      * @throws Zend_Db_Statement_Sqlsrv_Exception
      */
@@ -415,8 +415,8 @@ class Zend_Db_Statement_Sqlsrv extends Zend_Db_Statement
     /**
      * Returns an array containing all of the result set rows.
      *
-     * @param int $style OPTIONAL Fetch mode.
-     * @param int $col   OPTIONAL Column number, if fetch mode is by column.
+     * @param  int $style OPTIONAL Fetch mode.
+     * @param  int $col   OPTIONAL Column number, if fetch mode is by column.
      * @return array Collection of rows, each in a format by the fetch mode.
      *
      * Behaves like parent, but if limit()

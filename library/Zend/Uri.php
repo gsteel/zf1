@@ -87,16 +87,16 @@ abstract class Zend_Uri
              * scheme, return an instance of that class. Otherwise, a Zend_Uri_Exception is thrown.
              */
             switch ($scheme) {
-                case 'http':
-                    // Break intentionally omitted
-                case 'https':
-                    $className = \Zend_Uri_Http::class;
-                    break;
+            case 'http':
+                // Break intentionally omitted
+            case 'https':
+                $className = \Zend_Uri_Http::class;
+                break;
 
-                case 'mailto':
-                    // TODO
-                default:
-                    throw new Zend_Uri_Exception("Scheme \"$scheme\" is not supported");
+            case 'mailto':
+                // TODO
+            default:
+                throw new Zend_Uri_Exception("Scheme \"$scheme\" is not supported");
                     break;
             }
         }

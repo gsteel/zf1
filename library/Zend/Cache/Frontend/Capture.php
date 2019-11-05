@@ -3,12 +3,14 @@ class Zend_Cache_Frontend_Capture extends Zend_Cache_Core
 {
     /**
      * Page identifiers
+     *
      * @var array
      */
     protected $_idStack = array();
 
     /**
      * Tags
+     *
      * @var array
      */
     protected $_tags = array();
@@ -18,7 +20,7 @@ class Zend_Cache_Frontend_Capture extends Zend_Cache_Core
     /**
      * Start the cache
      *
-     * @param  string  $id Cache id
+     * @param  string $id Cache id
      * @return mixed True if the cache is hit (false else) with $echoData=true (default) ; string else (datas)
      */
     public function start($id, array $tags, $extension = null)

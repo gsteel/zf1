@@ -44,6 +44,7 @@ class Zend_Http_UserAgent_Storage_NonPersistent
 {
     /**
      * Holds the actual Browser data
+     *
      * @var mixed
      */
     protected $_data;

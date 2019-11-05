@@ -20,10 +20,14 @@
  * @version    $Id$
  */
 
-/** Zend_Mobile_Push_Interface **/
+/**
+ * Zend_Mobile_Push_Interface 
+ **/
 // require_once 'Zend/Mobile/Push/Interface.php';
 
-/** Zend_Mobile_Push_Exception **/
+/**
+ * Zend_Mobile_Push_Exception 
+ **/
 // require_once 'Zend/Mobile/Push/Exception.php';
 
 /**
@@ -59,7 +63,7 @@ abstract class Zend_Mobile_Push_Abstract implements Zend_Mobile_Push_Interface
     /**
      * Send a Push Message
      *
-     * @param Zend_Mobile_Push_Message_Abstract $message
+     * @param  Zend_Mobile_Push_Message_Abstract $message
      * @return boolean
      * @throws DomainException
      */
@@ -94,7 +98,7 @@ abstract class Zend_Mobile_Push_Abstract implements Zend_Mobile_Push_Interface
     /**
      * Set Options
      *
-     * @param array $options
+     * @param  array $options
      * @return Zend_Mobile_Push_Abstract
      * @throws Zend_Mobile_Push_Exception
      */

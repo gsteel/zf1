@@ -20,10 +20,14 @@
  * @version    $Id$
  */
 
-/** Zend_Mobile_Push_Message_Interface **/
+/**
+ * Zend_Mobile_Push_Message_Interface 
+ **/
 // require_once 'Zend/Mobile/Push/Message/Interface.php';
 
-/** Zend_Mobile_Push_Message_Exception **/
+/**
+ * Zend_Mobile_Push_Message_Exception 
+ **/
 // require_once 'Zend/Mobile/Push/Message/Exception.php';
 
 /**
@@ -107,7 +111,7 @@ abstract class Zend_Mobile_Push_Message_Abstract implements Zend_Mobile_Push_Mes
     /**
      * Set Options
      *
-     * @param array $options
+     * @param  array $options
      * @return Zend_Mobile_Push_Message_Abstract
      * @throws Zend_Mobile_Push_Message_Exception
      */

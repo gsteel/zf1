@@ -20,10 +20,14 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/** Zend_View_Helper_Placeholder_Registry */
+/**
+ * Zend_View_Helper_Placeholder_Registry 
+ */
 // require_once 'Zend/View/Helper/Placeholder/Registry.php';
 
-/** Zend_View_Helper_Abstract.php */
+/**
+ * Zend_View_Helper_Abstract.php 
+ */
 // require_once 'Zend/View/Helper/Abstract.php';
 
 /**
@@ -48,6 +52,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
 
     /**
      * Registry key under which container registers itself
+     *
      * @var string
      */
     protected $_regKey;
@@ -55,6 +60,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * Flag wheter to automatically escape output, must also be
      * enforced in the child class if __toString/toString is overriden
+     *
      * @var book
      */
     protected $_autoEscape = true;
@@ -158,7 +164,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
      * Overloading: set property value
      *
      * @param  string $key
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return void
      */
     public function __set($key, $value)
@@ -215,7 +221,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
      * Proxy to container methods
      *
      * @param  string $method
-     * @param  array $args
+     * @param  array  $args
      * @return mixed
      */
     public function __call($method, $args)
@@ -293,7 +299,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
      * ArrayAccess: offsetSet
      *
      * @param  string|int $offset
-     * @param  mixed $value
+     * @param  mixed      $value
      * @return void
      */
     public function offsetSet($offset, $value)

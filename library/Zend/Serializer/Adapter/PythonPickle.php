@@ -20,7 +20,9 @@
  * @version    $Id$
  */
 
-/** @see Zend_Serializer_Adapter_AdapterAbstract */
+/**
+ * @see Zend_Serializer_Adapter_AdapterAbstract 
+ */
 // require_once 'Zend/Serializer/Adapter/AdapterAbstract.php';
 
 /**
@@ -159,15 +161,15 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
      *
      * @link   Zend_Serializer_Adapter_AdapterAbstract::setOption()
      * @param  string $name
-     * @param  mixed $value
+     * @param  mixed  $value
      * @return Zend_Serializer_Adapter_PythonPickle
      */
     public function setOption($name, $value)
     {
         switch ($name) {
-            case 'protocol':
-                $value = $this->_checkProtocolNumber($value);
-                break;
+        case 'protocol':
+            $value = $this->_checkProtocolNumber($value);
+            break;
         }
 
         return parent::setOption($name, $value);
@@ -428,7 +430,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
      */
     protected function _writeString($value)
     {
-        if ( ($id=$this->_searchMomo($value)) !== false ) {
+        if (($id=$this->_searchMomo($value)) !== false ) {
             $this->_writeGet($id);
             return;
         }
@@ -524,7 +526,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
     /**
      * Add a value to the memo and write the id
      *
-     * @param mixed $value
+     * @param  mixed $value
      * @return void
      */
     protected function _momorize($value)
@@ -586,7 +588,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
      * Unserialize from Python Pickle format to PHP
      *
      * @param  string $pickle
-     * @param  array $opts
+     * @param  array  $opts
      * @return mixed
      * @throws Zend_Serializer_Exception on invalid Pickle string
      */
@@ -631,126 +633,126 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
     protected function _load($op)
     {
         switch ($op) {
-            case self::OP_PUT:
-                $this->_loadPut();
-                break;
-            case self::OP_BINPUT:
-                $this->_loadBinPut();
-                break;
-            case self::OP_LONG_BINPUT:
-                $this->_loadLongBinPut();
-                break;
-            case self::OP_GET:
-                $this->_loadGet();
-                break;
-            case self::OP_BINGET:
-                $this->_loadBinGet();
-                break;
-            case self::OP_LONG_BINGET:
-                $this->_loadLongBinGet();
-                break;
-            case self::OP_NONE:
-                $this->_loadNone();
-                break;
-            case self::OP_NEWTRUE:
-                $this->_loadNewTrue();
-                break;
-            case self::OP_NEWFALSE:
-                $this->_loadNewFalse();
-                break;
-            case self::OP_INT:
-                $this->_loadInt();
-                break;
-            case self::OP_BININT:
-                $this->_loadBinInt();
-                break;
-            case self::OP_BININT1:
-                $this->_loadBinInt1();
-                break;
-            case self::OP_BININT2:
-                $this->_loadBinInt2();
-                break;
-            case self::OP_LONG:
-                $this->_loadLong();
-                break;
-            case self::OP_LONG1:
-                $this->_loadLong1();
-                break;
-            case self::OP_LONG4:
-                $this->_loadLong4();
-                break;
-            case self::OP_FLOAT:
-                $this->_loadFloat();
-                break;
-            case self::OP_BINFLOAT:
-                $this->_loadBinFloat();
-                break;
-            case self::OP_STRING:
-                $this->_loadString();
-                break;
-            case self::OP_BINSTRING:
-                $this->_loadBinString();
-                break;
-            case self::OP_SHORT_BINSTRING:
-                $this->_loadShortBinString();
-                break;
-            case self::OP_BINBYTES:
-                $this->_loadBinBytes();
-                break;
-            case self::OP_SHORT_BINBYTES:
-                $this->_loadShortBinBytes();
-                break;
-            case self::OP_UNICODE:
-                $this->_loadUnicode();
-                break;
-            case self::OP_BINUNICODE:
-                $this->_loadBinUnicode();
-                break;
-            case self::OP_MARK:
-                $this->_loadMark();
-                break;
-            case self::OP_LIST:
-                $this->_loadList();
-                break;
-            case self::OP_EMPTY_LIST:
-                $this->_loadEmptyList();
-                break;
-            case self::OP_APPEND:
-                $this->_loadAppend();
-                break;
-            case self::OP_APPENDS:
-                $this->_loadAppends();
-                break;
-            case self::OP_DICT:
-                $this->_loadDict();
-                break;
-            case self::OP_EMPTY_DICT:
-                $this->_loadEmptyDict();
-                break;
-            case self::OP_SETITEM:
-                $this->_loadSetItem();
-                break;
-            case self::OP_SETITEMS:
-                $this->_loadSetItems();
-                break;
-            case self::OP_TUPLE:
-                $this->_loadTuple();
-                break;
-            case self::OP_TUPLE1:
-                $this->_loadTuple1();
-                break;
-            case self::OP_TUPLE2:
-                $this->_loadTuple2();
-                break;
-            case self::OP_TUPLE3:
-                $this->_loadTuple3();
-                break;
-            case self::OP_PROTO:
-                $this->_loadProto();
-                break;
-            default:
-                // require_once 'Zend/Serializer/Exception.php';
-                throw new Zend_Serializer_Exception('Invalid or unknown opcode "'.$op.'"');
+        case self::OP_PUT:
+            $this->_loadPut();
+            break;
+        case self::OP_BINPUT:
+            $this->_loadBinPut();
+            break;
+        case self::OP_LONG_BINPUT:
+            $this->_loadLongBinPut();
+            break;
+        case self::OP_GET:
+            $this->_loadGet();
+            break;
+        case self::OP_BINGET:
+            $this->_loadBinGet();
+            break;
+        case self::OP_LONG_BINGET:
+            $this->_loadLongBinGet();
+            break;
+        case self::OP_NONE:
+            $this->_loadNone();
+            break;
+        case self::OP_NEWTRUE:
+            $this->_loadNewTrue();
+            break;
+        case self::OP_NEWFALSE:
+            $this->_loadNewFalse();
+            break;
+        case self::OP_INT:
+            $this->_loadInt();
+            break;
+        case self::OP_BININT:
+            $this->_loadBinInt();
+            break;
+        case self::OP_BININT1:
+            $this->_loadBinInt1();
+            break;
+        case self::OP_BININT2:
+            $this->_loadBinInt2();
+            break;
+        case self::OP_LONG:
+            $this->_loadLong();
+            break;
+        case self::OP_LONG1:
+            $this->_loadLong1();
+            break;
+        case self::OP_LONG4:
+            $this->_loadLong4();
+            break;
+        case self::OP_FLOAT:
+            $this->_loadFloat();
+            break;
+        case self::OP_BINFLOAT:
+            $this->_loadBinFloat();
+            break;
+        case self::OP_STRING:
+            $this->_loadString();
+            break;
+        case self::OP_BINSTRING:
+            $this->_loadBinString();
+            break;
+        case self::OP_SHORT_BINSTRING:
+            $this->_loadShortBinString();
+            break;
+        case self::OP_BINBYTES:
+            $this->_loadBinBytes();
+            break;
+        case self::OP_SHORT_BINBYTES:
+            $this->_loadShortBinBytes();
+            break;
+        case self::OP_UNICODE:
+            $this->_loadUnicode();
+            break;
+        case self::OP_BINUNICODE:
+            $this->_loadBinUnicode();
+            break;
+        case self::OP_MARK:
+            $this->_loadMark();
+            break;
+        case self::OP_LIST:
+            $this->_loadList();
+            break;
+        case self::OP_EMPTY_LIST:
+            $this->_loadEmptyList();
+            break;
+        case self::OP_APPEND:
+            $this->_loadAppend();
+            break;
+        case self::OP_APPENDS:
+            $this->_loadAppends();
+            break;
+        case self::OP_DICT:
+            $this->_loadDict();
+            break;
+        case self::OP_EMPTY_DICT:
+            $this->_loadEmptyDict();
+            break;
+        case self::OP_SETITEM:
+            $this->_loadSetItem();
+            break;
+        case self::OP_SETITEMS:
+            $this->_loadSetItems();
+            break;
+        case self::OP_TUPLE:
+            $this->_loadTuple();
+            break;
+        case self::OP_TUPLE1:
+            $this->_loadTuple1();
+            break;
+        case self::OP_TUPLE2:
+            $this->_loadTuple2();
+            break;
+        case self::OP_TUPLE3:
+            $this->_loadTuple3();
+            break;
+        case self::OP_PROTO:
+            $this->_loadProto();
+            break;
+        default:
+            // require_once 'Zend/Serializer/Exception.php';
+            throw new Zend_Serializer_Exception('Invalid or unknown opcode "'.$op.'"');
         }
     }
 
@@ -1333,7 +1335,8 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
      *
      * @return void
      */
-    protected function _loadTuple3() {
+    protected function _loadTuple3()
+    {
         $value3 = array_pop($this->_stack);
         $value2 = array_pop($this->_stack);
         $value1 = array_pop($this->_stack);
