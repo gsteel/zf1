@@ -1,0 +1,12 @@
+parameters:
+  php_version_features: '7.1'
+  exclude_paths:
+    - '*/tests/*'
+  exclude_rectors:
+    - 'Rector\Php70\Rector\MethodCall\ThisCallOnStaticMethodToStaticCallRector' # Causes errors
+    - 'Rector\Php70\Rector\FunctionLike\Php4ConstructorRector' # Causes problems and not applicable anyway
+    - 'Rector\Php71\Rector\FuncCall\RemoveExtraParametersRector' # Not sure this can be trusted without review
+    - 'Rector\Php73\Rector\BinaryOp\IsCountableRector' # is_countable is 7.3+
+    - 'Rector\Php73\Rector\FuncCall\JsonThrowOnErrorRector' # The constant is not available in 7.1
+    - 'Rector\Php73\Rector\FuncCall\ArrayKeyFirstLastRector' # Causes problems
+
