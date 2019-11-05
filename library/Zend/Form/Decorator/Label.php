@@ -204,7 +204,7 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
 
         $type  = $element->isRequired() ? 'required' : 'optional';
 
-        if (!strstr($class, $type)) {
+        if (!strstr($class, (string) $type)) {
             $class .= ' ' . $type;
             $class = trim($class);
         }

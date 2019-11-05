@@ -401,7 +401,7 @@ class Zend_Config_Yaml extends Zend_Config
     protected static function _replaceConstants($value)
     {
         foreach (self::_getConstants() as $constant) {
-            if (strstr($value, $constant)) {
+            if (strstr($value, (string) $constant)) {
                 $value = str_replace($constant, constant($constant), $value);
             }
         }

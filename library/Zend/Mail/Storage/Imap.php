@@ -419,7 +419,7 @@ class Zend_Mail_Storage_Imap extends Zend_Mail_Storage_Abstract
         foreach ($folders as $globalName => $data) {
             do {
                 if (!$parent || strpos($globalName, $parent) === 0) {
-                    $pos = strrpos($globalName, $data['delim']);
+                    $pos = strrpos($globalName, (string) $data['delim']);
                     if ($pos === false) {
                         $localName = $globalName;
                     } else {

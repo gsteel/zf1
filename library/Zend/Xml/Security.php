@@ -274,12 +274,12 @@ class Zend_Xml_Security
         $quote       = call_user_func($generator, '"');
         $close       = call_user_func($generator, '>');
 
-        $closePos    = strpos($xml, $close);
+        $closePos    = strpos($xml, (string) $close);
         if (false === $closePos) {
             return array($fileEncoding);
         }
 
-        $encPos = strpos($xml, $encAttr);
+        $encPos = strpos($xml, (string) $encAttr);
         if (false === $encPos
             || $encPos > $closePos
         ) {
@@ -287,7 +287,7 @@ class Zend_Xml_Security
         }
 
         $encPos   += strlen($encAttr);
-        $quotePos = strpos($xml, $quote, $encPos);
+        $quotePos = strpos($xml, (string) $quote, $encPos);
         if (false === $quotePos) {
             return array($fileEncoding);
         }

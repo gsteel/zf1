@@ -601,7 +601,7 @@ class Zend_OpenId_Provider
             $trusted = $sites[$root];
         } else {
             foreach ($sites as $site => $t) {
-                if (strpos($root, $site) === 0) {
+                if (strpos($root, (string) $site) === 0) {
                     $trusted = $t;
                     break;
                 } else {

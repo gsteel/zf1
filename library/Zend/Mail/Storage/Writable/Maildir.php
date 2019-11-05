@@ -175,7 +175,7 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
         $fulldir = $this->_rootdir . '.' . $folder;
 
         // check if we got tricked and would create a dir outside of the rootdir or not as direct child
-        if (strpos($folder, DIRECTORY_SEPARATOR) !== false || strpos($folder, '/') !== false
+        if (strpos($folder, (string) DIRECTORY_SEPARATOR) !== false || strpos($folder, '/') !== false
             || dirname($fulldir) . DIRECTORY_SEPARATOR != $this->_rootdir
         ) {
             /**

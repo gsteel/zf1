@@ -729,7 +729,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
             $pluginName = $className;
             $loader     = $this->getPluginLoader();
             foreach ($loader->getPaths() as $prefix => $paths) {
-                if (0 === strpos($className, $prefix)) {
+                if (0 === strpos($className, (string) $prefix)) {
                     $pluginName = substr($className, strlen($prefix));
                     $pluginName = trim($pluginName, '_');
                     break;

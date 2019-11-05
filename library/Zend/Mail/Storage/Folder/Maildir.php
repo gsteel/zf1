@@ -150,7 +150,7 @@ class Zend_Mail_Storage_Folder_Maildir extends Zend_Mail_Storage_Maildir impleme
 
         foreach ($dirs as $dir) {
             do {
-                if (strpos($dir, $parent) === 0) {
+                if (strpos($dir, (string) $parent) === 0) {
                     $local = substr($dir, strlen($parent));
                     if (strpos($local, $this->_delim) !== false) {
                         /**

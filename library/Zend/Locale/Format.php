@@ -274,7 +274,7 @@ class Zend_Locale_Format
         }
 
         $input = str_replace($symbols['group'], '', $input);
-        if (strpos($input, $symbols['decimal']) !== false) {
+        if (strpos($input, (string) $symbols['decimal']) !== false) {
             if ($symbols['decimal'] != '.') {
                 $input = str_replace($symbols['decimal'], ".", $input);
             }

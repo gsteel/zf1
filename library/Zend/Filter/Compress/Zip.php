@@ -133,9 +133,9 @@ class Zend_Filter_Compress_Zip extends Zend_Filter_Compress_CompressAbstract
 
         if (file_exists($content)) {
             $content  = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, realpath($content));
-            $basename = substr($content, strrpos($content, DIRECTORY_SEPARATOR) + 1);
+            $basename = substr($content, strrpos($content, (string) DIRECTORY_SEPARATOR) + 1);
             if (is_dir($content)) {
-                $index    = strrpos($content, DIRECTORY_SEPARATOR) + 1;
+                $index    = strrpos($content, (string) DIRECTORY_SEPARATOR) + 1;
                 $content .= DIRECTORY_SEPARATOR;
                 $stack    = array($content);
                 while (!empty($stack)) {

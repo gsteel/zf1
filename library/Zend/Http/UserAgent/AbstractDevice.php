@@ -322,7 +322,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
         if (isset($this->list) && empty($this->_browser)) {
             $lowerUserAgent = strtolower($this->getUserAgent());
             foreach ($this->list as $browser_signature) {
-                if (strpos($lowerUserAgent, $browser_signature) !== false) {
+                if (strpos($lowerUserAgent, (string) $browser_signature) !== false) {
                     $this->_browser = strtolower($browser_signature);
                     $this->setFeature('browser_name', $this->_browser, 'product_info');
                 }
@@ -996,7 +996,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
         $userAgent = strtolower($userAgent);
         foreach ($signatures as $signature) {
             if (!empty($signature)) {
-                if (strpos($userAgent, $signature) !== false) {
+                if (strpos($userAgent, (string) $signature) !== false) {
                     // Browser signature was found in user agent string
                     return true;
                 }

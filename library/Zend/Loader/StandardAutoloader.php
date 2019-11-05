@@ -333,7 +333,7 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
 
         // Namespace and/or prefix autoloading
         foreach ($this->$type as $leader => $path) {
-            if (0 === strpos($class, $leader)) {
+            if (0 === strpos($class, (string) $leader)) {
                 // Trim off leader (namespace or prefix)
                 $trimmedClass = substr($class, strlen($leader));
 
