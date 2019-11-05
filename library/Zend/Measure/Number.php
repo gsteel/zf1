@@ -326,6 +326,7 @@ class Zend_Measure_Number extends Zend_Measure_Abstract
      */
     private function _fromDecimal($value, $type)
     {
+        $newvalue = null;
         $tempvalue = $value;
         if ($this->_units[$type][0] <= 16) {
             $newvalue = '';

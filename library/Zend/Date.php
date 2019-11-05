@@ -4543,15 +4543,15 @@ class Zend_Date extends Zend_Date_DateObject
         }
 
         if ($this->_precision > $precision) {
-            $milli = $milli * pow(10, $this->_precision - $precision);
+            $milli = $milli * 10 ** ($this->_precision - $precision);
         } elseif ($this->_precision < $precision) {
-            $milli = round($milli / pow(10, $precision - $this->_precision));
+            $milli = round($milli / 10 ** ($precision - $this->_precision));
         }
 
         $this->_fractional += $milli;
 
         // Add/sub milliseconds + add/sub seconds
-        $max = pow(10, $this->_precision);
+        $max = 10 ** $this->_precision;
         // Milli includes seconds
         if ($this->_fractional >= $max) {
             while ($this->_fractional >= $max) {

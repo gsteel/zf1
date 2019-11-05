@@ -77,6 +77,7 @@ abstract class Zend_Feed_Entry_Abstract extends Zend_Feed_Element
      */
     public function __construct($uri = null, $element = null)
     {
+        $php_errormsg = null;
         if (!($element instanceof DOMElement)) {
             if ($element) {
                 // Load the feed as an XML DOMDocument object

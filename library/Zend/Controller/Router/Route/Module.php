@@ -135,6 +135,7 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
      */
     public function match($path, $partial = false)
     {
+        $matchedPath = null;
         $this->_setRequestKeys();
 
         $values = array();
@@ -191,6 +192,7 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
      */
     public function assemble($data = array(), $reset = false, $encode = true, $partial = false)
     {
+        $module = null;
         if (!$this->_keysSet) {
             $this->_setRequestKeys();
         }

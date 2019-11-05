@@ -322,6 +322,7 @@ class Zend_Cache_Core
      */
     public function save($data, $id = null, $tags = array(), $specificLifetime = false, $priority = 8)
     {
+        $abort = null;
         if (!$this->_options['caching']) {
             return true;
         }

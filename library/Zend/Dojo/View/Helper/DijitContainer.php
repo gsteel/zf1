@@ -79,6 +79,8 @@ abstract class Zend_Dojo_View_Helper_DijitContainer extends Zend_Dojo_View_Helpe
      */
     public function captureEnd($id)
     {
+        $params = null;
+        $attribs = null;
         if (!array_key_exists($id, $this->_captureLock)) {
             require_once 'Zend/Dojo/View/Exception.php';
             throw new Zend_Dojo_View_Exception(sprintf('No capture lock exists for id "%s"; nothing to capture', $id));

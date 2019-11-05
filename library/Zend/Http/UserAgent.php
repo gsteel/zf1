@@ -713,6 +713,8 @@ class Zend_Http_UserAgent implements Serializable
      */
     public function setPluginLoader($type, $loader)
     {
+        $prefix = null;
+        $path = null;
         $type       = $this->_validateLoaderType($type);
 
         if (is_string($loader)) {

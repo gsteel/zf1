@@ -432,6 +432,8 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      */
     protected function _createTmpFile($folder = 'INBOX')
     {
+        $fh = null;
+        $uniq = null;
         if ($folder == 'INBOX') {
             $tmpdir = $this->_rootdir . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR;
         } else {
@@ -789,6 +791,7 @@ class Zend_Mail_Storage_Writable_Maildir extends    Zend_Mail_Storage_Folder_Mai
      */
     public function removeMessage($id)
     {
+        $size = null;
         $filename = $this->_getFileData($id, 'filename');
 
         if ($this->_quota) {

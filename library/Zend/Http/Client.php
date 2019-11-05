@@ -1015,6 +1015,7 @@ class Zend_Http_Client
      */
     public function request($method = null)
     {
+        $stream = null;
         if (! $this->uri instanceof Zend_Uri_Http) {
             /** @see Zend_Http_Client_Exception */
             require_once 'Zend/Http/Client/Exception.php';
@@ -1263,6 +1264,7 @@ class Zend_Http_Client
      */
     protected function _prepareBody()
     {
+        $mbIntEnc = null;
         // According to RFC2616, a TRACE request should not have a body.
         if ($this->method == self::TRACE) {
             return '';

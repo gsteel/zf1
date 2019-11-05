@@ -520,6 +520,7 @@ class Zend_Session extends Zend_Session_Abstract
      */
     protected static function _checkId($id)
     {
+        $pattern = null;
         $saveHandler = ini_get('session.save_handler');
         if ($saveHandler == 'cluster') { // Zend Server SC, validate only after last dash
             $dashPos = strrpos($id, '-');

@@ -791,6 +791,8 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
      */
     protected function _translateSpec(array $vars = array())
     {
+        $origSuffix = null;
+        $origModuleDir = null;
         $inflector  = $this->getInflector();
         $request    = $this->getRequest();
         $dispatcher = $this->getFrontController()->getDispatcher();

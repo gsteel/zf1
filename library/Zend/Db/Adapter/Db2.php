@@ -299,6 +299,7 @@ class Zend_Db_Adapter_Db2 extends Zend_Db_Adapter_Abstract
      */
     public function getQuoteIdentifierSymbol()
     {
+        $identQuote = null;
         $this->_connect();
         $info = db2_server_info($this->_connection);
         if ($info) {

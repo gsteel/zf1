@@ -143,6 +143,7 @@ class Zend_Reflection_Method extends ReflectionMethod
      */
     public function getBody()
     {
+        $firstLine = null;
         $lines = array_slice(
             file($this->getDeclaringClass()->getFileName(), FILE_IGNORE_NEW_LINES),
             $this->getStartLine()-1,

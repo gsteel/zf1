@@ -162,6 +162,7 @@ class Zend_Filter_Compress_Tar extends Zend_Filter_Compress_CompressAbstract
      */
     public function compress($content)
     {
+        $file = null;
         $archive = new Archive_Tar($this->getArchive(), $this->getMode());
         if (!file_exists($content)) {
             $file = $this->getTarget();

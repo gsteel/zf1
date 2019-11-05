@@ -65,6 +65,7 @@ class Zend_View_Helper_DeclareVars extends Zend_View_Helper_Abstract
      */
     public function declareVars()
     {
+        $view = null;
         $args = func_get_args();
         foreach($args as $key) {
             if (is_array($key)) {

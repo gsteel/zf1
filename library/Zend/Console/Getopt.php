@@ -592,6 +592,7 @@ class Zend_Console_Getopt
      */
     public function getUsageMessage()
     {
+        $linepart = null;
         $usage = "Usage: {$this->_progname} [ options ]\n";
         $maxLen = 20;
         $lines = array();

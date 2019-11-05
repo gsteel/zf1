@@ -551,6 +551,7 @@ class Zend_OpenId_Consumer
     protected function _associate($url, $version, $priv_key=null)
     {
 
+        $dhFunc = null;
         /* Check if we already have association in chace or storage */
         if ($this->_getAssociation(
                 $url,
@@ -856,6 +857,7 @@ class Zend_OpenId_Consumer
     protected function _checkId($immediate, $id, $returnTo=null, $root=null,
         $extensions=null, Zend_Controller_Response_Abstract $response = null)
     {
+        $handle = null;
         $this->_setError('');
 
         if (!Zend_OpenId::normalize($id)) {

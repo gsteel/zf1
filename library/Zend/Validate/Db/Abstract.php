@@ -101,6 +101,7 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
      */
     public function __construct($options)
     {
+        $temp = null;
         if ($options instanceof Zend_Db_Select) {
             $this->setSelect($options);
             return;

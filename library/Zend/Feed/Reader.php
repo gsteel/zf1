@@ -388,6 +388,7 @@ class Zend_Feed_Reader
      */
     public static function importFile($filename)
     {
+        $php_errormsg = null;
         @ini_set('track_errors', 1);
         $feed = @file_get_contents($filename);
         @ini_restore('track_errors');
@@ -449,6 +450,7 @@ class Zend_Feed_Reader
      */
     public static function detectType($feed, $specOnly = false)
     {
+        $php_errormsg = null;
         if ($feed instanceof Zend_Feed_Reader_FeedInterface) {
             $dom = $feed->getDomDocument();
         } elseif($feed instanceof DOMDocument) {

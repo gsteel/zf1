@@ -197,6 +197,8 @@ class Zend_Locale_Format
      */
     public static function convertNumerals($input, $from, $to = null)
     {
+        $asource = null;
+        $atarget = null;
         if (!self::_getUniCodeSupport()) {
             trigger_error("Sorry, your PCRE extension does not support UTF8 which is needed for the I18N core", E_USER_NOTICE);
         }
@@ -299,6 +301,7 @@ class Zend_Locale_Format
      */
     public static function toNumber($value, array $options = array())
     {
+        $precstr = null;
         // load class within method for speed
         require_once 'Zend/Locale/Math.php';
 
@@ -543,6 +546,7 @@ class Zend_Locale_Format
      */
     private static function _getRegexForType($type, $options)
     {
+        $regex = null;
         $decimal  = Zend_Locale_Data::getContent($options['locale'], $type);
         $decimal  = preg_replace('/[^#0,;\.\-Ee]/u', '',$decimal);
         $patterns = explode(';', $decimal);
@@ -809,6 +813,8 @@ class Zend_Locale_Format
      */
     private static function _parseDate($date, $options)
     {
+        $result = null;
+        $parse = null;
         if (!self::_getUniCodeSupport()) {
             trigger_error("Sorry, your PCRE extension does not support UTF8 which is needed for the I18N core", E_USER_NOTICE);
         }

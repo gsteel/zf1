@@ -224,6 +224,7 @@ class Zend_Acl
      */
     public function addResource($resource, $parent = null)
     {
+        $resourceParentId = null;
         if (is_string($resource)) {
             $resource = new Zend_Acl_Resource($resource);
         }
@@ -542,6 +543,7 @@ class Zend_Acl
     public function setRule($operation, $type, $roles = null, $resources = null, $privileges = null,
                             Zend_Acl_Assert_Interface $assert = null)
     {
+        $allResources = null;
         // ensure that the rule type is valid; normalize input to uppercase
         $type = strtoupper($type);
         if (self::TYPE_ALLOW !== $type && self::TYPE_DENY !== $type) {
@@ -1023,6 +1025,7 @@ class Zend_Acl
     protected function _getRuleType(Zend_Acl_Resource_Interface $resource = null, Zend_Acl_Role_Interface $role = null,
                                     $privilege = null)
     {
+        $assertionValue = null;
         // get the rules for the $resource and $role
         if (null === ($rules = $this->_getRules($resource, $role))) {
             return null;

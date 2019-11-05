@@ -140,6 +140,7 @@ class Zend_Validate_CreditCard extends Zend_Validate_Abstract
      */
     public function __construct($options = array())
     {
+        $temp = null;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options)) {

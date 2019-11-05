@@ -87,6 +87,7 @@ class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
      */
     public function registerAutoloadMap($map)
     {
+        $location = null;
         if (is_string($map)) {
             $location = $map;
             if ($this === ($map = $this->loadMapFromFile($location))) {

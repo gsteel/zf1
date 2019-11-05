@@ -1000,6 +1000,7 @@ EOJ;
      */
     protected function _renderStylesheets()
     {
+        $stylesheets = null;
         if ($this->useCdn()) {
             $base = $this->getCdnBase()
                   . $this->getCdnVersion();

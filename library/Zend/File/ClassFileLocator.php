@@ -77,6 +77,8 @@ class Zend_File_ClassFileLocator extends FilterIterator
      */
     public function accept()
     {
+        $saveNamespace = null;
+        $namespace = null;
         $file = $this->getInnerIterator()->current();
         // If we somehow have something other than an SplFileInfo object, just
         // return false

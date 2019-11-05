@@ -84,6 +84,7 @@ class Zend_Http_UserAgent_Features_Adapter_TeraWurfl implements Zend_Http_UserAg
     public static function getAllCapabilities(TeraWurfl $wurflObj)
     {
 
+        $features = null;
         foreach ($wurflObj->capabilities as $group) {
             if (!is_array($group)) {
                 continue;

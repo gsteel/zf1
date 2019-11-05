@@ -209,6 +209,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
      */
     public static function factory($options)
     {
+        $type = null;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         }

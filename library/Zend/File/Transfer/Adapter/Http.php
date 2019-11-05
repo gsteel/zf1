@@ -306,6 +306,8 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
      */
     public static function getProgress($id = null)
     {
+        $call = null;
+        $adapter = null;
         if (!function_exists('apc_fetch') and !function_exists('uploadprogress_get_info')) {
             require_once 'Zend/File/Transfer/Exception.php';
             throw new Zend_File_Transfer_Exception('Neither APC nor uploadprogress extension installed');

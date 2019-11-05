@@ -420,6 +420,7 @@ class Zend_Auth_Adapter_DbTable implements Zend_Auth_Adapter_Interface
      */
     protected function _authenticateQuerySelect(Zend_Db_Select $dbSelect)
     {
+        $origDbFetchMode = null;
         try {
             if ($this->_zendDb->getFetchMode() != Zend_DB::FETCH_ASSOC) {
                 $origDbFetchMode = $this->_zendDb->getFetchMode();

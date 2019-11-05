@@ -734,6 +734,7 @@ class Zend_View_Helper_Navigation_Menu
                                    $parentClass,
                                    $renderParentClass)
     {
+        $foundDepth = null;
         $html = '';
 
         // find deepest active

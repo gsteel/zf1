@@ -596,6 +596,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      * @return array Options for given files
      */
     public function getOptions($files = null) {
+        $options = null;
         $file = $this->_getFiles($files, false, true);
 
         foreach ($file as $key => $content) {
@@ -1287,6 +1288,8 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      */
     protected function _detectMimeType($value)
     {
+        $mime = null;
+        $result = null;
         if (file_exists($value['name'])) {
             $file = $value['name'];
         } else if (file_exists($value['tmp_name'])) {

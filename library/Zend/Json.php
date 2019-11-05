@@ -262,6 +262,7 @@ class Zend_Json
      */
     protected static function _processXml($simpleXmlElementObject, $ignoreXmlAttributes, $recursionDepth=0)
     {
+        $subChild = null;
         // Keep an eye on how deeply we are involved in recursion.
         if ($recursionDepth > self::$maxRecursionDepthAllowed) {
             // XML tree is too deep. Exit now by throwing an exception.

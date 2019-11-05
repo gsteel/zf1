@@ -118,6 +118,7 @@ class Zend_Reflection_File implements Reflector
      */
     public static function findRealpathInIncludePath($fileName)
     {
+        $foundRealpath = null;
         require_once 'Zend/Loader.php';
         $includePaths = Zend_Loader::explodeIncludePath();
         while (count($includePaths) > 0) {

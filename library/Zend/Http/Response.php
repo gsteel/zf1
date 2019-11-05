@@ -598,6 +598,7 @@ class Zend_Http_Response
      */
     public static function decodeChunkedBody($body)
     {
+        $mbIntEnc = null;
         $decBody = '';
 
         // If mbstring overloads substr and strlen functions, we have to

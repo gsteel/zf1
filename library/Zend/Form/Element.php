@@ -1048,6 +1048,8 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function getPluginLoader($type)
     {
+        $prefixSegment = null;
+        $pathSegment = null;
         $type = strtoupper($type);
         switch ($type) {
             case self::FILTER:
@@ -1872,6 +1874,8 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function addDecorator($decorator, $options = null)
     {
+        $name = null;
+        $spec = null;
         if ($decorator instanceof Zend_Form_Decorator_Interface) {
             $name = get_class($decorator);
         } elseif (is_string($decorator)) {

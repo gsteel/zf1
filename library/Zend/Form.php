@@ -279,6 +279,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function setOptions(array $options)
     {
+        $displayGroupDecorators = null;
+        $elementsBelongTo = null;
         if (isset($options['prefixPath'])) {
             $this->addPrefixPaths($options['prefixPath']);
             unset($options['prefixPath']);
@@ -2695,6 +2697,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function addDecorator($decorator, $options = null)
     {
+        $name = null;
+        $spec = null;
         if ($decorator instanceof Zend_Form_Decorator_Interface) {
             $name = get_class($decorator);
         } elseif (is_string($decorator)) {

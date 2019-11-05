@@ -100,6 +100,7 @@ class Zend_Stdlib_PriorityQueue implements Countable, IteratorAggregate, Seriali
      */
     public function remove($datum)
     {
+        $key = null;
         $found = false;
         foreach ($this->items as $key => $item) {
             if ($item['data'] === $datum) {

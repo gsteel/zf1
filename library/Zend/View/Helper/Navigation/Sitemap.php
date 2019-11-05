@@ -290,6 +290,10 @@ class Zend_View_Helper_Navigation_Sitemap
      */
     public function getDomSitemap(Zend_Navigation_Container $container = null)
     {
+        $locValidator = null;
+        $lastmodValidator = null;
+        $changefreqValidator = null;
+        $priorityValidator = null;
         if (null === $container) {
             $container = $this->getContainer();
         }

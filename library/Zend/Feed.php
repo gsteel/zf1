@@ -257,6 +257,7 @@ class Zend_Feed
      */
     public static function importFile($filename)
     {
+        $php_errormsg = null;
         @ini_set('track_errors', 1);
         $feed = @file_get_contents($filename);
         @ini_restore('track_errors');
@@ -283,6 +284,7 @@ class Zend_Feed
      */
     public static function findFeeds($uri)
     {
+        $php_errormsg = null;
         // Get the HTTP response from $uri and save the contents
         $client = self::getHttpClient();
         $client->setUri($uri);

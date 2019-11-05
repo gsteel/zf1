@@ -414,6 +414,7 @@ class Zend_OpenId_Provider
      */
     protected function _associate($version, $params)
     {
+        $dhFunc = null;
         $ret = array();
 
         if ($version >= 2.0) {

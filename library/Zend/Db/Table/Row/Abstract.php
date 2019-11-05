@@ -1001,6 +1001,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
     public function findManyToManyRowset($matchTable, $intersectionTable, $callerRefRule = null,
                                          $matchRefRule = null, Zend_Db_Table_Select $select = null)
     {
+        $joinCond = null;
         $db = $this->_getTable()->getAdapter();
 
         if (is_string($intersectionTable)) {

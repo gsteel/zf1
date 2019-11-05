@@ -138,6 +138,7 @@ class Zend_Feed_Entry_Atom extends Zend_Feed_Entry_Abstract
      */
     public function save($postUri = null)
     {
+        $php_errormsg = null;
         if ($this->id()) {
             // If id is set, look for link rel="edit" in the
             // entry object and PUT.

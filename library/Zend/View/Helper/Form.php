@@ -43,6 +43,7 @@ class Zend_View_Helper_Form extends Zend_View_Helper_FormElement
      */
     public function form($name, $attribs = null, $content = false)
     {
+        $id = null;
         $info = $this->_getInfo($name, $content, $attribs);
         extract($info);
 

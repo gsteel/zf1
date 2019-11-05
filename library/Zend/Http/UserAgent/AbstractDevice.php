@@ -400,6 +400,9 @@ abstract class Zend_Http_UserAgent_AbstractDevice
      */
     public static function extractFromUserAgent($userAgent)
     {
+        $result = null;
+        $real = null;
+        $compatibility = null;
         $userAgent = trim($userAgent);
 
         /**

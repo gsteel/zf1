@@ -64,6 +64,7 @@ class Zend_Translate_Adapter_Gettext extends Zend_Translate_Adapter {
      */
     protected function _loadTranslationData($filename, $locale, array $options = array())
     {
+        $original = null;
         $this->_data      = array();
         $this->_bigEndian = false;
         $this->_file      = @fopen($filename, 'rb');

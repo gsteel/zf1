@@ -176,6 +176,7 @@ class Zend_Db_Adapter_Mysqli extends Zend_Db_Adapter_Abstract
      */
     public function describeTable($tableName, $schemaName = null)
     {
+        $result = null;
         /**
          * @todo  use INFORMATION_SCHEMA someday when
          * MySQL's implementation isn't too slow.

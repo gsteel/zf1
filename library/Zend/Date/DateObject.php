@@ -145,6 +145,7 @@ abstract class Zend_Date_DateObject {
      */
     protected function mktime($hour, $minute, $second, $month, $day, $year, $gmt = false)
     {
+        $id = null;
         // complete date but in 32bit timestamp - use PHP internal
         if ((1901 < $year) and ($year < 2038)) {
 
@@ -300,6 +301,7 @@ abstract class Zend_Date_DateObject {
      */
     protected function date($format, $timestamp = null, $gmt = false)
     {
+        $idstamp = null;
         $oldzone = @date_default_timezone_get();
         if ($this->_timezone != $oldzone) {
             date_default_timezone_set($this->_timezone);
@@ -674,6 +676,9 @@ abstract class Zend_Date_DateObject {
     protected function getDateParts($timestamp = null, $fast = null)
     {
 
+        $leapyear = null;
+        $year = null;
+        $id = null;
         // actual timestamp
         if (!is_numeric($timestamp)) {
             return getdate();
@@ -1062,6 +1067,7 @@ abstract class Zend_Date_DateObject {
      */
     public function getGmtOffset()
     {
+        $offset = null;
         $date   = $this->getDateParts($this->getUnixTimestamp(), true);
         $zone   = @date_default_timezone_get();
         $result = @date_default_timezone_set($this->_timezone);

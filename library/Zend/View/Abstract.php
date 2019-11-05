@@ -1166,6 +1166,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
      */
     private function _getPlugin($type, $name)
     {
+        $store = null;
         $name = ucfirst($name);
         switch ($type) {
             case 'filter':

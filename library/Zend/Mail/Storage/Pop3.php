@@ -62,6 +62,8 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
      */
     public function countMessages()
     {
+        $count = null;
+        $null = null;
         $this->_protocol->status($count, $null);
         return (int)$count;
     }

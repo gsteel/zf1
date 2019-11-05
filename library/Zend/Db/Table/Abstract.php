@@ -789,6 +789,7 @@ abstract class Zend_Db_Table_Abstract
      */
     protected function _setupMetadata()
     {
+        $cacheId = null;
         if ($this->metadataCacheInClass() && (count($this->_metadata) > 0)) {
             return true;
         }
@@ -1589,6 +1590,7 @@ abstract class Zend_Db_Table_Abstract
      */
     public static function getTableFromString($tableName, Zend_Db_Table_Abstract $referenceTable = null)
     {
+        $tableDefinition = null;
         if ($referenceTable instanceof Zend_Db_Table_Abstract) {
             $tableDefinition = $referenceTable->getDefinition();
 

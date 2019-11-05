@@ -54,6 +54,7 @@ class Zend_XmlRpc_Client_ServerIntrospection
      */
     public function getSignatureForEachMethod()
     {
+        $signatures = null;
         $methods = $this->listMethods();
 
         require_once 'Zend/XmlRpc/Client/FaultException.php';

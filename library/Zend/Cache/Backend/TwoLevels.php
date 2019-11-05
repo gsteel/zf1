@@ -229,6 +229,7 @@ class Zend_Cache_Backend_TwoLevels extends Zend_Cache_Backend implements Zend_Ca
      */
     public function load($id, $doNotTestCacheValidity = false)
     {
+        $resultSlow = null;
         $resultFast = $this->_fastBackend->load($id, $doNotTestCacheValidity);
         if ($resultFast === false) {
             $resultSlow = $this->_slowBackend->load($id, $doNotTestCacheValidity);

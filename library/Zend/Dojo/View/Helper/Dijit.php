@@ -201,6 +201,7 @@ abstract class Zend_Dojo_View_Helper_Dijit extends Zend_View_Helper_HtmlElement
      */
     protected function _prepareDijit(array $attribs, array $params, $type, $dijit = null)
     {
+        $stripParams = null;
         $this->dojo->requireModule($this->_module);
 
         switch ($type) {

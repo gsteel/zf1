@@ -179,15 +179,15 @@ class Zend_TimeSync_Ntp extends Zend_TimeSync_Protocol
      */
     protected function _getTimestamp($input)
     {
-        $f1  = (ord($input[0]) * pow(256, 3));
-        $f1 += (ord($input[1]) * pow(256, 2));
-        $f1 += (ord($input[2]) * pow(256, 1));
+        $f1  = (ord($input[0]) * 256 ** 3);
+        $f1 += (ord($input[1]) * 256 ** 2);
+        $f1 += (ord($input[2]) * 256 ** 1);
         $f1 += (ord($input[3]));
         $f1 -= 2208988800;
 
-        $f2  = (ord($input[4]) * pow(256, 3));
-        $f2 += (ord($input[5]) * pow(256, 2));
-        $f2 += (ord($input[6]) * pow(256, 1));
+        $f2  = (ord($input[4]) * 256 ** 3);
+        $f2 += (ord($input[5]) * 256 ** 2);
+        $f2 += (ord($input[6]) * 256 ** 1);
         $f2 += (ord($input[7]));
 
         return (float) ($f1 . "." . $f2);

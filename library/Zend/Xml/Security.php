@@ -70,6 +70,9 @@ class Zend_Xml_Security
      */
     public static function scan($xml, DOMDocument $dom = null)
     {
+        $loadEntities = null;
+        $useInternalXmlErrors = null;
+        $simpleXml = null;
         // If running with PHP-FPM we perform an heuristic scan
         // We cannot use libxml_disable_entity_loader because of this bug
         // @see https://bugs.php.net/bug.php?id=64938

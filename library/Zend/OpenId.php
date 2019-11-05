@@ -626,6 +626,7 @@ class Zend_OpenId
      */
     static public function createDhKey($p, $g, $priv_key = null)
     {
+        $bn_pub_key = null;
         if (function_exists('openssl_dh_compute_key')) {
             $dh_details = array(
                     'p' => $p,

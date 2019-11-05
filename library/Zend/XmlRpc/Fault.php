@@ -193,6 +193,8 @@ class Zend_XmlRpc_Fault
      */
     public function loadXml($fault)
     {
+        $code = null;
+        $message = null;
         if (!is_string($fault)) {
             require_once 'Zend/XmlRpc/Exception.php';
             throw new Zend_XmlRpc_Exception('Invalid XML provided to fault');

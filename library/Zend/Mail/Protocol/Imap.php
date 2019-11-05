@@ -568,6 +568,7 @@ class Zend_Mail_Protocol_Imap
      */
     public function fetch($items, $from, $to = null)
     {
+        $data = null;
         if (is_array($from)) {
             $set = implode(',', $from);
         } else if ($to === null) {

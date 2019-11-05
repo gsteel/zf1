@@ -111,6 +111,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      */
     public function __wakeup()
     {
+        $php_errormsg = null;
         @ini_set('track_errors', 1);
         $doc = new DOMDocument;
         $doc = @Zend_Xml_Security::scan($this->_element, $doc);

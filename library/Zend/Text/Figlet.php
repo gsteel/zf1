@@ -595,6 +595,7 @@ class Zend_Text_Figlet
      */
     protected function _splitLine()
     {
+        $lastSpace = null;
         $gotSpace = false;
         for ($i = ($this->_inCharLineLength - 1); $i >= 0; $i--) {
             if (!$gotSpace && $this->_inCharLine[$i] === ' ') {

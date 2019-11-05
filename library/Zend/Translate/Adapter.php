@@ -585,6 +585,7 @@ abstract class Zend_Translate_Adapter {
      */
     private function _addTranslationData($options = array())
     {
+        $temp = null;
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (func_num_args() > 1) {
@@ -700,6 +701,8 @@ abstract class Zend_Translate_Adapter {
      */
     public function translate($messageId, $locale = null)
     {
+        $number = null;
+        $plocale = null;
         if ($locale === null) {
             $locale = $this->_options['locale'];
         }

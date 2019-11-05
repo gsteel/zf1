@@ -72,6 +72,9 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
         $options = null, $listsep = "<br />\n")
     {
 
+        $escape = null;
+        $disable = null;
+        $id = null;
         $info = $this->_getInfo($name, $value, $attribs, $options, $listsep);
         extract($info); // name, value, attribs, options, listsep, disable
 

@@ -190,6 +190,7 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
      */
     public function match($path, $partial = false)
     {
+        $translateMessages = null;
         if ($this->_isTranslated) {
             $translateMessages = $this->getTranslator()->getMessages();
         }
@@ -315,6 +316,8 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
      */
     public function assemble($data = array(), $reset = false, $encode = false, $partial = false)
     {
+        $translator = null;
+        $locale = null;
         if ($this->_isTranslated) {
             $translator = $this->getTranslator();
 
