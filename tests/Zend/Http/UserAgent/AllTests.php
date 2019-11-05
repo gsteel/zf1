@@ -52,7 +52,6 @@ class Zend_Http_UserAgent_AllTests
         $suite->addTestSuite('Zend_Http_UserAgentTest');
         $suite->addTestSuite('Zend_Http_UserAgent_AbstractDeviceTest');
         $suite->addTestSuite('Zend_Http_UserAgent_Features_Adapter_BrowscapTest');
-        $suite->addTestSuite('Zend_Http_UserAgent_Features_Adapter_DeviceAtlasTest');
         $suite->addTestSuite('Zend_Http_UserAgent_Features_Adapter_TeraWurflTest');
 
         return $suite;

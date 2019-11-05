@@ -152,12 +152,12 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
     {
         if ($id !== null) {
             $filedata = $this->_getFileData($id);
-            return isset($filedata['size']) ? $filedata['size'] : filesize($filedata['filename']);
+            return $filedata['size'] ?? filesize($filedata['filename']);
         }
 
         $result = array();
         foreach ($this->_files as $num => $data) {
-            $result[$num + 1] = isset($data['size']) ? $data['size'] : filesize($data['filename']);
+            $result[$num + 1] = $data['size'] ?? filesize($data['filename']);
         }
 
         return $result;
@@ -373,7 +373,7 @@ class Zend_Mail_Storage_Maildir extends Zend_Mail_Storage_Abstract
             $length = strlen($flags);
             for ($i = 0; $i < $length; ++$i) {
                 $flag = $flags[$i];
-                $named_flags[$flag] = isset(self::$_knownFlags[$flag]) ? self::$_knownFlags[$flag] : $flag;
+                $named_flags[$flag] = self::$_knownFlags[$flag] ?? $flag;
             }
 
             $data = array('uniq'       => $uniq,

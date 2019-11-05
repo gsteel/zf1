@@ -303,8 +303,8 @@ class Zend_Feed_Builder implements Zend_Feed_Builder_Interface
                 $itunes->setAuthor($data['itunes']['author']);
             }
             if (isset($data['itunes']['owner'])) {
-                $name = isset($data['itunes']['owner']['name']) ? $data['itunes']['owner']['name'] : '';
-                $email = isset($data['itunes']['owner']['email']) ? $data['itunes']['owner']['email'] : '';
+                $name = $data['itunes']['owner']['name'] ?? '';
+                $email = $data['itunes']['owner']['email'] ?? '';
                 $itunes->setOwner($name, $email);
             }
             if (isset($data['itunes']['image'])) {

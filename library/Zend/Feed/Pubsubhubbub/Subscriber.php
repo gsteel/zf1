@@ -792,7 +792,7 @@ class Zend_Feed_Pubsubhubbub_Subscriber
         if (!empty($this->_testStaticToken)) {
             return $this->_testStaticToken;
         }
-        return uniqid(rand(), true) . time();
+        return uniqid(random_int(0, mt_getrandmax()), true) . time();
     }
 
     /**

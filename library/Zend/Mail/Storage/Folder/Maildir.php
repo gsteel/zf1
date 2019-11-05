@@ -96,7 +96,7 @@ class Zend_Mail_Storage_Folder_Maildir extends Zend_Mail_Storage_Maildir impleme
 
         $this->_rootdir = rtrim($params->dirname, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
 
-        $this->_delim = isset($params->delim) ? $params->delim : '.';
+        $this->_delim = $params->delim ?? '.';
 
         $this->_buildFolderTree();
         $this->selectFolder(!empty($params->folder) ? $params->folder : 'INBOX');

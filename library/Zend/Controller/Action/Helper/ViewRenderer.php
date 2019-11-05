@@ -413,8 +413,8 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         }
 
         // Reset some flags every time
-        $options['noController'] = (isset($options['noController'])) ? $options['noController'] : false;
-        $options['noRender']     = (isset($options['noRender'])) ? $options['noRender'] : false;
+        $options['noController'] = $options['noController'] ?? false;
+        $options['noRender']     = $options['noRender'] ?? false;
         $this->_scriptAction     = null;
         $this->_responseSegment  = null;
 

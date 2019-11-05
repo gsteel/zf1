@@ -136,9 +136,7 @@ class Zend_Feed
      */
     public static function lookupNamespace($prefix)
     {
-        return isset(self::$_namespaces[$prefix]) ?
-            self::$_namespaces[$prefix] :
-            $prefix;
+        return self::$_namespaces[$prefix] ?? $prefix;
     }
 
 

@@ -1414,7 +1414,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
 
             if (empty($this->_tmpDir)) {
                 // Attemp to detect by creating a temporary file
-                $tempFile = tempnam(md5(uniqid(rand(), TRUE)), '');
+                $tempFile = tempnam(md5(uniqid(random_int(0, mt_getrandmax()), TRUE)), '');
                 if ($tempFile) {
                     $this->_tmpDir = realpath(dirname($tempFile));
                     unlink($tempFile);

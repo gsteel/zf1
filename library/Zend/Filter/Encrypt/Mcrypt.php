@@ -359,7 +359,7 @@ class Zend_Filter_Encrypt_Mcrypt implements Zend_Filter_Encrypt_Interface
             return;
         }
         if (!self::$_srandCalled) {
-            srand(Zend_Crypt_Math::randInteger(0, PHP_INT_MAX));
+            mt_srand(Zend_Crypt_Math::randInteger(0, PHP_INT_MAX));
             self::$_srandCalled = true;
         }
     }

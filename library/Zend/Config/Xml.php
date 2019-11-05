@@ -184,7 +184,7 @@ class Zend_Config_Xml extends Zend_Config
         $nsAttributes = $thisSection->attributes(self::XML_NAMESPACE);
 
         if (isset($thisSection['extends']) || isset($nsAttributes['extends'])) {
-            $extendedSection = (string) (isset($nsAttributes['extends']) ? $nsAttributes['extends'] : $thisSection['extends']);
+            $extendedSection = (string) ($nsAttributes['extends'] ?? $thisSection['extends']);
             $this->_assertValidExtend($section, $extendedSection);
 
             if (!$this->_skipExtends) {

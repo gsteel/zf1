@@ -1054,10 +1054,10 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
         $interInfo = $intersectionTable->info();
         $interDb   = $intersectionTable->getAdapter();
         $interName = $interInfo['name'];
-        $interSchema = isset($interInfo['schema']) ? $interInfo['schema'] : null;
+        $interSchema = $interInfo['schema'] ?? null;
         $matchInfo = $matchTable->info();
         $matchName = $matchInfo['name'];
-        $matchSchema = isset($matchInfo['schema']) ? $matchInfo['schema'] : null;
+        $matchSchema = $matchInfo['schema'] ?? null;
 
         $matchMap = $this->_prepareReference($intersectionTable, $matchTable, $matchRefRule);
 
@@ -1135,7 +1135,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
          */
         if (preg_match('/^findParent(\w+?)(?:By(\w+))?$/', $method, $matches)) {
             $class    = $matches[1];
-            $ruleKey1 = isset($matches[2]) ? $matches[2] : null;
+            $ruleKey1 = $matches[2] ?? null;
             return $this->findParentRow($class, $ruleKey1, $select);
         }
 
@@ -1149,8 +1149,8 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
         if (preg_match('/^find(\w+?)Via(\w+?)(?:By(\w+?)(?:And(\w+))?)?$/', $method, $matches)) {
             $class    = $matches[1];
             $viaClass = $matches[2];
-            $ruleKey1 = isset($matches[3]) ? $matches[3] : null;
-            $ruleKey2 = isset($matches[4]) ? $matches[4] : null;
+            $ruleKey1 = $matches[3] ?? null;
+            $ruleKey2 = $matches[4] ?? null;
             return $this->findManyToManyRowset($class, $viaClass, $ruleKey1, $ruleKey2, $select);
         }
 
@@ -1162,7 +1162,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
          */
         if (preg_match('/^find(\w+?)(?:By(\w+))?$/', $method, $matches)) {
             $class    = $matches[1];
-            $ruleKey1 = isset($matches[2]) ? $matches[2] : null;
+            $ruleKey1 = $matches[2] ?? null;
             return $this->findDependentRowset($class, $ruleKey1, $select);
         }
 

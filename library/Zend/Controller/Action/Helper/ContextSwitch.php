@@ -879,9 +879,9 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
 
         $this->_contexts[$context] = array();
 
-        $this->setSuffix($context,    (isset($spec['suffix'])    ? $spec['suffix']    : ''))
-             ->setHeaders($context,   (isset($spec['headers'])   ? $spec['headers']   : array()))
-             ->setCallbacks($context, (isset($spec['callbacks']) ? $spec['callbacks'] : array()));
+        $this->setSuffix($context,    ($spec['suffix'] ?? ''))
+             ->setHeaders($context,   ($spec['headers'] ?? array()))
+             ->setCallbacks($context, ($spec['callbacks'] ?? array()));
         return $this;
     }
 

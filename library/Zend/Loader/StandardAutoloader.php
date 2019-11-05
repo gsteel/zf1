@@ -19,7 +19,7 @@
  */
 
 // Grab SplAutoloader interface
-// require_once __DIR__ . '/SplAutoloader.php';
+require_once __DIR__ . '/SplAutoloader.php';
 
 /**
  * PSR-0 compliant autoloader
@@ -287,8 +287,8 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
         $matches = array();
         preg_match('/(?P<namespace>.+\\\)?(?P<class>[^\\\]+$)/', $class, $matches);
 
-        $class     = (isset($matches['class'])) ? $matches['class'] : '';
-        $namespace = (isset($matches['namespace'])) ? $matches['namespace'] : '';
+        $class     = $matches['class'] ?? '';
+        $namespace = $matches['namespace'] ?? '';
 
         return $directory
              . str_replace(self::NS_SEPARATOR, '/', $namespace)

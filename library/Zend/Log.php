@@ -270,7 +270,7 @@ class Zend_Log
             );
         }
 
-        $params    = isset($config[ $type .'Params' ]) ? $config[ $type .'Params' ] : array();
+        $params    = $config[ $type .'Params' ] ?? array();
         $className = $this->getClassName($config, $type, $namespace);
         if (!class_exists($className)) {
             Zend_Loader::loadClass($className);

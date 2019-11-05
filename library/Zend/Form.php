@@ -2183,7 +2183,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     {
         $ordered = array();
         foreach ($this->_order as $name => $order) {
-            $order = isset($order) ? $order : count($ordered);
+            $order = $order ?? count($ordered);
             if ($this->$name instanceof Zend_Form_Element ||
                 $this->$name instanceof Zend_Form) {
                 array_splice($ordered, $order, 0, array($this->$name));
@@ -2192,7 +2192,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                 /** @var Zend_Form_Element $element */
                 foreach ($this->$name->getElements() as $element) {
                     $suborder = $element->getOrder();
-                    $suborder = (null !== $suborder) ? $suborder : count($subordered);
+                    $suborder = $suborder ?? count($subordered);
                     array_splice($subordered, $suborder, 0, array($element));
                 }
                 if (!empty($subordered)) {

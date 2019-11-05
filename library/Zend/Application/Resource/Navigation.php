@@ -25,7 +25,7 @@ class Zend_Application_Resource_Navigation
                 );
             }
 
-            $pages = isset($options['pages']) ? $options['pages'] : array();
+            $pages = $options['pages'] ?? array();
             $this->_container = new Zend_Navigation($pages);
         }
 

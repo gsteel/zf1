@@ -211,7 +211,7 @@ class Zend_OpenId
                 $query = $key . '=' . urlencode($value);
             }
         }
-        return isset($query) ? $query : '';
+        return $query ?? '';
     }
 
     /**

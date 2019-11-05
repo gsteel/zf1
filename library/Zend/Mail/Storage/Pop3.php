@@ -183,10 +183,10 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
             throw new Zend_Mail_Storage_Exception('need at least user in params');
         }
 
-        $host     = isset($params->host)     ? $params->host     : 'localhost';
-        $password = isset($params->password) ? $params->password : '';
-        $port     = isset($params->port)     ? $params->port     : null;
-        $ssl      = isset($params->ssl)      ? $params->ssl      : false;
+        $host     = $params->host ?? 'localhost';
+        $password = $params->password ?? '';
+        $port     = $params->port ?? null;
+        $ssl      = $params->ssl ?? false;
 
         $this->_protocol = new Zend_Mail_Protocol_Pop3();
         $this->_protocol->connect($host, $port, $ssl);

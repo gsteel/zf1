@@ -355,7 +355,7 @@ abstract class Zend_Markup_Renderer_RendererAbstract
             $tag = $this->_markups[$tag['name']];
         }
 
-        return isset($tag['group']) ? $tag['group'] : false;
+        return $tag['group'] ?? false;
     }
 
     /**

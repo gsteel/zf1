@@ -401,7 +401,7 @@ class Zend_Xml_Security
     public static function generateEntityComparison($encoding)
     {
         $encodingMap = self::getAsciiEncodingMap();
-        $generator   = isset($encodingMap[$encoding]) ? $encodingMap[$encoding] : $encodingMap['UTF-8'];
+        $generator   = $encodingMap[$encoding] ?? $encodingMap['UTF-8'];
         return call_user_func($generator, '<!ENTITY');
     }
 

@@ -608,9 +608,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     public function getRel($relation = null)
     {
         if (null !== $relation) {
-            return isset($this->_rel[$relation]) ?
-                   $this->_rel[$relation] :
-                   null;
+            return $this->_rel[$relation] ?? null;
         }
 
         return $this->_rel;
@@ -671,9 +669,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
     public function getRev($relation = null)
     {
         if (null !== $relation) {
-            return isset($this->_rev[$relation]) ?
-                   $this->_rev[$relation] :
-                   null;
+            return $this->_rev[$relation] ?? null;
         }
 
         return $this->_rev;

@@ -167,7 +167,7 @@ class Zend_Mail_Storage_Imap extends Zend_Mail_Storage_Abstract
 
         $flags = array();
         foreach ($data['FLAGS'] as $flag) {
-            $flags[] = isset(self::$_knownFlags[$flag]) ? self::$_knownFlags[$flag] : $flag;
+            $flags[] = self::$_knownFlags[$flag] ?? $flag;
         }
 
         return new $this->_messageClass(array('handler' => $this, 'id' => $id, 'headers' => $header, 'flags' => $flags));
@@ -266,10 +266,10 @@ class Zend_Mail_Storage_Imap extends Zend_Mail_Storage_Abstract
             throw new Zend_Mail_Storage_Exception('need at least user in params');
         }
 
-        $host     = isset($params->host)     ? $params->host     : 'localhost';
-        $password = isset($params->password) ? $params->password : '';
-        $port     = isset($params->port)     ? $params->port     : null;
-        $ssl      = isset($params->ssl)      ? $params->ssl      : false;
+        $host     = $params->host ?? 'localhost';
+        $password = $params->password ?? '';
+        $port     = $params->port ?? null;
+        $ssl      = $params->ssl ?? false;
 
         $this->_protocol = new Zend_Mail_Protocol_Imap();
         $this->_protocol->connect($host, $port, $ssl);
@@ -280,7 +280,7 @@ class Zend_Mail_Storage_Imap extends Zend_Mail_Storage_Abstract
             // require_once 'Zend/Mail/Storage/Exception.php';
             throw new Zend_Mail_Storage_Exception('cannot login, user or password wrong');
         }
-        $this->selectFolder(isset($params->folder) ? $params->folder : 'INBOX');
+        $this->selectFolder($params->folder ?? 'INBOX');
     }
 
     /**

@@ -240,7 +240,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_GET;
         }
 
-        return (isset($_GET[$key])) ? $_GET[$key] : $default;
+        return $_GET[$key] ?? $default;
     }
 
     /**
@@ -281,7 +281,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_POST;
         }
 
-        return (isset($_POST[$key])) ? $_POST[$key] : $default;
+        return $_POST[$key] ?? $default;
     }
 
     /**
@@ -300,7 +300,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_COOKIE;
         }
 
-        return (isset($_COOKIE[$key])) ? $_COOKIE[$key] : $default;
+        return $_COOKIE[$key] ?? $default;
     }
 
     /**
@@ -318,7 +318,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_SERVER;
         }
 
-        return (isset($_SERVER[$key])) ? $_SERVER[$key] : $default;
+        return $_SERVER[$key] ?? $default;
     }
 
     /**
@@ -336,7 +336,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_ENV;
         }
 
-        return (isset($_ENV[$key])) ? $_ENV[$key] : $default;
+        return $_ENV[$key] ?? $default;
     }
 
     /**
@@ -449,8 +449,8 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             } else {
                 // Backtrack up the script_filename to find the portion matching
                 // php_self
-                $path    = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '';
-                $file    = isset($_SERVER['SCRIPT_FILENAME']) ? $_SERVER['SCRIPT_FILENAME'] : '';
+                $path    = $_SERVER['PHP_SELF'] ?? '';
+                $file    = $_SERVER['SCRIPT_FILENAME'] ?? '';
                 $segs    = explode('/', trim($file, '/'));
                 $segs    = array_reverse($segs);
                 $index   = 0;

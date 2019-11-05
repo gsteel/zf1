@@ -2662,9 +2662,9 @@ class Zend_Date extends Zend_Date_DateObject
                         }
 
                         return $this->_assign($calc, $this->mktime(
-                            isset($parsed['hour']) ? $parsed['hour'] : 0,
-                            isset($parsed['minute']) ? $parsed['minute'] : 0,
-                            isset($parsed['second']) ? $parsed['second'] : 0,
+                            $parsed['hour'] ?? 0,
+                            $parsed['minute'] ?? 0,
+                            $parsed['second'] ?? 0,
                             isset($parsed['month']) ? (1 + $parsed['month']) : 1,
                             isset($parsed['day']) ? (1 + $parsed['day']) : 1,
                             $parsed['year'],

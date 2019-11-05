@@ -117,7 +117,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
     {
         $reqs   = ($config->reqs instanceof Zend_Config) ? $config->reqs->toArray() : array();
         $defs   = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : array();
-        $scheme = (isset($config->scheme)) ? $config->scheme : null;
+        $scheme = $config->scheme ?? null;
 
         return new self($config->route, $defs, $reqs, $scheme);
     }
@@ -143,7 +143,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
             foreach (explode('.', $route) as $pos => $part) {
                 if (substr($part, 0, 1) == $this->_hostVariable) {
                     $name                   = substr($part, 1);
-                    $this->_parts[$pos]     = (isset($reqs[$name]) ? $reqs[$name] : $this->_defaultRegex);
+                    $this->_parts[$pos]     = ($reqs[$name] ?? $this->_defaultRegex);
                     $this->_variables[$pos] = $name;
                 } else {
                     $this->_parts[$pos] = $part;
@@ -191,7 +191,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
                     return false;
                 }
 
-                $name     = isset($this->_variables[$pos]) ? $this->_variables[$pos] : null;
+                $name     = $this->_variables[$pos] ?? null;
                 $hostPart = urldecode($hostPart);
 
                 // If it's a static part, match directly
@@ -253,7 +253,7 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
         $flag = false;
 
         foreach ($this->_parts as $key => $part) {
-            $name = isset($this->_variables[$key]) ? $this->_variables[$key] : null;
+            $name = $this->_variables[$key] ?? null;
 
             $useDefault = false;
             if (isset($name) && array_key_exists($name, $data) && $data[$name] === null) {

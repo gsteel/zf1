@@ -1110,7 +1110,7 @@ class Zend_Mail extends Zend_Mime_Message
             $user = getmypid();
         }
 
-        $rand = mt_rand();
+        $rand = random_int(0, mt_getrandmax());
 
         if ($this->_recipients !== array()) {
             $recipient = array_rand($this->_recipients);

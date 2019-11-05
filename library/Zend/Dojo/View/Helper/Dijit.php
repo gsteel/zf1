@@ -258,7 +258,7 @@ abstract class Zend_Dojo_View_Helper_Dijit extends Zend_View_Helper_HtmlElement
             }
         }
 
-        $dijit = (null === $dijit) ? $this->_dijit : $dijit;
+        $dijit = $dijit ?? $this->_dijit;
         if ($this->_useDeclarative()) {
             $attribs = array_merge($attribs, $params);
             if (isset($attribs['required'])) {
