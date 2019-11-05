@@ -124,7 +124,7 @@ class Zend_Stdlib_CallbackHandler
             return;
         }
 
-        list($target, $method) = $callback;
+        [$target, $method] = $callback;
 
         // If we have an array callback, and the first argument is not an 
         // object, register as-is
@@ -165,7 +165,7 @@ class Zend_Stdlib_CallbackHandler
 
         // Array callback with WeakRef object -- retrieve the object first, and 
         // then return
-        list($target, $method) = $callback;
+        [$target, $method] = $callback;
         if ($target instanceof WeakRef) {
             return array($target->get(), $method);
         }
@@ -272,7 +272,7 @@ class Zend_Stdlib_CallbackHandler
             return true;
         }
 
-        list($class, $method) = explode('::', $callback, 2);
+        [$class, $method] = explode('::', $callback, 2);
 
         if (!class_exists($class)) {
             // require_once 'Zend/Stdlib/Exception/InvalidCallbackException.php';

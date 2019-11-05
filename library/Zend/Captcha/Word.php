@@ -329,8 +329,8 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
         $vowels     = $this->_useNumbers ? self::$VN : self::$V;
         $consonants = $this->_useNumbers ? self::$CN : self::$C;
 
-        $totIndexCon = count($consonants) - 1;
-        $totIndexVow = count($vowels) - 1;
+        $totIndexCon = (is_array($consonants) || $consonants instanceof \Countable ? count($consonants) : 0) - 1;
+        $totIndexVow = (is_array($vowels) || $vowels instanceof \Countable ? count($vowels) : 0) - 1;
         for ($i=0; $i < $wordLen; $i = $i + 2) {
             // generate word with mix of vowels and consonants
             $consonant = $consonants[Zend_Crypt_Math::randInteger(0, $totIndexCon, true)];

@@ -774,7 +774,7 @@ abstract class Zend_Db_Table_Abstract
         if (! $this->_name) {
             $this->_name = get_class($this);
         } else if (strpos($this->_name, '.')) {
-            list($this->_schema, $this->_name) = explode('.', $this->_name);
+            [$this->_schema, $this->_name] = explode('.', $this->_name);
         }
     }
 
@@ -1152,7 +1152,7 @@ abstract class Zend_Db_Table_Abstract
                     case self::CASCADE:
                         $newRefs = array();
                         $where = array();
-                        for ($i = 0; $i < count($map[self::COLUMNS]); ++$i) {
+                        for ($i = 0; $i < (is_array($map[self::COLUMNS]) || $map[self::COLUMNS] instanceof \Countable ? count($map[self::COLUMNS]) : 0); ++$i) {
                             $col = $this->_db->foldCase($map[self::COLUMNS][$i]);
                             $refCol = $this->_db->foldCase($map[self::REF_COLUMNS][$i]);
                             if (array_key_exists($refCol, $newPrimaryKey)) {
@@ -1231,7 +1231,7 @@ abstract class Zend_Db_Table_Abstract
 
                 // CASCADE or CASCADE_RECURSE
                 if (in_array($map[self::ON_DELETE], array(self::CASCADE, self::CASCADE_RECURSE))) {
-                    for ($i = 0; $i < count($map[self::COLUMNS]); ++$i) {
+                    for ($i = 0; $i < (is_array($map[self::COLUMNS]) || $map[self::COLUMNS] instanceof \Countable ? count($map[self::COLUMNS]) : 0); ++$i) {
                         $col = $this->_db->foldCase($map[self::COLUMNS][$i]);
                         $refCol = $this->_db->foldCase($map[self::REF_COLUMNS][$i]);
                         $type = $this->_metadata[$col]['DATA_TYPE'];
@@ -1305,7 +1305,7 @@ abstract class Zend_Db_Table_Abstract
         $whereList = array();
         $numberTerms = 0;
         foreach ($args as $keyPosition => $keyValues) {
-            $keyValuesCount = count($keyValues);
+            $keyValuesCount = is_array($keyValues) || $keyValues instanceof \Countable ? count($keyValues) : 0;
             // Coerce the values to an array.
             // Don't simply typecast to array, because the values
             // might be Zend_Db_Expr objects.

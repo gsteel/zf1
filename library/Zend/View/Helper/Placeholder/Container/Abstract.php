@@ -134,7 +134,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObje
      */
     public function getValue()
     {
-        if (1 == count($this)) {
+        if (1 == (is_array($this) || $this instanceof \Countable ? count($this) : 0)) {
             $keys = $this->getKeys();
             $key  = array_shift($keys);
             return $this[$key];

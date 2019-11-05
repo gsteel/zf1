@@ -237,7 +237,7 @@ class Zend_Db_Statement_Mysqli extends Zend_Db_Statement
             }
 
             // set up a binding space for result variables
-            $this->_values = array_fill(0, count($this->_keys), null);
+            $this->_values = array_fill(0, is_array($this->_keys) || $this->_keys instanceof \Countable ? count($this->_keys) : 0, null);
 
             // set up references to the result binding space.
             // just passing $this->_values in the call_user_func_array()

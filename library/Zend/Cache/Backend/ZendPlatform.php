@@ -203,7 +203,7 @@ class Zend_Cache_Backend_ZendPlatform extends Zend_Cache_Backend implements Zend
                     } else {
                         $idlist = $next_idlist;
                     }
-                    if (count($idlist) == 0) {
+                    if ((is_array($idlist) || $idlist instanceof \Countable ? count($idlist) : 0) == 0) {
                         // if ID list is already empty - we may skip checking other IDs
                         $idlist = null;
                         break;
@@ -229,7 +229,7 @@ class Zend_Cache_Backend_ZendPlatform extends Zend_Cache_Backend implements Zend
                     } else {
                         $idlist = $next_idlist;
                     }
-                    if (count($idlist) == 0) {
+                    if ((is_array($idlist) || $idlist instanceof \Countable ? count($idlist) : 0) == 0) {
                         // if ID list is already empty - we may skip checking other IDs
                         $idlist = null;
                         break;

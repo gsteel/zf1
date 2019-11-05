@@ -1203,8 +1203,8 @@ class Zend_Date extends Zend_Date_DateObject
         preg_match('/([+-]\d{2}):{0,1}\d{2}/', $zone, $match);
         if (!empty($match) and ($match[count($match) - 1] <= 14) and ($match[count($match) - 1] >= -12)) {
             $zone = "Etc/GMT";
-            $zone .= ($match[count($match) - 1] < 0) ? "+" : "-";
-            $zone .= (int) abs($match[count($match) - 1]);
+            $zone .= ($match[(is_array($match) || $match instanceof \Countable ? count($match) : 0) - 1] < 0) ? "+" : "-";
+            $zone .= (int) abs($match[(is_array($match) || $match instanceof \Countable ? count($match) : 0) - 1]);
             return $zone;
         }
 
@@ -1212,11 +1212,11 @@ class Zend_Date extends Zend_Date_DateObject
         try {
             if (!empty($match) and (!is_int($match[count($match) - 1]))) {
                 $oldzone = $this->getTimezone();
-                $this->setTimezone($match[count($match) - 1]);
+                $this->setTimezone($match[(is_array($match) || $match instanceof \Countable ? count($match) : 0) - 1]);
                 $result = $this->getTimezone();
                 $this->setTimezone($oldzone);
                 if ($result !== $oldzone) {
-                    return $match[count($match) - 1];
+                    return $match[(is_array($match) || $match instanceof \Countable ? count($match) : 0) - 1];
                 }
             }
         } catch (Exception $e) {
@@ -3432,7 +3432,7 @@ class Zend_Date extends Zend_Date_DateObject
      */
     public function isYesterday()
     {
-        list($year, $month, $day) = explode('-', $this->date('Y-m-d', $this->_getTime()));
+        [$year, $month, $day] = explode('-', $this->date('Y-m-d', $this->_getTime()));
         // adjusts for leap days and DST changes that are timezone specific
         $yesterday = $this->date('Ymd', $this->mktime(0, 0, 0, $month, $day -1, $year));
         $day   = $this->date('Ymd', $this->getUnixTimestamp());
@@ -3447,7 +3447,7 @@ class Zend_Date extends Zend_Date_DateObject
      */
     public function isTomorrow()
     {
-        list($year, $month, $day) = explode('-', $this->date('Y-m-d', $this->_getTime()));
+        [$year, $month, $day] = explode('-', $this->date('Y-m-d', $this->_getTime()));
         // adjusts for leap days and DST changes that are timezone specific
         $tomorrow = $this->date('Ymd', $this->mktime(0, 0, 0, $month, $day +1, $year));
         $day   = $this->date('Ymd', $this->getUnixTimestamp());
@@ -4487,7 +4487,7 @@ class Zend_Date extends Zend_Date_DateObject
     public function setMilliSecond($milli = null, $precision = null)
     {
         if ($milli === null) {
-            list($milli, $time) = explode(" ", microtime());
+            [$milli, $time] = explode(" ", microtime());
             $milli = intval($milli);
             $precision = 6;
         } else if (!is_numeric($milli)) {
@@ -4520,7 +4520,7 @@ class Zend_Date extends Zend_Date_DateObject
     public function addMilliSecond($milli = null, $precision = null)
     {
         if ($milli === null) {
-            list($milli, $time) = explode(" ", microtime());
+            [$milli, $time] = explode(" ", microtime());
             $milli = intval($milli);
         } else if (!is_numeric($milli)) {
             // require_once 'Zend/Date/Exception.php';
@@ -4599,7 +4599,7 @@ class Zend_Date extends Zend_Date_DateObject
     public function compareMilliSecond($milli = null, $precision = null)
     {
         if ($milli === null) {
-            list($milli, $time) = explode(" ", microtime());
+            [$milli, $time] = explode(" ", microtime());
             $milli = intval($milli);
         } else if (is_numeric($milli) === false) {
             // require_once 'Zend/Date/Exception.php';

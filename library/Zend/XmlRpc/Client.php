@@ -347,7 +347,7 @@ class Zend_XmlRpc_Client
                         continue;
                     }
 
-                    if (count($signatures) > 1) {
+                    if (($signatures === null ? 0 : count($signatures)) > 1) {
                         $type = Zend_XmlRpc_Value::getXmlRpcTypeByValue($param);
                         foreach ($signatures as $signature) {
                             if (!is_array($signature)) {

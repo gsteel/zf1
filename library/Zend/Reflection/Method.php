@@ -153,7 +153,7 @@ class Zend_Reflection_Method extends ReflectionMethod
 
         // Strip off lines until we come to a closing bracket
         do {
-            if (count($lines) == 0) break;
+            if ((is_array($lines) || $lines instanceof \Countable ? count($lines) : 0) == 0) break;
             $firstLine = array_shift($lines);
         } while (strpos($firstLine, ')') === false);
 
@@ -161,7 +161,7 @@ class Zend_Reflection_Method extends ReflectionMethod
         // signature, then we should pop off more lines until we find it
         if (strpos($firstLine,'{') === false) {
             do {
-                if (count($lines) == 0) break;
+                if ((is_array($lines) || $lines instanceof \Countable ? count($lines) : 0) == 0) break;
                 $firstLine = array_shift($lines);
             } while (strpos($firstLine, '{') === false);
         }

@@ -446,7 +446,7 @@ class Zend_Http_Client
 
         // Check if $name needs to be split
         if ($value === null && (strpos($name, ':') > 0)) {
-            list($name, $value) = explode(':', $name, 2);
+            [$name, $value] = explode(':', $name, 2);
         }
 
         // Make sure the name is valid if we are in strict mode
@@ -1146,7 +1146,7 @@ class Zend_Http_Client
 
                     // Split into path and query and set the query
                     if (strpos($location, '?') !== false) {
-                        list($location, $query) = explode('?', $location, 2);
+                        [$location, $query] = explode('?', $location, 2);
                     } else {
                         $query = '';
                     }
@@ -1245,7 +1245,7 @@ class Zend_Http_Client
 
         // Add all other user defined headers
         foreach ($this->headers as $header) {
-            list($name, $value) = $header;
+            [$name, $value] = $header;
             if (is_array($value)) {
                 $value = implode(', ', $value);
             }

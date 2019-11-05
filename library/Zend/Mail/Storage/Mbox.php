@@ -85,7 +85,7 @@ class Zend_Mail_Storage_Mbox extends Zend_Mail_Storage_Abstract
      */
     public function countMessages()
     {
-        return count($this->_positions);
+        return is_array($this->_positions) || $this->_positions instanceof \Countable ? count($this->_positions) : 0;
     }
 
 

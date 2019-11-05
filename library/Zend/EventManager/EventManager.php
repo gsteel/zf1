@@ -144,7 +144,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      */
     public function setIdentifiers($identifiers)
     {
-        if (is_array($identifiers) || $identifiers instanceof Traversable) {
+        if (is_iterable($identifiers)) {
             $this->identifiers = array_unique((array) $identifiers);
         } elseif ($identifiers !== null) {
             $this->identifiers = array($identifiers);
@@ -160,7 +160,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
      */
     public function addIdentifiers($identifiers)
     {
-        if (is_array($identifiers) || $identifiers instanceof Traversable) {
+        if (is_iterable($identifiers)) {
             $this->identifiers = array_unique($this->identifiers + (array) $identifiers);
         } elseif ($identifiers !== null) {
             $this->identifiers = array_unique(array_merge($this->identifiers, array($identifiers)));
@@ -353,7 +353,7 @@ class Zend_EventManager_EventManager implements Zend_EventManager_EventCollectio
         if (!$return) {
             return false;
         }
-        if (!count($this->events[$event])) {
+        if (!(is_array($this->events[$event]) || $this->events[$event] instanceof \Countable ? count($this->events[$event]) : 0)) {
             unset($this->events[$event]);
         }
         return true;

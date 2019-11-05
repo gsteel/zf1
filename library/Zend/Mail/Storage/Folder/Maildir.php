@@ -197,7 +197,7 @@ class Zend_Mail_Storage_Folder_Maildir extends Zend_Mail_Storage_Maildir impleme
         $currentFolder = $this->_rootFolder;
         $subname = trim($rootFolder, $this->_delim);
         while ($currentFolder) {
-            @list($entry, $subname) = @explode($this->_delim, $subname, 2);
+            @[$entry, $subname] = @explode($this->_delim, $subname, 2);
             $currentFolder = $currentFolder->$entry;
             if (!$subname) {
                 break;

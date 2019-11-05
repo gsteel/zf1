@@ -368,7 +368,7 @@ class Zend_Log
     {
         $priority = strtoupper($method);
         if (($priority = array_search($priority, $this->_priorities)) !== false) {
-            switch (count($params)) {
+            switch (is_array($params) || $params instanceof \Countable ? count($params) : 0) {
                 case 0:
                     throw new Zend_Log_Exception('Missing log message');
                 case 1:

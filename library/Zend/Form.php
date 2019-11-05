@@ -1609,14 +1609,14 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
 
         if (!empty($this->_elementPrefixPaths)) {
             foreach ($this->_elementPrefixPaths as $spec) {
-                list($prefix, $path, $type) = array_values($spec);
+                [$prefix, $path, $type] = array_values($spec);
                 $form->addElementPrefixPath($prefix, $path, $type);
             }
         }
 
         if (!empty($this->_displayGroupPrefixPaths)) {
             foreach ($this->_displayGroupPrefixPaths as $spec) {
-                list($prefix, $path) = array_values($spec);
+                [$prefix, $path] = array_values($spec);
                 $form->addDisplayGroupPrefixPath($prefix, $path);
             }
         }

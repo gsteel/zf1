@@ -680,18 +680,18 @@ abstract class Zend_File_Transfer_Adapter_Abstract
                         break;
                     }
 
-                    if (($class === \Zend_Validate_File_Upload::class) and (count($fileerrors) > 0)) {
+                    if (($class === \Zend_Validate_File_Upload::class) and ((is_array($fileerrors) || $fileerrors instanceof \Countable ? count($fileerrors) : 0) > 0)) {
                         break;
                     }
 
-                    if (($this->_break[$class]) and (count($fileerrors) > 0)) {
+                    if (($this->_break[$class]) and ((is_array($fileerrors) || $fileerrors instanceof \Countable ? count($fileerrors) : 0) > 0)) {
                         $break = true;
                         break;
                     }
                 }
             }
 
-            if (count($fileerrors) > 0) {
+            if ((is_array($fileerrors) || $fileerrors instanceof \Countable ? count($fileerrors) : 0) > 0) {
                 $this->_files[$key]['validated'] = false;
             } else {
                 $this->_files[$key]['validated'] = true;

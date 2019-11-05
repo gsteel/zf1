@@ -184,7 +184,7 @@ class Zend_Db_Adapter_Pdo_Mysql extends Zend_Db_Adapter_Pdo_Abstract
         $i = 1;
         $p = 1;
         foreach ($result as $row) {
-            list($length, $scale, $precision, $unsigned, $primary, $primaryPosition, $identity)
+            [$length, $scale, $precision, $unsigned, $primary, $primaryPosition, $identity]
                 = array(null, null, null, null, false, null, false);
             if (preg_match('/unsigned/', $row[$type])) {
                 $unsigned = true;

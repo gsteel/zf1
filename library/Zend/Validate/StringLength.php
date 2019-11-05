@@ -259,7 +259,7 @@ class Zend_Validate_StringLength extends Zend_Validate_Abstract
             $this->_error(self::TOO_LONG);
         }
 
-        if (count($this->_messages)) {
+        if (is_array($this->_messages) || $this->_messages instanceof \Countable ? count($this->_messages) : 0) {
             return false;
         } else {
             return true;

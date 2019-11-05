@@ -134,7 +134,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
                 fclose($file);
             } else {
                 $cert = $key;
-                $key  = count($this->_keys[$type]);
+                $key  = is_array($this->_keys[$type]) || $this->_keys[$type] instanceof \Countable ? count($this->_keys[$type]) : 0;
             }
 
             switch ($type) {
@@ -356,7 +356,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
         $encrypted     = array();
         $encryptedkeys = array();
 
-        if (count($this->_keys['public']) == 0) {
+        if ((is_array($this->_keys['public']) || $this->_keys['public'] instanceof \Countable ? count($this->_keys['public']) : 0) == 0) {
             // require_once 'Zend/Filter/Exception.php';
             throw new Zend_Filter_Exception('Openssl can not encrypt without public keys');
         }
@@ -398,7 +398,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
 
         // Pack data and envelope keys into single string
         if ($this->_package) {
-            $header = pack('n', count($this->_keys['envelope']));
+            $header = pack('n', is_array($this->_keys['envelope']) || $this->_keys['envelope'] instanceof \Countable ? count($this->_keys['envelope']) : 0);
             foreach($this->_keys['envelope'] as $key => $envKey) {
                 $header .= pack('H32n', $fingerprints[$key], strlen($envKey)) . $envKey;
             }
@@ -423,7 +423,7 @@ class Zend_Filter_Encrypt_Openssl implements Zend_Filter_Encrypt_Interface
         $decrypted = "";
         $envelope  = current($this->getEnvelopeKey());
 
-        if (count($this->_keys['private']) !== 1) {
+        if ((is_array($this->_keys['private']) || $this->_keys['private'] instanceof \Countable ? count($this->_keys['private']) : 0) !== 1) {
             // require_once 'Zend/Filter/Exception.php';
             throw new Zend_Filter_Exception('Please give a private key for decryption with Openssl');
         }

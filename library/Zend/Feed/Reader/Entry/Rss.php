@@ -201,7 +201,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
             );
         }
 
-        if (count($authors) == 0) {
+        if ((is_array($authors) || $authors instanceof \Countable ? count($authors) : 0) == 0) {
             $authors = null;
         }
 
@@ -504,7 +504,7 @@ class Zend_Feed_Reader_Entry_Rss extends Zend_Feed_Reader_EntryAbstract implemen
             $categoryCollection = $this->getExtension('DublinCore')->getCategories();
         }
 
-        if (count($categoryCollection) == 0) {
+        if ((is_array($categoryCollection) || $categoryCollection instanceof \Countable ? count($categoryCollection) : 0) == 0) {
             $categoryCollection = $this->getExtension('Atom')->getCategories();
         }
 

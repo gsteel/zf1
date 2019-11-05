@@ -187,6 +187,7 @@ class Zend_Filter_Compress_Tar extends Zend_Filter_Compress_CompressAbstract
                     ) as $directory => $info
             ) {
                 if ($info->isFile()) {
+                    $file = (array) $file;
                     $file[] = $directory;
                 }
             }

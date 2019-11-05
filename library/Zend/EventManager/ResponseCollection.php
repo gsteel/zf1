@@ -401,7 +401,7 @@ class Zend_EventManager_ResponseCollection extends SplStack
      */
     public function last()
     {
-        if (count($this) === 0) {
+        if ((is_array($this) || $this instanceof \Countable ? count($this) : 0) === 0) {
             return null;
         }
         return parent::top();

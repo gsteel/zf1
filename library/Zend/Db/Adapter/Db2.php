@@ -455,7 +455,7 @@ class Zend_Db_Adapter_Db2 extends Zend_Db_Adapter_Abstract
         $colseq         = 11;
 
         foreach ($result as $key => $row) {
-            list ($primary, $primaryPosition, $identity) = array(false, null, false);
+            [$primary, $primaryPosition, $identity] = array(false, null, false);
             if ($row[$tabconstType] == 'P') {
                 $primary = true;
                 $primaryPosition = $row[$colseq];

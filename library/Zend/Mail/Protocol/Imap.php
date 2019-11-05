@@ -168,7 +168,7 @@ class Zend_Mail_Protocol_Imap
         $line = $this->_nextLine();
 
         // seperate tag from line
-        list($tag, $line) = explode(' ', $line, 2);
+        [$tag, $line] = explode(' ', $line, 2);
 
         return $line;
     }
@@ -600,7 +600,7 @@ class Zend_Mail_Protocol_Imap
                     $data = $tokens[2][1];
                 } else {
                     // maybe the server send an other field we didn't wanted
-                    $count = count($tokens[2]);
+                    $count = is_array($tokens[2]) || $tokens[2] instanceof \Countable ? count($tokens[2]) : 0;
                     // we start with 2, because 0 was already checked
                     for ($i = 2; $i < $count; $i += 2) {
                         if ($tokens[2][$i] != $items[0]) {
@@ -656,7 +656,7 @@ class Zend_Mail_Protocol_Imap
         }
 
         foreach ($list as $item) {
-            if (count($item) != 4 || $item[0] != 'LIST') {
+            if ((is_array($item) || $item instanceof \Countable ? count($item) : 0) != 4 || $item[0] != 'LIST') {
                 continue;
             }
             $result[$item[3]] = array('delim' => $item[2], 'flags' => $item[1]);

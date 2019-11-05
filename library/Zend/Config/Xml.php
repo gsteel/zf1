@@ -210,7 +210,7 @@ class Zend_Config_Xml extends Zend_Config
         $nsAttributes = $xmlObject->attributes(self::XML_NAMESPACE);
 
         // Search for parent node values
-        if (count($xmlObject->attributes()) > 0) {
+        if (($xmlObject->attributes() === null ? 0 : count($xmlObject->attributes())) > 0) {
             foreach ($xmlObject->attributes() as $key => $value) {
                 if ($key === 'extends') {
                     continue;
@@ -280,9 +280,9 @@ class Zend_Config_Xml extends Zend_Config
         // Search for children
         if (count($xmlObject->children()) > 0) {
             foreach ($xmlObject->children() as $key => $value) {
-                if (count($value->children()) > 0 || count($value->children(self::XML_NAMESPACE)) > 0) {
+                if ((is_array($value->children()) || $value->children() instanceof \Countable ? count($value->children()) : 0) > 0 || (is_array($value->children(self::XML_NAMESPACE)) || $value->children(self::XML_NAMESPACE) instanceof \Countable ? count($value->children(self::XML_NAMESPACE)) : 0) > 0) {
                     $value = $this->_toArray($value);
-                } else if (count($value->attributes()) > 0) {
+                } else if ((is_array($value->attributes()) || $value->attributes() instanceof \Countable ? count($value->attributes()) : 0) > 0) {
                     $attributes = $value->attributes();
                     if (isset($attributes['value'])) {
                         $value = (string) $attributes['value'];

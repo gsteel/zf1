@@ -158,8 +158,8 @@ class Zend_Json
         }
 
         //only do post-proccessing to revert back the Zend_Json_Expr if any.
-        if (count($javascriptExpressions) > 0) {
-            $count = count($javascriptExpressions);
+        if ((is_array($javascriptExpressions) || $javascriptExpressions instanceof \Countable ? count($javascriptExpressions) : 0) > 0) {
+            $count = is_array($javascriptExpressions) || $javascriptExpressions instanceof \Countable ? count($javascriptExpressions) : 0;
             for($i = 0; $i < $count; $i++) {
                 $magicKey = $javascriptExpressions[$i]['magicKey'];
                 $value    = $javascriptExpressions[$i]['value'];

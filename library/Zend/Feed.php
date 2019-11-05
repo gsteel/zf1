@@ -311,7 +311,7 @@ class Zend_Feed
 
         // Try to fetch a feed for each link tag that appears to refer to a feed
         $feeds = array();
-        if (isset($matches[1]) && count($matches[1]) > 0) {
+        if (isset($matches[1]) && (is_array($matches[1]) || $matches[1] instanceof \Countable ? count($matches[1]) : 0) > 0) {
             foreach ($matches[1] as $link) {
                 // force string to be an utf-8 one
                 if (!mb_check_encoding($link, 'UTF-8')) {
@@ -345,10 +345,10 @@ class Zend_Feed
                             $path = rtrim($client->getUri()->getPath(), '/') . '/' . $path;
                         }
                         if (strpos($path, '?') !== false) {
-                            list($path, $query) = explode('?', $path, 2);
+                            [$path, $query] = explode('?', $path, 2);
                         }
                         if (strpos($query, '#') !== false) {
-                            list($query, $fragment) = explode('#', $query, 2);
+                            [$query, $fragment] = explode('#', $query, 2);
                         }
                         $uri = Zend_Uri::factory($client->getUri(true));
                         $uri->setPath($path);

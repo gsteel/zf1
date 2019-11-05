@@ -802,7 +802,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if (self::$_isLittleEndian === false) {
             $bin = strrev($bin);
         }
-        list(, $id) = unpack('l', $bin);
+        [, $id] = unpack('l', $bin);
 
         $lastStack = count($this->_stack)-1;
         if (!isset($this->_stack[$lastStack])) {
@@ -858,7 +858,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if (self::$_isLittleEndian === false) {
             $bin = strrev($bin);
         }
-        list(, $id) = unpack('l', $bin);
+        [, $id] = unpack('l', $bin);
 
         if (!array_key_exists($id, $this->_memo)) {
             // require_once 'Zend/Serializer/Exception.php';
@@ -925,7 +925,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if (self::$_isLittleEndian === false) {
             $bin = strrev($bin);
         }
-        list(, $int)    = unpack('l', $bin);
+        [, $int]    = unpack('l', $bin);
         $this->_stack[] = $int;
     }
 
@@ -947,7 +947,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
     protected function _loadBinInt2()
     {
         $bin = $this->_read(2);
-        list(, $int)    = unpack('v', $bin);
+        [, $int]    = unpack('v', $bin);
         $this->_stack[] = $int;
     }
 
@@ -989,7 +989,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if (self::$_isLittleEndian === false) {
             $nBin = strrev($$nBin);
         }
-        list(, $n) = unpack('l', $nBin);
+        [, $n] = unpack('l', $nBin);
         $data = $this->_read($n);
 
         $this->_stack[] = $this->_decodeBinLong($data);
@@ -1017,7 +1017,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if (self::$_isLittleEndian === true) {
             $bin = strrev($bin);
         }
-        list(, $float)  = unpack('d', $bin);
+        [, $float]  = unpack('d', $bin);
         $this->_stack[] = $float;
     }
 
@@ -1042,7 +1042,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if (!self::$_isLittleEndian) {
             $bin = strrev($bin);
         }
-        list(, $len)    = unpack('l', $bin);
+        [, $len]    = unpack('l', $bin);
         $this->_stack[] = (string)$this->_read($len);
     }
 
@@ -1069,7 +1069,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if (self::$_isLittleEndian === false) {
             $nBin = strrev($$nBin);
         }
-        list(, $n)      = unpack('l', $nBin);
+        [, $n]      = unpack('l', $nBin);
         $this->_stack[] = $this->_read($n);
     }
 
@@ -1157,7 +1157,7 @@ class Zend_Serializer_Adapter_PythonPickle extends Zend_Serializer_Adapter_Adapt
         if (self::$_isLittleEndian === false) {
             $n = strrev($n);
         }
-        list(, $n) = unpack('l', $n);
+        [, $n] = unpack('l', $n);
         $data      = $this->_read($n);
 
         $this->_stack[] = $data;

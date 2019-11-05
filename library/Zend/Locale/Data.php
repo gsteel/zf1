@@ -1016,7 +1016,7 @@ class Zend_Locale_Data
                 unset($givenLocale);
                 $temp = self::_getFile('supplementalData', '/supplementalData/calendarPreferenceData/calendarPreference[contains(@territories,\'' . $territory . '\')]', 'ordering', 'ordering');
                 if (isset($temp['ordering'])) {
-                    list($temp) = explode(' ', $temp['ordering']);
+                    [$temp] = explode(' ', $temp['ordering']);
                 } else {
                     $temp = 'gregorian';
                 }

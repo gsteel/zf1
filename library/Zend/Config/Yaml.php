@@ -289,7 +289,7 @@ class Zend_Config_Yaml extends Zend_Config
     {
         $config   = array();
         $inIndent = false;
-        while (list($n, $line) = each($lines)) {
+        while ([$n, $line] = each($lines)) {
             $lineno = $n + 1;
 
             $line = rtrim(preg_replace("/#.*$/", "", $line));
@@ -363,10 +363,10 @@ class Zend_Config_Yaml extends Zend_Config
 
         // remove quotes from string.
         if ('"' == $value['0']) {
-            if ('"' == $value[count($value) -1]) {
+            if ('"' == $value[(is_array($value) || $value instanceof \Countable ? count($value) : 0) -1]) {
                 $value = substr($value, 1, -1);
             }
-        } elseif ('\'' == $value['0'] && '\'' == $value[count($value) -1]) {
+        } elseif ('\'' == $value['0'] && '\'' == $value[(is_array($value) || $value instanceof \Countable ? count($value) : 0) -1]) {
             $value = strtr($value, array("''" => "'", "'" => ''));
         }
 

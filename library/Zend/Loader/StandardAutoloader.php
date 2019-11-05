@@ -110,12 +110,12 @@ class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
                     }
                     break;
                 case self::LOAD_NS:
-                    if (is_array($pairs) || $pairs instanceof Traversable) {
+                    if (is_iterable($pairs)) {
                         $this->registerNamespaces($pairs);
                     }
                     break;
                 case self::LOAD_PREFIX:
-                    if (is_array($pairs) || $pairs instanceof Traversable) {
+                    if (is_iterable($pairs)) {
                         $this->registerPrefixes($pairs);
                     }
                     break;

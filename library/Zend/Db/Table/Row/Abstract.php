@@ -907,7 +907,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
 
         $map = $this->_prepareReference($dependentTable, $this->_getTable(), $ruleKey);
 
-        for ($i = 0; $i < count($map[Zend_Db_Table_Abstract::COLUMNS]); ++$i) {
+        for ($i = 0; $i < (is_array($map[Zend_Db_Table_Abstract::COLUMNS]) || $map[Zend_Db_Table_Abstract::COLUMNS] instanceof \Countable ? count($map[Zend_Db_Table_Abstract::COLUMNS]) : 0); ++$i) {
             $parentColumnName = $db->foldCase($map[Zend_Db_Table_Abstract::REF_COLUMNS][$i]);
             $value = $this->_data[$parentColumnName];
             // Use adapter from dependent table to ensure correct query construction
@@ -964,7 +964,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
         $map = $this->_prepareReference($this->_getTable(), $parentTable, $ruleKey);
 
         // iterate the map, creating the proper wheres
-        for ($i = 0; $i < count($map[Zend_Db_Table_Abstract::COLUMNS]); ++$i) {
+        for ($i = 0; $i < (is_array($map[Zend_Db_Table_Abstract::COLUMNS]) || $map[Zend_Db_Table_Abstract::COLUMNS] instanceof \Countable ? count($map[Zend_Db_Table_Abstract::COLUMNS]) : 0); ++$i) {
             $dependentColumnName = $db->foldCase($map[Zend_Db_Table_Abstract::COLUMNS][$i]);
             $value = $this->_data[$dependentColumnName];
             // Use adapter from parent table to ensure correct query construction
@@ -1061,7 +1061,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
 
         $matchMap = $this->_prepareReference($intersectionTable, $matchTable, $matchRefRule);
 
-        for ($i = 0; $i < count($matchMap[Zend_Db_Table_Abstract::COLUMNS]); ++$i) {
+        for ($i = 0; $i < (is_array($matchMap[Zend_Db_Table_Abstract::COLUMNS]) || $matchMap[Zend_Db_Table_Abstract::COLUMNS] instanceof \Countable ? count($matchMap[Zend_Db_Table_Abstract::COLUMNS]) : 0); ++$i) {
             $interCol = $interDb->quoteIdentifier('i' . '.' . $matchMap[Zend_Db_Table_Abstract::COLUMNS][$i], true);
             $matchCol = $interDb->quoteIdentifier('m' . '.' . $matchMap[Zend_Db_Table_Abstract::REF_COLUMNS][$i], true);
             $joinCond[] = "$interCol = $matchCol";
@@ -1074,7 +1074,7 @@ abstract class Zend_Db_Table_Row_Abstract implements ArrayAccess, IteratorAggreg
 
         $callerMap = $this->_prepareReference($intersectionTable, $this->_getTable(), $callerRefRule);
 
-        for ($i = 0; $i < count($callerMap[Zend_Db_Table_Abstract::COLUMNS]); ++$i) {
+        for ($i = 0; $i < (is_array($callerMap[Zend_Db_Table_Abstract::COLUMNS]) || $callerMap[Zend_Db_Table_Abstract::COLUMNS] instanceof \Countable ? count($callerMap[Zend_Db_Table_Abstract::COLUMNS]) : 0); ++$i) {
             $callerColumnName = $db->foldCase($callerMap[Zend_Db_Table_Abstract::REF_COLUMNS][$i]);
             $value = $this->_data[$callerColumnName];
             $interColumnName = $interDb->foldCase($callerMap[Zend_Db_Table_Abstract::COLUMNS][$i]);

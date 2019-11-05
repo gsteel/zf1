@@ -913,12 +913,12 @@ class Zend_Locale_Format
         $split = false;
         preg_match_all('/\d+/u', $number, $splitted);
 
-        if (count($splitted[0]) == 0) {
+        if ((is_array($splitted[0]) || $splitted[0] instanceof \Countable ? count($splitted[0]) : 0) == 0) {
             self::_setEncoding($oenc);
             // require_once 'Zend/Locale/Exception.php';
             throw new Zend_Locale_Exception("No date part in '$date' found.");
         }
-        if (count($splitted[0]) == 1) {
+        if ((is_array($splitted[0]) || $splitted[0] instanceof \Countable ? count($splitted[0]) : 0) == 1) {
             $split = 0;
         }
         $cnt = 0;
@@ -927,7 +927,7 @@ class Zend_Locale_Format
             switch($value) {
                 case 'd':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_array($splitted[0]) || $splitted[0] instanceof \Countable ? count($splitted[0]) : 0) > $cnt) {
                             $result['day']    = $splitted[0][$cnt];
                         }
                     } else {
@@ -938,7 +938,7 @@ class Zend_Locale_Format
                     break;
                 case 'M':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_array($splitted[0]) || $splitted[0] instanceof \Countable ? count($splitted[0]) : 0) > $cnt) {
                             $result['month']  = $splitted[0][$cnt];
                         }
                     } else {
@@ -955,7 +955,7 @@ class Zend_Locale_Format
                     }
 
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_array($splitted[0]) || $splitted[0] instanceof \Countable ? count($splitted[0]) : 0) > $cnt) {
                             $result['year']   = $splitted[0][$cnt];
                         }
                     } else {
@@ -967,7 +967,7 @@ class Zend_Locale_Format
                     break;
                 case 'H':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_array($splitted[0]) || $splitted[0] instanceof \Countable ? count($splitted[0]) : 0) > $cnt) {
                             $result['hour']   = $splitted[0][$cnt];
                         }
                     } else {
@@ -978,7 +978,7 @@ class Zend_Locale_Format
                     break;
                 case 'm':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_array($splitted[0]) || $splitted[0] instanceof \Countable ? count($splitted[0]) : 0) > $cnt) {
                             $result['minute'] = $splitted[0][$cnt];
                         }
                     } else {
@@ -989,7 +989,7 @@ class Zend_Locale_Format
                     break;
                 case 's':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_array($splitted[0]) || $splitted[0] instanceof \Countable ? count($splitted[0]) : 0) > $cnt) {
                             $result['second'] = $splitted[0][$cnt];
                         }
                     } else {

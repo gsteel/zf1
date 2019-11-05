@@ -240,7 +240,7 @@ class Zend_Http_UserAgent implements Serializable
         // Get plugin loaders sorted
         if (isset($options['plugin_loader'])) {
             $plConfig = $options['plugin_loader'];
-            if (is_array($plConfig) || $plConfig instanceof Traversable) {
+            if (is_iterable($plConfig)) {
                 foreach ($plConfig as $type => $class) {
                     $this->setPluginLoader($type, $class);
                 }

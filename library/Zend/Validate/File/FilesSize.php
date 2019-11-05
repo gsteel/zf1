@@ -155,7 +155,7 @@ class Zend_Validate_File_FilesSize extends Zend_Validate_File_Size
             }
         }
 
-        if (count($this->_messages) > 0) {
+        if ((is_array($this->_messages) || $this->_messages instanceof \Countable ? count($this->_messages) : 0) > 0) {
             return false;
         }
 

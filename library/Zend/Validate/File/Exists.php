@@ -132,6 +132,7 @@ class Zend_Validate_File_Exists extends Zend_Validate_Abstract
                 continue;
             }
 
+            $directories = (array) $directories;
             $directories[] = trim($content);
         }
         $directories = array_unique($directories);
@@ -161,6 +162,7 @@ class Zend_Validate_File_Exists extends Zend_Validate_Abstract
     {
         $directories = $this->getDirectory(true);
         if (($file !== null) and (!empty($file['destination']))) {
+            $directories = (array) $directories;
             $directories[] = $file['destination'];
         } else if (!isset($file['name'])) {
             $file['name'] = $value;

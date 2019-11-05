@@ -146,7 +146,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
     public function __call($method, $args)
     {
         if (preg_match('/^(?P<action>set|(ap|pre)pend|offsetSet)(?P<type>Stylesheet|Alternate)$/', $method, $matches)) {
-            $argc   = count($args);
+            $argc   = is_array($args) || $args instanceof \Countable ? count($args) : 0;
             $action = $matches['action'];
             $type   = $matches['type'];
             $index  = null;

@@ -175,7 +175,7 @@ abstract class Zend_Feed_Abstract extends Zend_Feed_Element implements Iterator,
      */
     public function count()
     {
-        return count($this->_entries);
+        return is_array($this->_entries) || $this->_entries instanceof \Countable ? count($this->_entries) : 0;
     }
 
 

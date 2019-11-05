@@ -220,7 +220,7 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
 
                 // If it's a wildcard, get the rest of URL as wildcard data and stop matching
                 if ($this->_parts[$pos] == '*') {
-                    $count = count($path);
+                    $count = is_array($path) || $path instanceof \Countable ? count($path) : 0;
                     for ($i = $pos; $i < $count; $i += 2) {
                         $var = urldecode($path[$i]);
                         if (!isset($this->_wildcardData[$var]) && !isset($this->_defaults[$var])

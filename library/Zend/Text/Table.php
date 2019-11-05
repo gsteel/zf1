@@ -335,7 +335,7 @@ class Zend_Text_Table
         }
 
         if (is_array($row)) {
-            if (count($row) > count($this->_columnWidths)) {
+            if (count($row) > (is_array($this->_columnWidths) || $this->_columnWidths instanceof \Countable ? count($this->_columnWidths) : 0)) {
                 // require_once 'Zend/Text/Table/Exception.php';
                 throw new Zend_Text_Table_Exception('Row contains too many columns');
             }
@@ -381,7 +381,7 @@ class Zend_Text_Table
         $result = '';
 
         // Count total columns
-        $totalNumColumns = count($this->_columnWidths);
+        $totalNumColumns = is_array($this->_columnWidths) || $this->_columnWidths instanceof \Countable ? count($this->_columnWidths) : 0;
 
         // Now render all rows, starting from the first one
         $numRows = count($this->_rows);
@@ -393,7 +393,7 @@ class Zend_Text_Table
 
             $renderedRow  = $row->render($this->_columnWidths, $this->_decorator, $this->_padding);
             $columnWidths = $row->getColumnWidths();
-            $numColumns   = count($columnWidths);
+            $numColumns   = is_array($columnWidths) || $columnWidths instanceof \Countable ? count($columnWidths) : 0;
 
             // Check what we have to draw
             if ($rowNum === 0) {

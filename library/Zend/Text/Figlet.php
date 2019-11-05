@@ -1081,7 +1081,7 @@ class Zend_Text_Figlet
         // At the end fetch all extended characters
         while (!feof($fp)) {
             // Get the Unicode
-            list($uniCode) = explode(' ', fgets($fp, 2048));
+            [$uniCode] = explode(' ', fgets($fp, 2048));
 
             if (empty($uniCode)) {
                 continue;

@@ -317,7 +317,7 @@ class Zend_Session_SaveHandler_DbTable
 
         $rows = call_user_func_array(array(&$this, 'find'), $this->_getPrimary($id));
 
-        if (count($rows)) {
+        if (is_array($rows) || $rows instanceof \Countable ? count($rows) : 0) {
             if ($this->_getExpirationTime($row = $rows->current()) > time()) {
                 $return = $row->{$this->_dataColumn};
             } else {
@@ -344,7 +344,7 @@ class Zend_Session_SaveHandler_DbTable
 
         $rows = call_user_func_array(array(&$this, 'find'), $this->_getPrimary($id));
 
-        if (count($rows)) {
+        if (is_array($rows) || $rows instanceof \Countable ? count($rows) : 0) {
             $data[$this->_lifetimeColumn] = $this->_getLifetime($rows->current());
 
             if ($this->update($data, $this->_getPrimary($id, self::PRIMARY_TYPE_WHERECLAUSE))) {
@@ -426,7 +426,7 @@ class Zend_Session_SaveHandler_DbTable
         }
 
         if (strpos($this->_name, '.')) {
-            list($this->_schema, $this->_name) = explode('.', $this->_name);
+            [$this->_schema, $this->_name] = explode('.', $this->_name);
         }
     }
 
@@ -448,7 +448,7 @@ class Zend_Session_SaveHandler_DbTable
             unset($this->_primaryAssignment[0]);
         }
 
-        if (count($this->_primaryAssignment) !== count($this->_primary)) {
+        if ((is_array($this->_primaryAssignment) || $this->_primaryAssignment instanceof \Countable ? count($this->_primaryAssignment) : 0) !== (is_array($this->_primary) || $this->_primary instanceof \Countable ? count($this->_primary) : 0)) {
             /**
              * @see Zend_Session_SaveHandler_Exception
              */

@@ -202,7 +202,7 @@ class Zend_Feed_Element implements ArrayAccess
             // actually set. This way "if ($foo->bar)" doesn't create
             // a phantom "bar" element in our tree.
             if (strpos($var, ':') !== false) {
-                list($ns, $elt) = explode(':', $var, 2);
+                [$ns, $elt] = explode(':', $var, 2);
                 $node = $this->_element->ownerDocument->createElementNS(Zend_Feed::lookupNamespace($ns), $elt);
             } else {
                 $node = $this->_element->ownerDocument->createElement($var);
@@ -229,7 +229,7 @@ class Zend_Feed_Element implements ArrayAccess
         $nodes = $this->_children($var);
         if (!$nodes) {
             if (strpos($var, ':') !== false) {
-                list($ns, $elt) = explode(':', $var, 2);
+                [$ns, $elt] = explode(':', $var, 2);
                 $node = $this->_element->ownerDocument->createElementNS(Zend_Feed::lookupNamespace($ns),
                     $var, htmlspecialchars($val, ENT_NOQUOTES, $this->getEncoding()));
                 $this->_element->appendChild($node);
@@ -262,7 +262,7 @@ class Zend_Feed_Element implements ArrayAccess
         // _children() here because we can break out of the loop
         // immediately once we find something.
         if (strpos($var, ':') !== false) {
-            list($ns, $elt) = explode(':', $var, 2);
+            [$ns, $elt] = explode(':', $var, 2);
             foreach ($this->_element->childNodes as $child) {
                 if ($child->localName == $elt && $child->prefix == $ns) {
                     return true;
@@ -345,7 +345,7 @@ class Zend_Feed_Element implements ArrayAccess
 
         // Look for access of the form {ns:var}.
         if (strpos($var, ':') !== false) {
-            list($ns, $elt) = explode(':', $var, 2);
+            [$ns, $elt] = explode(':', $var, 2);
             foreach ($this->_element->childNodes as $child) {
                 if ($child->localName == $elt && $child->prefix == $ns) {
                     $found[] = $child;
@@ -372,7 +372,7 @@ class Zend_Feed_Element implements ArrayAccess
     public function offsetExists($offset)
     {
         if (strpos($offset, ':') !== false) {
-            list($ns, $attr) = explode(':', $offset, 2);
+            [$ns, $attr] = explode(':', $offset, 2);
             return $this->_element->hasAttributeNS(Zend_Feed::lookupNamespace($ns), $attr);
         } else {
             return $this->_element->hasAttribute($offset);
@@ -389,7 +389,7 @@ class Zend_Feed_Element implements ArrayAccess
     public function offsetGet($offset)
     {
         if (strpos($offset, ':') !== false) {
-            list($ns, $attr) = explode(':', $offset, 2);
+            [$ns, $attr] = explode(':', $offset, 2);
             return $this->_element->getAttributeNS(Zend_Feed::lookupNamespace($ns), $attr);
         } else {
             return $this->_element->getAttribute($offset);
@@ -409,7 +409,7 @@ class Zend_Feed_Element implements ArrayAccess
         $this->ensureAppended();
 
         if (strpos($offset, ':') !== false) {
-            list($ns, $attr) = explode(':', $offset, 2);
+            [$ns, $attr] = explode(':', $offset, 2);
             // DOMElement::setAttributeNS() requires $qualifiedName to have a prefix
             return $this->_element->setAttributeNS(Zend_Feed::lookupNamespace($ns), $offset, $value);
         } else {
@@ -427,7 +427,7 @@ class Zend_Feed_Element implements ArrayAccess
     public function offsetUnset($offset)
     {
         if (strpos($offset, ':') !== false) {
-            list($ns, $attr) = explode(':', $offset, 2);
+            [$ns, $attr] = explode(':', $offset, 2);
             return $this->_element->removeAttributeNS(Zend_Feed::lookupNamespace($ns), $attr);
         } else {
             return $this->_element->removeAttribute($offset);

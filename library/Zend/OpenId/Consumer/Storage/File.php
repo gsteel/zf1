@@ -199,7 +199,7 @@ class Zend_OpenId_Consumer_Storage_File extends Zend_OpenId_Consumer_Storage
             $ret = false;
             $data = stream_get_contents($f);
             if (!empty($data)) {
-                list($storedUrl, $handle, $macFunc, $secret, $expires) = unserialize($data);
+                [$storedUrl, $handle, $macFunc, $secret, $expires] = unserialize($data);
                 if ($url === $storedUrl && $expires > time()) {
                     $ret = true;
                 } else {
@@ -252,7 +252,7 @@ class Zend_OpenId_Consumer_Storage_File extends Zend_OpenId_Consumer_Storage
             $ret = false;
             $data = stream_get_contents($f);
             if (!empty($data)) {
-                list($url, $storedHandle, $macFunc, $secret, $expires) = unserialize($data);
+                [$url, $storedHandle, $macFunc, $secret, $expires] = unserialize($data);
                 if ($handle === $storedHandle && $expires > time()) {
                     $ret = true;
                 } else {
@@ -298,7 +298,7 @@ class Zend_OpenId_Consumer_Storage_File extends Zend_OpenId_Consumer_Storage
             }
             $data = stream_get_contents($f);
             if (!empty($data)) {
-                list($storedUrl, $handle, $macFunc, $secret, $expires) = unserialize($data);
+                [$storedUrl, $handle, $macFunc, $secret, $expires] = unserialize($data);
                 if ($url === $storedUrl) {
                     $name2 = $this->_dir . '/assoc_handle_' . md5($handle);
                     fclose($f);
@@ -386,7 +386,7 @@ class Zend_OpenId_Consumer_Storage_File extends Zend_OpenId_Consumer_Storage
             $ret = false;
             $data = stream_get_contents($f);
             if (!empty($data)) {
-                list($storedId, $realId, $server, $version, $expires) = unserialize($data);
+                [$storedId, $realId, $server, $version, $expires] = unserialize($data);
                 if ($id === $storedId && $expires > time()) {
                     $ret = true;
                 } else {
