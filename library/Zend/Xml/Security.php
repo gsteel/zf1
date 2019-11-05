@@ -207,7 +207,7 @@ class Zend_Xml_Security
     protected static function detectStringEncoding($xml)
     {
         $encoding = self::detectBom($xml);
-        return ($encoding) ? $encoding : self::detectXmlStringEncoding($xml);
+        return ($encoding) ?: self::detectXmlStringEncoding($xml);
     }
 
     /**

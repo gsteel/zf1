@@ -126,7 +126,7 @@ class Zend_Http_Cookie
 
         $this->value = (string) $value;
         $this->expires = ($expires === null ? null : (int) $expires);
-        $this->path = ($path ? $path : '/');
+        $this->path = ($path ?: '/');
         $this->secure = $secure;
     }
 

@@ -65,7 +65,7 @@ class Zend_Mail_Storage_Folder implements RecursiveIterator
     public function __construct($localName, $globalName = '', $selectable = true, array $folders = array())
     {
         $this->_localName  = $localName;
-        $this->_globalName = $globalName ? $globalName : $localName;
+        $this->_globalName = $globalName ?: $localName;
         $this->_selectable = $selectable;
         $this->_folders    = $folders;
     }

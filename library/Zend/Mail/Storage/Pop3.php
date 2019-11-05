@@ -75,7 +75,7 @@ class Zend_Mail_Storage_Pop3 extends Zend_Mail_Storage_Abstract
      */
     public function getSize($id = 0)
     {
-        $id = $id ? $id : null;
+        $id = $id ?: null;
         return $this->_protocol->getList($id);
     }
 

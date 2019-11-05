@@ -1064,7 +1064,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
 
         switch ($type) {
             case 'script':
-                $this->_path[$type] = array(dirname(__FILE__) . $dir);
+                $this->_path[$type] = array(__DIR__ . $dir);
                 $this->_addPath($type, $path);
                 break;
             case 'filter':
@@ -1072,7 +1072,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
             default:
                 $this->_path[$type] = array(array(
                     'prefix' => 'Zend_View_' . ucfirst($type) . '_',
-                    'dir'    => dirname(__FILE__) . $dir
+                    'dir'    => __DIR__ . $dir
                 ));
                 $this->_addPath($type, $path, $classPrefix);
                 break;

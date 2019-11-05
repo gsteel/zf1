@@ -317,7 +317,7 @@ class Zend_Mail_Protocol_Imap
         }
         // last line has response code
         if ($tokens[0] == 'OK') {
-            return $lines ? $lines : true;
+            return $lines ?: true;
         } else if ($tokens[0] == 'NO'){
             return false;
         }
