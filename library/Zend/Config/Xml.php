@@ -1,47 +1,5 @@
 <?php
-/**
- * Zend Framework
- *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category  Zend
- * @package   Zend_Config
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd     New BSD License
- * @version   $Id$
- */
 
-/**
- * @see Zend_Config
- */
-// require_once 'Zend/Config.php';
-
-/**
- * @see Zend_Xml_Security 
- */
-// require_once 'Zend/Xml/Security.php';
-
-/**
- * @see Zend_Xml_Exception 
- */
-// require_once 'Zend/Xml/Exception.php';
-
-/**
- * XML Adapter for Zend_Config
- *
- * @category  Zend
- * @package   Zend_Config
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd     New BSD License
- */
 class Zend_Config_Xml extends Zend_Config
 {
     /**
@@ -214,7 +172,7 @@ class Zend_Config_Xml extends Zend_Config
         $nsAttributes = $xmlObject->attributes(self::XML_NAMESPACE);
 
         // Search for parent node values
-        if (($xmlObject->attributes() === null ? 0 : count($xmlObject->attributes())) > 0) {
+        if (count($xmlObject->attributes()) > 0) {
             foreach ($xmlObject->attributes() as $key => $value) {
                 if ($key === 'extends') {
                     continue;
@@ -284,9 +242,9 @@ class Zend_Config_Xml extends Zend_Config
         // Search for children
         if (count($xmlObject->children()) > 0) {
             foreach ($xmlObject->children() as $key => $value) {
-                if ((is_array($value->children()) || $value->children() instanceof \Countable ? count($value->children()) : 0) > 0 || (is_array($value->children(self::XML_NAMESPACE)) || $value->children(self::XML_NAMESPACE) instanceof \Countable ? count($value->children(self::XML_NAMESPACE)) : 0) > 0) {
+                if (count($value->children()) > 0 || count($value->children(self::XML_NAMESPACE)) > 0) {
                     $value = $this->_toArray($value);
-                } else if ((is_array($value->attributes()) || $value->attributes() instanceof \Countable ? count($value->attributes()) : 0) > 0) {
+                } elseif (count($value->attributes()) > 0) {
                     $attributes = $value->attributes();
                     if (isset($attributes['value'])) {
                         $value = (string) $attributes['value'];
