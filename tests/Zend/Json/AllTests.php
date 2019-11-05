@@ -48,8 +48,6 @@ class Zend_Json_AllTests
         $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Json');
 
         $suite->addTestSuite('Zend_Json_JsonXMLTest');
-        $suite->addTestSuite('Zend_Json_ServerTest');
-        $suite->addTest(Zend_Json_Server_AllTests::suite());
 
         return $suite;
     }
