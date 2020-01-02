@@ -1,32 +1,11 @@
 <?php
-/**
- * Zend Framework
- *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://framework.zend.com/license/new-bsd
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@zend.com so we can send you a copy immediately.
- *
- * @category   Zend
- * @package    Zend
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id$
- */
-
 $PHPUNIT = null;
 if (!$PHPUNIT) {
     if (!$PHPUNIT && strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
         $PHPUNIT = `for %i in (phpunit.bat) do @echo.   %~\$PATH:i)`;
     } else {
         $PHPUNIT = trim(`echo \$PHPUNIT`);
-        if ( empty($PHPUNIT) ) {
+        if (empty($PHPUNIT)) {
             $PHPUNIT = `which phpunit`;
             $PHPUNIT = trim($PHPUNIT);
         }
@@ -58,8 +37,8 @@ sort($files);
 $result = 0;
 
 // run through phpunit
-while(list(, $file)=each($files)) {
-    if ($_SERVER['TRAVIS_PHP_VERSION'] == 'hhvm' && $file == 'Zend/CodeGenerator/AllTests.php') {
+foreach ($files as $file) {
+    if ($_SERVER['TRAVIS_PHP_VERSION'] === 'hhvm' && $file === 'Zend/CodeGenerator/AllTests.php') {
         echo "Skipping $file on HHVM" . PHP_EOL; //gets stuck on the HHVM
         continue;
     }

@@ -77,22 +77,6 @@ class Zend_Cache_AllTests
         $suite->addTestSuite('Zend_Cache_ManagerTest');
 
         /*
-         * Check if SQLite tests are enabled, and if extension and driver are available.
-         */
-        if (!defined('TESTS_ZEND_CACHE_SQLITE_ENABLED') ||
-            constant('TESTS_ZEND_CACHE_SQLITE_ENABLED') === false) {
-            $skipTest = new Zend_Cache_SqliteBackendTest_SkipTests();
-            $skipTest->message = 'Tests are not enabled in TestConfiguration.php';
-            $suite->addTest($skipTest);
-        } else if (!extension_loaded('sqlite')) {
-            $skipTest = new Zend_Cache_SqliteBackendTest_SkipTests();
-            $skipTest->message = "Extension 'sqlite' is not loaded";
-            $suite->addTest($skipTest);
-        } else {
-            $suite->addTestSuite('Zend_Cache_SqliteBackendTest');
-        }
-
-        /*
          * Check if APC tests are enabled, and if extension is available.
          */
         if (!defined('TESTS_ZEND_CACHE_APC_ENABLED') ||

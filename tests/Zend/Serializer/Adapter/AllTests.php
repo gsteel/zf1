@@ -39,10 +39,6 @@ require_once dirname(__FILE__) . '/PhpCodeTest.php';
  */
 require_once dirname(__FILE__) . '/JsonTest.php';
 
-/**
- * @see Zend_Serializer_Adapter_WddxTest
- */
-require_once dirname(__FILE__) . '/WddxTest.php';
 
 /**
  * @see Zend_Serializer_Adapter_IgbinaryTest
@@ -85,18 +81,6 @@ class Zend_Serializer_Adapter_AllTests
         $suite->addTestSuite('Zend_Serializer_Adapter_PhpSerializeTest');
         $suite->addTestSuite('Zend_Serializer_Adapter_PhpCodeTest');
         $suite->addTestSuite('Zend_Serializer_Adapter_JsonTest');
-
-        if (!defined('TESTS_ZEND_SERIALIZER_ADAPTER_WDDX_ENABLED') || !TESTS_ZEND_SERIALIZER_ADAPTER_WDDX_ENABLED) {
-            $skippedTest = new Zend_Serializer_Adapter_WddxSkipTest();
-            $skippedTest->message = 'this Adapter is not enabled in TestConfiguration.php';
-            $suite->addTest($skippedTest);
-        } elseif (!extension_loaded('wddx')) {
-            $skippedTest = new Zend_Serializer_Adapter_WddxSkipTest();
-            $skippedTest->message = 'extension "wddx" is not loaded';
-            $suite->addTest($skippedTest);
-        } else {
-            $suite->addTestSuite('Zend_Serializer_Adapter_WddxTest');
-        }
 
         if (!defined('TESTS_ZEND_SERIALIZER_ADAPTER_IGBINARY_ENABLED') || !TESTS_ZEND_SERIALIZER_ADAPTER_IGBINARY_ENABLED) {
             $skippedTest = new Zend_Serializer_Adapter_IgbinarySkipTest();
