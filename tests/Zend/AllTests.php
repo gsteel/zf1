@@ -80,10 +80,6 @@ class Zend_AllTests
     {
         $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend');
 
-        // Running this early to ensure that the test suite hasn't used too
-        // much memory by the time it gets to this test.
-        $suite->addTest(Zend_Memory_AllTests::suite());
-
         // Start remaining tests...
         $suite->addTestSuite('Zend_Acl_AclTest');
         $suite->addTest(Zend_Application_AllTests::suite());
