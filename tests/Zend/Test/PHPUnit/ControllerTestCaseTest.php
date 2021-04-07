@@ -642,27 +642,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends PHPUnit_Framework_TestCas
         $this->assertNotSame($request, $test);
     }
 
-    public function testResetResponseShouldClearAllViewPlaceholders()
-    {
-        $this->testCase->getFrontController()->setControllerDirectory(dirname(__FILE__) . '/_files/application/controllers');
-        $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
-        $viewRenderer->initView();
-        $view = $viewRenderer->view;
-        $view->addHelperPath('Zend/Dojo/View/Helper', 'Zend_Dojo_View_Helper');
-        $view->dojo()->setCdnVersion('1.1.0')
-                     ->requireModule('dojo.parser')
-                     ->enable();
-        $view->headTitle('Foo');
-        $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
-        $response = $this->testCase->getResponse();
-        $this->testCase->resetResponse();
-
-        $view = new Zend_View();
-        $view->addHelperPath('Zend/Dojo/View/Helper', 'Zend_Dojo_View_Helper');
-        $this->assertFalse($view->dojo()->isEnabled(), 'Dojo is enabled? ', $view->dojo());
-        $this->assertNotContains('Foo', $view->headTitle()->__toString(), 'Head title persisted?');
-    }
-
     /**
      * @group ZF-4070
      */
@@ -781,7 +760,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends PHPUnit_Framework_TestCas
                : gettype($boot);
         $this->assertTrue($boot === $this->testCase->bootstrap->getBootstrap(), $type);
     }
-    
+
     /**
      * @group ZF-7496
      * @dataProvider providerRedirectWorksAsExpectedFromHookMethodsInActionController
@@ -793,7 +772,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends PHPUnit_Framework_TestCas
         $this->testCase->assertRedirectTo('/login');
         $this->assertNotEquals('action body', $this->testCase->getResponse()->getBody());
     }
-    
+
     /**
      * Data provider for testRedirectWorksAsExpectedFromHookMethodsInActionController
      * @return array
@@ -805,7 +784,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends PHPUnit_Framework_TestCas
             array('/zend-test-redirect-from-pre-dispatch/baz')
         );
     }
-    
+
     /**
      * @group ZF-7496
      * @dataProvider providerRedirectWorksAsExpectedFromHookMethodsInFrontControllerPlugin
@@ -814,7 +793,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends PHPUnit_Framework_TestCas
     {
         require_once dirname(__FILE__) . "/_files/application/plugins/RedirectFrom{$pluginName}.php";
         $className = "Application_Plugin_RedirectFrom{$pluginName}";
-        
+
         $fc = $this->testCase->getFrontController();
         $fc->setControllerDirectory(dirname(__FILE__) . '/_files/application/controllers')
            ->registerPlugin(new $className());
@@ -854,7 +833,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends PHPUnit_Framework_TestCas
             'Expires', '#^[a-z-]+/[a-z-]+$#i'
         );
     }
-    
+
     /**
      * Data provider for testRedirectWorksAsExpectedFromHookMethodsInFrontControllerPlugin
      * @return array
