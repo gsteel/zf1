@@ -120,7 +120,6 @@ class Zend_AllTests
         $suite->addTest(Zend_Log_AllTests::suite());
         $suite->addTest(Zend_Mail_AllTests::suite());
         $suite->addTest(Zend_Markup_AllTests::suite());
-        $suite->addTest(Zend_Measure_AllTests::suite());
         $suite->addTestSuite('Zend_MimeTest');
         $suite->addTest(Zend_Mime_AllTests::suite());
         $suite->addTestSuite('Zend_NavigationTest');
