@@ -126,7 +126,6 @@ class Zend_AllTests
         $suite->addTestSuite('Zend_RegistryTest');
         $suite->addTest(Zend_Reflection_AllTests::suite());
         $suite->addTest(Zend_Serializer_AllTests::suite());
-        $suite->addTest(Zend_Tag_AllTests::suite());
         $suite->addTest(Zend_Test_AllTests::suite());
         $suite->addTest(Zend_Text_AllTests::suite());
         $suite->addTestSuite('Zend_TimeSyncTest');
