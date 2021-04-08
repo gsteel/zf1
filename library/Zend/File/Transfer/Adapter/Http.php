@@ -338,10 +338,6 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
             }
         }
 
-        if (!empty($id) && (($id instanceof Zend_ProgressBar_Adapter) || ($id instanceof Zend_ProgressBar))) {
-            $adapter = $id;
-            unset($id);
-        }
 
         if (empty($id)) {
             if (!isset($_GET['progress_key'])) {
@@ -386,16 +382,6 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
         }
 
         if (isset($adapter) && isset($status['id'])) {
-            if ($adapter instanceof Zend_ProgressBar_Adapter) {
-                // require_once 'Zend/ProgressBar.php';
-                $adapter = new Zend_ProgressBar($adapter, 0, $status['total'], $session);
-            }
-
-            if (!($adapter instanceof Zend_ProgressBar)) {
-                // require_once 'Zend/File/Transfer/Exception.php';
-                throw new Zend_File_Transfer_Exception('Unknown Adapter given');
-            }
-
             if ($status['done']) {
                 $adapter->finish();
             } else {
